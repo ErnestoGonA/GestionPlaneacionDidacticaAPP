@@ -2,16 +2,26 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+//using GestionPlaneacionDidacticaAPP.Views.CatGenerales;
+using GestionPlaneacionDidacticaAPP.Views.Navegacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GestionPlaneacionDidacticaAPP
 {
     public partial class App : Application
     {
+        private static FicViewModelLocator FicLocalVmLocator;
+
+        public static FicViewModelLocator FicVmLocator
+        {
+            get { return FicLocalVmLocator = FicLocalVmLocator ?? new FicViewModelLocator(); }
+        }
+
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new Views.Navegacion.FicMasterPage();
         }
 
         protected override void OnStart()
