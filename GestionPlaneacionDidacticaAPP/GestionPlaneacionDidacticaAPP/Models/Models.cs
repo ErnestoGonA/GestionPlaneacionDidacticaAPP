@@ -81,8 +81,8 @@ namespace GestionPlaneacionDidacticaAPP.Models
         [StringLength(1)]
         public string Borrado { get; set; }
     }
-    [Table("eva_planeacion_tema")]
-    public class eva_planeacion_tema
+    [Table("eva_planeacion_fuentes")]
+    public class eva_planeacion_fuentes
     {
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
