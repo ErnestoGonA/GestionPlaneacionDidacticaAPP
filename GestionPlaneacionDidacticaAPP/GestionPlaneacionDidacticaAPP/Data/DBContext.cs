@@ -58,7 +58,7 @@ namespace GestionPlaneacionDidacticaAPP.Data
         public DbSet<eva_planeacion> eva_planeacion { get; set; }
         public DbSet<eva_planeacion_temas> eva_planeacion_temas { get; set; }
         public DbSet<eva_planeacion_subtemas> eva_planeacion_subtemas { get; set; }
-        public DbSet<eva_planeacion_tema> eva_planeacion_tema { get; set; }
+        public DbSet<eva_planeacion_fuentes> eva_planeacion_fuentes { get; set; }
         public DbSet<eva_planeacion_apoyos> eva_planeacion_apoyos { get; set; }
         public DbSet<eva_planeacion_temas_competencias> eva_planeacion_temas_competencias { get; set; }
         public DbSet<eva_planeacion_aprendizaje> eva_planeacion_aprendizaje { get; set; }
