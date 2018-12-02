@@ -1,7 +1,4 @@
-﻿//using GestionPlaneacionDidacticaAPP.Views.CatGenerales;
-using GestionPlaneacionDidacticaAPP.Views.Navegacion;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -9,9 +6,11 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using GestionPlaneacionDidacticaAPP.Views.Navegacion;
+using GestionPlaneacionDidacticaAPP.Views.Temas;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -34,6 +33,12 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 
             public FicMasterPageMasterViewModel()
             {
+
+                MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
+                {
+                    new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
+                });
+
                 //MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
                 //{
                 //    //new FicMasterPageMenuItem { Id = 0, Title = "Edificios",

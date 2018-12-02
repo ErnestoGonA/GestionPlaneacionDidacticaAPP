@@ -43,8 +43,6 @@ namespace GestionPlaneacionDidacticaAPP.Models
         public string Activo { get; set; }
         [StringLength(1)]
         public string Borrado { get; set; }
-
-        //Foreign keys
     }
 
     [Table("eva_planeacion")]

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Temas.ViTemasList">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nuevo Tema"
+             Command="{Binding MetAddTemaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar Tema"
+             Command="{Binding MetUpdateTemaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle Tema"
+            Command="{Binding MetViewTemaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar Tema"
+            Command="{Binding MetRemoveTemaCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+            >
+            <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Filtrar informacion..."
+                PlaceholderColor="Red"
+                x:Name="SearchBar"
+                >
+            </SearchBar>
+            <syncfusion:SfDataGrid
+                VerticalOptions="FillAndExpand"
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding SFDataGrid_ItemSource_Temas}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_Temas}"
+                SelectionMode="Single">
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdTema"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesTema"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

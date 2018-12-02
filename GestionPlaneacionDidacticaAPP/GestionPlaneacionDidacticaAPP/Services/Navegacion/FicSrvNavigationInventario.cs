@@ -1,7 +1,7 @@
 ﻿using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
-using GestionPlaneacionDidacticaAPP.ViewModels;
-//using GestionPlaneacionDidacticaAPP.Views.CatGenerales;
+using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
         private IDictionary<Type, Type> FicViewModelRouting = new Dictionary<Type, Type>()
         {
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
+
+            {typeof(VmTemasList),typeof(ViTemasList) },
+
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
             //{ typeof(FicVmCatEdificiosUpdate),typeof(ViCatEdificiosUpdate) },

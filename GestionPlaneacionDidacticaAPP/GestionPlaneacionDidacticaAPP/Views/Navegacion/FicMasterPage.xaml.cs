@@ -1,12 +1,12 @@
-﻿//using EGAXamarinAppDAE.Views.CatGenerales;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using GestionPlaneacionDidacticaAPP.Views.Temas;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -30,6 +30,10 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                 var FicPagina = FicItemMenu.FicPageName as string;
                 switch (FicPagina)
                 {
+                    case "ViTemasList":
+                        FicItemMenu.TargetType = typeof(ViTemasList);
+                        break;
+                    
                     //case "ViCatEdificiosList":
                     //    FicItemMenu.TargetType = typeof(ViCatEdificiosList);
                     //    break;

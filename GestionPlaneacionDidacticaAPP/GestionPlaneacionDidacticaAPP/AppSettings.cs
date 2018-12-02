@@ -7,7 +7,7 @@ namespace GestionPlaneacionDidacticaAPP
     public class AppSettings
     {
 
-        public static string DataBaseName = "DB.db3";
+        public static string DataBaseName = "DBPlaneacion.db3";
 
     }
 }
