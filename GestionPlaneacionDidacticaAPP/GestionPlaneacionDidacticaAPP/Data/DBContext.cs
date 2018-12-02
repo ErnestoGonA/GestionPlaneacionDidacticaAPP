@@ -50,10 +50,6 @@ namespace GestionPlaneacionDidacticaAPP.Data
             }
         }
 
-        //public DbSet<eva_cat_edificios> eva_cat_edificios { get; set; }
-        //public DbSet<eva_cat_espacios> eva_cat_espacios { get; set; }
-        //public DbSet<eva_cat_estatus> eva_cat_estatus { get; set; }
-        //public DbSet<eva_cat_tipos_estatus> eva_cat_tipos_estatus { get; set; }
         //crud
         public DbSet<eva_planeacion> eva_planeacion { get; set; }
         public DbSet<eva_planeacion_temas> eva_planeacion_temas { get; set; }
@@ -61,6 +57,7 @@ namespace GestionPlaneacionDidacticaAPP.Data
         public DbSet<eva_planeacion_fuentes> eva_planeacion_fuentes { get; set; }
         public DbSet<eva_planeacion_apoyos> eva_planeacion_apoyos { get; set; }
         public DbSet<eva_planeacion_temas_competencias> eva_planeacion_temas_competencias { get; set; }
+        public DbSet<eva_cat_competencias> eva_cat_competencias { get; set; }
         public DbSet<eva_planeacion_aprendizaje> eva_planeacion_aprendizaje { get; set; }
         public DbSet<eva_planeacion_enseñanza> eva_planeacion_enseñanza { get; set; }
         public DbSet<eva_planeacion_criterios_evalua> eva_planeacion_criterios_evalua { get; set; }
@@ -76,8 +73,8 @@ namespace GestionPlaneacionDidacticaAPP.Data
         public DbSet<cat_generales> cat_generales { get; set; }
         public DbSet<cat_periodos> cat_periodos { get; set; }
         public DbSet<rh_cat_personas> rh_cat_personas { get; set; }
-
-
+        public DbSet<eva_cat_asignaturas> eva_cat_asignaturas { get; set; }
+        public DbSet<cat_institutos> cat_institutos { get; set; }
 
         protected async override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -85,24 +82,7 @@ namespace GestionPlaneacionDidacticaAPP.Data
             {
 
                 ////Primary keys
-                //modelBuilder.Entity<eva_cat_edificios>()
-                //    .HasKey(c => new { c.IdEdificio });
-
-                //modelBuilder.Entity<eva_cat_espacios>()
-                //    .HasKey(c => new { c.IdEspacio });
-
-                //modelBuilder.Entity<eva_cat_tipos_estatus>()
-                //    .HasKey(c => new { c.IdTipoEstatus });
-
-                //modelBuilder.Entity<eva_cat_estatus>()
-                //    .HasKey(c => new { c.IdEstatus });
-
-                //modelBuilder.Entity<eva_cat_conocimientos>()
-                //    .HasKey(c => new { c.IdConocimiento });
-
-                //modelBuilder.Entity<eva_cat_competencias>()
-                //    .HasKey(c => new { c.IdCompetencia });
-
+                modelBuilder.Entity<eva_cat_asignaturas>().HasKey(eca => new { eca.IdAsignatura });
                 modelBuilder.Entity<eva_planeacion>().HasKey(plan => new { plan.IdPlaneacion });
                 modelBuilder.Entity<eva_planeacion_temas>().HasKey(tem => new { tem.IdTema });
                 modelBuilder.Entity<eva_planeacion_subtemas>().HasKey(subt => new { subt.IdSubtema });
@@ -116,25 +96,67 @@ namespace GestionPlaneacionDidacticaAPP.Data
                 modelBuilder.Entity<cat_tipos_generales>().HasKey(ctg => new { ctg.IdTipoGeneral });
                 modelBuilder.Entity<cat_generales>().HasKey(cg => new { cg.IdGeneral });
                 modelBuilder.Entity<cat_periodos>().HasKey(cp => new { cp.IdPeriodo });
+                modelBuilder.Entity<cat_institutos>().HasKey(ci => new { ci.IdInstituto });
                 modelBuilder.Entity<rh_cat_personas>().HasKey(rcp => new { rcp.IdPersona });
+
                 ////Foreign keys
-                //modelBuilder.Entity<eva_cat_espacios>()
-                //    .HasOne(s => s.Eva_Cat_Edificios)
-                //    .WithMany().HasForeignKey(s => new { s.IdEdificio });
-                //modelBuilder.Entity<eva_cat_espacios>()
-                //    .HasOne(s => s.Eva_Cat_Estatus)
-                //    .WithMany().HasForeignKey(s => new { s.IdEstatus });
-                //modelBuilder.Entity<eva_cat_espacios>()
-                //    .HasOne(s => s.Eva_Cat_Tipos_Estatus)
-                //    .WithMany().HasForeignKey(s => new { s.IdTipoEstatus });
+                ///
+                //eva_planeacion
+                modelBuilder.Entity<eva_planeacion>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion>().HasOne(s => s.cat_periodos).WithMany().HasForeignKey(s => s.IdPeriodo);
 
-                //modelBuilder.Entity<eva_cat_estatus>()
-                //    .HasOne(s => s.Eva_Cat_Tipos_Estatus)
-                //    .WithMany().HasForeignKey(s => new { s.IdTipoEstatus });
+                //eva_planeacion_temas
+                modelBuilder.Entity<eva_planeacion_temas>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_temas>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
 
-                //modelBuilder.Entity<eva_cat_competencias>()
-                //    .HasOne(s => s.Eva_Cat_Tipo_Competencias)
-                //    .WithMany().HasForeignKey(s => new { s.IdTipoCompetencia });
+                //eva_planeacion_subtemas
+                modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+
+                //eva_planeacion_fuentes
+                modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_cat_fuentes_bibliograficas).WithMany().HasForeignKey(s => s.IdFuente);
+
+                //eva_planeacion_apoyos
+                modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_cat_apoyos_didacticos).WithMany().HasForeignKey(s => s.IdApoyoDidactico);
+
+                //eva_planeacion_temas_competencias
+                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+
+                //eva_planeacion_aprendizaje
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_actividades_aprendizaje).WithMany().HasForeignKey(s => s.IdActividadAprendizaje);
+
+                //eva_planeacion_enseñanza
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_actividades_enseñanza).WithMany().HasForeignKey(s => s.IdActividadEnseñanza);
+
+                //eva_planeacion_criterios_evalua
+                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+
+                //eva_planeacion_mejora_desempeño
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+
+                //rh_cat_personas
+                modelBuilder.Entity<rh_cat_personas>().HasOne(s => s.cat_institutos).WithMany().HasForeignKey(s => s.IdInstituto);
 
             }
             catch (Exception e)
