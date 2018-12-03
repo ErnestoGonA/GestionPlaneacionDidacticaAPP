@@ -3,6 +3,8 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +20,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
 
             {typeof(VmTemasList),typeof(ViTemasList) },
-            {typeof(VmTemasInsert),typeof(ViTemasInsert) }
+            {typeof(VmTemasInsert),typeof(ViTemasInsert) },
+            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) }
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },

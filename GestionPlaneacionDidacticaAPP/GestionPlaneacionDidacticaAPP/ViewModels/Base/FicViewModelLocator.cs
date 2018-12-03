@@ -9,6 +9,9 @@ using GestionPlaneacionDidacticaAPP.Services.Navegacion;
 using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Interfaces.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -27,6 +30,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //VmTemas
             FicContainerBuilder.RegisterType<VmTemasList>();
             FicContainerBuilder.RegisterType<VmTemasInsert>();
+            FicContainerBuilder.RegisterType<VmApoyosDidacticosList>();
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -43,6 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             //Temas
             FicContainerBuilder.RegisterType<SrvTemas>().As<ISrvTemas>().SingleInstance();
+            FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
 
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
@@ -73,6 +78,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public VmTemasInsert VmTemasInsert
         {
             get { return FicIContainer.Resolve<VmTemasInsert>(); }
+        }
+
+        public VmApoyosDidacticosList VmApoyosDidacticosList
+        {
+            get { return FicIContainer.Resolve<VmApoyosDidacticosList>(); }
         }
 
 
