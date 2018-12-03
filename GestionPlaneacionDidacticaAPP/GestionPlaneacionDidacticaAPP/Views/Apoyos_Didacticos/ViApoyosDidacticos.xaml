@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos.ViApoyosDidacticos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nuevo ApoyoDidactico">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar ApoyoDidactico">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle ApoyoDidactico">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar ApoyoDidactico">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+            >
+            <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Filtrar informacion..."
+                PlaceholderColor="Red"
+                x:Name="SearchBar"
+                >
+            </SearchBar>
+            <syncfusion:SfDataGrid
+                VerticalOptions="FillAndExpand"
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding SFDataGrid_ItemSource_ApoyosDidacticos}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_ApoyosDidacticos}"
+                SelectionMode="Single">
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdApoyoDidactico"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesApoyodDidactico"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
