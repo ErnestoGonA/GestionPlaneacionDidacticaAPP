@@ -43,8 +43,6 @@ namespace GestionPlaneacionDidacticaAPP.Models
         public string Activo { get; set; }
         [StringLength(1)]
         public string Borrado { get; set; }
-
-        //Foreign keys
     }
 
     [Table("eva_planeacion")]
@@ -144,6 +142,10 @@ namespace GestionPlaneacionDidacticaAPP.Models
     [Table("eva_planeacion_fuentes")]
     public class eva_planeacion_fuentes
     {
+        //Necesario para que se genere la tabla con el Entity Framework
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Int16 IdPlaneacionFuentes { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdFuente { get; set; }
@@ -170,6 +172,10 @@ namespace GestionPlaneacionDidacticaAPP.Models
     [Table("eva_planeacion_apoyos")]
     public class eva_planeacion_apoyos
     {
+        //Necesario para que se genere la tabla con el Entity Framework
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Int16 IdPlaneacionApoyos { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdApoyoDidactico { get; set; }
@@ -195,6 +201,7 @@ namespace GestionPlaneacionDidacticaAPP.Models
     [Table("eva_cat_competencias")]
     public class eva_cat_competencias
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCompetencia { get; set; }
         public Int16 IdTipoCompetencia { get; set; }
 
@@ -221,6 +228,10 @@ namespace GestionPlaneacionDidacticaAPP.Models
     [Table("eva_planeacion_temas_competencias")]
     public class eva_planeacion_temas_competencias
     {
+        //Necesario para que se genere la tabla con el Entity Framework
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Int16 IdPlaneacionTemasCompetencias { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdTema { get; set; }
@@ -251,6 +262,10 @@ namespace GestionPlaneacionDidacticaAPP.Models
     [Table("eva_planeacion_aprendizaje")]
     public class eva_planeacion_aprendizaje
     {
+        //Necesario para que se genere la tabla con el Entity Framework
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Int16 IdPlaneacionAprendizaje { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdTema { get; set; }
@@ -280,12 +295,14 @@ namespace GestionPlaneacionDidacticaAPP.Models
     [Table("eva_planeacion_enseñanza")]
     public class eva_planeacion_enseñanza
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdActividadEnseñanza { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdTema { get; set; }
         public int IdCompetencia { get; set; }
-        public int IdActividadEnseñanza { get; set; }
-
+        
         public DateTime FechaProgramada { get; set; }
         public DateTime FechaRealizada { get; set; }
 
@@ -314,6 +331,7 @@ namespace GestionPlaneacionDidacticaAPP.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCriterio { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdTema { get; set; }
@@ -347,6 +365,7 @@ namespace GestionPlaneacionDidacticaAPP.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdMejora { get; set; }
+
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
         public Int16 IdTema { get; set; }

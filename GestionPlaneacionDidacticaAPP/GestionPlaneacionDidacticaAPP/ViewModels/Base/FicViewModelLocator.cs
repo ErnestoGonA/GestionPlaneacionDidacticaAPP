@@ -1,15 +1,14 @@
-﻿
-//using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
-//using GestionPlaneacionDidacticaAPP.Interfaces.CatGenerales;
-//using GestionPlaneacionDidacticaAPP.Services.Navegacion;
-//using GestionPlaneacionDidacticaAPP.Services.CatGenerales;
-//using GestionPlaneacionDidacticaAPP.ViewModels;
-//using GestionPlaneacionDidacticaAPP.Views.CatGenerales;
-
-using Autofac;
+﻿using Autofac;
 using System;
 using System.Collections.Generic;
 using System.Text;
+
+using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Services.Navegacion;
+using GestionPlaneacionDidacticaAPP.Services.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.Views.Temas;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -25,24 +24,25 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //-------------------------------- VIEW MODELS ------------------------------------------------------
             //FIC: se procede a registrar las ViewModels para que se puedan mandar llamar en cualquier plataforma
             //---------------------------------------------------------------------------------------------------
+            //VmTemas
+            FicContainerBuilder.RegisterType<VmTemasList>();
+
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosInsert>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosUpdate>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosView>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosImportarExportar>();
-
-            ////FicContainerBuilder.RegisterType<FicVmInventariosList>();
-            ////FicContainerBuilder.RegisterType<FicVmInventarioConteoList>();
-            ////FicContainerBuilder.RegisterType<FicVmInventarioConteosItem>();
-            ////FicContainerBuilder.RegisterType<FicVmInventarioAcumuladoList>();
-            ////FicContainerBuilder.RegisterType<FicVmImportarWebApi>();
-            ////FicContainerBuilder.RegisterType<FicVmExportarWebApi>();
+            
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
             //para poder ejecutar las tareas (metodos o funciones, etc) del servicio en cuestion.
             //---------------------------------------------------------------------------------------------------
-            //FicContainerBuilder.RegisterType<FicSrvNavigationInventario>().As<IFicSrvNavigationInventario>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvNavigationInventario>().As<IFicSrvNavigationInventario>().SingleInstance();
+
+            //Temas
+            FicContainerBuilder.RegisterType<SrvTemas>().As<ISrvTemas>().SingleInstance();
+
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosUpdate>().As<IFicSrvCatEdificiosUpdate>().SingleInstance();
@@ -63,6 +63,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
         //-------------------- CONTROL DE INVENTARIOS ------------------------
         //FIC: se manda llamar desde el backend de la View de List
+
+        public VmTemasList VmTemasList
+        {
+            get { return FicIContainer.Resolve<VmTemasList>(); }
+        }
 
         //public FicVmCatEdificiosList FicVmCatEdificiosList
         //{

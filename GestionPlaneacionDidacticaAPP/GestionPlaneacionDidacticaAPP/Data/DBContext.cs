@@ -85,6 +85,7 @@ namespace GestionPlaneacionDidacticaAPP.Data
                 modelBuilder.Entity<eva_cat_asignaturas>().HasKey(eca => new { eca.IdAsignatura });
                 modelBuilder.Entity<eva_planeacion>().HasKey(plan => new { plan.IdPlaneacion });
                 modelBuilder.Entity<eva_planeacion_temas>().HasKey(tem => new { tem.IdTema });
+                modelBuilder.Entity<eva_cat_competencias>().HasKey(ecc => new { ecc.IdCompetencia });
                 modelBuilder.Entity<eva_planeacion_subtemas>().HasKey(subt => new { subt.IdSubtema });
                 modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasKey(crit => new { crit.IdCriterio });
                 modelBuilder.Entity<eva_cat_fuentes_bibliograficas>().HasKey(fuen => new { fuen.IdFuente });
@@ -98,6 +99,14 @@ namespace GestionPlaneacionDidacticaAPP.Data
                 modelBuilder.Entity<cat_periodos>().HasKey(cp => new { cp.IdPeriodo });
                 modelBuilder.Entity<cat_institutos>().HasKey(ci => new { ci.IdInstituto });
                 modelBuilder.Entity<rh_cat_personas>().HasKey(rcp => new { rcp.IdPersona });
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasKey(epmd => new { epmd.IdMejora });
+
+                //Primary keys necesarias para la creacion de la base de datos aunque no esten en el modelo
+                modelBuilder.Entity<eva_planeacion_fuentes>().HasKey(epf => new { epf.IdPlaneacionFuentes });
+                modelBuilder.Entity<eva_planeacion_apoyos>().HasKey(epa => new { epa.IdPlaneacionApoyos });
+                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasKey(eptc => new { eptc.IdPlaneacionTemasCompetencias });
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasKey(epa => new { epa.IdPlaneacionAprendizaje });
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasKey(epe => new { epe.IdActividadEnseñanza });
 
                 ////Foreign keys
                 ///

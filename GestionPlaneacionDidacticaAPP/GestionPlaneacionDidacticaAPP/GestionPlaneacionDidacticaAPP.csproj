@@ -21,4 +21,10 @@
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Temas\ViTemasList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
