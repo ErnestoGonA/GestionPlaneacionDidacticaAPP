@@ -30,7 +30,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
         }
 
         //List temas of a planeacion
-        public async Task<IEnumerable<eva_planeacion_temas>> MetGetListTemas(int IdPlaneacion)
+        public async Task<IEnumerable<eva_planeacion_temas>> MetGetListTemasPlaneacion(int IdPlaneacion)
         {
             return await(from tema in DBLoContext.eva_planeacion_temas
                          where tema.IdPlaneacion== IdPlaneacion select tema).AsNoTracking().ToListAsync();

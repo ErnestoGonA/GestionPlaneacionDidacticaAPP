@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GestionPlaneacionDidacticaAPP.Models
 {
+    //sqlite3 "C:\Users\Ernesto Gonzalez\AppData\Local\Packages\f0644c92-e285-444d-8482-d0d98319d46b_kdnzcphg1beew\LocalState\DBPlaneacion.db3"
     [Table("eva_cat_asignaturas")]
     public class eva_cat_asignaturas
     {
@@ -88,6 +89,7 @@ namespace GestionPlaneacionDidacticaAPP.Models
         public Int16 IdTema { get; set; }
         public Int16 IdAsignatura { get; set; }
         public int IdPlaneacion { get; set; }
+
         [StringLength(200)]
         public string DesTema { get; set; }
         [StringLength(1000)]
