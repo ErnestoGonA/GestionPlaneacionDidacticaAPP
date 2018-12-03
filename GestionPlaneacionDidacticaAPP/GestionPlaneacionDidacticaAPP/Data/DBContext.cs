@@ -99,8 +99,14 @@ namespace GestionPlaneacionDidacticaAPP.Data
                 modelBuilder.Entity<cat_periodos>().HasKey(cp => new { cp.IdPeriodo });
                 modelBuilder.Entity<cat_institutos>().HasKey(ci => new { ci.IdInstituto });
                 modelBuilder.Entity<rh_cat_personas>().HasKey(rcp => new { rcp.IdPersona });
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasKey(epmd => new { epmd.IdMejora });
 
-                //modelBuilder.Entity<eva_planeacion_apoyos>().HasKey(epa => new { epa.IdApoyoDidactico });
+                //Primary keys necesarias para la creacion de la base de datos aunque no esten en el modelo
+                modelBuilder.Entity<eva_planeacion_fuentes>().HasKey(epf => new { epf.IdPlaneacionFuentes });
+                modelBuilder.Entity<eva_planeacion_apoyos>().HasKey(epa => new { epa.IdPlaneacionApoyos });
+                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasKey(eptc => new { eptc.IdPlaneacionTemasCompetencias });
+                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasKey(epa => new { epa.IdPlaneacionAprendizaje });
+                modelBuilder.Entity<eva_planeacion_enseñanza>().HasKey(epe => new { epe.IdActividadEnseñanza });
 
                 ////Foreign keys
                 ///
