@@ -60,18 +60,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             }
         }
 
-        //public ICommand MetAddTemaICommand
-        //{
-        //    get
-        //    {
-        //        return _MetAddTemaICommand = _MetAddTemaICommand ?? new FicVmDelegateCommand(MetAddTema);
-        //    }
-        //}
+        public ICommand MetAddTemaICommand
+        {
+            get
+            {
+                return _MetAddTemaICommand = _MetAddTemaICommand ?? new FicVmDelegateCommand(MetAddTema);
+            }
+        }
 
-        //private void MetAddTema()
-        //{
-        //    IFicSrvNavigationInventario.FicMetNavigateTo<VmTemasInsert>();
-        //}
+        private void MetAddTema()
+        {
+            IFicSrvNavigationInventario.FicMetNavigateTo<VmTemasInsert>();
+        }
 
         public async void OnAppearing()
         {
@@ -91,26 +91,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }//Sobrecarga el metodo OnAppearing() de la view
-
-        public async void OnAppearing(int IdPlaneacion)
-        {
-            try
-            {
-                var source_local_inv = await ISrvTemas.MetGetListTemas(IdPlaneacion);
-                if (source_local_inv != null)
-                {
-                    foreach (eva_planeacion_temas tema in source_local_inv)
-                    {
-                        _SFDataGrid_ItemSource_Temas.Add(tema);
-                    }
-                }//Llenar el grid
-            }
-            catch (Exception e)
-            {
-                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
-            }
-        }//Sobrecarga el metodo OnAppearing() de la view
-
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
