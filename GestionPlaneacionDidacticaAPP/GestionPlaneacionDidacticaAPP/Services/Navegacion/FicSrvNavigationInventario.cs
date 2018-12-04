@@ -22,7 +22,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmTemasList),typeof(ViTemasList) },
-            {typeof(FicVmTemasInsert),typeof(ViTemasInsert) }
+            {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
+            {typeof(FicVmTemasView),typeof(ViTemasView) }
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },

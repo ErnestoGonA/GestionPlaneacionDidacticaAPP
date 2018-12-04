@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
-        private ICommand _MetAddTemaICommand, _MetUpdateTemaICommand, MetViewTemaICommand, _MetRemoveTemaICommand;
+        private ICommand _MetAddTemaICommand, _MetUpdateTemaICommand, _FicMetViewTemaICommand, _MetRemoveTemaICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -71,6 +71,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         private void MetAddTema()
         {
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>();
+        }
+
+        public ICommand FicMetViewTemaICommand
+        {
+            get
+            {
+                return _FicMetViewTemaICommand = _FicMetViewTemaICommand ?? new FicVmDelegateCommand(FicMetViewTema);
+            }
+        }
+
+        private void FicMetViewTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasView>(SFDataGrid_SelectedItem_Temas);
+            }
         }
 
         public async void OnAppearing()
