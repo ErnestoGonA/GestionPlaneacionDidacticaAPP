@@ -13,12 +13,12 @@ using GestionPlaneacionDidacticaAPP.Models;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Temas
 {
-    public class SrvTemas : ISrvTemas
+    public class FicSrvTemas : IFicSrvTemas
     {
 
         private readonly DBContext DBLoContext;
 
-        public SrvTemas()
+        public FicSrvTemas()
         {
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }

@@ -18,18 +18,18 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
         public ViTemasList()
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.VmTemasList;
+            BindingContext = App.FicVmLocator.FicVmTemasList;
         }
 
         public ViTemasList(object NavigationContext)
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.VmTemasList;
+            BindingContext = App.FicVmLocator.FicVmTemasList;
         }
 
         protected async override void OnAppearing()
         {
-            var FicViewModel = BindingContext as VmTemasList;
+            var FicViewModel = BindingContext as FicVmTemasList;
             if (FicViewModel != null)
             {
                FicViewModel.OnAppearing();

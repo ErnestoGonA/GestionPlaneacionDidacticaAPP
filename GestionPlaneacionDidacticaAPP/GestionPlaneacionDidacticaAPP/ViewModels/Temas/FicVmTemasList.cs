@@ -14,7 +14,7 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
-    public class VmTemasList: INotifyPropertyChanged
+    public class FicVmTemasList: INotifyPropertyChanged
     {
 
         //Data of the grid
@@ -26,12 +26,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private ISrvTemas ISrvTemas;
+        private IFicSrvTemas IFicSrvTemas;
 
-        public VmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, ISrvTemas srvTemas)
+        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
-            ISrvTemas = srvTemas;
+            IFicSrvTemas = srvTemas;
 
             _SFDataGrid_ItemSource_Temas = new ObservableCollection<eva_planeacion_temas>();
         }
@@ -70,14 +70,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         private void MetAddTema()
         {
-            IFicSrvNavigationInventario.FicMetNavigateTo<VmTemasInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>();
         }
 
         public async void OnAppearing()
         {
             try
             {
-                var source_local_inv = await ISrvTemas.MetGetListTemas();
+                var source_local_inv = await IFicSrvTemas.MetGetListTemas();
                 if (source_local_inv != null)
                 {
                     foreach (eva_planeacion_temas tema in source_local_inv)

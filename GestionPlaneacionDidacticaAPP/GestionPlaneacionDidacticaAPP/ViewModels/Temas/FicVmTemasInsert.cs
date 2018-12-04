@@ -16,12 +16,12 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
-    public class VmTemasInsert: INotifyPropertyChanged
+    public class FicVmTemasInsert: INotifyPropertyChanged
     {
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private ISrvTemas ISrvTemas;
+        private IFicSrvTemas IFicSrvTemas;
 
         private string _LabelDesTema, _LabelObservaciones;
 
@@ -31,10 +31,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         //Valor mandado de view padre a hija
         public object[] NavigationContextC { get; set; }
 
-        public VmTemasInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, ISrvTemas srvTemas)
+        public FicVmTemasInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
-            ISrvTemas = srvTemas;
+            IFicSrvTemas = srvTemas;
         }
 
         public string LabelDesTema
@@ -75,7 +75,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<VmTemasList>(NavigationContextC);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(NavigationContextC);
             }
             catch(Exception e)
             {
@@ -92,7 +92,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
-                var res = await ISrvTemas.InsertTema(new eva_planeacion_temas()
+                var res = await IFicSrvTemas.InsertTema(new eva_planeacion_temas()
                 {
                     IdAsignatura = 1,
                     IdPlaneacion = 1,
@@ -111,7 +111,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 if(res == "Ok")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<VmTemasList>(NavigationContextC);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(NavigationContextC);
                 }
                 else
                 {

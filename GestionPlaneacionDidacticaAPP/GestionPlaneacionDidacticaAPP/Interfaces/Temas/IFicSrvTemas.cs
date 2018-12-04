@@ -7,7 +7,7 @@ using GestionPlaneacionDidacticaAPP.Models;
 
 namespace GestionPlaneacionDidacticaAPP.Interfaces.Temas
 {
-    public interface ISrvTemas
+    public interface IFicSrvTemas
     {
         Task<IEnumerable<eva_planeacion_temas>> MetGetListTemas();
         Task<IEnumerable<eva_planeacion_temas>> MetGetListTemasPlaneacion(int IdPlaneacion);
