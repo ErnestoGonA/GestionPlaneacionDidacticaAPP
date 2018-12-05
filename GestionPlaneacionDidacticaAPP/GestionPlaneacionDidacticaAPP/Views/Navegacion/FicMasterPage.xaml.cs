@@ -8,7 +8,7 @@ using Xamarin.Forms.Xaml;
 
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
-using GestionPlaneacionDidacticaAPP.Views;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
