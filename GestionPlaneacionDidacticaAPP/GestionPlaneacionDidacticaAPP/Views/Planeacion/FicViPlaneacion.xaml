@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Planeacion.FicViPlaneacion">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nueva Planeacion">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar Planeacion">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle Planeacion">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar Planeacion">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+            >
+            <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Filtrar informacion..."
+                PlaceholderColor="Red"
+                x:Name="SearchBar"
+                >
+            </SearchBar>
+            <syncfusion:SfDataGrid
+                VerticalOptions="FillAndExpand"
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding SFDataGrid_ItemSource_Planeacion}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_Planeacion}"
+                SelectionMode="Single">
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdPlaneacion"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesPlaneacion"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

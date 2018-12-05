@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -43,6 +44,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                                                 Icon ="ficAlmacen20x20.png",
                                                 FicPageName ="ViApoyosDidacticos",
                                                 TargetType = typeof(ViApoyosDidacticos)
+                                                },
+                    new FicMasterPageMenuItem { Id = 3, Title = "Planeaciones",
+                                                Icon ="ficAlmacen20x20.png",
+                                                FicPageName ="ViApoyosDidacticos",
+                                                TargetType = typeof(FicViPlaneacion)
                                                 }
                 });
 
