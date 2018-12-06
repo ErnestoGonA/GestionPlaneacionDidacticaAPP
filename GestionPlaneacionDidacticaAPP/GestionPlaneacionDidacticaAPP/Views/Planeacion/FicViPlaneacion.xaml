@@ -21,6 +21,26 @@
     <ContentPage.Content>
         <StackLayout Padding="10"
             >
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Usuario: " FontAttributes="Bold" FontSize="Micro"/>
+                <Picker SelectedItem="{Binding Usuario}" SelectedIndex="{Binding UsIndex}" HorizontalOptions="StartAndExpand">
+                    <Picker.Items>
+                        <x:String>Juan Pedro Gil</x:String>
+                        <x:String>El cherne</x:String>
+                        <x:String>El brayan</x:String>
+                        <x:String>El memo</x:String>
+                        <x:String>Anita la vaquerita</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
+                <Picker SelectedItem="{Binding Asignatura}" SelectedIndex="{Binding AsIndex}" HorizontalOptions="StartAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>
+                <Switch HorizontalOptions="Start" IsToggled="{Binding Plantilla}"></Switch>
+            </StackLayout>
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
@@ -38,7 +58,7 @@
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdPlaneacion"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesPlaneacion"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="ReferenciaNorma"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>

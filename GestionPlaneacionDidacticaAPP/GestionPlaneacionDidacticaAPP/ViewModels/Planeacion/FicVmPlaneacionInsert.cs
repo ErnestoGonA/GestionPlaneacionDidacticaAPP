@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Models;
@@ -18,8 +20,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert;
 
-        private string _ReferenciaNorma, _Revision, _Actual, _PlantillaOriginal, _CompetenciaAsignatura, _AportacionPerfilEgreso;
-        private Int16 _IdPeriodo;
+        private string _ReferenciaNorma, _Revision, _CompetenciaAsignatura, _AportacionPerfilEgreso;
+        private string _Usuario = FicGlobalValues.USUARIO;
+        private string _Asignatura = FicGlobalValues.ASIGNATURA;
+        private bool _Actual, _PlantillaOriginal;
+        public Int16 _PeriodoId;
+        private List<string> _Periodos;
+
 
         private ICommand _SaveCommand;
 
@@ -29,6 +36,73 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
             this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
+            _Periodos = GetListPeriodos().Result;
+        }
+
+        public async Task<List<string>> GetListPeriodos()
+        {
+            try
+            {
+                var periodos = await IFicSrvPlaneacionInsert.GetListPeriodos();
+                if (periodos != null)
+                {
+                    List<string> aux = new List<string>();
+                    foreach (cat_periodos per in periodos)
+                    {
+                        aux.Add(per.ClavePeriodo);
+                    }
+                    return aux;
+                }//Llenar el grid
+                return null;
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+                return null;
+            }
+
+        }
+
+        public string Usuario
+        {
+            get
+            {
+                return _Usuario;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _Usuario = FicGlobalValues.USUARIO = value;
+                }
+            }
+        }
+        
+        public string Asignatura
+        {
+            get
+            {
+                return _Asignatura;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _Asignatura = FicGlobalValues.ASIGNATURA = value;
+                }
+            }
+        }
+
+        public Int16 PeriodoId
+        {
+            get
+            {
+                return _PeriodoId;
+            }
+            set
+            {
+                _PeriodoId = value;
+            }
         }
 
         public string ReferenciaNorma
@@ -56,29 +130,23 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
-        public string Actual
+        public bool Actual
         {
             get { return _Actual; }
             set
             {
-                if (value != null)
-                {
-                    _Actual = value;
-                    RaisePropertyChanged("Actual");
-                }
+                _Actual = value;
+                RaisePropertyChanged("Actual");
             }
         }
 
-        public string PlantillaOriginal
+        public bool PlantillaOriginal
         {
             get { return _PlantillaOriginal; }
             set
             {
-                if (value != null)
-                {
-                    _PlantillaOriginal = value;
-                    RaisePropertyChanged("PlantillaOriginal");
-                }
+                _PlantillaOriginal = value;
+                RaisePropertyChanged("PlantillaOriginal");
             }
         }
 
@@ -108,13 +176,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
-        public Int16 IdPeriodo
+        public List<string> Periodos
         {
-            get { return _IdPeriodo; }
+            get { return _Periodos; }
             set
             {
-                _IdPeriodo = value;
-                RaisePropertyChanged("IdPeriodo");
+                _Periodos = value;
+                RaisePropertyChanged("Periodos");
             }
         }
 
@@ -132,17 +200,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             try
             {
                 var RespuestaInsert = await IFicSrvPlaneacionInsert.Insert_eva_planeacion(new eva_planeacion() {
+                    IdAsignatura = (Int16)(FicGlobalValues.ASIGNATURA_INDEX + 1),
+                    IdPlaneacion = 1,
                     ReferenciaNorma = this.ReferenciaNorma,
                     Revision = this.Revision,
-                    Actual = this.Actual,
-                    PlantillaOriginal = this.PlantillaOriginal,
+                    Actual = this.Actual ? "1" : "0",
+                    PlantillaOriginal = this.PlantillaOriginal ? "1" : "0",
                     CompetenciaAsignatura = this.CompetenciaAsignatura,
                     AportacionPerfilEgreso = this.AportacionPerfilEgreso,
-                    IdPeriodo = this.IdPeriodo,
+                    IdPeriodo = (Int16)(this._PeriodoId + 1),
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
-                    UsuarioReg = "PEDRO",
-                    UsuarioMod = "PEDRO",
+                    UsuarioReg = FicGlobalValues.USUARIO,
+                    UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"
                 });

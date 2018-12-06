@@ -9,5 +9,6 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Planeacion
     public interface IFicSrvPlaneacionInsert
     {
         Task<string> Insert_eva_planeacion(eva_planeacion eva_planeacion);
+        Task<IEnumerable<cat_periodos>> GetListPeriodos();
     }
 }
