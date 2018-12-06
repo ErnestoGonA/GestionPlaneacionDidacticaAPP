@@ -21,7 +21,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Actual: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Entry Text="{Binding Actual}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Switch HorizontalOptions="Start"></Switch>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
@@ -41,7 +41,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Periodo: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Entry Text="{Binding IdPeriodo}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Picker SelectedIndex="{Binding IdPeriodo}" HorizontalOptions="StartAndExpand"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
