@@ -14,7 +14,7 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
-    public class VmTemasList: INotifyPropertyChanged
+    public class FicVmTemasList: INotifyPropertyChanged
     {
 
         //Data of the grid
@@ -22,16 +22,16 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
-        private ICommand _MetAddTemaICommand, _MetUpdateTemaICommand, MetViewTemaICommand, _MetRemoveTemaICommand;
+        private ICommand _MetAddTemaICommand, _MetUpdateTemaICommand, _FicMetViewTemaICommand, _MetRemoveTemaICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private ISrvTemas ISrvTemas;
+        private IFicSrvTemas IFicSrvTemas;
 
-        public VmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, ISrvTemas srvTemas)
+        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
-            ISrvTemas = srvTemas;
+            IFicSrvTemas = srvTemas;
 
             _SFDataGrid_ItemSource_Temas = new ObservableCollection<eva_planeacion_temas>();
         }
@@ -70,14 +70,30 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         private void MetAddTema()
         {
-            IFicSrvNavigationInventario.FicMetNavigateTo<VmTemasInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>();
+        }
+
+        public ICommand FicMetViewTemaICommand
+        {
+            get
+            {
+                return _FicMetViewTemaICommand = _FicMetViewTemaICommand ?? new FicVmDelegateCommand(FicMetViewTema);
+            }
+        }
+
+        private void FicMetViewTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasView>(SFDataGrid_SelectedItem_Temas);
+            }
         }
 
         public async void OnAppearing()
         {
             try
             {
-                var source_local_inv = await ISrvTemas.MetGetListTemas();
+                var source_local_inv = await IFicSrvTemas.MetGetListTemas();
                 if (source_local_inv != null)
                 {
                     foreach (eva_planeacion_temas tema in source_local_inv)

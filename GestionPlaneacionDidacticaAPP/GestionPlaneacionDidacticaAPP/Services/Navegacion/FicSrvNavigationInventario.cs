@@ -20,26 +20,15 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
         private IDictionary<Type, Type> FicViewModelRouting = new Dictionary<Type, Type>()
         {
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
-
-            {typeof(VmTemasList),typeof(ViTemasList) },
-            {typeof(VmTemasInsert),typeof(ViTemasInsert) },
-            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
-            {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) }
+            {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
 
-            //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
-            //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
-            //{ typeof(FicVmCatEdificiosUpdate),typeof(ViCatEdificiosUpdate) },
-            //{ typeof(FicVmCatEdificiosView),typeof(ViCatEdificiosView) },
+            {typeof(FicVmTemasList),typeof(ViTemasList) },
+            {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
+            {typeof(FicVmTemasView),typeof(ViTemasView) },
 
-            //{ typeof(FicVmInventariosList),typeof(FicViInventariosList) },
-            //{ typeof(FicVmInventarioConteoList),typeof(FicViInventarioConteoList) },
-            //{ typeof(FicVmInventarioConteosItem),typeof(FicViInventarioConteosItem) },
-            //{ typeof(FicVmInventarioAcumuladoList),typeof(FicViInventarioAcumuladoList)},
-            //{typeof(FicVmImportarWebApi), typeof(FicViImportarWebApi)},
-            //{typeof(FicVmExportarWebApi), typeof(FicViExportarWebApi)}
-
-
+            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
+           
         };
 
         #region METODOS DE IMPLEMENTACION DE LA INTERFACE -> IFicSrvNavigationInventario

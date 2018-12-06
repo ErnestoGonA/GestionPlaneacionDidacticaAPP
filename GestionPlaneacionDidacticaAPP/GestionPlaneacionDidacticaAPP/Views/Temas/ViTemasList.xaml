@@ -15,7 +15,7 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Tema"
-            Command="{Binding MetViewTemaICommand}">
+            Command="{Binding FicMetViewTemaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Tema"

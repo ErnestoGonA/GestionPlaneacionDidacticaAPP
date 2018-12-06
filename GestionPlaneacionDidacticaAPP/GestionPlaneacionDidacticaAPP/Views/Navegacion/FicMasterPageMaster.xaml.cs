@@ -38,39 +38,14 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 
                 MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
                 {
+                    new FicMasterPageMenuItem { Id = 3, Title = "Planeaciones", Icon ="ficAlmacen20x20.png", FicPageName ="FicViPlaneacion", TargetType = typeof(FicViPlaneacion)},
+
                     new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
 
-                    new FicMasterPageMenuItem { Id = 2, Title = "ApoyosDidacticos",
-                                                Icon ="ficAlmacen20x20.png",
-                                                FicPageName ="ViApoyosDidacticos",
-                                                TargetType = typeof(ViApoyosDidacticos)
-                                                },
-                    new FicMasterPageMenuItem { Id = 3, Title = "Planeaciones",
-                                                Icon ="ficAlmacen20x20.png",
-                                                FicPageName ="FicViPlaneacion",
-                                                TargetType = typeof(FicViPlaneacion)
-                                                }
+                    new FicMasterPageMenuItem { Id = 2, Title = "ApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="ViApoyosDidacticos", TargetType = typeof(ViApoyosDidacticos)},
+                    
                 });
 
-                //MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
-                //{
-                //    //new FicMasterPageMenuItem { Id = 0, Title = "Edificios",
-                //    //                            Icon ="ficAlmacen20x20.png",
-                //    //                            FicPageName ="ViCatEdificiosList",
-                //    //                            TargetType = typeof(ViCatEdificiosList)
-                //    //                            },
-                //    //new FicMasterPageMenuItem { Id = 0, Title = "Importar/Exportar",
-                //    //                            Icon ="ficAlmacen20x20.png",
-                //    //                            FicPageName ="FicViCatEdificiosImportarExportar",
-                //    //                            TargetType = typeof(ViCatEdificiosImportarExportar)
-                //                                },
-                //    //new FicMasterPageMenuItem { Id = 0, Title = "Exportar Web Api",
-                //    //                            Icon ="ficAlmacen20x20.png",
-                //    //                            FicPageName ="FicViExportarWebApi",
-                //    //                            //TargetType = typeof(FicViExportarWebApi)
-                //    //                            }
-
-                //});
             }//CONSTRUCTOR
 
             #region INotifyPropertyChanged Implementation

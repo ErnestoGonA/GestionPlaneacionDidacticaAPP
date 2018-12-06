@@ -22,12 +22,12 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
         {
             InitializeComponent();
             CuerpoNavigationContext = NavigationContext;
-            BindingContext = App.FicVmLocator.VmTemasInsert;
+            BindingContext = App.FicVmLocator.FicVmTemasInsert;
         }
 
         protected async override void OnAppearing()
         {
-            var FicViewModel = BindingContext as VmTemasInsert;
+            var FicViewModel = BindingContext as FicVmTemasInsert;
             if (FicViewModel != null)
             {
                 FicViewModel.NavigationContextC = CuerpoNavigationContext;

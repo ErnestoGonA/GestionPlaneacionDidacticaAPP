@@ -31,11 +31,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //FIC: se procede a registrar las ViewModels para que se puedan mandar llamar en cualquier plataforma
             //---------------------------------------------------------------------------------------------------
             //VmTemas
-            FicContainerBuilder.RegisterType<VmTemasList>();
-            FicContainerBuilder.RegisterType<VmTemasInsert>();
+            
             FicContainerBuilder.RegisterType<VmApoyosDidacticosList>();
             FicContainerBuilder.RegisterType<FicVmPlaneacion>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionInsert>();
+            FicContainerBuilder.RegisterType<FicVmTemasList>();
+            FicContainerBuilder.RegisterType<FicVmTemasInsert>();
+            FicContainerBuilder.RegisterType<FicVmTemasView>();
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -51,7 +53,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvNavigationInventario>().As<IFicSrvNavigationInventario>().SingleInstance();
 
             //Temas
-            FicContainerBuilder.RegisterType<SrvTemas>().As<ISrvTemas>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvTemas>().As<IFicSrvTemas>().SingleInstance();
+
             FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacion>().As<FicISrvPlaneacion>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionInsert>().As<IFicSrvPlaneacionInsert>().SingleInstance();
@@ -77,14 +80,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         //-------------------- CONTROL DE INVENTARIOS ------------------------
         //FIC: se manda llamar desde el backend de la View de List
 
-        public VmTemasList VmTemasList
+        public FicVmTemasList FicVmTemasList
         {
-            get { return FicIContainer.Resolve<VmTemasList>(); }
+            get { return FicIContainer.Resolve<FicVmTemasList>(); }
         }
 
-        public VmTemasInsert VmTemasInsert
+        public FicVmTemasInsert FicVmTemasInsert
         {
-            get { return FicIContainer.Resolve<VmTemasInsert>(); }
+            get { return FicIContainer.Resolve<FicVmTemasInsert>(); }
+        }
+
+        public FicVmTemasView FicVmTemasView
+        {
+            get { return FicIContainer.Resolve<FicVmTemasView>(); }
         }
 
         public VmApoyosDidacticosList VmApoyosDidacticosList
