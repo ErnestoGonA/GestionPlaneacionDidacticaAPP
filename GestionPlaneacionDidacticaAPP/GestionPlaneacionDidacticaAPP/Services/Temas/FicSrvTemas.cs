@@ -54,7 +54,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
             try
             {
                 DBLoContext.Update(Tema);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al actualizar tema";
+                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar tema";
             }
             catch(Exception e)
             {

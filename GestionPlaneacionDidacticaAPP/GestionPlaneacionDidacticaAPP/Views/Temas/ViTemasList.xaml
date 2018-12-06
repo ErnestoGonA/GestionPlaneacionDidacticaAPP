@@ -7,11 +7,11 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Name="Nuevo Tema"
-             Command="{Binding MetAddTemaICommand}">
+             Command="{Binding FicMetAddTemaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Tema"
-             Command="{Binding MetUpdateTemaICommand}">
+             Command="{Binding FicMetUpdateTemaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Tema"
@@ -19,13 +19,28 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Tema"
-            Command="{Binding MetRemoveTemaCommand}">
+            Command="{Binding FicMetRemoveTemaICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout Padding="10"
-            >
+        <StackLayout Padding="10">
+
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelUsuario}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdAsignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                </StackLayout>
+            </StackLayout>
+            
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."

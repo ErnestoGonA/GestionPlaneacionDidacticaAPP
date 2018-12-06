@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using System.Threading.Tasks;
 using GestionPlaneacionDidacticaAPP.Data;
+using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -27,6 +28,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
+        //Navigation to lists
+        private ICommand _FicMetNavigateToTemasICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -140,7 +143,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 return _SFDataGrid_ItemSource_Planeacion;
             }
         }
-        public eva_planeacion SFDataGrud_SelectedItem_Planeacion
+        public eva_planeacion SFDataGrid_SelectedItem_Planeacion
         {
             get
             {
@@ -163,6 +166,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public void FicMetAddPlaneacion()
         {
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionInsert>();
+        }
+
+        public ICommand FicMetNavigateToTemasICommand
+        {
+            get { return _FicMetNavigateToTemasICommand = _FicMetNavigateToTemasICommand ?? new FicVmDelegateCommand(FicMetNavigateToTemas); }
+        }
+
+        public void FicMetNavigateToTemas()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(SFDataGrid_SelectedItem_Planeacion);
+            }
+                            
         }
 
         public async void OnAppearing()

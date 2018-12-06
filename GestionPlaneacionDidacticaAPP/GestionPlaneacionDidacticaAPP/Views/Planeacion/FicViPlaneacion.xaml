@@ -17,6 +17,10 @@
         <ToolbarItem
             Name="Borrar Planeacion">
         </ToolbarItem>
+        <ToolbarItem
+            Name="Temas"
+            Command="{Binding FicMetNavigateToTemasICommand}">>
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10"

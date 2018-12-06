@@ -1,16 +1,17 @@
-﻿using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
+
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
-using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
@@ -26,6 +27,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmTemasList),typeof(ViTemasList) },
             {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
             {typeof(FicVmTemasView),typeof(ViTemasView) },
+            {typeof(FicVmTemasUpdate),typeof(ViTemasUpdate) },
 
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
            
