@@ -9,10 +9,11 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
+using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
-    public class FicVmPlaneacion: INotifyPropertyChanged
+    public class FicVmPlaneacion : INotifyPropertyChanged
     {
         //Data of the grid
         public ObservableCollection<eva_planeacion> _SFDataGrid_ItemSource_Planeacion;
@@ -24,11 +25,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private FicISrvPlaneacion FicISrvPlaneacion;
+        private IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert;
 
-        public FicVmPlaneacion(IFicSrvNavigationInventario ficSrvNavigationInventario, FicISrvPlaneacion FicISrvPlaneacion)
+        public FicVmPlaneacion(IFicSrvNavigationInventario ficSrvNavigationInventario, FicISrvPlaneacion FicISrvPlaneacion,
+            IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             this.FicISrvPlaneacion = FicISrvPlaneacion;
+            this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
         }
@@ -55,6 +59,16 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 }
             }
         }
+
+        public ICommand MetAddPlaneacionICommand
+        {
+            get { return _MetAddPlaneacionICommand = _MetAddPlaneacionICommand ?? new FicVmDelegateCommand(FicMetAddPlaneacion); }
+        }
+        public void FicMetAddPlaneacion()
+        {
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionInsert>();
+        }
+
         public async void OnAppearing()
         {
             try

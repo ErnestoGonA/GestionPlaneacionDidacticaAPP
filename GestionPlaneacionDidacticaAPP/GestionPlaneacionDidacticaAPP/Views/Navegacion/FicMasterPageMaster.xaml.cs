@@ -47,7 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                                                 },
                     new FicMasterPageMenuItem { Id = 3, Title = "Planeaciones",
                                                 Icon ="ficAlmacen20x20.png",
-                                                FicPageName ="ViApoyosDidacticos",
+                                                FicPageName ="FicViPlaneacion",
                                                 TargetType = typeof(FicViPlaneacion)
                                                 }
                 });

@@ -5,7 +5,8 @@
              x:Class="GestionPlaneacionDidacticaAPP.Views.Planeacion.FicViPlaneacion">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Planeacion">
+            Name="Nueva Planeacion"
+            Command="{Binding MetAddPlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Planeacion">
