@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizaje.FicViAprendizajeInsert">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizaje.FicViAprendizajeUpdate">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Name="Regresar"
@@ -40,9 +40,33 @@
                     <Label Text="Id Actividad Aprendizaje: " FontAttributes="Bold" FontSize="Micro"/>
                     <Entry Text="{Binding LabelIdActAprendizaje}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                 </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario Reg: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelUsuReg}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fecha Reg: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelFechaReg}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario Mod: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelUsuMod}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fecha Mod: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelFechaMod}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Activo: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelAct}" FontSize="Micro" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Borrado: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelBor}" FontSize="Micro" />
+                </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
-                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                    <Button Text="Actualizar" Command="{Binding SaveCommand}"/>
                 </StackLayout>
 
             </StackLayout>
