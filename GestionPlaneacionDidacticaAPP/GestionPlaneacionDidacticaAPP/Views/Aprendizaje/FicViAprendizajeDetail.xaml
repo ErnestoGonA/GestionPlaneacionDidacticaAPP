@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizaje.FicViAprendizajeDetail">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Regresar"
+            Command="{Binding MetRegesarCompetenciasListICommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Detalle Aprendizaje " FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdPlanAprendizaje: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdPlanAprendizaje}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdAsignatura: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdAsignatura}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdPlaneacion: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdPlaneacion}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdTema: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdTema}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdCompetencia: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdCompetencia}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdActAprendizaje: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdActAprendizaje}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fecha Reg: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelFechaReg}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fecha Mod: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelFechaMod}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario Reg: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelUsuarioReg}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario Mod: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelUsuarioMod}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Activo: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelActivo}" FontSize="Micro"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Borrado: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelBorrado}" FontSize="Micro"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

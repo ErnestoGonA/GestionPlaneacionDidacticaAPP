@@ -13,7 +13,7 @@
         <StackLayout>
             <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Insertar Aprendizaje " FontAttributes="Bold" />
+                    <Label Text="Actualizar Aprendizaje " FontAttributes="Bold" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
