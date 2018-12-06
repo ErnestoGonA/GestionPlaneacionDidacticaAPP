@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
@@ -21,7 +23,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 
             {typeof(VmTemasList),typeof(ViTemasList) },
             {typeof(VmTemasInsert),typeof(ViTemasInsert) },
-            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) }
+            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
+            {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
+            {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) }
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
