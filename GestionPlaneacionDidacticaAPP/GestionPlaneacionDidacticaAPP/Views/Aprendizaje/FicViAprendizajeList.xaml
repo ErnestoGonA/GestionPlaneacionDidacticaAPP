@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizaje.FicViAprendizajeList">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nuevo Edificio"
+            Command="{Binding FicMetAddAprendizajeICommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="Assets/plus.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar Edificio"
+            Command="{Binding FicMetUpdateAprendizajeICommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="Assets/update.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle Edificio"
+            Command="{Binding FicMetViewAprendizajeICommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="Assets/detalle.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar Edificio"
+            Command="{Binding FicMetRemoveAprendizajeICommand}">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="Assets/delete.png" />
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+    <StackLayout Padding="10" >
+        <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Buscar..."                
+                x:Name="FicSearchBar"
+                >
+        </SearchBar>
+        
+        <syncfusion:SfDataGrid
+                x:Name="dataGrid"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"                
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"  
+                ItemsSource="{Binding FicSfDataGrid_ItemSource_Aprendizaje}"
+                SelectedItem="{Binding FicSfDataGrid_SelectItem_Aprendizaje}"
+                SelectionMode="Single">
+            <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="IdPlaneacionAprendizaje" MappingName="IdPlaneacionAprendizaje"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="IdAsignatura" MappingName="IdAsignatura"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="IdPlaneacion" MappingName="IdPlaneacion"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="IdTema" MappingName="IdTema"/>
+                <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="IdCompetencia" MappingName="IdCompetencia"/>
+            </syncfusion:SfDataGrid.Columns>
+        </syncfusion:SfDataGrid>
+    </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
