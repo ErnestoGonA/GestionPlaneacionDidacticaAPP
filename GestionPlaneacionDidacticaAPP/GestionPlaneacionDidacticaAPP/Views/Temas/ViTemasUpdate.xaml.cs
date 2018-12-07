@@ -30,9 +30,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
             if (FicViewModel != null)
             {
                 FicViewModel.FicNavigationContextC = FicCuerpoNavigationContext;
-
                 FicViewModel.OnAppearing();
-
             }
         }
 
