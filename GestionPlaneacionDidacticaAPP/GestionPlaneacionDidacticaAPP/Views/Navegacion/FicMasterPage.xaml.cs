@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using GestionPlaneacionDidacticaAPP.Views.Temas;
+using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
@@ -38,6 +39,10 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     //case "ViTemasList":
                     //    FicItemMenu.TargetType = typeof(ViTemasList);
                     //    break;
+
+                    case "ViCriteriosEvaluacionList":
+                        FicItemMenu.TargetType = typeof(ViCriteriosEvaluacionList);
+                        break;
                     case "ViApoyosDidacticos":
                         FicItemMenu.TargetType = typeof(ViApoyosDidacticos);
                         break;

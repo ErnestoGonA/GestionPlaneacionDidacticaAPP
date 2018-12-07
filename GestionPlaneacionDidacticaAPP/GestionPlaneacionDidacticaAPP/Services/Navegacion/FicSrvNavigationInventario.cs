@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
-using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
-using GestionPlaneacionDidacticaAPP.ViewModels.Base;
-using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
-using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
-using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Temas;
+using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
@@ -27,6 +30,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
             {typeof(FicVmTemasView),typeof(ViTemasView) },
             {typeof(FicVmTemasUpdate),typeof(ViTemasUpdate) },
+
+            {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
 
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmApoyosDidacticosUpdate),typeof(FicViApoyosDidacticosUpdate) },
