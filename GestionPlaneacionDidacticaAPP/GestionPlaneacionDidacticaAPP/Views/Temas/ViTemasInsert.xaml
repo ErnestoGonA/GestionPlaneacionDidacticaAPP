@@ -31,6 +31,7 @@
 
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                    <Button Text="Cancelar" Command="{Binding MetRegesarTemasListICommand}"/>
                 </StackLayout>
 
             </StackLayout>

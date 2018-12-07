@@ -7,11 +7,11 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Name="Nuevo Tema"
-             Command="{Binding MetAddTemaICommand}">
+             Command="{Binding FicMetAddTemaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Tema"
-             Command="{Binding MetUpdateTemaICommand}">
+             Command="{Binding FicMetUpdateTemaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Tema"

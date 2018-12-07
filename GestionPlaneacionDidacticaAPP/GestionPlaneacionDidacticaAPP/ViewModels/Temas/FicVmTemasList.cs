@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
-        private ICommand _MetAddTemaICommand, _MetUpdateTemaICommand, _FicMetViewTemaICommand, _MetRemoveTemaICommand;
+        private ICommand _FicMetAddTemaICommand, _FicMetUpdateTemaICommand, _FicMetViewTemaICommand, _MetRemoveTemaICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -64,11 +64,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             get
             {
-                return _MetAddTemaICommand = _MetAddTemaICommand ?? new FicVmDelegateCommand(MetAddTema);
+                return _FicMetAddTemaICommand = _FicMetAddTemaICommand ?? new FicVmDelegateCommand(FicMetAddTema);
             }
         }
 
-        private void MetAddTema()
+        private void FicMetAddTema()
         {
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>();
         }
@@ -86,6 +86,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             if (SFDataGrid_SelectedItem_Temas != null)
             {
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasView>(SFDataGrid_SelectedItem_Temas);
+            }
+        }
+
+        public ICommand FicMetUpdateTemaICommand
+        {
+            get
+            {
+                return _FicMetUpdateTemaICommand = _FicMetUpdateTemaICommand ?? new FicVmDelegateCommand(FicMetUpdateTema);
+            }
+        }
+
+        private void FicMetUpdateTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasUpdate>(SFDataGrid_SelectedItem_Temas);
             }
         }
 

@@ -31,13 +31,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //FIC: se procede a registrar las ViewModels para que se puedan mandar llamar en cualquier plataforma
             //---------------------------------------------------------------------------------------------------
             //VmTemas
-            
+
             FicContainerBuilder.RegisterType<VmApoyosDidacticosList>();
             FicContainerBuilder.RegisterType<FicVmPlaneacion>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasList>();
             FicContainerBuilder.RegisterType<FicVmTemasInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasView>();
+            FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -45,7 +46,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosUpdate>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosView>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosImportarExportar>();
-            
+
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
             //para poder ejecutar las tareas (metodos o funciones, etc) del servicio en cuestion.
@@ -95,6 +96,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             get { return FicIContainer.Resolve<FicVmTemasView>(); }
         }
 
+        public FicVmTemasUpdate FicVmTemasUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmTemasUpdate>(); }
+        }
+
         public VmApoyosDidacticosList VmApoyosDidacticosList
         {
             get { return FicIContainer.Resolve<VmApoyosDidacticosList>(); }
@@ -109,60 +115,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionInsert>(); }
         }
-
-
-        //public FicVmCatEdificiosInsert FicVmCatEdificiosInsert
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosInsert>(); }
-        //}
-
-        //public FicVmCatEdificiosUpdate FicVmCatEdificiosUpdate
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosUpdate>(); }
-        //}
-
-        //public FicVmCatEdificiosView FicVmCatEdificiosView
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosView>(); }
-        //}
-
-        //public FicVmCatEdificiosImportarExportar FicVmCatEdificiosImportarExportar
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosImportarExportar>(); }
-        //}
-
-        //Agregar el de nuevo, agregar el de eliminar, agregar el de actualizar, agregar detralle
-
-
-        ////public FicVmInventariosList FicVmInventariosList
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventariosList>(); }
-        ////}
-
-        ////public FicVmInventarioConteoList FicVmInventarioConteoList
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventarioConteoList>(); }
-        ////}
-
-        ////public FicVmInventarioConteosItem FicVmInventarioConteosItem
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventarioConteosItem>(); }
-        ////}
-
-        ////public FicVmInventarioAcumuladoList FicVmInventarioAcumuladoList
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventarioAcumuladoList>(); }
-        ////}
-
-        ////public FicVmImportarWebApi FicVmImportarWebApi
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmImportarWebApi>(); }
-        ////}
-
-        ////public FicVmExportarWebApi FicVmExportarWebApi
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmExportarWebApi>(); }
-        ////}
 
     }//CLASS
 }//NAMESPACE
