@@ -13,6 +13,7 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.Data;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
@@ -23,18 +24,62 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvTemas IFicSrvTemas;
 
+        //Labels
+        private string _LabelUsuario;
+        private int _LabelIdPlaneacion;
+        private string _LabelIdAsignatura;
+
         private string _LabelDesTema, _LabelObservaciones;
 
         //Botones
         private ICommand _MetRegesarTemasListICommand, _SaveCommand;
 
         //Valor mandado de view padre a hija
-        public object[] NavigationContextC { get; set; }
+        public object FicNavigationContextC { get; set; }
 
         public FicVmTemasInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvTemas = srvTemas;
+        }
+
+        public string LabelUsuario
+        {
+            get { return _LabelUsuario; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelUsuario = value;
+                    RaisePropertyChanged("LabelUsuario");
+                }
+            }
+        }
+
+        public int LabelIdPlaneacion
+        {
+            get { return _LabelIdPlaneacion; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdPlaneacion = value;
+                    RaisePropertyChanged("LabelIdPlaneacion");
+                }
+            }
+        }
+
+        public string LabelIdAsignatura
+        {
+            get { return _LabelIdAsignatura; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdAsignatura = value;
+                    RaisePropertyChanged("LabelIdAsignatura");
+                }
+            }
         }
 
         public string LabelDesTema
@@ -75,7 +120,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(NavigationContextC);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC);
             }
             catch(Exception e)
             {
@@ -92,18 +137,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
+
+                var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+
                 var res = await IFicSrvTemas.InsertTema(new eva_planeacion_temas()
                 {
-                    IdAsignatura = 1,
-                    IdPlaneacion = 1,
+                    IdAsignatura = source_eva_planeacion.IdAsignatura,
+                    IdPlaneacion = source_eva_planeacion.IdPlaneacion,
 
                     DesTema = LabelDesTema,
                     Observaciones = LabelObservaciones,
 
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
-                    UsuarioReg = "ERNESTO",
-                    UsuarioMod = "ERNESTO",
+                    UsuarioReg = FicGlobalValues.USUARIO,
+                    UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"
                 });
@@ -111,7 +159,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 if(res == "Ok")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(NavigationContextC);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC);
                 }
                 else
                 {
@@ -125,6 +173,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             }
         }
 
+        public async void OnAppearing()
+        {
+
+            var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            _LabelUsuario = FicGlobalValues.USUARIO;
+            _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+
+            RaisePropertyChanged("LabelUsuario");
+            RaisePropertyChanged("LabelIdAsignatura");
+            RaisePropertyChanged("LabelIdPlaneacion");
+        }
 
         #region  INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

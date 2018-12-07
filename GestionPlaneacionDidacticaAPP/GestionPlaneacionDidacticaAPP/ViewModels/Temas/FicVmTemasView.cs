@@ -13,35 +13,40 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.Data;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
-    public class FicVmTemasView: INotifyPropertyChanged
+    public class FicVmTemasView : INotifyPropertyChanged
     {
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
 
         private string _LabelDesTema, _LabelObservaciones, _LabelFechaReg, _LabelFechaMod, _LabelUsuarioReg, _LabelUsuarioMod, _LabelActivo, _LabelBorrado;
-        private short _LabelIdAsignatura, _LabelIdTema;
+        private short  _LabelIdTema;
+
+        //Labels
+        private string _LabelUsuario;
         private int _LabelIdPlaneacion;
+        private string _LabelAsignatura;
 
         private ICommand _FicMetRegesarCatEdificiosListICommand;
 
-        public object FicNavigationContextC { get; set; }
+        public object[] FicNavigationContextC { get; set; }
 
         public FicVmTemasView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
         }
 
-        public short LabelIdAsignatura
+        public string LabelUsuario
         {
-            get { return _LabelIdAsignatura; }
+            get { return _LabelUsuario; }
             set
             {
                 if (value != null)
                 {
-                    _LabelIdAsignatura = value;
-                    RaisePropertyChanged("LabelIdAsignatura");
+                    _LabelUsuario = value;
+                    RaisePropertyChanged("LabelUsuario");
                 }
             }
         }
@@ -55,6 +60,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 {
                     _LabelIdPlaneacion = value;
                     RaisePropertyChanged("LabelIdPlaneacion");
+                }
+            }
+        }
+
+        public string LabelAsignatura
+        {
+            get { return _LabelAsignatura; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelAsignatura = value;
+                    RaisePropertyChanged("LabelIdAsignatura");
                 }
             }
         }
@@ -178,10 +196,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         public async void OnAppearing()
         {
-            var source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+            var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
+            var source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion;
 
-            _LabelIdAsignatura = source_eva_planeacion_temas.IdAsignatura;
-            _LabelIdPlaneacion = source_eva_planeacion_temas.IdPlaneacion;
+            _LabelUsuario = FicGlobalValues.USUARIO;
+            _LabelAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+
+
             _LabelIdTema = source_eva_planeacion_temas.IdTema;
             _LabelDesTema = source_eva_planeacion_temas.DesTema;
             _LabelObservaciones = source_eva_planeacion_temas.Observaciones;
@@ -193,7 +215,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             _LabelActivo = source_eva_planeacion_temas.Activo;
             _LabelBorrado = source_eva_planeacion_temas.Borrado;
 
-            RaisePropertyChanged("LabelIdAsignatura");
+            RaisePropertyChanged("LabelUsuario");
+            RaisePropertyChanged("LabelAsignatura");
             RaisePropertyChanged("LabelIdPlaneacion");
             RaisePropertyChanged("LabelIdTema");
             RaisePropertyChanged("LabelDesTema");
@@ -221,7 +244,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC[0]);
             }
             catch (Exception e)
             {

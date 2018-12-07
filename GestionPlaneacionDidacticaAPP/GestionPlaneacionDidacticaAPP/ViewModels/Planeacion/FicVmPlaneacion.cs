@@ -189,6 +189,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacion();
                 if (source_local_inv != null)
                 {
+                    _SFDataGrid_ItemSource_Planeacion.Clear();
                     foreach (eva_planeacion apoyosdidacticos in source_local_inv)
                     {
                         _SFDataGrid_ItemSource_Planeacion.Add(apoyosdidacticos);

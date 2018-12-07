@@ -35,9 +35,9 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     case "FicViPlaneacion":
                         FicItemMenu.TargetType = typeof(FicViPlaneacion);
                         break;
-                    case "ViTemasList":
-                        FicItemMenu.TargetType = typeof(ViTemasList);
-                        break;
+                    //case "ViTemasList":
+                    //    FicItemMenu.TargetType = typeof(ViTemasList);
+                    //    break;
                     case "ViApoyosDidacticos":
                         FicItemMenu.TargetType = typeof(ViApoyosDidacticos);
                         break;

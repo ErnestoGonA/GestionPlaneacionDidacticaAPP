@@ -41,7 +41,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
             try
             {
                 await DBLoContext.AddAsync(Tema);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar tema";
+                var res =  await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar tema";
+                DBLoContext.Entry(Tema).State = EntityState.Detached;
+                return res;
             }
             catch(Exception e)
             {
@@ -54,7 +56,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
             try
             {
                 DBLoContext.Update(Tema);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar tema";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar tema";
+                DBLoContext.Entry(Tema).State = EntityState.Detached;
+                return res;
             }
             catch(Exception e)
             {
