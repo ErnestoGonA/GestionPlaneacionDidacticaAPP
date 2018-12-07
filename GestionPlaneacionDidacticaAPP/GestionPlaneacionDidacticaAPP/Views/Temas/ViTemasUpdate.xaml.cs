@@ -11,13 +11,13 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Temas
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ViTemasUpdate : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ViTemasUpdate : ContentPage
+    {
 
-        private object FicCuerpoNavigationContext { get; set; }
+        private object[] FicCuerpoNavigationContext { get; set; }
 
-        public ViTemasUpdate (object FicNavigationContext)
+        public ViTemasUpdate (object[] FicNavigationContext)
 		{
 			InitializeComponent ();
             FicCuerpoNavigationContext = FicNavigationContext;

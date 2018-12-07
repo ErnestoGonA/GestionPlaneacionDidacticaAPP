@@ -12,14 +12,15 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.Data;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
-    public class FicVmTemasList: INotifyPropertyChanged
+    public class FicVmTemasList : INotifyPropertyChanged
     {
 
         //Data of the grid
-        public ObservableCollection<eva_planeacion_temas> _SFDataGrid_ItemSource_Temas;       
+        public ObservableCollection<eva_planeacion_temas> _SFDataGrid_ItemSource_Temas;
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
@@ -109,7 +110,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             }
         }
 
-        public ICommand MetAddTemaICommand
+        public ICommand FicMetAddTemaICommand
         {
             get
             {
@@ -119,7 +120,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         private void FicMetAddTema()
         {
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>();
+            var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>(source_eva_planeacion);
         }
 
         public ICommand FicMetViewTemaICommand
@@ -134,7 +136,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             if (SFDataGrid_SelectedItem_Temas != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasView>(SFDataGrid_SelectedItem_Temas);
+                eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasView>(new object[] { SFDataGrid_SelectedItem_Temas , source_eva_planeacion });
             }
         }
 
@@ -150,7 +153,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             if (SFDataGrid_SelectedItem_Temas != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasUpdate>(SFDataGrid_SelectedItem_Temas);
+                eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasUpdate>(new object[] { SFDataGrid_SelectedItem_Temas, source_eva_planeacion });
             }
         }
 
@@ -173,7 +177,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                     var res = await IFicSrvTemas.DeleteTema(SFDataGrid_SelectedItem_Temas);
                     if (res == "OK")
                     {
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>();
+                        eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(source_eva_planeacion);
                     }
                     else
                     {
@@ -189,10 +194,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             {
                 var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
                 if (source_eva_planeacion != null)
-                {
-                    eva_cat_asignaturas asignatura = await IFicSrvAsignatura.GetAsignatura(source_eva_planeacion.IdAsignatura);
-                    _LabelUsuario = source_eva_planeacion.UsuarioMod;
-                    _LabelIdAsignatura = asignatura.DesAsignatura;
+                {                    
+                    _LabelUsuario = FicGlobalValues.USUARIO;
+                    _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
                     _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
 
                     RaisePropertyChanged("LabelUsuario");
@@ -202,6 +206,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                     var source_local_inv1 = await IFicSrvTemas.MetGetListTemasPlaneacion(source_eva_planeacion.IdPlaneacion);
                     if (source_local_inv1 != null)
                     {
+                        _SFDataGrid_ItemSource_Temas.Clear();
                         foreach (eva_planeacion_temas tema in source_local_inv1)
                         {
                             _SFDataGrid_ItemSource_Temas.Add(tema);
