@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
@@ -18,26 +20,15 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
         private IDictionary<Type, Type> FicViewModelRouting = new Dictionary<Type, Type>()
         {
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
+            {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
+            {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
 
-            
-            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmTemasList),typeof(ViTemasList) },
             {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
-            {typeof(FicVmTemasView),typeof(ViTemasView) }
+            {typeof(FicVmTemasView),typeof(ViTemasView) },
 
-            //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
-            //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
-            //{ typeof(FicVmCatEdificiosUpdate),typeof(ViCatEdificiosUpdate) },
-            //{ typeof(FicVmCatEdificiosView),typeof(ViCatEdificiosView) },
-
-            //{ typeof(FicVmInventariosList),typeof(FicViInventariosList) },
-            //{ typeof(FicVmInventarioConteoList),typeof(FicViInventarioConteoList) },
-            //{ typeof(FicVmInventarioConteosItem),typeof(FicViInventarioConteosItem) },
-            //{ typeof(FicVmInventarioAcumuladoList),typeof(FicViInventarioAcumuladoList)},
-            //{typeof(FicVmImportarWebApi), typeof(FicViImportarWebApi)},
-            //{typeof(FicVmExportarWebApi), typeof(FicViExportarWebApi)}
-
-
+            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
+           
         };
 
         #region METODOS DE IMPLEMENTACION DE LA INTERFACE -> IFicSrvNavigationInventario

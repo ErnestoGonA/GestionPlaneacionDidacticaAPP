@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Planeacion.FicViPlaneacionInsert">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Insertar edificio " FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Referencia norma: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding ReferenciaNorma}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Revisión: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding Revision}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Actual: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Switch HorizontalOptions="Start"></Switch>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Plantilla original: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding PlantillaOriginal}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Competencia asignatura: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding CompetenciaAsignatura}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Aportación perfil de egreso: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding AportacionPerfilEgreso}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Periodo: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedIndex="{Binding IdPeriodo}" HorizontalOptions="StartAndExpand"></Picker>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
