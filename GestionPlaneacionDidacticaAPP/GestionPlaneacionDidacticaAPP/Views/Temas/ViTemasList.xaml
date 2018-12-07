@@ -19,7 +19,7 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Tema"
-            Command="{Binding MetRemoveTemaCommand}">
+            Command="{Binding FicMetRemoveTemaICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 

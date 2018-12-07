@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
-        private ICommand _FicMetAddTemaICommand, _FicMetUpdateTemaICommand, _FicMetViewTemaICommand, _MetRemoveTemaICommand;
+        private ICommand _FicMetAddTemaICommand, _FicMetUpdateTemaICommand, _FicMetViewTemaICommand, _FicMetRemoveTemaICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -102,6 +102,35 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             if (SFDataGrid_SelectedItem_Temas != null)
             {
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasUpdate>(SFDataGrid_SelectedItem_Temas);
+            }
+        }
+
+        public ICommand FicMetRemoveTemaICommand
+        {
+            get
+            {
+                return _FicMetRemoveTemaICommand = _FicMetRemoveTemaICommand ?? new FicVmDelegateCommand(FicMetRemoveTema);
+            }
+        }
+
+        private async void FicMetRemoveTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await IFicSrvTemas.DeleteTema(SFDataGrid_SelectedItem_Temas);
+                    if (res == "OK")
+                    {
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>();
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
             }
         }
 
