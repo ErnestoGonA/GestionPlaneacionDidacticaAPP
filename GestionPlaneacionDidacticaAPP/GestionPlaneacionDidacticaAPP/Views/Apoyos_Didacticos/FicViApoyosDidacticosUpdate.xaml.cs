@@ -14,12 +14,12 @@ namespace GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FicViApoyosDidacticosUpdate : ContentPage
 	{
-        private object[] CuerpoNavigationContext { get; set; }
+        private object CuerpoNavigationContext { get; set; }
 
-        public FicViApoyosDidacticosUpdate (object[] NavigationContext)
+        public FicViApoyosDidacticosUpdate (object FicNavigationContext)
 		{
 			InitializeComponent ();
-            CuerpoNavigationContext = NavigationContext;
+            CuerpoNavigationContext = FicNavigationContext;
             BindingContext = App.FicVmLocator.FicVmApoyosDidacticosUpdate;
         }
 
@@ -28,7 +28,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos
             var FicViewModel = BindingContext as FicVmApoyosDidacticosUpdate;
             if (FicViewModel != null)
             {
-                FicViewModel.NavigationContextC = CuerpoNavigationContext;
+                FicViewModel.FicNavigationContextC = CuerpoNavigationContext;
 
                 FicViewModel.OnAppearing();
             }

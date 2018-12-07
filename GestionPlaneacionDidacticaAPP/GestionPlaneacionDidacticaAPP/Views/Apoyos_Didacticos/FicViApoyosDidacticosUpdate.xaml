@@ -15,9 +15,6 @@
 
             <Label Text="DesApoyoDidactico:"/>
             <Entry Text="{Binding LabelDesApoyoDidactico}"/>
-            
-            <Label Text="UsuarioReg:"/>
-            <Entry Text="{Binding LabelUsuarioReg}" IsEnabled="False"/>
 
             <Button Text="Guardar" Command="{Binding SaveCommand}"/>
             <Button Text="Cancelar" Command="{Binding FicMetRegesarApoyosDidacticosListICommand}"/>

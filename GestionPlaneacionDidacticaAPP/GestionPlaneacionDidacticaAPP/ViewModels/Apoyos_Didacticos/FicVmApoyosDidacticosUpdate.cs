@@ -25,7 +25,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
         private ICommand _FicMetRegesarApoyosDidacticosListICommand, _SaveCommand;
 
         //Valor mandado de view padre a hija
-        public object NavigationContextC { get; set; }
+        public object FicNavigationContextC { get; set; }
 
         public FicVmApoyosDidacticosUpdate(IFicSrvNavigationInventario IFicSrvNavigationInventario, ISrvApoyosDidacticos ISrvApoyosDidacticos)
         {
@@ -60,30 +60,30 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
             }
         }
 
-        public string LabelUsuarioReg
-        {
-            get { return _LabelUsuarioReg; }
-            set
-            {
-                if (value != null)
-                {
-                    _LabelUsuarioReg = value;
-                    RaisePropertyChanged("LabelUsuarioReg");
-                }
-            }
-        }
+        //public string LabelUsuarioReg
+        //{
+        //    get { return _LabelUsuarioReg; }
+        //    set
+        //    {
+        //        if (value != null)
+        //        {
+        //            _LabelUsuarioReg = value;
+        //            RaisePropertyChanged("LabelUsuarioReg");
+        //        }
+        //    }
+        //}
 
         public async void OnAppearing()
         {
-            var source_eva_cat_apoyos_didacticos = NavigationContextC as eva_cat_apoyos_didacticos;
+            var source_eva_cat_apoyos_didacticos = FicNavigationContextC as eva_cat_apoyos_didacticos;
 
             _LabelId = source_eva_cat_apoyos_didacticos.IdApoyoDidactico;
             _LabelDesApoyoDidactico = source_eva_cat_apoyos_didacticos.DesApoyoDidactico;
-            _LabelUsuarioReg = source_eva_cat_apoyos_didacticos.UsuarioReg;
+            //_LabelUsuarioReg = source_eva_cat_apoyos_didacticos.UsuarioReg;
 
             RaisePropertyChanged("LabelId");
             RaisePropertyChanged("LabelDesApoyoDidactico");
-            RaisePropertyChanged("LabelUsuarioReg");
+            //RaisePropertyChanged("LabelUsuarioReg");
         }
 
         public ICommand FicMetRegesarApoyosDidacticosListICommand
@@ -98,7 +98,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>(NavigationContextC);
+                IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>(FicNavigationContextC);
             }
             catch (Exception e)
             {
@@ -113,7 +113,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
 
         private async void SaveCommandExecute()
         {
-            var source_eva_cat_apoyos_didacticos = NavigationContextC as eva_cat_apoyos_didacticos;
+            var source_eva_cat_apoyos_didacticos = FicNavigationContextC as eva_cat_apoyos_didacticos;
             try
             {
                 var res = await ISrvApoyosDidacticos.UpdateApoyoDidactico(new eva_cat_apoyos_didacticos()
@@ -134,11 +134,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
                 if (res == "Ok")
                 {
                     await new Page().DisplayAlert("UPDATE", "¡ACTUALIZADO CORREACTAMENTE!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>(NavigationContextC);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>(FicNavigationContextC);
                 }
                 else
                 {
                     await new Page().DisplayAlert("UPDATE", res.ToString(), "OK");
+                    IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>(FicNavigationContextC);
                 }
 
             }

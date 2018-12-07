@@ -37,7 +37,7 @@
                 AutoGenerateColumns="False"
                 AllowSorting="False"
                 ItemsSource="{Binding SFDataGrid_ItemSource_ApoyosDidacticos}"
-                SelectedItem="{Binding SFDataGrid_SelectedItem_ApoyosDidactico}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_ApoyosDidacticos}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdApoyoDidactico"/>
