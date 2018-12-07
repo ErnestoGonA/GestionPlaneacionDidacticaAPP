@@ -35,7 +35,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                <Picker SelectedIndex="{Binding Asignatura}" HorizontalOptions="StartAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
+                <Picker SelectedItem="{Binding Asignatura}" HorizontalOptions="StartAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>

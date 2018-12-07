@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using System.Threading.Tasks;
+using GestionPlaneacionDidacticaAPP.Data;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -20,7 +21,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public ObservableCollection<eva_planeacion> _SFDataGrid_ItemSource_Planeacion;
         public eva_planeacion _SFDataGrid_SelectedItem_Planeacion;
         public List<string> _ListAsignatura;
-
+        public string _Usuario, _Asignatura;
 
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
@@ -68,6 +69,37 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 {
                     _ListAsignatura = value;
                     RaisePropertyChanged("ListAsignatura");
+                }
+            }
+        }
+
+        public string Usuario
+        {
+            get
+            {
+                return _Usuario;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _Usuario = value;
+                    FicGlobalValues.USUARIO = value;
+                }
+            } 
+        }
+        public string Asignatura
+        {
+            get
+            {
+                return _Asignatura;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _Asignatura = value;
+                    FicGlobalValues.ASIGNATURA = value;
                 }
             }
         }
