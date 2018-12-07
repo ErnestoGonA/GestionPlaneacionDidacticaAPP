@@ -13,6 +13,7 @@ using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -49,7 +50,9 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                                                 Icon ="ficAlmacen20x20.png",
                                                 FicPageName ="FicViPlaneacion",
                                                 TargetType = typeof(FicViPlaneacion)
-                                                }
+                                                },
+                    new FicMasterPageMenuItem {Id = 4, Title = "Subtemas",Icon ="ficAlmacen20x20.png",
+                                               FicPageName ="FicViSubtemasList",TargetType = typeof(FicViSubtemasList)}
                 });
 
                 //MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]

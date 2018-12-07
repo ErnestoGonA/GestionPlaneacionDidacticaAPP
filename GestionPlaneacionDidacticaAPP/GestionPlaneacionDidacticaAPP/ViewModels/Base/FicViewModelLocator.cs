@@ -15,6 +15,9 @@ using GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
 using GestionPlaneacionDidacticaAPP.Services.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
+using GestionPlaneacionDidacticaAPP.Services.Subtemas;
+using GestionPlaneacionDidacticaAPP.Interfaces.Subtemas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -36,6 +39,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<VmApoyosDidacticosList>();
             FicContainerBuilder.RegisterType<FicVmPlaneacion>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionInsert>();
+            FicContainerBuilder.RegisterType<FicVmSubtemaList>();
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -55,7 +59,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacion>().As<FicISrvPlaneacion>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionInsert>().As<IFicSrvPlaneacionInsert>().SingleInstance();
-
+            FicContainerBuilder.RegisterType<FicSrvSubtemas>().As<IFicSrvSubtemas>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosUpdate>().As<IFicSrvCatEdificiosUpdate>().SingleInstance();
@@ -100,6 +104,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmPlaneacionInsert FicVmPlaneacionInsert
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionInsert>(); }
+        }
+
+        public FicVmSubtemaList FicVmSubtemaList
+        {
+            get { return FicIContainer.Resolve<FicVmSubtemaList>(); }
         }
 
 

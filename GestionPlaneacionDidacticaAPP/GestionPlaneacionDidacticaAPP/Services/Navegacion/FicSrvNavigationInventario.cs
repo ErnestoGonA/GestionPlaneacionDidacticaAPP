@@ -11,6 +11,8 @@ using System.Text;
 using Xamarin.Forms;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
+using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
@@ -25,7 +27,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(VmTemasInsert),typeof(ViTemasInsert) },
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
-            {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) }
+            {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
+            {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)}
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
