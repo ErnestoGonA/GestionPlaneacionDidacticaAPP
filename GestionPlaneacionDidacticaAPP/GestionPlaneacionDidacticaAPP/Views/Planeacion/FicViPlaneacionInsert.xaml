@@ -6,7 +6,15 @@
         <StackLayout>
             <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Insertar edificio " FontAttributes="Bold" />
+                    <Label Text="Insertar edificio " FontAttributes="Bold" FontSize="Large" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario: " FontAttributes="Bold" />
+                    <Label Text="{Binding Usuario}" FontAttributes="Bold" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Asignatura: " FontAttributes="Bold" />
+                    <Label Text="{Binding Asignatura}" FontAttributes="Bold" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
@@ -21,12 +29,12 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Actual: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Switch HorizontalOptions="Start"></Switch>
+                    <Switch HorizontalOptions="Start" IsToggled="{Binding Actual}"></Switch>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Plantilla original: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Switch HorizontalOptions="Start"></Switch>
+                    <Switch HorizontalOptions="Start" IsToggled="{Binding PlantillaOriginal}"></Switch>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
@@ -41,7 +49,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Periodo: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedIndex="{Binding IdPeriodo}" HorizontalOptions="StartAndExpand"></Picker>
+                    <Picker SelectedIndex="{Binding PeridoId}" ItemsSource="{Binding Periodos}" HorizontalOptions="StartAndExpand"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">

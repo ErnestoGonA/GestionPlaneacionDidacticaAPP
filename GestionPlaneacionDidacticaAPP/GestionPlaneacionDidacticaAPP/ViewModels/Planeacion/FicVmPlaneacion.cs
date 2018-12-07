@@ -22,6 +22,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public eva_planeacion _SFDataGrid_SelectedItem_Planeacion;
         public List<string> _ListAsignatura;
         public string _Usuario, _Asignatura;
+        public int _UsIndex = FicGlobalValues.USUARIO_INDEX;
+        public Int16 _AsIndex;
 
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
@@ -40,6 +42,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
             _ListAsignatura = GetListAsignatura().Result;
+            _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
         }
 
         public async Task<List<string>> GetListAsignatura()
@@ -85,6 +88,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 {
                     _Usuario = value;
                     FicGlobalValues.USUARIO = value;
+                    RaisePropertyChanged("Usuario");
                 }
             } 
         }
@@ -100,7 +104,32 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 {
                     _Asignatura = value;
                     FicGlobalValues.ASIGNATURA = value;
+                    RaisePropertyChanged("Asignatura");
                 }
+            }
+        }
+
+        public int UsIndex
+        {
+            get
+            {
+                return _UsIndex;
+            }
+            set
+            {
+                _UsIndex = FicGlobalValues.USUARIO_INDEX = value;
+            }
+        }
+
+        public Int16 AsIndex
+        {
+            get
+            {
+                return _AsIndex;
+            }
+            set
+            {
+                _AsIndex = FicGlobalValues.ASIGNATURA_INDEX = value;
             }
         }
 
