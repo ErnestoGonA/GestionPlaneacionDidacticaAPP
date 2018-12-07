@@ -10,6 +10,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using System.Threading.Tasks;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -18,6 +19,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         //Data of the grid
         public ObservableCollection<eva_planeacion> _SFDataGrid_ItemSource_Planeacion;
         public eva_planeacion _SFDataGrid_SelectedItem_Planeacion;
+        public List<string> _ListAsignatura;
+
 
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
@@ -35,6 +38,38 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
+            _ListAsignatura = GetListAsignatura().Result;
+        }
+
+        public async Task<List<string>> GetListAsignatura()
+        {
+            var listaAsignaturas = await FicISrvPlaneacion.FicMetGetListAsignatura();
+            List<string> aux = new List<string>();
+            if (listaAsignaturas != null)
+            {
+                foreach (eva_cat_asignaturas asignaturas in listaAsignaturas)
+                {
+                    aux.Add(asignaturas.ClaveAsignatura);
+                }
+                return aux;
+            }
+            return null;
+        }
+
+        public List<string> ListAsignatura
+        {
+            get
+            {
+                return _ListAsignatura;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _ListAsignatura = value;
+                    RaisePropertyChanged("ListAsignatura");
+                }
+            }
         }
 
         public ObservableCollection<eva_planeacion> SFDataGrid_ItemSource_Planeacion

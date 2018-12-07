@@ -26,7 +26,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Plantilla original: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Entry Text="{Binding PlantillaOriginal}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Switch HorizontalOptions="Start"></Switch>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
