@@ -37,6 +37,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<VmApoyosDidacticosList>();
             FicContainerBuilder.RegisterType<FicVmPlaneacion>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionInsert>();
+            FicContainerBuilder.RegisterType<FicVmPlaneacionView>();
             FicContainerBuilder.RegisterType<FicVmTemasList>();
             FicContainerBuilder.RegisterType<FicVmTemasInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasView>();
@@ -108,6 +109,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmPlaneacionInsert FicVmPlaneacionInsert
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionInsert>(); }
+        }
+        public FicVmPlaneacionView FicVmPlaneacionView
+        {
+            get { return FicIContainer.Resolve<FicVmPlaneacionView>(); }
         }
 
     }//CLASS

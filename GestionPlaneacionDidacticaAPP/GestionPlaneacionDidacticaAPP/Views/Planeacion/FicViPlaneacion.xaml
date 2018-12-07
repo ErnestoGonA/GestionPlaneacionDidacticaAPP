@@ -12,7 +12,8 @@
             Name="Editar Planeacion">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Planeacion">
+            Name="Detalle Planeacion"
+            Command="{Binding MetViewPlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Planeacion">

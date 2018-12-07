@@ -27,7 +27,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public Int16 _AsIndex;
 
         //Buttons
-        private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
+        private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
         //Navigation to lists
         private ICommand _FicMetNavigateToTemasICommand;
 
@@ -167,6 +167,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         {
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionInsert>();
         }
+        
+        public ICommand MetViewPlaneacionICommand
+        {
+            get
+            {
+                return _MetViewPlaneacionICommand = _MetViewPlaneacionICommand ?? new FicVmDelegateCommand(FicMetViewPlaneacion);
+            }
+        }
+        public void FicMetViewPlaneacion()
+        {
+            if(SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionView>(SFDataGrid_SelectedItem_Planeacion);
+            }
+        }
 
         public ICommand FicMetNavigateToTemasICommand
         {
@@ -194,6 +209,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     {
                         _SFDataGrid_ItemSource_Planeacion.Add(apoyosdidacticos);
                     }
+                    FicGlobalValues.NEXTIDPLANEACION = _SFDataGrid_ItemSource_Planeacion.Count + 1;
                 }//Llenar el grid
             }
             catch (Exception e)

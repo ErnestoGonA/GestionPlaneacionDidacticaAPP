@@ -201,7 +201,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             {
                 var RespuestaInsert = await IFicSrvPlaneacionInsert.Insert_eva_planeacion(new eva_planeacion() {
                     IdAsignatura = (Int16)(FicGlobalValues.ASIGNATURA_INDEX + 1),
-                    IdPlaneacion = 1,
+                    IdPlaneacion = FicGlobalValues.NEXTIDPLANEACION,
                     ReferenciaNorma = this.ReferenciaNorma,
                     Revision = this.Revision,
                     Actual = this.Actual ? "1" : "0",
@@ -219,6 +219,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 if (RespuestaInsert == "OK")
                 {
                     await new Page().DisplayAlert("ADD", "Insertado con éxito", "OK");
+                    FicGlobalValues.NEXTIDPLANEACION++;
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacion>(FicNavigationContextC);
                 }
                 else
