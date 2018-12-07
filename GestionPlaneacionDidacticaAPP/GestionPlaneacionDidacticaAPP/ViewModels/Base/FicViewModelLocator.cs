@@ -10,6 +10,8 @@ using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Services.Asingatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
@@ -52,6 +54,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //para poder ejecutar las tareas (metodos o funciones, etc) del servicio en cuestion.
             //---------------------------------------------------------------------------------------------------
             FicContainerBuilder.RegisterType<FicSrvNavigationInventario>().As<IFicSrvNavigationInventario>().SingleInstance();
+
+            FicContainerBuilder.RegisterType<FicSrvAsignaturas>().As<IFicSrvAsignatura>().SingleInstance();
 
             //Temas
             FicContainerBuilder.RegisterType<FicSrvTemas>().As<IFicSrvTemas>().SingleInstance();

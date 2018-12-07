@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
@@ -27,18 +28,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         //Labels
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
-        private short _LabelIdAsignatura;
+        private string _LabelIdAsignatura;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvTemas IFicSrvTemas;
+        private IFicSrvAsignatura IFicSrvAsignatura;
 
         public object FicNavigationContextC { get; set; }
 
-        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas)
+        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas,IFicSrvAsignatura srvAsignatura)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvTemas = srvTemas;
+            IFicSrvAsignatura = srvAsignatura;
 
             _SFDataGrid_ItemSource_Temas = new ObservableCollection<eva_planeacion_temas>();
         }
@@ -93,7 +96,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             }
         }
 
-        public short LabelIdAsignatura
+        public string LabelIdAsignatura
         {
             get { return _LabelIdAsignatura; }
             set
@@ -187,8 +190,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
                 if (source_eva_planeacion != null)
                 {
+                    eva_cat_asignaturas asignatura = await IFicSrvAsignatura.GetAsignatura(source_eva_planeacion.IdAsignatura);
                     _LabelUsuario = source_eva_planeacion.UsuarioMod;
-                    _LabelIdAsignatura = source_eva_planeacion.IdAsignatura;
+                    _LabelIdAsignatura = asignatura.DesAsignatura;
                     _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
 
                     RaisePropertyChanged("LabelUsuario");
