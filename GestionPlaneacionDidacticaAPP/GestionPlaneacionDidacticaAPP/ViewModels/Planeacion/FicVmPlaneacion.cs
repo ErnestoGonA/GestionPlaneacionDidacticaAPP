@@ -10,6 +10,9 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using System.Threading.Tasks;
+using GestionPlaneacionDidacticaAPP.Data;
+using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -18,9 +21,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         //Data of the grid
         public ObservableCollection<eva_planeacion> _SFDataGrid_ItemSource_Planeacion;
         public eva_planeacion _SFDataGrid_SelectedItem_Planeacion;
+        public List<string> _ListAsignatura;
+        public string _Usuario, _Asignatura;
+        public int _UsIndex = FicGlobalValues.USUARIO_INDEX;
+        public Int16 _AsIndex;
 
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
+        //Navigation to lists
+        private ICommand _FicMetNavigateToTemasICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -35,6 +44,96 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
+            _ListAsignatura = GetListAsignatura().Result;
+            _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
+        }
+
+        public async Task<List<string>> GetListAsignatura()
+        {
+            var listaAsignaturas = await FicISrvPlaneacion.FicMetGetListAsignatura();
+            List<string> aux = new List<string>();
+            if (listaAsignaturas != null)
+            {
+                foreach (eva_cat_asignaturas asignaturas in listaAsignaturas)
+                {
+                    aux.Add(asignaturas.ClaveAsignatura);
+                }
+                return aux;
+            }
+            return null;
+        }
+
+        public List<string> ListAsignatura
+        {
+            get
+            {
+                return _ListAsignatura;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _ListAsignatura = value;
+                    RaisePropertyChanged("ListAsignatura");
+                }
+            }
+        }
+
+        public string Usuario
+        {
+            get
+            {
+                return _Usuario;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _Usuario = value;
+                    FicGlobalValues.USUARIO = value;
+                    RaisePropertyChanged("Usuario");
+                }
+            } 
+        }
+        public string Asignatura
+        {
+            get
+            {
+                return _Asignatura;
+            }
+            set
+            {
+                if(value != null)
+                {
+                    _Asignatura = value;
+                    FicGlobalValues.ASIGNATURA = value;
+                    RaisePropertyChanged("Asignatura");
+                }
+            }
+        }
+
+        public int UsIndex
+        {
+            get
+            {
+                return _UsIndex;
+            }
+            set
+            {
+                _UsIndex = FicGlobalValues.USUARIO_INDEX = value;
+            }
+        }
+
+        public Int16 AsIndex
+        {
+            get
+            {
+                return _AsIndex;
+            }
+            set
+            {
+                _AsIndex = FicGlobalValues.ASIGNATURA_INDEX = value;
+            }
         }
 
         public ObservableCollection<eva_planeacion> SFDataGrid_ItemSource_Planeacion
@@ -44,7 +143,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 return _SFDataGrid_ItemSource_Planeacion;
             }
         }
-        public eva_planeacion SFDataGrud_SelectedItem_Planeacion
+        public eva_planeacion SFDataGrid_SelectedItem_Planeacion
         {
             get
             {
@@ -67,6 +166,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public void FicMetAddPlaneacion()
         {
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionInsert>();
+        }
+
+        public ICommand FicMetNavigateToTemasICommand
+        {
+            get { return _FicMetNavigateToTemasICommand = _FicMetNavigateToTemasICommand ?? new FicVmDelegateCommand(FicMetNavigateToTemas); }
+        }
+
+        public void FicMetNavigateToTemas()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(SFDataGrid_SelectedItem_Planeacion);
+            }
+                            
         }
 
         public async void OnAppearing()

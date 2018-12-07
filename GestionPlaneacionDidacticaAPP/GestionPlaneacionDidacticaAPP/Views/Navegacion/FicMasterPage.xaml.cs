@@ -33,14 +33,14 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                 var FicPagina = FicItemMenu.FicPageName as string;
                 switch (FicPagina)
                 {
+                    case "FicViPlaneacion":
+                        FicItemMenu.TargetType = typeof(FicViPlaneacion);
+                        break;
                     case "ViTemasList":
                         FicItemMenu.TargetType = typeof(ViTemasList);
                         break;
                     case "ViApoyosDidacticos":
                         FicItemMenu.TargetType = typeof(ViApoyosDidacticos);
-                        break;
-                    case "FicViPlaneacion":
-                        FicItemMenu.TargetType = typeof(FicViPlaneacion);
                         break;
                     case "FicViSubtemasList":
                         FicItemMenu.TargetType = typeof(FicViSubtemasList);

@@ -20,6 +20,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
 
+        public async Task<IEnumerable<eva_cat_asignaturas>> FicMetGetListAsignatura()
+        {
+            return await (from asignatura in DBLoContext.eva_cat_asignaturas select asignatura).AsNoTracking().ToListAsync();
+        }
+
         public async Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacion()
         {
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).AsNoTracking().ToListAsync();

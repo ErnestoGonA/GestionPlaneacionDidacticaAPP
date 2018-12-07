@@ -13,12 +13,12 @@ using GestionPlaneacionDidacticaAPP.Models;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Temas
 {
-    public class SrvTemas : ISrvTemas
+    public class FicSrvTemas : IFicSrvTemas
     {
 
         private readonly DBContext DBLoContext;
 
-        public SrvTemas()
+        public FicSrvTemas()
         {
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
@@ -54,7 +54,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
             try
             {
                 DBLoContext.Update(Tema);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al actualizar tema";
+                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar tema";
             }
             catch(Exception e)
             {

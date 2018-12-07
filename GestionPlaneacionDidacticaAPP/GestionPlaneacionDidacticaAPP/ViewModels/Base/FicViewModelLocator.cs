@@ -10,6 +10,8 @@ using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Services.Asingatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
@@ -34,12 +36,16 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //FIC: se procede a registrar las ViewModels para que se puedan mandar llamar en cualquier plataforma
             //---------------------------------------------------------------------------------------------------
             //VmTemas
-            FicContainerBuilder.RegisterType<VmTemasList>();
-            FicContainerBuilder.RegisterType<VmTemasInsert>();
+
             FicContainerBuilder.RegisterType<VmApoyosDidacticosList>();
             FicContainerBuilder.RegisterType<FicVmPlaneacion>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionInsert>();
             FicContainerBuilder.RegisterType<FicVmSubtemaList>();
+            FicContainerBuilder.RegisterType<FicVmTemasList>();
+            FicContainerBuilder.RegisterType<FicVmTemasInsert>();
+            FicContainerBuilder.RegisterType<FicVmTemasView>();
+            FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
+
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -47,15 +53,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosUpdate>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosView>();
             //FicContainerBuilder.RegisterType<FicVmCatEdificiosImportarExportar>();
-            
+
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
             //para poder ejecutar las tareas (metodos o funciones, etc) del servicio en cuestion.
             //---------------------------------------------------------------------------------------------------
             FicContainerBuilder.RegisterType<FicSrvNavigationInventario>().As<IFicSrvNavigationInventario>().SingleInstance();
 
+            FicContainerBuilder.RegisterType<FicSrvAsignaturas>().As<IFicSrvAsignatura>().SingleInstance();
+
             //Temas
-            FicContainerBuilder.RegisterType<SrvTemas>().As<ISrvTemas>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvTemas>().As<IFicSrvTemas>().SingleInstance();
+
             FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacion>().As<FicISrvPlaneacion>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionInsert>().As<IFicSrvPlaneacionInsert>().SingleInstance();
@@ -81,14 +90,24 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         //-------------------- CONTROL DE INVENTARIOS ------------------------
         //FIC: se manda llamar desde el backend de la View de List
 
-        public VmTemasList VmTemasList
+        public FicVmTemasList FicVmTemasList
         {
-            get { return FicIContainer.Resolve<VmTemasList>(); }
+            get { return FicIContainer.Resolve<FicVmTemasList>(); }
         }
 
-        public VmTemasInsert VmTemasInsert
+        public FicVmTemasInsert FicVmTemasInsert
         {
-            get { return FicIContainer.Resolve<VmTemasInsert>(); }
+            get { return FicIContainer.Resolve<FicVmTemasInsert>(); }
+        }
+
+        public FicVmTemasView FicVmTemasView
+        {
+            get { return FicIContainer.Resolve<FicVmTemasView>(); }
+        }
+
+        public FicVmTemasUpdate FicVmTemasUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmTemasUpdate>(); }
         }
 
         public VmApoyosDidacticosList VmApoyosDidacticosList
@@ -105,6 +124,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionInsert>(); }
         }
+
 
         public FicVmSubtemaList FicVmSubtemaList
         {
@@ -164,6 +184,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         ////{
         ////    get { return FicIContainer.Resolve<FicVmExportarWebApi>(); }
         ////}
+
 
     }//CLASS
 }//NAMESPACE

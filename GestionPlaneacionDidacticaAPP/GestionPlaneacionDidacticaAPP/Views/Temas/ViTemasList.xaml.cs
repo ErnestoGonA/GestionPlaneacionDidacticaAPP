@@ -15,24 +15,29 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViTemasList : ContentPage
     {
+        private object FicCuerpoNavigationContext { get; set; }
+
         public ViTemasList()
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.VmTemasList;
+            BindingContext = App.FicVmLocator.FicVmTemasList;
         }
+
 
         public ViTemasList(object NavigationContext)
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.VmTemasList;
+            BindingContext = App.FicVmLocator.FicVmTemasList;
+            FicCuerpoNavigationContext = NavigationContext;
         }
 
         protected async override void OnAppearing()
         {
-            var FicViewModel = BindingContext as VmTemasList;
+            var FicViewModel = BindingContext as FicVmTemasList;
             if (FicViewModel != null)
             {
-               FicViewModel.OnAppearing();
+                FicViewModel.FicNavigationContextC = FicCuerpoNavigationContext;
+                FicViewModel.OnAppearing();
             }
         }
 

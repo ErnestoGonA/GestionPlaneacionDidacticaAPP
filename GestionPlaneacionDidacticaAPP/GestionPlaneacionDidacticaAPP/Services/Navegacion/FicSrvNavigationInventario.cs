@@ -1,10 +1,18 @@
-﻿using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
+
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,13 +30,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
         private IDictionary<Type, Type> FicViewModelRouting = new Dictionary<Type, Type>()
         {
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
-
-            {typeof(VmTemasList),typeof(ViTemasList) },
-            {typeof(VmTemasInsert),typeof(ViTemasInsert) },
-            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
             {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
-            {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)}
+            {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)},
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
@@ -43,6 +47,13 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //{typeof(FicVmExportarWebApi), typeof(FicViExportarWebApi)}
 
 
+            {typeof(FicVmTemasList),typeof(ViTemasList) },
+            {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
+            {typeof(FicVmTemasView),typeof(ViTemasView) },
+            {typeof(FicVmTemasUpdate),typeof(ViTemasUpdate) },
+
+            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
+           
         };
 
         #region METODOS DE IMPLEMENTACION DE LA INTERFACE -> IFicSrvNavigationInventario

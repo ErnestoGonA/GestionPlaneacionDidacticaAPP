@@ -1,0 +1,241 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
+using System.ComponentModel;
+using System.Windows.Input;
+using Xamarin.Forms;
+using System.Runtime.CompilerServices;
+
+using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Models;
+using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+
+namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
+{
+    public class FicVmTemasList: INotifyPropertyChanged
+    {
+
+        //Data of the grid
+        public ObservableCollection<eva_planeacion_temas> _SFDataGrid_ItemSource_Temas;       
+        public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
+
+        //Buttons
+        private ICommand _FicMetAddTemaICommand, _FicMetUpdateTemaICommand, _FicMetViewTemaICommand, _FicMetRemoveTemaICommand;
+
+        //Labels
+        private string _LabelUsuario;
+        private int _LabelIdPlaneacion;
+        private string _LabelIdAsignatura;
+
+        //Interfaces
+        private IFicSrvNavigationInventario IFicSrvNavigationInventario;
+        private IFicSrvTemas IFicSrvTemas;
+        private IFicSrvAsignatura IFicSrvAsignatura;
+
+        public object FicNavigationContextC { get; set; }
+
+        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas,IFicSrvAsignatura srvAsignatura)
+        {
+            IFicSrvNavigationInventario = ficSrvNavigationInventario;
+            IFicSrvTemas = srvTemas;
+            IFicSrvAsignatura = srvAsignatura;
+
+            _SFDataGrid_ItemSource_Temas = new ObservableCollection<eva_planeacion_temas>();
+        }
+
+        public ObservableCollection<eva_planeacion_temas> SFDataGrid_ItemSource_Temas
+        {
+            get
+            {
+                return _SFDataGrid_ItemSource_Temas;
+            }
+        }
+
+        public eva_planeacion_temas SFDataGrid_SelectedItem_Temas
+        {
+            get
+            {
+                return _SFDataGrid_SelectedItem_Temas;
+            }
+            set
+            {
+                if (value!=null)
+                {
+                    _SFDataGrid_SelectedItem_Temas = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public string LabelUsuario
+        {
+            get { return _LabelUsuario; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelUsuario = value;
+                    RaisePropertyChanged("LabelUsuario");
+                }
+            }
+        }
+
+        public int LabelIdPlaneacion
+        {
+            get { return _LabelIdPlaneacion; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdPlaneacion = value;
+                    RaisePropertyChanged("LabelIdPlaneacion");
+                }
+            }
+        }
+
+        public string LabelIdAsignatura
+        {
+            get { return _LabelIdAsignatura; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdAsignatura = value;
+                    RaisePropertyChanged("LabelIdAsignatura");
+                }
+            }
+        }
+
+        public ICommand MetAddTemaICommand
+        {
+            get
+            {
+                return _FicMetAddTemaICommand = _FicMetAddTemaICommand ?? new FicVmDelegateCommand(FicMetAddTema);
+            }
+        }
+
+        private void FicMetAddTema()
+        {
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasInsert>();
+        }
+
+        public ICommand FicMetViewTemaICommand
+        {
+            get
+            {
+                return _FicMetViewTemaICommand = _FicMetViewTemaICommand ?? new FicVmDelegateCommand(FicMetViewTema);
+            }
+        }
+
+        private void FicMetViewTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasView>(SFDataGrid_SelectedItem_Temas);
+            }
+        }
+
+        public ICommand FicMetUpdateTemaICommand
+        {
+            get
+            {
+                return _FicMetUpdateTemaICommand = _FicMetUpdateTemaICommand ?? new FicVmDelegateCommand(FicMetUpdateTema);
+            }
+        }
+
+        private void FicMetUpdateTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasUpdate>(SFDataGrid_SelectedItem_Temas);
+            }
+        }
+
+        public ICommand FicMetRemoveTemaICommand
+        {
+            get
+            {
+                return _FicMetRemoveTemaICommand = _FicMetRemoveTemaICommand ?? new FicVmDelegateCommand(FicMetRemoveTema);
+            }
+        }
+
+        private async void FicMetRemoveTema()
+        {
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await IFicSrvTemas.DeleteTema(SFDataGrid_SelectedItem_Temas);
+                    if (res == "OK")
+                    {
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>();
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
+            }
+        }
+
+        public async void OnAppearing()
+        {
+            try
+            {
+                var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+                if (source_eva_planeacion != null)
+                {
+                    eva_cat_asignaturas asignatura = await IFicSrvAsignatura.GetAsignatura(source_eva_planeacion.IdAsignatura);
+                    _LabelUsuario = source_eva_planeacion.UsuarioMod;
+                    _LabelIdAsignatura = asignatura.DesAsignatura;
+                    _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+
+                    RaisePropertyChanged("LabelUsuario");
+                    RaisePropertyChanged("LabelIdAsignatura");
+                    RaisePropertyChanged("LabelIdPlaneacion");
+
+                    var source_local_inv1 = await IFicSrvTemas.MetGetListTemasPlaneacion(source_eva_planeacion.IdPlaneacion);
+                    if (source_local_inv1 != null)
+                    {
+                        foreach (eva_planeacion_temas tema in source_local_inv1)
+                        {
+                            _SFDataGrid_ItemSource_Temas.Add(tema);
+                        }
+                    }
+                }
+                else
+                {
+                    var source_local_inv2 = await IFicSrvTemas.MetGetListTemas();
+                    if (source_local_inv2 != null)
+                    {
+                        foreach (eva_planeacion_temas tema in source_local_inv2)
+                        {
+                            _SFDataGrid_ItemSource_Temas.Add(tema);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+            }
+        }//Sobrecarga el metodo OnAppearing() de la view
+
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void RaisePropertyChanged([CallerMemberName]string propertyname = "")
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+        #endregion
+    }
+}
