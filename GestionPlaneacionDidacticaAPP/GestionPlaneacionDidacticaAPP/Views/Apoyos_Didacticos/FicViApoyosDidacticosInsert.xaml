@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos.FicViApoyosDidacticosInsert">
+    <ScrollView>
+        <StackLayout
+            VerticalOptions="StartAndExpand"
+            Padding="20">
+
+            <Label Text="Descripción del apoyo didactico:"/>
+            <Entry Text="{Binding LabelDesApoyoDidactico}"/>
+
+            <Button Text="Agregar" Command="{Binding SaveCommand}"/>
+            <Button Text="Cancelar" Command="{Binding MetRegesarApoyosDidacticosListICommand}"/>
+
+        </StackLayout>
+    </ScrollView>
+    
+</ContentPage>

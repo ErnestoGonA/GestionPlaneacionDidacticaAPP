@@ -29,7 +29,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmTemasUpdate),typeof(ViTemasUpdate) },
 
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
-           
+            {typeof(FicVmApoyosDidacticosUpdate),typeof(FicViApoyosDidacticosUpdate) },
+            {typeof(FicVmApoyosDidacticosInsert),typeof(FicViApoyosDidacticosInsert) },
+
         };
 
         #region METODOS DE IMPLEMENTACION DE LA INTERFACE -> IFicSrvNavigationInventario

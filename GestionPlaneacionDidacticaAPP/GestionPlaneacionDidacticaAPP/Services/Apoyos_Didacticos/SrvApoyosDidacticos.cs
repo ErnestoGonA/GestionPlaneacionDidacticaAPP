@@ -27,5 +27,32 @@ namespace GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos
         {
             return await (from apodid in DBLoContext.eva_cat_apoyos_didacticos select apodid).AsNoTracking().ToListAsync();
         }
+
+        public async Task<string> InsertApoyoDidactico(eva_cat_apoyos_didacticos ApoDid)
+        {
+            try
+            {
+                await DBLoContext.AddAsync(ApoDid);
+                return await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR EL APOYO DIDACTICO";
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
+        }
+
+        public async Task<string> UpdateApoyoDidactico(eva_cat_apoyos_didacticos ApoDid)
+        {
+            try
+            {
+                DBLoContext.Update(ApoDid);
+                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR EL APOYO DIDACTICO";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message.ToString();
+            }
+        }
+
     }
 }

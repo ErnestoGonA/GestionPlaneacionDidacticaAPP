@@ -6,10 +6,12 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nuevo ApoyoDidactico">
+            Name="Nuevo ApoyoDidactico"
+            Command="{Binding MetAddApoyoDidacticoICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar ApoyoDidactico">
+            Name="Editar ApoyoDidactico"
+            Command="{Binding MetUpdateApoyoDidacticoICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle ApoyoDidactico">
@@ -39,7 +41,7 @@
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdApoyoDidactico"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesApoyodDidactico"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesApoyoDidactico"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>

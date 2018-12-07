@@ -21,7 +21,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
         public eva_cat_apoyos_didacticos _SFDataGrid_SelectedItem_ApoyosDidacticos;
 
         //Buttons
-        private ICommand _MetAddApoyoDidacticoICommand, _MetUpdateApoyoDidacticoICommand, MetViewApoyoDidacticoICommand, _MetRemoveApoyoDidacticoICommand;
+        private ICommand _MetAddApoyoDidacticoICommand, _MetUpdateApoyoDidacticoICommand, _MetViewApoyoDidacticoICommand, _MetRemoveApoyoDidacticoICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -57,6 +57,34 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        public ICommand MetAddApoyoDidacticoICommand
+        {
+            get
+            {
+                return _MetAddApoyoDidacticoICommand = _MetAddApoyoDidacticoICommand ?? new FicVmDelegateCommand(MetAddApoyoDidactico);
+            }
+        }
+
+        private void MetAddApoyoDidactico()
+        {
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmApoyosDidacticosInsert>();
+        }
+
+        public ICommand MetUpdateApoyoDidacticoICommand
+        {
+            get
+            {
+                return _MetUpdateApoyoDidacticoICommand = _MetUpdateApoyoDidacticoICommand ?? new FicVmDelegateCommand(MetUpdateApoyoDidactico);
+            }
+        }
+
+        private void MetUpdateApoyoDidactico()
+        {
+            
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmApoyosDidacticosUpdate>(SFDataGrid_SelectedItem_ApoyosDidacticos);
+
         }
 
         public async void OnAppearing()
