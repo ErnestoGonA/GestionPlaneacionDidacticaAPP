@@ -5,12 +5,32 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Name="Regresar"
-            Command="{Binding FicMetRegesarPlaneacionICommand}">
+            Command="{Binding FicMetRegresarPlaneacionICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="10" BackgroundColor="LightGray">
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Asignatura" FontAttributes="Bold" FontSize="Micro"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="   Clave asignatura: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding ClaveAsignatura}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="   Nombre: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding NombreCorto}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="   Descripción asignatura: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding DesAsignatura}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Detalles planeación " FontAttributes="Bold" />
                 </StackLayout>
@@ -51,8 +71,17 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="IdPeriodo: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding IdPeriodo}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Periodo: " FontAttributes="Bold" FontSize="Micro"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="   Nombre: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding NombreCortoPeriodo}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="   Descripción periodo: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding DesPeriodo}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">

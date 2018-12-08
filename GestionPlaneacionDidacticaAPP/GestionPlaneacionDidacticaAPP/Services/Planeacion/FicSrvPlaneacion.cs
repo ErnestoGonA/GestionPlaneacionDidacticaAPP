@@ -29,5 +29,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
         {
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).AsNoTracking().ToListAsync();
         }
+
+        public async Task<string> FicMetRemovePlaneacion(eva_planeacion eva_planeacion)
+        {
+            DBLoContext.Remove(eva_planeacion);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR";
+        }
     }
 }

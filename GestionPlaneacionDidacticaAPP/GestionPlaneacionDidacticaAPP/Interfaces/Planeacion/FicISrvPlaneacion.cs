@@ -11,5 +11,6 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Planeacion
     {
         Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacion();
         Task<IEnumerable<eva_cat_asignaturas>> FicMetGetListAsignatura();
+        Task<string> FicMetRemovePlaneacion(eva_planeacion eva_planeacion);
     }
 }

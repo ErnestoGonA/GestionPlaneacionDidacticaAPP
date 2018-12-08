@@ -17,7 +17,8 @@
             Command="{Binding MetViewPlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Planeacion">
+            Name="Borrar Planeacion"
+            Command="{Binding MetRemovePlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Temas"
@@ -41,7 +42,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                <Picker SelectedIndex="{Binding AsIndex}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
+                <Picker SelectedItem="{Binding Asignatura}" SelectedIndex="{Binding AsIndex}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>
