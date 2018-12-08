@@ -199,6 +199,32 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
+        public ICommand MetRemovePlaneacionICommand
+        {
+            get { return _MetRemovePlaneacionICommand = _MetRemovePlaneacionICommand ?? new FicVmDelegateCommand(FicMetRemovePlaneacion); }
+        }
+        
+        public async void FicMetRemovePlaneacion()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await FicISrvPlaneacion.FicMetRemovePlaneacion(SFDataGrid_SelectedItem_Planeacion);
+                    if (res == "OK")
+                    {
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacion>();
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
+            }
+        }
+
         public ICommand FicMetNavigateToTemasICommand
         {
             get { return _FicMetNavigateToTemasICommand = _FicMetNavigateToTemasICommand ?? new FicVmDelegateCommand(FicMetNavigateToTemas); }
@@ -213,6 +239,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                             
         }
 
+
         public async void OnAppearing()
         {
             try
@@ -221,11 +248,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 if (source_local_inv != null)
                 {
                     _SFDataGrid_ItemSource_Planeacion.Clear();
+                    int planeacionCount = 0;
                     foreach (eva_planeacion apoyosdidacticos in source_local_inv)
                     {
+                        planeacionCount++;
                         _SFDataGrid_ItemSource_Planeacion.Add(apoyosdidacticos);
                     }
-                    FicGlobalValues.NEXTIDPLANEACION = _SFDataGrid_ItemSource_Planeacion.Count + 1;
+                    int i = 0;
+                    foreach (eva_planeacion apoyosdidacticos in source_local_inv)
+                    {
+                        i++;
+                        if(planeacionCount == i)
+                        {
+                            FicGlobalValues.NEXTIDPLANEACION = apoyosdidacticos.IdPlaneacion+1;
+                        }
+                    }
                 }//Llenar el grid
                 _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
                 RaisePropertyChanged("AsIndex");

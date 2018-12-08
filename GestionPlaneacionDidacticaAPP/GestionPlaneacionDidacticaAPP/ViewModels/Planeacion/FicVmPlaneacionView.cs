@@ -1,4 +1,5 @@
 ﻿using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,16 +16,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
     public class FicVmPlaneacionView : INotifyPropertyChanged
     {
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
+        private IFicSrvPlaneacionView IFicSrvPlaneacionView;
 
         public int _IdPlaneacion;
         public Int16 _IdPeriodo;
-        private string _ReferenciaNorma, _Revision, _Actual, _PlantillaOriginal, _CompetenciaAsignatura, _AportacionPerfilEgreso, _FechaReg, _UsuarioReg, _FechaUltMod, _UsuarioMod, _Activo, _Borrado;
+        private string _ReferenciaNorma, _Revision, _Actual, _PlantillaOriginal, _CompetenciaAsignatura, _AportacionPerfilEgreso, _FechaReg, _UsuarioReg, _FechaUltMod, _UsuarioMod, _Activo, _Borrado,_ClaveAsignatura,_DesAsignatura,_NombreCorto,_NombreCortoPeriodo,_DesPeriodo;
         private ICommand _FicMetRegresarPlaneacionICommand;
         public object FicNavigationContextC { get; set; }
 
-        public FicVmPlaneacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
+        public FicVmPlaneacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario,
+            IFicSrvPlaneacionView IFicSrvPlaneacionView)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
+            this.IFicSrvPlaneacionView = IFicSrvPlaneacionView;
         }
 
         public int IdPlaneacion
@@ -230,11 +235,93 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 }
             }
         }
+        public string ClaveAsignatura
+        {
+            get
+            {
+                return _ClaveAsignatura;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _ClaveAsignatura = value;
+                    RaisePropertyChanged("ClaveAsignatura");
+                }
+            }
+        }
+        public string DesAsignatura
+        {
+            get
+            {
+                return _DesAsignatura;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _DesAsignatura = value;
+                    RaisePropertyChanged("DesAignatura");
+                }
+            }
+        }
+        public string NombreCorto
+        {
+            get
+            {
+                return _NombreCorto;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _NombreCorto = value;
+                    RaisePropertyChanged("NombreCorto");
+                }
+            }
+        }
+        public string NombreCortoPeriodo
+        {
+            get
+            {
+                return _NombreCortoPeriodo;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _NombreCortoPeriodo = value;
+                    RaisePropertyChanged("NombreCortoPeriodo");
+                }
+            }
+        }
+        public string DesPeriodo
+        {
+            get
+            {
+                return _DesPeriodo;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _DesPeriodo = value;
+                    RaisePropertyChanged("DesPeriodo");
+                }
+            }
+        }
 
         public async void OnAppearing()
         {
             var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            eva_cat_asignaturas asignaturas_aux = IFicSrvPlaneacionView.FicMetGetAsignatura(source_eva_planeacion.IdAsignatura).Result;
+            cat_periodos periodos_aux = IFicSrvPlaneacionView.FicMetGetPeriodo(source_eva_planeacion.IdPeriodo).Result;
 
+            _NombreCortoPeriodo = periodos_aux.NombreCorto;
+            _DesPeriodo = periodos_aux.DesPeriodo;
+            _NombreCorto = asignaturas_aux.NombreCorto;
+            _ClaveAsignatura = asignaturas_aux.ClaveAsignatura;
+            _DesAsignatura = asignaturas_aux.DesAsignatura;
             _IdPlaneacion = source_eva_planeacion.IdPlaneacion;
             _IdPeriodo = source_eva_planeacion.IdPeriodo;
             _ReferenciaNorma = source_eva_planeacion.ReferenciaNorma;
@@ -250,6 +337,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             _Activo = source_eva_planeacion.Activo;
             _Borrado = source_eva_planeacion.Borrado;
 
+            RaisePropertyChanged("NombreCortoPeriodo");
+            RaisePropertyChanged("DesPeriodo");
+            RaisePropertyChanged("NombreCorto");
+            RaisePropertyChanged("DesAsignatura");
+            RaisePropertyChanged("ClaveAsignatura");
             RaisePropertyChanged("IdPlaneacion");
             RaisePropertyChanged("IdPeriodo");
             RaisePropertyChanged("ReferenciaNorma");
