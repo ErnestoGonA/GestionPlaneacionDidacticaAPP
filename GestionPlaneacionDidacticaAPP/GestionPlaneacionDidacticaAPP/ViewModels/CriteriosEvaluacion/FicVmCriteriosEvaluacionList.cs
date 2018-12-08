@@ -146,19 +146,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        //public ICommand FicMetAddCriterioEvaluacionICommand
-        //{
-        //    get
-        //    {
-        //        return _FicMetAddCriterioEvaluacionICommand = _FicMetAddCriterioEvaluacionICommand ?? new FicVmDelegateCommand(FicMetAddCriterioEvaluacion);
-        //    }
-        //}
+        public ICommand FicMetAddCriterioEvaluacionICommand
+        {
+            get
+            {
+                return _FicMetAddCriterioEvaluacionICommand = _FicMetAddCriterioEvaluacionICommand ?? new FicVmDelegateCommand(FicMetAddCriterioEvaluacion);
+            }
+        }
 
-        //private void FicMetAddCriterioEvaluacion()
-        //{
-        //    var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-        //    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>(source_eva_planeacion);
-        //}
+        private void FicMetAddCriterioEvaluacion()
+        {
+            //var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>();
+        }
 
         //public ICommand FicMetViewTemaICommand
         //{
