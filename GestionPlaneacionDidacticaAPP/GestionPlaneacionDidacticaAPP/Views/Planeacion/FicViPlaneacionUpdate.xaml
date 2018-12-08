@@ -59,7 +59,10 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
-                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                    <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancelar" Command="{Binding FicMetRegresarPlaneacionICommand}" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
             </StackLayout>
