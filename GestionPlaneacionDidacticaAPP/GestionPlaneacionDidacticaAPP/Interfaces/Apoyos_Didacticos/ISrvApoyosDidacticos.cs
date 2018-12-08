@@ -14,5 +14,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Apoyos_Didacticos
         Task<string> InsertApoyoDidactico(eva_cat_apoyos_didacticos ApoDid);
 
         Task<string> UpdateApoyoDidactico(eva_cat_apoyos_didacticos ApoDid);
+
+        Task<string> DeleteApoyoDidactico(eva_cat_apoyos_didacticos ApoDid);
     }
 }

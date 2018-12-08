@@ -87,6 +87,53 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
 
         }
 
+        public ICommand FicMetViewApoyoDidacticoICommand
+        {
+            get
+            {
+                return _MetViewApoyoDidacticoICommand = _MetViewApoyoDidacticoICommand ?? new FicVmDelegateCommand(FicMetViewApoyoDidactico);
+            }
+        }
+
+        private void FicMetViewApoyoDidactico()
+        {
+            if (SFDataGrid_SelectedItem_ApoyosDidacticos != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmApoyosDidacticosView>(SFDataGrid_SelectedItem_ApoyosDidacticos);
+            }
+        }
+
+        public ICommand FicMetRemoveApoyoDidacticoICommand
+        {
+            get
+            {
+                return _MetRemoveApoyoDidacticoICommand = _MetRemoveApoyoDidacticoICommand ?? new FicVmDelegateCommand(FicMetRemoveApoyoDidactico);
+            }
+        }
+
+        private async void FicMetRemoveApoyoDidactico()
+        {
+            if (SFDataGrid_SelectedItem_ApoyosDidacticos != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await ISrvApoyosDidacticos.DeleteApoyoDidactico(SFDataGrid_SelectedItem_ApoyosDidacticos);
+                    if (res == "OK")
+                    {
+                        await new Page().DisplayAlert("MENSAJE", "ELIMINADO CORRECTAMENTE", "OK");
+                        IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>();
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
+            }
+        }
+
+
         public async void OnAppearing()
         {
             try

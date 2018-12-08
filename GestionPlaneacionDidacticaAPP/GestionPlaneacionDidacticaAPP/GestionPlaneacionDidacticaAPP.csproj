@@ -29,6 +29,9 @@
     <EmbeddedResource Update="Views\Apoyos_Didacticos\FicViApoyosDidacticosUpdate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Apoyos_Didacticos\FicViApoyosDidacticosView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Apoyos_Didacticos\ViApoyosDidacticos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

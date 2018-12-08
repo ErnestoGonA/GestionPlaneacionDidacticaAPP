@@ -33,7 +33,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos
             try
             {
                 await DBLoContext.AddAsync(ApoDid);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR EL APOYO DIDACTICO";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR EL APOYO DIDACTICO";
+                DBLoContext.Entry(ApoDid).State = EntityState.Detached;
+                return res;
             }
             catch (Exception e)
             {
@@ -46,12 +48,20 @@ namespace GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos
             try
             {
                 DBLoContext.Update(ApoDid);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR EL APOYO DIDACTICO";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR EL APOYO DIDACTICO";
+                DBLoContext.Entry(ApoDid).State = EntityState.Detached;
+                return res;
             }
             catch (Exception ex)
             {
                 return ex.Message.ToString();
             }
+        }
+
+        public async Task<string> DeleteApoyoDidactico(eva_cat_apoyos_didacticos ApoDid)
+        {
+            DBLoContext.Remove(ApoDid);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR EL APOYO DIDACTICO";
         }
 
     }

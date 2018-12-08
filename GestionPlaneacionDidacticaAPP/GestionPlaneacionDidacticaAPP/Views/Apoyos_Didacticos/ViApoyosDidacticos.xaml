@@ -14,10 +14,12 @@
             Command="{Binding MetUpdateApoyoDidacticoICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle ApoyoDidactico">
+            Name="Detalle ApoyoDidactico"
+            Command="{Binding FicMetViewApoyoDidacticoICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar ApoyoDidactico">
+            Name="Borrar ApoyoDidactico"
+            Command="{Binding FicMetRemoveApoyoDidacticoICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     
