@@ -18,13 +18,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvAprendizaje IFicSrvAprendizaje;
 
-        private short _LabelIdPlanAprendizaje, _LabelIdAsignatura, _LabelIdPlaneacion, _LabelIdTema, _LabelIdCompetencia, _LabelIdActAprendizaje;
-
+        private short _LabelIdPlanAprendizaje, _LabelIdAsignatura,  _LabelIdTema;
+        private int _LabelIdPlaneacion, _LabelIdCompetencia, _LabelIdActAprendizaje;
         //Botones
         private ICommand _MetRegesarCompetenciaListICommand, _SaveCommand;
 
         //Valor mandado de view padre a hija
-        public object[] NavigationContextC { get; set; }
+        public object NavigationContextC { get; set; }
 
         public FicVmAprendizajeInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvAprendizaje iFicSrvAprendizaje)
         {
@@ -32,7 +32,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             IFicSrvAprendizaje = iFicSrvAprendizaje;
         }
 
-        /*public short LabelIdAsignatura
+        public short LabelIdAsignatura
         {
             get { return _LabelIdAsignatura; }
             set
@@ -45,7 +45,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             }
         }
 
-        public short LabelIdPlaneacion
+        public int LabelIdPlaneacion
         {
             get { return _LabelIdPlaneacion; }
             set
@@ -71,7 +71,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             }
         }
 
-        public short LabelIdCompetencia
+        public int LabelIdCompetencia
         {
             get { return _LabelIdCompetencia; }
             set
@@ -84,7 +84,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             }
         }
 
-        public short LabelIdActAprendizaje
+        public int LabelIdActAprendizaje
         {
             get { return _LabelIdActAprendizaje; }
             set
@@ -95,7 +95,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
                     RaisePropertyChanged("LabelIdActAprendizaje");
                 }
             }
-        }*/
+        }
 
         public short LabelIdPlanAprendizaje
         {
@@ -124,7 +124,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
         {
             try
             {
-                //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompeteciaList>(NavigationContextC);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajeList>(NavigationContextC);
             }
             catch (Exception e)
             {
@@ -141,14 +141,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
         {
             try
             {
+                var source_eva_planecion = NavigationContextC as eva_planeacion;
+                var source_eva_cat_competencia = NavigationContextC as eva_cat_competencias;
+                var source_eva_cat_actapre = NavigationContextC as eva_cat_actividades_aprendizaje;
+                var source_eva_planecion_tema = NavigationContextC as eva_planeacion_temas;
                 var res = await IFicSrvAprendizaje.InsertAprendizaje(new eva_planeacion_aprendizaje
                 {
                     IdPlaneacionAprendizaje = LabelIdPlanAprendizaje,
-                    IdAsignatura = 1,
-                    IdPlaneacion = 1,
-                    IdTema = 1,
-                    IdCompetencia = 1,
-                    IdActividadAprendizaje = 1,
+                    IdAsignatura = source_eva_planecion.IdAsignatura,
+                    IdPlaneacion = source_eva_planecion.IdPlaneacion,
+                    IdTema = source_eva_planecion_tema.IdTema,
+                    IdCompetencia = source_eva_cat_competencia.IdCompetencia,
+                    IdActividadAprendizaje = source_eva_cat_actapre.IdActividadAprendizaje,
 
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
@@ -161,7 +165,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
                 if (res == "Ok")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
-                    //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciaList>(NavigationContextC);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajeList>(NavigationContextC);
                 }
                 else
                 {
@@ -173,6 +177,26 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             {
                 await new Page().DisplayAlert("Alerta", e.Message.ToString(), "OK");
             }
+        }
+
+        public async void OnAppering()
+        {
+            var source_eva_planecion = NavigationContextC as eva_planeacion;
+            var source_eva_cat_competencia = NavigationContextC as eva_cat_competencias;
+            var source_eva_cat_actapre = NavigationContextC as eva_cat_actividades_aprendizaje;
+            var source_eva_planecion_tema = NavigationContextC as eva_planeacion_temas;
+            _LabelIdAsignatura = source_eva_planecion.IdAsignatura;
+            _LabelIdPlaneacion = source_eva_planecion.IdPlaneacion;
+            _LabelIdTema = source_eva_planecion_tema.IdTema;
+            _LabelIdCompetencia = source_eva_cat_competencia.IdCompetencia;
+            _LabelIdActAprendizaje = source_eva_cat_actapre.IdActividadAprendizaje;
+
+            RaisePropertyChanged("LabelIdAsignatura");
+            RaisePropertyChanged("LabelIdPlaneacion");
+            RaisePropertyChanged("LabelIdTema");
+            RaisePropertyChanged("LabelIdCompetencia");
+            RaisePropertyChanged("LabelIdActAprendizaje");            
+
         }
 
         #region  INotifyPropertyChanged

@@ -31,7 +31,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Aprendizaje
             try
             {
                 await DBLoContext.AddAsync(aprendizaje);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al insertar";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al insertar";
+                DBLoContext.Entry(aprendizaje).State = EntityState.Detached;
+                return res;
             }
             catch (Exception e)
             {
@@ -44,7 +46,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Aprendizaje
             try
             {
                 DBLoContext.Update(aprendizaje);
-                return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar";
+                DBLoContext.Entry(aprendizaje).State = EntityState.Detached;
+                return res;
             }
             catch (Exception e)
             {
