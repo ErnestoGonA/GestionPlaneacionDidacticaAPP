@@ -32,7 +32,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             IFicSrvAprendizaje = iFicSrvAprendizaje;
         }
 
-        public short LabelIdAsignatura
+        /*public short LabelIdAsignatura
         {
             get { return _LabelIdAsignatura; }
             set
@@ -95,7 +95,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
                     RaisePropertyChanged("LabelIdActAprendizaje");
                 }
             }
-        }
+        }*/
 
         public short LabelIdPlanAprendizaje
         {
@@ -144,11 +144,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
                 var res = await IFicSrvAprendizaje.InsertAprendizaje(new eva_planeacion_aprendizaje
                 {
                     IdPlaneacionAprendizaje = LabelIdPlanAprendizaje,
-                    IdAsignatura = LabelIdAsignatura,
-                    IdPlaneacion = LabelIdPlaneacion,
-                    IdTema = LabelIdTema,
-                    IdCompetencia = LabelIdCompetencia,
-                    IdActividadAprendizaje = LabelIdActAprendizaje,
+                    IdAsignatura = 1,
+                    IdPlaneacion = 1,
+                    IdTema = 1,
+                    IdCompetencia = 1,
+                    IdActividadAprendizaje = 1,
 
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,

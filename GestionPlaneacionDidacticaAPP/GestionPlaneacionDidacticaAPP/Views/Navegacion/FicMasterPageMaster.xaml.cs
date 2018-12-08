@@ -13,6 +13,7 @@ using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Aprendizaje;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -49,6 +50,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                                                 Icon ="ficAlmacen20x20.png",
                                                 FicPageName ="ViApoyosDidacticos",
                                                 TargetType = typeof(FicViPlaneacion)
+                                                },
+                    new FicMasterPageMenuItem { Id = 4, Title ="Aprendizaje",
+                                                Icon ="ficAlmacen20x20.png",
+                                                FicPageName ="FicViAprendizajeList",
+                                                TargetType = typeof(FicViAprendizajeList)
                                                 }
                 });
 

@@ -18,7 +18,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvAprendizaje IFicSrvAprendizaje;
 
-        private short _LabelIdPlanAprendizaje, _LabelIdAsignatura, _LabelIdPlaneacion, _LabelIdTema, _LabelIdCompetencia, _LabelIdActAprendizaje;
+        private short _LabelIdPlanAprendizaje, _LabelIdAsignatura, _LabelIdTema;
+        private int _LabelIdPlaneacion, _LabelIdCompetencia, _LabelIdActAprendizaje;
         private string _LabelAct, _LabelBor, _LabelUsuReg, _LabelUsuMod;
         private DateTime _LabelFechaReg, _LabelFechaMod;
 
@@ -46,7 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             }
         }
 
-        public short LabelIdPlaneacion
+        public int LabelIdPlaneacion
         {
             get { return _LabelIdPlaneacion; }
             set
@@ -72,7 +73,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             }
         }
 
-        public short LabelIdCompetencia
+        public int LabelIdCompetencia
         {
             get { return _LabelIdCompetencia; }
             set
@@ -85,7 +86,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje
             }
         }
 
-        public short LabelIdActAprendizaje
+        public int LabelIdActAprendizaje
         {
             get { return _LabelIdActAprendizaje; }
             set

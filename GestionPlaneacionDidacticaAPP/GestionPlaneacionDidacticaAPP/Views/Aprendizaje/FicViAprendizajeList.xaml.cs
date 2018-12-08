@@ -23,7 +23,8 @@ namespace GestionPlaneacionDidacticaAPP.Views.Aprendizaje
         {
             InitializeComponent();
             BindingContext = App.FicVmLocator.FicVmAprendizajeList;
-        }
+        }       
+
 
         protected async override void OnAppearing()
         {

@@ -5,6 +5,8 @@ using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Aprendizaje;
+using GestionPlaneacionDidacticaAPP.Views.Aprendizaje;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,9 +22,13 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
 
             {typeof(VmTemasList),typeof(ViTemasList) },
-            {typeof(VmTemasInsert),typeof(ViTemasInsert) },
-            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) }
-
+            {typeof(VmTemasInsert),typeof(ViTemasInsert)},
+            {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos)},
+            {typeof(FicVmAprendizajeList),typeof(FicViAprendizajeList)},
+            {typeof(FicVmAprendizajeDetail),typeof(FicViAprendizajeDetail)},
+            {typeof(FicVmAprendizajeUpdate),typeof(FicViAprendizajeUpdate)},
+            {typeof(FicVmAprendizajeInsert),typeof(FicViAprendizajeInsert)}       
+            
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
             //{ typeof(FicVmCatEdificiosUpdate),typeof(ViCatEdificiosUpdate) },

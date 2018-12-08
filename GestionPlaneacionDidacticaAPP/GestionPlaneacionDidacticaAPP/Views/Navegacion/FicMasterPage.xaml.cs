@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Aprendizaje;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -40,6 +41,9 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                         break;
                     case "FicViPlaneacion":
                         FicItemMenu.TargetType = typeof(FicViPlaneacion);
+                        break;
+                    case "FicViAprendizajeList":
+                        FicItemMenu.TargetType = typeof(FicViAprendizajeList);
                         break;
 
                     //case "ViCatEdificiosList":
