@@ -10,6 +10,11 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Apoyos_Didacticos
     public interface ISrvApoyosDidacticos
     {
         Task<IEnumerable<eva_cat_apoyos_didacticos>> MetGetListApoyosDidacticos();
-        //Task<IEnumerable<eva_cat_apoyos_didacticos>> MetGetListApoyosDidacticosPlaneacion(int IdPlaneacion);
+        //Task<IEnumerable<eva>> MetGetListTemasPlaneacion(int IdPlaneacion);
+        Task<string> InsertApoyoDidactico(eva_cat_apoyos_didacticos ApoDid);
+
+        Task<string> UpdateApoyoDidactico(eva_cat_apoyos_didacticos ApoDid);
+
+        Task<string> DeleteApoyoDidactico(eva_cat_apoyos_didacticos ApoDid);
     }
 }
