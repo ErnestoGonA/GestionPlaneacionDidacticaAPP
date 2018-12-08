@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion.ViCriteriosEvaluacionList">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nuevo Criterio"
+             Command="{Binding FicMetAddCriterioEvaluacionICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar Criterio"
+             Command="{Binding FicMetUpdateCriterioEvaluacionICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle Criterio"
+            Command="{Binding FicMetViewCriterioEvaluacionICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar Criterio"
+            Command="{Binding FicMetRemoveCriterioEvaluacionICommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelUsuario}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdAsignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelTema}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Competencia: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelCompetencia}"></Label>
+                </StackLayout>
+                
+            </StackLayout>
+
+            <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Filtrar Criterios..."
+                PlaceholderColor="Red"
+                x:Name="SearchBar"
+                >
+            </SearchBar>
+            <syncfusion:SfDataGrid
+                VerticalOptions="FillAndExpand"
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding SFDataGrid_ItemSource_CriteriosEvaluacion}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_criteriosEvaluacion}"
+                SelectionMode="Single">
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdCriterio"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesCriterio"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Porcentaje" MappingName="Porcentaje"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

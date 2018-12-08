@@ -28,7 +28,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout Padding="10" BackgroundColor="LightGray">
+            <StackLayout Padding="10">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Detalles del tema" FontAttributes="Bold" />
                 </StackLayout>
@@ -79,7 +79,7 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
-                    <Button Text="Cancelar" Command="{Binding FicMetRegesarCatEdificiosListICommand}"/>
+                    <Button Text="Volver" Command="{Binding FicMetRegesarCatEdificiosListICommand}"/>
                 </StackLayout>
 
             </StackLayout>

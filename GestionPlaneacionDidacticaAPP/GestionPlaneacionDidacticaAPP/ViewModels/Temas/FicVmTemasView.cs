@@ -244,7 +244,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC[0]);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC[1]);
             }
             catch (Exception e)
             {

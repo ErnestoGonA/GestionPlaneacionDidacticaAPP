@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
+using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 
@@ -41,6 +42,8 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     new FicMasterPageMenuItem { Id = 3, Title = "Planeaciones", Icon ="ficAlmacen20x20.png", FicPageName ="FicViPlaneacion", TargetType = typeof(FicViPlaneacion)},
 
                     //new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
+
+                    new FicMasterPageMenuItem { Id = 1, Title="Criterios",Icon ="ficAlmacen20x20.png",FicPageName="ViCriteriosEvaluacionList",TargetType = typeof(ViCriteriosEvaluacionList)},
 
                     new FicMasterPageMenuItem { Id = 2, Title = "ApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="ViApoyosDidacticos", TargetType = typeof(ViApoyosDidacticos)},
                     
