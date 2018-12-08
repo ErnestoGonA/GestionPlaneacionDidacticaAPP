@@ -287,7 +287,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         }
         public void FicMetGuardarComoPlaneacion()
         {
-            //Llamar la vista
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionGuardarComo>(SFDataGrid_SelectedItem_Planeacion);
+            }
         }
 
 

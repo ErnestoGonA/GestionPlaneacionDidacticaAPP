@@ -14,12 +14,11 @@ using Xamarin.Forms;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
-    public class FicVmPlaneacionUpdate : INotifyPropertyChanged
+    public class FicVmPlaneacionGuardarComo : INotifyPropertyChanged
     {
-
         #region VARIABLES
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate;
+        private IFicSrvGuardarComo IFicSrvGuardarComo;
         private string _ReferenciaNorma, _Revision, _CompetenciaAsignatura, _AportacionPerfilEgreso;
         private string _Usuario = FicGlobalValues.USUARIO;
         private string _Asignatura = FicGlobalValues.ASIGNATURA;
@@ -30,11 +29,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         private ICommand _FicMetRegresarPlaneacionICommand, _SaveCommand;
         #endregion
 
-        public FicVmPlaneacionUpdate(IFicSrvNavigationInventario IFicSrvNavigationInventario,
-            IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate)
+        public FicVmPlaneacionGuardarComo(IFicSrvNavigationInventario IFicSrvNavigationInventario,
+            IFicSrvGuardarComo IFicSrvGuardarComo)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
-            this.IFicSrvPlaneacionUpdate = IFicSrvPlaneacionUpdate;
+            this.IFicSrvGuardarComo = IFicSrvGuardarComo;
             _Periodos = GetListPeriodos().Result;
         }
 
@@ -43,7 +42,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         {
             try
             {
-                var periodos = await IFicSrvPlaneacionUpdate.GetListPeriodos();
+                var periodos = await IFicSrvGuardarComo.GetListPeriodos();
                 if (periodos != null)
                 {
                     List<string> aux = new List<string>();
@@ -193,12 +192,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
             _ReferenciaNorma = source_eva_planeacion.ReferenciaNorma;
             _Revision = source_eva_planeacion.Revision;
-            _Actual = source_eva_planeacion.Actual == "1" ? true : false ;
+            _Actual = source_eva_planeacion.Actual == "1" ? true : false;
             _PlantillaOriginal = source_eva_planeacion.PlantillaOriginal == "1" ? true : false;
             _CompetenciaAsignatura = source_eva_planeacion.CompetenciaAsignatura;
             _AportacionPerfilEgreso = source_eva_planeacion.AportacionPerfilEgreso;
-            _PeriodoId = (Int16)(source_eva_planeacion.IdPeriodo-1);
-            
+            _PeriodoId = (Int16)(source_eva_planeacion.IdPeriodo - 1);
+
 
             RaisePropertyChanged("ReferenciaNorma");
             RaisePropertyChanged("Revision");
@@ -244,10 +243,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
             try
             {
-                var RespuestaUpdate = await IFicSrvPlaneacionUpdate.Update_eva_planeacion(new eva_planeacion()
+                var RespuestaInsert = await IFicSrvGuardarComo.SaveAs_eva_planeacion(new eva_planeacion()
                 {
-                    IdAsignatura = source_eva_planeacion.IdAsignatura,
-                    IdPlaneacion = source_eva_planeacion.IdPlaneacion,
+                    IdAsignatura = (Int16)(FicGlobalValues.ASIGNATURA_INDEX + 1),
+                    IdPlaneacion = FicGlobalValues.NEXTIDPLANEACION,
                     ReferenciaNorma = this.ReferenciaNorma,
                     Revision = this.Revision,
                     Actual = this.Actual ? "1" : "0",
@@ -255,31 +254,35 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     CompetenciaAsignatura = this.CompetenciaAsignatura,
                     AportacionPerfilEgreso = this.AportacionPerfilEgreso,
                     IdPeriodo = (Int16)(this._PeriodoId + 1),
-                    FechaReg = source_eva_planeacion.FechaReg,
+                    FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
-                    UsuarioReg = source_eva_planeacion.UsuarioReg,
+                    UsuarioReg = FicGlobalValues.USUARIO,
                     UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"
                 });
 
-                if (RespuestaUpdate == "OK")
+                if (RespuestaInsert == "OK")
                 {
-                    await new Page().DisplayAlert("UPDATE", "¡EDITADO CON EXITO!", "OK");
+                    await new Page().DisplayAlert("ADD", "Insertado con éxito", "OK");
+                    FicGlobalValues.NEXTIDPLANEACION++;
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacion>(FicNavigationContextC);
                 }
                 else
                 {
-                    await new Page().DisplayAlert("UDPATE", RespuestaUpdate.ToString(), "OK");
-                }
+                    await new Page().DisplayAlert("ADD", RespuestaInsert.ToString(), "OK");
+                }//SE INSERTO EL CONTEO?
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }
 
         #endregion
+
+
 
         #region  INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
