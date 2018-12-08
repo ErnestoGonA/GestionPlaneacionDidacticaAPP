@@ -27,7 +27,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public Int16 _AsIndex;
 
         //Buttons
-        private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
+        private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand;
         //Navigation to lists
         private ICommand _FicMetNavigateToTemasICommand;
 
@@ -35,17 +35,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private FicISrvPlaneacion FicISrvPlaneacion;
         private IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert;
+        private IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate;
 
         public FicVmPlaneacion(IFicSrvNavigationInventario ficSrvNavigationInventario, FicISrvPlaneacion FicISrvPlaneacion,
-            IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert)
+            IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert,
+            IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             this.FicISrvPlaneacion = FicISrvPlaneacion;
             this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
+            this.IFicSrvPlaneacionUpdate = IFicSrvPlaneacionUpdate;
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
             _ListAsignatura = GetListAsignatura().Result;
-            _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
         }
 
         public async Task<List<string>> GetListAsignatura()
@@ -133,6 +135,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             set
             {
                 _AsIndex = FicGlobalValues.ASIGNATURA_INDEX = value;
+                RaisePropertyChanged("AsIndex");
             }
         }
 
@@ -167,6 +170,34 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         {
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionInsert>();
         }
+        
+        public ICommand MetViewPlaneacionICommand
+        {
+            get
+            {
+                return _MetViewPlaneacionICommand = _MetViewPlaneacionICommand ?? new FicVmDelegateCommand(FicMetViewPlaneacion);
+            }
+        }
+        public void FicMetViewPlaneacion()
+        {
+            if(SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionView>(SFDataGrid_SelectedItem_Planeacion);
+            }
+        }
+
+        public ICommand MetUpdatePlaneacionICommand
+        {
+            get { return _MetUpdatePlaneacionICommand = _MetUpdatePlaneacionICommand ?? new FicVmDelegateCommand(FicMetUpdatePlaneacion); }
+        }
+
+        public void FicMetUpdatePlaneacion()
+        {
+            if(SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionUpdate>(SFDataGrid_SelectedItem_Planeacion);
+            }
+        }
 
         public ICommand FicMetNavigateToTemasICommand
         {
@@ -194,7 +225,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     {
                         _SFDataGrid_ItemSource_Planeacion.Add(apoyosdidacticos);
                     }
+                    FicGlobalValues.NEXTIDPLANEACION = _SFDataGrid_ItemSource_Planeacion.Count + 1;
                 }//Llenar el grid
+                _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
+                RaisePropertyChanged("AsIndex");
             }
             catch (Exception e)
             {

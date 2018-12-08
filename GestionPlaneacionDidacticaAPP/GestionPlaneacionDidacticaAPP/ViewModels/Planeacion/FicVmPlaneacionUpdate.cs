@@ -14,36 +14,36 @@ using Xamarin.Forms;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
-    public class FicVmPlaneacionInsert : INotifyPropertyChanged
+    public class FicVmPlaneacionUpdate : INotifyPropertyChanged
     {
-        //Variables
-        private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert;
 
+        #region VARIABLES
+        private IFicSrvNavigationInventario IFicSrvNavigationInventario;
+        private IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate;
         private string _ReferenciaNorma, _Revision, _CompetenciaAsignatura, _AportacionPerfilEgreso;
         private string _Usuario = FicGlobalValues.USUARIO;
         private string _Asignatura = FicGlobalValues.ASIGNATURA;
         private bool _Actual, _PlantillaOriginal;
         public Int16 _PeriodoId;
         private List<string> _Periodos;
+        public object FicNavigationContextC { get; set; }
+        private ICommand _FicMetRegresarPlaneacionICommand, _SaveCommand;
+        #endregion
 
-
-        private ICommand _SaveCommand;
-
-        public object[] FicNavigationContextC { get; set; }
-
-        public FicVmPlaneacionInsert(IFicSrvNavigationInventario IFicSrvNavigationInventario, IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert)
+        public FicVmPlaneacionUpdate(IFicSrvNavigationInventario IFicSrvNavigationInventario,
+            IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
-            this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
+            this.IFicSrvPlaneacionUpdate = IFicSrvPlaneacionUpdate;
             _Periodos = GetListPeriodos().Result;
         }
 
+        #region VARIABLE CON VISTA
         public async Task<List<string>> GetListPeriodos()
         {
             try
             {
-                var periodos = await IFicSrvPlaneacionInsert.GetListPeriodos();
+                var periodos = await IFicSrvPlaneacionUpdate.GetListPeriodos();
                 if (periodos != null)
                 {
                     List<string> aux = new List<string>();
@@ -71,13 +71,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _Usuario = FicGlobalValues.USUARIO = value;
                 }
             }
         }
-        
+
         public string Asignatura
         {
             get
@@ -86,7 +86,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _Asignatura = FicGlobalValues.ASIGNATURA = value;
                 }
@@ -102,6 +102,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             set
             {
                 _PeriodoId = value;
+                RaisePropertyChanged("PeriodoId");
             }
         }
 
@@ -185,53 +186,100 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 RaisePropertyChanged("Periodos");
             }
         }
+        #endregion
 
         public async void OnAppearing()
         {
+            var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            _ReferenciaNorma = source_eva_planeacion.ReferenciaNorma;
+            _Revision = source_eva_planeacion.Revision;
+            _Actual = source_eva_planeacion.Actual == "1" ? true : false ;
+            _PlantillaOriginal = source_eva_planeacion.PlantillaOriginal == "1" ? true : false;
+            _CompetenciaAsignatura = source_eva_planeacion.CompetenciaAsignatura;
+            _AportacionPerfilEgreso = source_eva_planeacion.AportacionPerfilEgreso;
+            _PeriodoId = 0;
+            
 
+            RaisePropertyChanged("ReferenciaNorma");
+            RaisePropertyChanged("Revision");
+            RaisePropertyChanged("Actual");
+            RaisePropertyChanged("PlantillaOriginal");
+            RaisePropertyChanged("CompetenciaAsignatura");
+            RaisePropertyChanged("AportacionPerfilEgreso");
+            RaisePropertyChanged("PeriodoId");
         }
 
-        public ICommand SaveCommand
+        #region ICOMMAND
+
+        public ICommand FicMetRegresarPlaneacionICommand
         {
-            get { return _SaveCommand = _SaveCommand ?? new FicVmDelegateCommand(SaveCommandExecute); }
+            get
+            {
+                return _FicMetRegresarPlaneacionICommand = _FicMetRegresarPlaneacionICommand ?? new FicVmDelegateCommand(FicMetRegresarPlaneacion);
+            }
         }
-        public async void SaveCommandExecute()
+
+        private async void FicMetRegresarPlaneacion()
         {
             try
             {
-                var RespuestaInsert = await IFicSrvPlaneacionInsert.Insert_eva_planeacion(new eva_planeacion() {
-                    IdAsignatura = (Int16)(FicGlobalValues.ASIGNATURA_INDEX + 1),
-                    IdPlaneacion = FicGlobalValues.NEXTIDPLANEACION,
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacion>(FicNavigationContextC);
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+            }
+        }
+
+        public ICommand SavCommand
+        {
+            get
+            {
+                return _SaveCommand = _SaveCommand ?? new FicVmDelegateCommand(SaveCommandExecute);
+            }
+        }
+
+        public async void SaveCommandExecute()
+        {
+            var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            try
+            {
+                var RespuestaUpdate = await IFicSrvPlaneacionUpdate.Update_eva_planeacion(new eva_planeacion()
+                {
+                    IdAsignatura = source_eva_planeacion.IdAsignatura,
+                    IdPlaneacion = source_eva_planeacion.IdPlaneacion,
                     ReferenciaNorma = this.ReferenciaNorma,
                     Revision = this.Revision,
                     Actual = this.Actual ? "1" : "0",
                     PlantillaOriginal = this.PlantillaOriginal ? "1" : "0",
                     CompetenciaAsignatura = this.CompetenciaAsignatura,
                     AportacionPerfilEgreso = this.AportacionPerfilEgreso,
-                    IdPeriodo = (Int16)(this._PeriodoId + 1),
-                    FechaReg = DateTime.Now,
+                    IdPeriodo = PeriodoId,
+                    FechaReg = source_eva_planeacion.FechaReg,
                     FechaUltMod = DateTime.Now,
-                    UsuarioReg = FicGlobalValues.USUARIO,
+                    UsuarioReg = source_eva_planeacion.UsuarioReg,
                     UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"
                 });
-                if (RespuestaInsert == "OK")
+
+                if (RespuestaUpdate == "OK")
                 {
-                    await new Page().DisplayAlert("ADD", "Insertado con éxito", "OK");
-                    FicGlobalValues.NEXTIDPLANEACION++;
+                    await new Page().DisplayAlert("UPDATE", "¡EDITADO CON EXITO!", "OK");
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacion>(FicNavigationContextC);
                 }
                 else
                 {
-                    await new Page().DisplayAlert("ADD", RespuestaInsert.ToString(), "OK");
-                }//SE INSERTO EL CONTEO?
-            }
-            catch (Exception e)
+                    await new Page().DisplayAlert("UDPATE", RespuestaUpdate.ToString(), "OK");
+                }
+
+            }catch(Exception e)
             {
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
-            }//MANEJO GLOBAL DE ERRORES
+            }
         }
+
+        #endregion
 
         #region  INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -242,6 +290,5 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
     }
 }
