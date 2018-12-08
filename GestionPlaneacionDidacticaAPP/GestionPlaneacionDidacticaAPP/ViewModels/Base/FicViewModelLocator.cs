@@ -38,6 +38,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmPlaneacion>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionInsert>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionView>();
+            FicContainerBuilder.RegisterType<FicVmPlaneacionUpdate>();
             FicContainerBuilder.RegisterType<FicVmTemasList>();
             FicContainerBuilder.RegisterType<FicVmTemasInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasView>();
@@ -64,6 +65,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacion>().As<FicISrvPlaneacion>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionInsert>().As<IFicSrvPlaneacionInsert>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvPlaneacionUpdate>().As<IFicSrvPlaneacionUpdate>().SingleInstance();
 
            
             //FIC: se asigna o se libera el contenedor
@@ -113,6 +115,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmPlaneacionView FicVmPlaneacionView
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionView>(); }
+        }
+        public FicVmPlaneacionUpdate FicVmPlaneacionUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmPlaneacionUpdate>(); }
         }
 
     }//CLASS

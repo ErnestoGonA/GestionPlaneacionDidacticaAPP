@@ -35,17 +35,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private FicISrvPlaneacion FicISrvPlaneacion;
         private IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert;
+        private IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate;
 
         public FicVmPlaneacion(IFicSrvNavigationInventario ficSrvNavigationInventario, FicISrvPlaneacion FicISrvPlaneacion,
-            IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert)
+            IFicSrvPlaneacionInsert IFicSrvPlaneacionInsert,
+            IFicSrvPlaneacionUpdate IFicSrvPlaneacionUpdate)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             this.FicISrvPlaneacion = FicISrvPlaneacion;
             this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
+            this.IFicSrvPlaneacionUpdate = IFicSrvPlaneacionUpdate;
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
             _ListAsignatura = GetListAsignatura().Result;
-            _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
         }
 
         public async Task<List<string>> GetListAsignatura()
@@ -133,6 +135,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             set
             {
                 _AsIndex = FicGlobalValues.ASIGNATURA_INDEX = value;
+                RaisePropertyChanged("AsIndex");
             }
         }
 
@@ -183,6 +186,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
+        public ICommand MetUpdatePlaneacionICommand
+        {
+            get { return _MetUpdatePlaneacionICommand = _MetUpdatePlaneacionICommand ?? new FicVmDelegateCommand(FicMetUpdatePlaneacion); }
+        }
+
+        public void FicMetUpdatePlaneacion()
+        {
+            if(SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionUpdate>(SFDataGrid_SelectedItem_Planeacion);
+            }
+        }
+
         public ICommand FicMetNavigateToTemasICommand
         {
             get { return _FicMetNavigateToTemasICommand = _FicMetNavigateToTemasICommand ?? new FicVmDelegateCommand(FicMetNavigateToTemas); }
@@ -211,6 +227,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     }
                     FicGlobalValues.NEXTIDPLANEACION = _SFDataGrid_ItemSource_Planeacion.Count + 1;
                 }//Llenar el grid
+                _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
+                RaisePropertyChanged("AsIndex");
             }
             catch (Exception e)
             {

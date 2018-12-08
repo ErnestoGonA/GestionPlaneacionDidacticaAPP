@@ -9,7 +9,8 @@
             Command="{Binding MetAddPlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Planeacion">
+            Name="Editar Planeacion"
+            Command="{Binding MetUpdatePlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Planeacion"
@@ -28,7 +29,7 @@
             >
             <StackLayout Orientation="Horizontal">
                 <Label Text="Usuario: " FontAttributes="Bold" FontSize="Micro"/>
-                <Picker SelectedItem="{Binding Usuario}" SelectedIndex="{Binding UsIndex}" HorizontalOptions="StartAndExpand">
+                <Picker SelectedItem="{Binding Usuario}" SelectedIndex="{Binding UsIndex}" HorizontalOptions="FillAndExpand">
                     <Picker.Items>
                         <x:String>Juan Pedro Gil</x:String>
                         <x:String>El cherne</x:String>
@@ -40,7 +41,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                <Picker SelectedItem="{Binding Asignatura}" SelectedIndex="{Binding AsIndex}" HorizontalOptions="StartAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
+                <Picker SelectedIndex="{Binding AsIndex}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>
