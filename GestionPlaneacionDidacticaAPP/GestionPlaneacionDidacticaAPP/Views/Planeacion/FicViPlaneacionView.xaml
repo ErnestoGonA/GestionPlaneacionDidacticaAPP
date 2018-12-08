@@ -114,6 +114,10 @@
                     <Label Text="{Binding Borrado}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Regresar" Command="{Binding FicMetRegresarPlaneacionICommand}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

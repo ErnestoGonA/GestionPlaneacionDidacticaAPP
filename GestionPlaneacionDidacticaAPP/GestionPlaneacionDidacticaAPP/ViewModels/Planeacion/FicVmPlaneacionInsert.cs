@@ -28,7 +28,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         private List<string> _Periodos;
 
 
-        private ICommand _SaveCommand;
+        private ICommand _SaveCommand, _FicMetRegresarPlaneacionICommand;
 
         public object[] FicNavigationContextC { get; set; }
 
@@ -231,6 +231,26 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             {
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }//MANEJO GLOBAL DE ERRORES
+        }
+
+        public ICommand FicMetRegresarPlaneacionICommand
+        {
+            get
+            {
+                return _FicMetRegresarPlaneacionICommand = _FicMetRegresarPlaneacionICommand ?? new FicVmDelegateCommand(FicMetRegresarPlaneacion);
+            }
+        }
+
+        private async void FicMetRegresarPlaneacion()
+        {
+            try
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacion>(FicNavigationContextC);
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+            }
         }
 
         #region  INotifyPropertyChanged

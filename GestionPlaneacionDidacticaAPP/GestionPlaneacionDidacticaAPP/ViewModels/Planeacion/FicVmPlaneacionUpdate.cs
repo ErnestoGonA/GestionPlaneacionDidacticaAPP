@@ -231,7 +231,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
-        public ICommand SavCommand
+        public ICommand SaveCommand
         {
             get
             {
@@ -254,7 +254,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     PlantillaOriginal = this.PlantillaOriginal ? "1" : "0",
                     CompetenciaAsignatura = this.CompetenciaAsignatura,
                     AportacionPerfilEgreso = this.AportacionPerfilEgreso,
-                    IdPeriodo = PeriodoId,
+                    IdPeriodo = (Int16)(this._PeriodoId + 1),
                     FechaReg = source_eva_planeacion.FechaReg,
                     FechaUltMod = DateTime.Now,
                     UsuarioReg = source_eva_planeacion.UsuarioReg,

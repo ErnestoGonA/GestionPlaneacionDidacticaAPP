@@ -48,6 +48,12 @@
                 <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>
                 <Switch HorizontalOptions="Start" IsToggled="{Binding Plantilla}"></Switch>
             </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Filtrar" Command="{Binding FiltrarPlantillaCommand}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Guardar como..." Command="{Binding GuardarComoCommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
