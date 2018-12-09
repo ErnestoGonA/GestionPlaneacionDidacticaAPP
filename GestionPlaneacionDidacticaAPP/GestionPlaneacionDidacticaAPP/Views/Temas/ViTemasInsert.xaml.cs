@@ -16,9 +16,9 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
     public partial class ViTemasInsert : ContentPage
     {
 
-        private object[] CuerpoNavigationContext { get; set; }
+        private object CuerpoNavigationContext { get; set; }
 
-        public ViTemasInsert(object[] NavigationContext)
+        public ViTemasInsert(object NavigationContext)
         {
             InitializeComponent();
             CuerpoNavigationContext = NavigationContext;
@@ -30,8 +30,10 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
             var FicViewModel = BindingContext as FicVmTemasInsert;
             if (FicViewModel != null)
             {
-                FicViewModel.NavigationContextC = CuerpoNavigationContext;
+                FicViewModel.FicNavigationContextC = CuerpoNavigationContext;
+                FicViewModel.OnAppearing();
             }
+
         }
 
     }

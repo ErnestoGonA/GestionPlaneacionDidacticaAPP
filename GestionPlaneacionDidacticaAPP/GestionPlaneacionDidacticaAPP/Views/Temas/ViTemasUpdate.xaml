@@ -2,28 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GestionPlaneacionDidacticaAPP.Views.Temas.ViTemasUpdate">
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem 
             Name="Regresar"
             Command="{Binding FicMetRegesarCatEdificiosListICommand}">
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Padding="10" BackgroundColor="LightGray">
+
+                <StackLayout>
+                    <StackLayout>
+                        <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelUsuario}"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelAsignatura}"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                    </StackLayout>
+                </StackLayout>
+
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Actualizar tema" FontAttributes="Bold" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="IdAsignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelIdAsignatura}" FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="IdPlaneacion:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelIdPlaneacion}" FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
@@ -43,7 +49,7 @@
 
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Button Text="Guardar" Command="{Binding SaveCommand}"/>
-                    <Button Text="Cancelar" Command="{Binding MetRegesarTemasListICommand}"/>
+                    <Button Text="Cancelar" Command="{Binding FicMetRegesarCatEdificiosListICommand}"/>
                 </StackLayout>
                 
 

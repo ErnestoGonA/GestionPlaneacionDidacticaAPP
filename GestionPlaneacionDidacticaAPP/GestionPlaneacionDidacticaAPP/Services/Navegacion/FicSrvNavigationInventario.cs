@@ -24,7 +24,6 @@ using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
-    //public class FicSrvNavigationInventario : IFicSrvCatEdificiosList
     public class FicSrvNavigationInventario : IFicSrvNavigationInventario
     {
         private IDictionary<Type, Type> FicViewModelRouting = new Dictionary<Type, Type>()

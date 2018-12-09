@@ -39,9 +39,10 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 
                 MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
                 {
+
                     new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
-
-
+                    
+                 
                     new FicMasterPageMenuItem { Id = 2, Title = "ApoyosDidacticos",
                                                 Icon ="ficAlmacen20x20.png",
                                                 FicPageName ="ViApoyosDidacticos",
