@@ -9,13 +9,16 @@
             Command="{Binding MetAddPlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Planeacion">
+            Name="Editar Planeacion"
+            Command="{Binding MetUpdatePlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Planeacion">
+            Name="Detalle Planeacion"
+            Command="{Binding MetViewPlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Planeacion">
+            Name="Borrar Planeacion"
+            Command="{Binding MetRemovePlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Temas"
@@ -27,7 +30,7 @@
             >
             <StackLayout Orientation="Horizontal">
                 <Label Text="Usuario: " FontAttributes="Bold" FontSize="Micro"/>
-                <Picker SelectedItem="{Binding Usuario}" SelectedIndex="{Binding UsIndex}" HorizontalOptions="StartAndExpand">
+                <Picker SelectedItem="{Binding Usuario}" SelectedIndex="{Binding UsIndex}" HorizontalOptions="FillAndExpand">
                     <Picker.Items>
                         <x:String>Juan Pedro Gil</x:String>
                         <x:String>El cherne</x:String>
@@ -39,11 +42,17 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                <Picker SelectedItem="{Binding Asignatura}" SelectedIndex="{Binding AsIndex}" HorizontalOptions="StartAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
+                <Picker SelectedItem="{Binding Asignatura}" SelectedIndex="{Binding AsIndex}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>
                 <Switch HorizontalOptions="Start" IsToggled="{Binding Plantilla}"></Switch>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Filtrar" Command="{Binding FiltrarPlantillaCommand}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Guardar como..." Command="{Binding GuardarComoCommand}" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
             <SearchBar
                 HorizontalOptions="FillAndExpand"

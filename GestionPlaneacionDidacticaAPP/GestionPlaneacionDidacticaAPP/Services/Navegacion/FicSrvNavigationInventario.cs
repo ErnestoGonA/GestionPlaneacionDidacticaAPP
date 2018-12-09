@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
-using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
-using GestionPlaneacionDidacticaAPP.ViewModels.Base;
-using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
-using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
-using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Temas;
+using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+
 
 using System;
 using System.Collections.Generic;
@@ -45,14 +48,25 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //{typeof(FicVmImportarWebApi), typeof(FicViImportarWebApi)},
             //{typeof(FicVmExportarWebApi), typeof(FicViExportarWebApi)}
 
+            {typeof(FicVmPlaneacionView),typeof(FicViPlaneacionView) },
+            {typeof(FicVmPlaneacionUpdate),typeof(FicViPlaneacionUpdate) },
+            {typeof(FicVmPlaneacionGuardarComo),typeof(FicViPlaneacionGuardarComo) },
 
             {typeof(FicVmTemasList),typeof(ViTemasList) },
             {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },
             {typeof(FicVmTemasView),typeof(ViTemasView) },
             {typeof(FicVmTemasUpdate),typeof(ViTemasUpdate) },
 
+            {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
+            {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },
+            {typeof(FicVmCriteriosEvaluacionView),typeof(ViCriteriosEvaluacionView) },
+            {typeof(FicVmCriteriosEvaluacionUpdate),typeof(ViCriteriosEvaluacionUpdate) },
+
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
-           
+            {typeof(FicVmApoyosDidacticosUpdate),typeof(FicViApoyosDidacticosUpdate) },
+            {typeof(FicVmApoyosDidacticosInsert),typeof(FicViApoyosDidacticosInsert) },
+            {typeof(FicVmApoyosDidacticosView),typeof(FicViApoyosDidacticosView) },
+
         };
 
         #region METODOS DE IMPLEMENTACION DE LA INTERFACE -> IFicSrvNavigationInventario

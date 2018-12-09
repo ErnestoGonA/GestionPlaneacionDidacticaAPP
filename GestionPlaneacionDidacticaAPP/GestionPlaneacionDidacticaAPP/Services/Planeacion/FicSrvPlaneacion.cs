@@ -29,5 +29,19 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
         {
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).AsNoTracking().ToListAsync();
         }
+
+        public async Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacionPlantilla(int IdAsignatura, bool PlantillaOriginal)
+        {
+            string PlantillaOriginalString = PlantillaOriginal ? "1" : "0";
+            return await(from planeacion in DBLoContext.eva_planeacion select planeacion).Where(Planeacion =>
+                Planeacion.IdAsignatura == IdAsignatura && Planeacion.PlantillaOriginal.Equals(PlantillaOriginalString)
+            ).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<string> FicMetRemovePlaneacion(eva_planeacion eva_planeacion)
+        {
+            DBLoContext.Remove(eva_planeacion);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR";
+        }
     }
 }

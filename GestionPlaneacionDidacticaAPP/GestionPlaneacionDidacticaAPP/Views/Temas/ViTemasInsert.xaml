@@ -15,7 +15,7 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
+            <StackLayout Padding="10" Orientation="Vertical">
 
                 <StackLayout>
                     <StackLayout>
@@ -48,7 +48,7 @@
 
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Button Text="Guardar" Command="{Binding SaveCommand}"/>
-                    <Button Text="Cancelar" Command="{Binding MetRegesarTemasListICommand}"/>
+                    <Button Text="Cancelar" Command="{Binding MetRegresarTemasListICommand}"/>
                 </StackLayout>
 
             </StackLayout>

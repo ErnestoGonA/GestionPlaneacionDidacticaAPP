@@ -15,9 +15,9 @@ using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
 
-namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
+namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 {
-    public class FicVmTemasView : INotifyPropertyChanged
+    public class FicVmCriteriosEvaluacionView : INotifyPropertyChanged
     {
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
 
@@ -33,7 +33,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         public object[] FicNavigationContextC { get; set; }
 
-        public FicVmTemasView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
+        public FicVmCriteriosEvaluacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
         }
@@ -244,7 +244,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(FicNavigationContextC[1]);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC[1]);
             }
             catch (Exception e)
             {

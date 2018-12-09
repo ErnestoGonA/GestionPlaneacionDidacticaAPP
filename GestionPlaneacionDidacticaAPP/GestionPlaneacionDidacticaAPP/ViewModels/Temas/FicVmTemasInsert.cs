@@ -32,7 +32,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         private string _LabelDesTema, _LabelObservaciones;
 
         //Botones
-        private ICommand _MetRegesarTemasListICommand, _SaveCommand;
+        private ICommand _MetRegresarTemasListICommand, _SaveCommand;
 
         //Valor mandado de view padre a hija
         public object FicNavigationContextC { get; set; }
@@ -112,7 +112,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             get
             {
-                return _MetRegesarTemasListICommand = _MetRegesarTemasListICommand ?? new FicVmDelegateCommand(MetRegresarTemasList);
+                return _MetRegresarTemasListICommand = _MetRegresarTemasListICommand ?? new FicVmDelegateCommand(MetRegresarTemasList);
             }
         }
 

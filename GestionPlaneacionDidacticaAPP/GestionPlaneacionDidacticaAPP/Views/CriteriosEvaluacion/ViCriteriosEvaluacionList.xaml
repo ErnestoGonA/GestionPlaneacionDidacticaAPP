@@ -1,33 +1,25 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Temas.ViTemasList">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion.ViCriteriosEvaluacionList">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nuevo Tema"
-             Command="{Binding FicMetAddTemaICommand}">
+            Name="Nuevo Criterio"
+             Command="{Binding FicMetAddCriterioEvaluacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Tema"
-             Command="{Binding FicMetUpdateTemaICommand}">
+            Name="Editar Criterio"
+             Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Tema"
-            Command="{Binding FicMetViewTemaICommand}">
+            Name="Detalle Criterio"
+            Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Tema"
-            Command="{Binding FicMetRemoveTemaICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Subtemas"
-            Command="{Binding FicMetSubtemasICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Competencias"
-            Command="{Binding FicMetCompetenciasICommand}">
+            Name="Borrar Criterio"
+            Command="{Binding FicMetRemoveCriteriosEvaluacionICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
@@ -47,11 +39,20 @@
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
                 </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelTema}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Competencia: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelCompetencia}"></Label>
+                </StackLayout>
+                
             </StackLayout>
-            
+
             <SearchBar
                 HorizontalOptions="FillAndExpand"
-                Placeholder="Filtrar informacion..."
+                Placeholder="Filtrar Criterios..."
                 PlaceholderColor="Red"
                 x:Name="SearchBar"
                 >
@@ -61,13 +62,13 @@
                 ColumnSizer="Star"
                 AutoGenerateColumns="False"
                 AllowSorting="False"
-                ItemsSource="{Binding SFDataGrid_ItemSource_Temas}"
-                SelectedItem="{Binding SFDataGrid_SelectedItem_Temas}"
+                ItemsSource="{Binding SFDataGrid_ItemSource_CriteriosEvaluacion}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_criteriosEvaluacion}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdTema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesTema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdCriterio"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesCriterio"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Porcentaje" MappingName="Porcentaje"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>
