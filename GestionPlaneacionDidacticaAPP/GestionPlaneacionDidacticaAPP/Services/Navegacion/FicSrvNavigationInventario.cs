@@ -27,6 +27,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
             {typeof(FicVmPlaneacionView),typeof(FicViPlaneacionView) },
             {typeof(FicVmPlaneacionUpdate),typeof(FicViPlaneacionUpdate) },
+            {typeof(FicVmPlaneacionGuardarComo),typeof(FicViPlaneacionGuardarComo) },
 
             {typeof(FicVmTemasList),typeof(ViTemasList) },
             {typeof(FicVmTemasInsert),typeof(ViTemasInsert) },

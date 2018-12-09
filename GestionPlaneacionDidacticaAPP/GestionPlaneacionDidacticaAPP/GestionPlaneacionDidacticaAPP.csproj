@@ -41,6 +41,9 @@
     <EmbeddedResource Update="Views\Planeacion\FicViPlaneacion.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Planeacion\FicViPlaneacionGuardarComo.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Planeacion\FicViPlaneacionInsert.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
