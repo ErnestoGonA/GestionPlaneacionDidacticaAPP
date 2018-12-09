@@ -24,7 +24,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
-        private ICommand _FicMetAddTemaICommand, _FicMetUpdateTemaICommand, _FicMetViewTemaICommand, _FicMetRemoveTemaICommand;
+        private ICommand _FicMetAddTemaICommand,
+            _FicMetUpdateTemaICommand,
+            _FicMetViewTemaICommand,
+            _FicMetRemoveTemaICommand,
+            _FicMetSubtemasICommand,
+            _FicMetCompetenciasICommand;
 
         //Labels
         private string _LabelUsuario;
@@ -186,6 +191,32 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                     }
                 }
             }
+        }
+
+        public ICommand FicMetSubtemasICommand
+        {
+            get
+            {
+                return _FicMetSubtemasICommand = _FicMetSubtemasICommand ?? new FicVmDelegateCommand(FicMetSubtemas);
+            }
+        }
+
+        private void FicMetSubtemas()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICommand FicMetCompetenciasICommand
+        {
+            get
+            {
+                return _FicMetCompetenciasICommand = _FicMetCompetenciasICommand ?? new FicVmDelegateCommand(FicMetCompetencias);
+            }
+        }
+
+        private void FicMetCompetencias()
+        {
+            throw new NotImplementedException();
         }
 
         public async void OnAppearing()
