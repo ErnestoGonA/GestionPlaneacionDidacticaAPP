@@ -11,15 +11,15 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Criterio"
-             Command="{Binding FicMetUpdateCriterioEvaluacionICommand}">
+             Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Criterio"
-            Command="{Binding FicMetViewCriterioEvaluacionICommand}">
+            Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Criterio"
-            Command="{Binding FicMetRemoveCriterioEvaluacionICommand}">
+            Command="{Binding FicMetRemoveCriteriosEvaluacionICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 

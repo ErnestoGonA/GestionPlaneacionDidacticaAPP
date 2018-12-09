@@ -47,12 +47,16 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmPlaneacionView>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionUpdate>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionGuardarComo>();
+
             FicContainerBuilder.RegisterType<FicVmTemasList>();
             FicContainerBuilder.RegisterType<FicVmTemasInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasView>();
             FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
 
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionList>();
+            FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionInsert>();
+            FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionView>();
+            FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionUpdate>();
 
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
@@ -109,6 +113,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmCriteriosEvaluacionList FicVmCriteriosEvaluacionList
         {
             get { return FicIContainer.Resolve<FicVmCriteriosEvaluacionList>(); }
+        }
+
+        public FicVmCriteriosEvaluacionInsert FicVmCriteriosEvaluacionInsert
+        {
+            get { return FicIContainer.Resolve<FicVmCriteriosEvaluacionInsert>(); }
+        }
+
+        public FicVmCriteriosEvaluacionView FicVmCriteriosEvaluacionView
+        {
+            get { return FicIContainer.Resolve<FicVmCriteriosEvaluacionView>(); }
+        }
+
+        public FicVmCriteriosEvaluacionUpdate FicVmCriteriosEvaluacionUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmCriteriosEvaluacionUpdate>(); }
         }
 
         public VmApoyosDidacticosList VmApoyosDidacticosList

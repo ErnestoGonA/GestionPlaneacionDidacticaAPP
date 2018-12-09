@@ -35,6 +35,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmTemasUpdate),typeof(ViTemasUpdate) },
 
             {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
+            {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },
+            {typeof(FicVmCriteriosEvaluacionView),typeof(ViCriteriosEvaluacionView) },
+            {typeof(FicVmCriteriosEvaluacionUpdate),typeof(ViCriteriosEvaluacionUpdate) },
 
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmApoyosDidacticosUpdate),typeof(FicViApoyosDidacticosUpdate) },
