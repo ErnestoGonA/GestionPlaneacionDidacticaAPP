@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetenciasInsert">
+    <ScrollView>
+        <StackLayout
+            VerticalOptions="StartAndExpand"
+            Padding="20">
+
+            <Label Text="Maestro: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelUsuario}"></Label>
+            <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelIdAsignatura}"></Label>
+            <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelIdPlaneacion}"></Label>
+            <Label Text="Tema: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelIdTema}"></Label>
+            <Label Text="Competencia: " FontAttributes="Bold" FontSize="Micro"/>
+            <Picker SelectedIndex="{Binding IdCompetencia}" ItemsSource="{Binding Competencias}" HorizontalOptions="FillAndExpand"></Picker>
+            <Label Text="Observaciones:"/>
+            <Entry Text="{Binding LabelObservaciones}"/>
+
+            <Button Text="Agregar" Command="{Binding SaveCommand}"/>
+            <Button Text="Cancelar" Command="{Binding MetRegesarApoyosDidacticosListICommand}"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

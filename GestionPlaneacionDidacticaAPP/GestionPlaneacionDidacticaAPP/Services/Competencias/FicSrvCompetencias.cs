@@ -27,9 +27,24 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
             throw new NotImplementedException();
         }
 
-        public Task<string> InsertCompetencia(eva_planeacion_temas_competencias Compe)
+        public async Task<IEnumerable<eva_cat_competencias>> GetListCompetencias()
         {
-            throw new NotImplementedException();
+            return await(from competencias in DBLoContext.eva_cat_competencias select competencias).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<string> InsertCompetencia(eva_planeacion_temas_competencias Compe)
+        {
+            try
+            {
+                await DBLoContext.AddAsync(Compe);
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL ISNERTA LA COMPETENCIA";
+                DBLoContext.Entry(Compe).State = EntityState.Detached;
+                return res;
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
         }
 
         //Lista todos los apoyos_didacticos

@@ -122,6 +122,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             }
         }
 
+        public ICommand FicMetAddCompetenciaICommand
+        {
+            get
+            {
+                return _MetAddCompetenciaICommand = _MetAddCompetenciaICommand ?? new FicVmDelegateCommand(FicMetAddCompetencia);
+            }
+        }
+
+        private void FicMetAddCompetencia()
+        {
+            var source_eva_planeacion_tema = FicNavigationContextC as eva_planeacion_temas;
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasInsert>(source_eva_planeacion_tema);
+        }
 
         public async void OnAppearing()
         {
