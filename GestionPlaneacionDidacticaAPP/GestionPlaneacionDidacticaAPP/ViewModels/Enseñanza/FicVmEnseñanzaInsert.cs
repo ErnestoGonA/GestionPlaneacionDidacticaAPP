@@ -281,7 +281,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 Int16 _IdTema = Int16.Parse(_TemaSelected.Split('-')[0]);
                 var RespuestaInsert = await IFicSrvEnseñanzaInsert.FicMetAddEnseñanza(new eva_planeacion_enseñanza()
                 {
-                    //IdActividadEnseñanza = 1,
                     IdAsignatura = _IdAsignatura,
                     IdPlaneacion = _IdPlaneacion,
                     IdCompetencia = _IdCompetencia,
@@ -294,6 +293,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                     UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"
+                    /*eva_cat_asignaturas = new eva_cat_asignaturas(),
+                    eva_planeacion = new eva_planeacion(),
+                    eva_planeacion_temas = new eva_planeacion_temas(),
+                    eva_cat_actividades_enseñanza = new eva_cat_actividades_enseñanza(),
+                    eva_cat_competencias = new eva_cat_competencias()*/
                 });
                 if (RespuestaInsert == "OK")
                 {
