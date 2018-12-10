@@ -7,7 +7,7 @@ using GestionPlaneacionDidacticaAPP.Models;
 
 namespace GestionPlaneacionDidacticaAPP.Interfaces.Competencias
 {
-    public interface FicISrvCompetencias
+    public interface IFicSrvCompetencias
     {
         Task<IEnumerable<eva_planeacion_temas_competencias>> MetGetListCompetencias();
         //Task<IEnumerable<eva>> MetGetListTemasPlaneacion(int IdPlaneacion);
@@ -16,5 +16,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Competencias
         Task<string> UpdateCompetencia(eva_planeacion_temas_competencias Compe);
 
         Task<string> DeleteCompetencia(eva_planeacion_temas_competencias Compe);
+
+        Task<IEnumerable<eva_planeacion_temas_competencias>> MetGetListCompetenciasTemasPlaneacion(int IdTema);
     }
 }

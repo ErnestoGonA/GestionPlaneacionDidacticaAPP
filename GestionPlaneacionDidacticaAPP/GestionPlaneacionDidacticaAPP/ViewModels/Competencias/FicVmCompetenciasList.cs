@@ -11,6 +11,8 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Competencias;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.Data;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
 {
@@ -25,20 +27,140 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private FicISrvCompetencias FicISrvCompetencias;
+        private IFicSrvCompetencias IFicSrvCompetencias;
+        private IFicSrvAsignatura IFicSrvAsignatura;
+
+        private string _LabelUsuario;
+        private int _LabelIdPlaneacion;
+        private string _LabelIdAsignatura;
+        private int _LabelIdTema;
+
+        public object FicNavigationContextC { get; set; }
+
+        public FicVmCompetenciasList(IFicSrvNavigationInventario ificSrvNavigationInventario, IFicSrvCompetencias ificSrvCompetencias, IFicSrvAsignatura ificSrvAsignatura)
+        {
+            this.IFicSrvNavigationInventario = ificSrvNavigationInventario;
+            this.IFicSrvCompetencias = ificSrvCompetencias;
+            this.IFicSrvAsignatura = ificSrvAsignatura;
+
+            _SFDataGrid_ItemSource_Competencias = new ObservableCollection<eva_planeacion_temas_competencias>();
+        }
+
+        public ObservableCollection<eva_planeacion_temas_competencias> SFDataGrid_ItemSource_Competencias
+        {
+            get
+            {
+                return _SFDataGrid_ItemSource_Competencias;
+            }
+        }
+
+        public eva_planeacion_temas_competencias SFDataGrid_SelectedItem_Competencias
+        {
+            get
+            {
+                return _SFDataGrid_SelectedItem_Competencias;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _SFDataGrid_SelectedItem_Competencias = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        public string LabelUsuario
+        {
+            get { return _LabelUsuario; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelUsuario = value;
+                    RaisePropertyChanged("LabelUsuario");
+                }
+            }
+        }
+
+        public int LabelIdPlaneacion
+        {
+            get { return _LabelIdPlaneacion; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdPlaneacion = value;
+                    RaisePropertyChanged("LabelIdPlaneacion");
+                }
+            }
+        }
+
+        public string LabelIdAsignatura
+        {
+            get { return _LabelIdAsignatura; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdAsignatura = value;
+                    RaisePropertyChanged("LabelIdAsignatura");
+                }
+            }
+        }
+
+        public int LabelIdTema
+        {
+            get { return _LabelIdTema; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelIdTema = value;
+                    RaisePropertyChanged("LabelIdTema");
+                }
+            }
+        }
+
 
         public async void OnAppearing()
         {
             try
             {
-                var source_local_inv = await FicISrvCompetencias.MetGetListCompetencias();
-                if (source_local_inv != null)
+                var source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                if (source_eva_planeacion_temas != null)
                 {
-                    foreach (eva_planeacion_temas_competencias competencias in source_local_inv)
+                    _LabelUsuario = FicGlobalValues.USUARIO;
+                    _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
+                    _LabelIdPlaneacion = source_eva_planeacion_temas.IdPlaneacion;
+                    _LabelIdTema = source_eva_planeacion_temas.IdTema;
+
+                    RaisePropertyChanged("LabelUsuario");
+                    RaisePropertyChanged("LabelIdAsignatura");
+                    RaisePropertyChanged("LabelIdPlaneacion");
+                    RaisePropertyChanged("LabelIdTema");
+
+                    var source_local_inv1 = await IFicSrvCompetencias.MetGetListCompetenciasTemasPlaneacion(source_eva_planeacion_temas.IdTema);
+                    if (source_local_inv1 != null)
                     {
-                        _SFDataGrid_ItemSource_Competencias.Add(competencias); 
+                        _SFDataGrid_ItemSource_Competencias.Clear();
+                        foreach (eva_planeacion_temas_competencias competencias in source_local_inv1)
+                        {
+                            _SFDataGrid_ItemSource_Competencias.Add(competencias);
+                        }
                     }
-                }//Llenar el grid
+                }
+                else
+                {
+                    var source_local_inv2 = await IFicSrvCompetencias.MetGetListCompetencias();
+                    if (source_local_inv2 != null)
+                    {
+                        foreach (eva_planeacion_temas_competencias competencias in source_local_inv2)
+                        {
+                            _SFDataGrid_ItemSource_Competencias.Add(competencias);
+                        }
+                    }//Llenar el grid
+                }
             }
             catch (Exception e)
             {
