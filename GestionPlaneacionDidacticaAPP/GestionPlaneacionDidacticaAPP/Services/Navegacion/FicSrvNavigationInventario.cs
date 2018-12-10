@@ -74,6 +74,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmApoyosDidacticosView),typeof(FicViApoyosDidacticosView) },
 
             { typeof(FicVmCompetenciasList),typeof(FicViCompetencias)},
+            { typeof(FicVmCompetenciasInsert),typeof(FicViCompetenciasInsert) },
 
         };
 

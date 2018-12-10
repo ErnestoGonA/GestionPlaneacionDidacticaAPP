@@ -5,7 +5,8 @@
              x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetencias">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Competencia">
+            Name="Nueva Competencia"
+            Command="{Binding FicMetAddCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Competencia">
