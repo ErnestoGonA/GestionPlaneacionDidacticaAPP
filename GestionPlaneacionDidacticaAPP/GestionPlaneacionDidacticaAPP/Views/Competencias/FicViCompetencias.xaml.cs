@@ -34,6 +34,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Competencias
             var FicViewModel = BindingContext as FicVmCompetenciasList;
             if (FicViewModel != null)
             {
+                FicViewModel.FicNavigationContextC = FicCuerpoNavigationContext;
                 FicViewModel.OnAppearing();
             }
         }
