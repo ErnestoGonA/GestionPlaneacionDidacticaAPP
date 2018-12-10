@@ -38,6 +38,9 @@
     <EmbeddedResource Update="Views\CriteriosEvaluacion\ViCriteriosEvaluacionList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Enseñanza\FicViEnseñanzaInsert.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Enseñanza\FicViEnseñanzaList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

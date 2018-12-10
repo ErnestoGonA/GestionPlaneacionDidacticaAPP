@@ -29,7 +29,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         public bool Filtrado = false;
 
         //Buttons
-        private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
+        private ICommand _MetAddEnseñanzaICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
         //Navigation to lists
         private ICommand _FicMetNavigateToTemasICommand;
 
@@ -106,13 +106,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             }
         }
 
-        public ICommand MetAddPlaneacionICommand
+        public ICommand MetAddEnseñanzaICommand
         {
-            get { return _MetAddPlaneacionICommand = _MetAddPlaneacionICommand ?? new FicVmDelegateCommand(FicMetAddPlaneacion); }
+            get { return _MetAddEnseñanzaICommand = _MetAddEnseñanzaICommand ?? new FicVmDelegateCommand(FicMetAddEnseñanza); }
         }
-        public void FicMetAddPlaneacion()
+        public void FicMetAddEnseñanza()
         {
-            //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaInsert>();
         }
 
         public ICommand MetViewPlaneacionICommand
