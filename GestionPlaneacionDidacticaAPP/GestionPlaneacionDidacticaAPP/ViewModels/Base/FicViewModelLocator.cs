@@ -25,6 +25,9 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
+using GestionPlaneacionDidacticaAPP.Interfaces.Competencias;
+using GestionPlaneacionDidacticaAPP.Services.Competencias;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -56,6 +59,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmTemasInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasView>();
             FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
+            FicContainerBuilder.RegisterType<FicVmCompetenciasList>();
 
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -83,11 +87,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             //Criterios
             FicContainerBuilder.RegisterType<FicSrvCriteriosEvaluacion>().As<IFicSrvCriteriosEvaluacion>().SingleInstance();
-
+            //apoyos didacticos
             FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacion>().As<FicISrvPlaneacion>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionInsert>().As<IFicSrvPlaneacionInsert>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvSubtemas>().As<IFicSrvSubtemas>().SingleInstance();
+            //competencias
+            FicContainerBuilder.RegisterType<FicSrvCompetencias>().As<FicISrvCompetencias>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosUpdate>().As<IFicSrvCatEdificiosUpdate>().SingleInstance();
@@ -198,6 +204,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmSubtemaList FicVmSubtemaList
         {
             get { return FicIContainer.Resolve<FicVmSubtemaList>(); }
+        }
+
+        public FicVmCompetenciasList FicVmCompetenciasList
+        {
+            get { return FicIContainer.Resolve<FicVmCompetenciasList>();  }
         }
 
 
