@@ -21,6 +21,9 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
+using GestionPlaneacionDidacticaAPP.Services.Enseñanza;
+using GestionPlaneacionDidacticaAPP.Interfaces.Enseñanza;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -52,6 +55,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmTemasView>();
             FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
 
+            FicContainerBuilder.RegisterType<FicVmEnseñanzaList>();
+
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionList>();
 
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
@@ -74,6 +79,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvPlaneacionUpdate>().As<IFicSrvPlaneacionUpdate>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionView>().As<IFicSrvPlaneacionView>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionGuardarComo>().As<IFicSrvGuardarComo>().SingleInstance();
+
+            FicContainerBuilder.RegisterType<FicSrvEnseñanzaList>().As<IFicSrvEnseñanzaList>().SingleInstance();
 
            
             //FIC: se asigna o se libera el contenedor
@@ -151,6 +158,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmPlaneacionGuardarComo FicVmPlaneacionGuardarComo
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionGuardarComo>(); }
+        }
+        public FicVmEnseñanzaList FicVmEnseñanzaList
+        {
+            get { return FicIContainer.Resolve<FicVmEnseñanzaList>(); }
         }
 
     }//CLASS
