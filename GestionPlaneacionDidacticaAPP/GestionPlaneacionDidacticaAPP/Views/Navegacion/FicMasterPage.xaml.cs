@@ -11,6 +11,7 @@ using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
+using GestionPlaneacionDidacticaAPP.Views.Competencias;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -50,7 +51,6 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     case "FicViSubtemasList":
                         FicItemMenu.TargetType = typeof(FicViSubtemasList);
                         break;
-
                     //case "ViCatEdificiosList":
                     //    FicItemMenu.TargetType = typeof(ViCatEdificiosList);
                     //    break;

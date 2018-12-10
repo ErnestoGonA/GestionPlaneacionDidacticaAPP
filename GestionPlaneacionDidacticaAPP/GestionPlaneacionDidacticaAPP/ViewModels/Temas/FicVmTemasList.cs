@@ -13,6 +13,7 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
+using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
@@ -216,7 +217,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         private void FicMetCompetencias()
         {
-            throw new NotImplementedException();
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(SFDataGrid_SelectedItem_Temas);
+            }
         }
 
         public async void OnAppearing()
