@@ -14,6 +14,7 @@ using GestionPlaneacionDidacticaAPP.Views.Temas;
 using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
@@ -41,6 +42,9 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                 MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
                 {
 
+                    new FicMasterPageMenuItem { Id = 4, Title = "Enseñanza", Icon ="ficAlmacen20x20.png", FicPageName ="FicViEnseñanzaList", TargetType = typeof(FicViEnseñanzaList)},
+
+                    //new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
 
                     new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
 

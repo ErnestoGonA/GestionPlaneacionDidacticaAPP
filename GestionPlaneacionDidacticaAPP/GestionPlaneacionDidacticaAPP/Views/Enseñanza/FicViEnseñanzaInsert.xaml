@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Enseñanza.FicViEnseñanzaInsert">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Regresar"
+            Command="{Binding FicMetRegresarPlaneacionICommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedItem="{Binding AsignaturaSelected}" ItemsSource="{Binding Asignaturas}" HorizontalOptions="FillAndExpand"></Picker>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Planeacion: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedItem="{Binding PlaneacionSelected}" ItemsSource="{Binding Planeacion}" HorizontalOptions="FillAndExpand"></Picker>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Competencia: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedItem="{Binding CompetenciaSelected}" ItemsSource="{Binding Competencias}" HorizontalOptions="FillAndExpand"></Picker>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Tema: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedItem="{Binding TemaSelected}" ItemsSource="{Binding Temas}" HorizontalOptions="FillAndExpand"></Picker>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Fecha programada: " FontAttributes="Bold" FontSize="Micro"/>
+                    <DatePicker MinimumDate="2018-01-01" MaximumDate="2018-12-31" Date="{Binding FechaIni}" />
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Fecha realizada: " FontAttributes="Bold" FontSize="Micro"/>
+                    <DatePicker MinimumDate="2018-01-01" MaximumDate="2018-12-31" Date="{Binding FechaFin}" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancelar" Command="{Binding FicMetRegresarPlaneacionICommand}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
