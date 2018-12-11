@@ -324,7 +324,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         }
         public async void FicMetFiltrarPlantilla()
         {
-            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla);
+            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(Int16)(FicGlobalValues.ASIGNATURA_INDEX+1));
             if (source_local_inv != null)
             {
                 _SFDataGrid_ItemSource_Planeacion.Clear();
@@ -366,7 +366,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
                 if (!Filtrado)
                 {
-                    FicGlobalValues.PERIODO_INDEX = (Int16)(this._PeriodoId + 1);
                     var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacion();
                     if (source_local_inv != null)
                     {
@@ -385,6 +384,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                             {
                                 FicGlobalValues.NEXTIDPLANEACION = apoyosdidacticos.IdPlaneacion + 1;
                             }
+                        }
+                        if(planeacionCount == 0)
+                        {
+                            FicGlobalValues.NEXTIDPLANEACION = 1;
                         }
                     }//Llenar el grid
                 }

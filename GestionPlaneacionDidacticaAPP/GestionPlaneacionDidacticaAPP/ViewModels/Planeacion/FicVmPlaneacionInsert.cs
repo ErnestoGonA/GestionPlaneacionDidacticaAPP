@@ -176,7 +176,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     PlantillaOriginal = this.PlantillaOriginal ? "S" : "N",
                     CompetenciaAsignatura = this.CompetenciaAsignatura,
                     AportacionPerfilEgreso = this.AportacionPerfilEgreso,
-                    IdPeriodo = FicGlobalValues.PERIODO_INDEX,
+                    IdPeriodo = (Int16)(FicGlobalValues.PERIODO_INDEX + 1),
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
                     UsuarioReg = FicGlobalValues.USUARIO,

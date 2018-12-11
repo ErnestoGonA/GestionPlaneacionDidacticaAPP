@@ -35,11 +35,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacionPlantilla(int IdAsignatura, bool PlantillaOriginal)
+        public async Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacionPlantilla(int IdAsignatura, bool PlantillaOriginal,Int16 IdPeriodo)
         {
-            string PlantillaOriginalString = PlantillaOriginal ? "1" : "0";
+            string PlantillaOriginalString = PlantillaOriginal ? "S" : "N";
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).Where(Planeacion =>
-                Planeacion.IdAsignatura == IdAsignatura && Planeacion.PlantillaOriginal.Equals(PlantillaOriginalString)
+                Planeacion.IdAsignatura == IdAsignatura && Planeacion.PlantillaOriginal.Equals(PlantillaOriginalString) && Planeacion.IdPeriodo == IdPeriodo
             ).AsNoTracking().ToListAsync();
         }
 
