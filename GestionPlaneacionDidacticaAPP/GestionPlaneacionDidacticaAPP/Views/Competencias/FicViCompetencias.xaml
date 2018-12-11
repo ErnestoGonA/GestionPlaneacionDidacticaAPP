@@ -12,7 +12,8 @@
             Name="Editar Competencia">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Competencia">
+            Name="Detalle Competencia"
+            Command="{Binding FicMetViewCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Competencia">

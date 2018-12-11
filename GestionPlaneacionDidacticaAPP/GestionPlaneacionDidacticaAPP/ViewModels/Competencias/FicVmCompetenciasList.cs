@@ -136,6 +136,23 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasInsert>(source_eva_planeacion_tema);
         }
 
+        public ICommand FicMetViewCompetenciaICommand
+        {
+            get
+            {
+                return _MetViewCompetenciaICommand = _MetViewCompetenciaICommand ?? new FicVmDelegateCommand(FicMetViewCompetencia);
+            }
+        }
+
+        private void FicMetViewCompetencia()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+                eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasView>(new object[] { SFDataGrid_SelectedItem_Competencias, source_eva_planeacion_temas });
+            }
+        }
+
         public async void OnAppearing()
         {
             try
