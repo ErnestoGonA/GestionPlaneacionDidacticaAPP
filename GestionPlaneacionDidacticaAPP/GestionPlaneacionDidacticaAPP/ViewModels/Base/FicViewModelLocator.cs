@@ -28,6 +28,9 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
 using GestionPlaneacionDidacticaAPP.Interfaces.Competencias;
 using GestionPlaneacionDidacticaAPP.Services.Competencias;
+using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
+using GestionPlaneacionDidacticaAPP.Interfaces.Enseñanza;
+using GestionPlaneacionDidacticaAPP.Services.Enseñanza;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -60,6 +63,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmTemasView>();
             FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
             FicContainerBuilder.RegisterType<FicVmCompetenciasList>();
+            FicContainerBuilder.RegisterType<FicVmCompetenciasInsert>();
+
 
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -98,7 +103,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvPlaneacionInsert>().As<IFicSrvPlaneacionInsert>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvSubtemas>().As<IFicSrvSubtemas>().SingleInstance();
             //competencias
-            FicContainerBuilder.RegisterType<FicSrvCompetencias>().As<FicISrvCompetencias>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvCompetencias>().As<IFicSrvCompetencias>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosUpdate>().As<IFicSrvCatEdificiosUpdate>().SingleInstance();
@@ -236,6 +241,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmCompetenciasList FicVmCompetenciasList
         {
             get { return FicIContainer.Resolve<FicVmCompetenciasList>();  }
+        }
+
+        public FicVmCompetenciasInsert FicVmCompetenciasInsert
+        {
+            get { return FicIContainer.Resolve<FicVmCompetenciasInsert>(); }
         }
 
 
