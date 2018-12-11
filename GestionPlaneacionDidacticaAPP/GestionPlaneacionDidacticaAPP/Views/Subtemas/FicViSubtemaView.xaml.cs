@@ -10,34 +10,28 @@ using Xamarin.Forms.Xaml;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Subtemas
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FicViSubtemasList : ContentPage
-    {
-        private object FicCuerpoNavigationContext { get; set; }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class FicViSubtemaView : ContentPage
+	{
 
-        public FicViSubtemasList()
+        private object[] FicCuerpoNavigationContext { get; set; }
+
+        public FicViSubtemaView(object[] FicNavigationContext)
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.FicVmSubtemaList;
-        }
-
-
-        public FicViSubtemasList(object NavigationContext)
-        {
-            InitializeComponent();
-            BindingContext = App.FicVmLocator.FicVmSubtemaList;
-            FicCuerpoNavigationContext = NavigationContext;
+            FicCuerpoNavigationContext = FicNavigationContext;
+            BindingContext = App.FicVmLocator.ficVmSubtemaView;
         }
 
         protected async override void OnAppearing()
         {
-            var FicViewModel = BindingContext as FicVmSubtemaList;
+            var FicViewModel = BindingContext as FicVmSubtemaView;
             if (FicViewModel != null)
             {
                 FicViewModel.FicNavigationContextC = FicCuerpoNavigationContext;
                 FicViewModel.OnAppearing();
+
             }
         }
-
-    }//
+    }
 }

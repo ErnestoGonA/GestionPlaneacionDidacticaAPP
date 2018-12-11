@@ -14,6 +14,7 @@ using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
+using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 {
@@ -204,7 +205,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         private void FicMetSubtemas()
         {
-            throw new NotImplementedException();
+            if (SFDataGrid_SelectedItem_Temas != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmSubtemaList>(SFDataGrid_SelectedItem_Temas);
+            }
         }
 
         public ICommand FicMetCompetenciasICommand

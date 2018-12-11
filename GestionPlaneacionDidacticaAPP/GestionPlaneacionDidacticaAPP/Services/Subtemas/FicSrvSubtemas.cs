@@ -20,11 +20,73 @@ namespace GestionPlaneacionDidacticaAPP.Services.Subtemas
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
 
+        //List all subtemas
         public async Task<IEnumerable<eva_planeacion_subtemas>> FicMetGetListSubtemas()
         {
             return await(from subtema in DBLoContext.eva_planeacion_subtemas select subtema).AsNoTracking().ToListAsync();
         }
 
+        //List subtemas of a tema
+        public async Task<IEnumerable<eva_planeacion_subtemas>> MetGetListSubtemasTema(int IdTema)
+        {
+            return await (from subtema in DBLoContext.eva_planeacion_subtemas
+                          where subtema.IdTema == IdTema
+                          select subtema).AsNoTracking().ToListAsync();
+        }
+
+        //Insert Subtema
+        public async Task<string> InsertSubtema(eva_planeacion_subtemas Subtema)
+        {
+
+            try {
+                var subtemas = await (from subtema in DBLoContext.eva_planeacion_subtemas
+                                      where subtema.IdTema == Subtema.IdTema
+                                      where subtema.IdPlaneacion == Subtema.IdPlaneacion
+                                      where subtema.IdAsignatura == Subtema.IdAsignatura
+                                      select subtema).ToListAsync();
+                short maxId = 0;
+                if (subtemas.Count() > 0) {
+                    maxId = (from subtema in DBLoContext.eva_planeacion_subtemas
+                             where subtema.IdTema == Subtema.IdTema
+                             where subtema.IdPlaneacion == Subtema.IdPlaneacion
+                             where subtema.IdAsignatura == Subtema.IdAsignatura
+                             select subtema.IdSubtema).Max();
+                }
+                maxId = ++maxId;
+                await DBLoContext.AddAsync(Subtema);
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar subtema";
+                DBLoContext.Entry(Subtema).State = EntityState.Detached;
+                return res;
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
+        }
+
+        //Update subtema
+        public async Task<string> UpdateSubtema(eva_planeacion_subtemas Subtema)
+        {
+            try
+            {
+                DBLoContext.Update(Subtema);
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar Subtema";
+                DBLoContext.Entry(Subtema).State = EntityState.Detached;
+                return res;
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
+        }
+
+
+        //Delete Subtema
+        public async Task<string> DeleteSubtema(eva_planeacion_subtemas Subtema)
+        {
+            DBLoContext.Remove(Subtema);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al eliminar Subtema";
+        }
 
     }
 }
