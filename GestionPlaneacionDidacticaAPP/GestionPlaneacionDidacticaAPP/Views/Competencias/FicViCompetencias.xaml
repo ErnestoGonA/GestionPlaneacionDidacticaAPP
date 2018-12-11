@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetencias">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nueva Competencia"
+            Command="{Binding FicMetAddCompetenciaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar Competencia">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle Competencia"
+            Command="{Binding FicMetViewCompetenciaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar Competencia">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+            >
+            
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelUsuario}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdAsignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdTema}"></Label>
+                </StackLayout>
+            </StackLayout>
+            
+            <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Filtrar informacion..."
+                PlaceholderColor="Red"
+                x:Name="SearchBar"
+                >
+            </SearchBar>
+            <syncfusion:SfDataGrid
+                VerticalOptions="FillAndExpand"
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding SFDataGrid_ItemSource_Competencias}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_Competencias}"
+                SelectionMode="Single">
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdPlaneacionTemasCompetencias"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
