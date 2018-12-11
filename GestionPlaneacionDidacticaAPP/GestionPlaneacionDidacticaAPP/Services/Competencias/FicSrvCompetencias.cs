@@ -22,9 +22,10 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
 
-        public Task<string> DeleteCompetencia(eva_planeacion_temas_competencias Compe)
+        public async Task<string> DeleteCompetencia(eva_planeacion_temas_competencias Compe)
         {
-            throw new NotImplementedException();
+            DBLoContext.Remove(Compe);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR LA COMPETENCIA";
         }
 
         public async Task<IEnumerable<eva_cat_competencias>> GetListCompetencias()
@@ -60,9 +61,19 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
                          select tema).AsNoTracking().ToListAsync();
         }
 
-        public Task<string> UpdateCompetencia(eva_planeacion_temas_competencias Compe)
+        public async Task<string> UpdateCompetencia(eva_planeacion_temas_competencias Compe)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DBLoContext.Update(Compe);
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR LA COMPETENCIA";
+                DBLoContext.Entry(Compe).State = EntityState.Detached;
+                return res;
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
         }
     }
 }

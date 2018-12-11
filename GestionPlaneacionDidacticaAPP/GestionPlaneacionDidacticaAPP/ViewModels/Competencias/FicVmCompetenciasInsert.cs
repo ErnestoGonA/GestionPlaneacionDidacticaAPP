@@ -35,7 +35,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         private List<string> _Competencias;
 
         //Botones
-        private ICommand _MetRegresarTemasListICommand, _SaveCommand;
+        private ICommand _FicMetRegesarCompetenciasListICommand, _SaveCommand;
 
         //Valor mandado de view padre a hija
         public object FicNavigationContextC { get; set; }
@@ -219,6 +219,26 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             }
         }
 
+        public ICommand FicMetRegesarCompetenciasListICommand
+        {
+            get
+            {
+                return _FicMetRegesarCompetenciasListICommand = _FicMetRegesarCompetenciasListICommand ??
+                    new FicVmDelegateCommand(FicMetRegresarCompetencias);
+            }
+        }
+
+        private async void FicMetRegresarCompetencias()
+        {
+            try
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(FicNavigationContextC);
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+            }
+        }
 
         #region  INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

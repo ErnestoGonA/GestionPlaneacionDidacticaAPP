@@ -153,6 +153,53 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             }
         }
 
+        public ICommand FicMetRemoveCompetenciaICommand
+        {
+            get
+            {
+                return _MetRemoveCompetenciaICommand = _MetRemoveCompetenciaICommand ?? new FicVmDelegateCommand(FicMetRemoveCompetencia);
+            }
+        }
+
+        private async void FicMetRemoveCompetencia()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await IFicSrvCompetencias.DeleteCompetencia(SFDataGrid_SelectedItem_Competencias);
+                    if (res == "OK")
+                    {
+                        eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(source_eva_planeacion_temas);
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
+            }
+        }
+
+        public ICommand FicMetUpdateCompetenciaICommand
+        {
+            get
+            {
+                return _MetUpdateCompetenciaICommand = _MetUpdateCompetenciaICommand ?? new FicVmDelegateCommand(FicMetUpdateTema);
+            }
+        }
+
+        private void FicMetUpdateTema()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+                eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasUpdate>(new object[] { SFDataGrid_SelectedItem_Competencias, source_eva_planeacion_temas });
+            }
+        }
+
         public async void OnAppearing()
         {
             try
