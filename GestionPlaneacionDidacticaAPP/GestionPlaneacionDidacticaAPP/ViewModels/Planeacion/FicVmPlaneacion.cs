@@ -22,11 +22,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         public ObservableCollection<eva_planeacion> _SFDataGrid_ItemSource_Planeacion;
         public eva_planeacion _SFDataGrid_SelectedItem_Planeacion;
         public List<string> _ListAsignatura;
-        public string _Usuario, _Asignatura;
+        public string _Usuario, _Asignatura,_PeriodoItem;
         public bool _Plantilla;
         public int _UsIndex = FicGlobalValues.USUARIO_INDEX;
         public Int16 _AsIndex;
         public bool Filtrado = false;
+        public Int16 _PeriodoId = FicGlobalValues.PERIODO_INDEX;
+        private List<string> _Periodos;
 
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
@@ -50,6 +52,31 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
             _ListAsignatura = GetListAsignatura().Result;
+            _Periodos = GetListPeriodos().Result;
+        }
+
+        public async Task<List<string>> GetListPeriodos()
+        {
+            try
+            {
+                var periodos = await FicISrvPlaneacion.GetListPeriodos();
+                if (periodos != null)
+                {
+                    List<string> aux = new List<string>();
+                    foreach (cat_periodos per in periodos)
+                    {
+                        aux.Add(per.ClavePeriodo);
+                    }
+                    return aux;
+                }//Llenar el grid
+                return null;
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+                return null;
+            }
+
         }
 
         public async Task<List<string>> GetListAsignatura()
@@ -65,6 +92,28 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 return aux;
             }
             return null;
+        }
+
+        public Int16 PeriodoId
+        {
+            get
+            {
+                return _PeriodoId;
+            }
+            set
+            {
+                _PeriodoId = value;
+            }
+        }
+
+        public List<string> Periodos
+        {
+            get { return _Periodos; }
+            set
+            {
+                _Periodos = value;
+                RaisePropertyChanged("Periodos");
+            }
         }
 
         public List<string> ListAsignatura
@@ -83,6 +132,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
+        public string PeriodoItem
+        {
+            get
+            {
+                return _PeriodoItem;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _PeriodoItem = value;
+                    FicGlobalValues.PERIODO = value;
+                    RaisePropertyChanged("PeriodoItem");
+                }
+            }
+        }
         public string Usuario
         {
             get
@@ -301,6 +366,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
                 if (!Filtrado)
                 {
+                    FicGlobalValues.PERIODO_INDEX = (Int16)(this._PeriodoId + 1);
                     var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacion();
                     if (source_local_inv != null)
                     {
@@ -323,7 +389,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     }//Llenar el grid
                 }
                 _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
+                _PeriodoId = FicGlobalValues.PERIODO_INDEX;
                 RaisePropertyChanged("AsIndex");
+                RaisePropertyChanged("PeriodoId");
             }
             catch (Exception e)
             {

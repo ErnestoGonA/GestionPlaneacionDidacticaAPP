@@ -23,9 +23,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         private string _ReferenciaNorma, _Revision, _CompetenciaAsignatura, _AportacionPerfilEgreso;
         private string _Usuario = FicGlobalValues.USUARIO;
         private string _Asignatura = FicGlobalValues.ASIGNATURA;
+        private string _Periodo = FicGlobalValues.PERIODO;
         private bool _Actual, _PlantillaOriginal;
-        public Int16 _PeriodoId;
-        private List<string> _Periodos;
+
 
 
         private ICommand _SaveCommand, _FicMetRegresarPlaneacionICommand;
@@ -36,31 +36,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
             this.IFicSrvPlaneacionInsert = IFicSrvPlaneacionInsert;
-            _Periodos = GetListPeriodos().Result;
-        }
-
-        public async Task<List<string>> GetListPeriodos()
-        {
-            try
-            {
-                var periodos = await IFicSrvPlaneacionInsert.GetListPeriodos();
-                if (periodos != null)
-                {
-                    List<string> aux = new List<string>();
-                    foreach (cat_periodos per in periodos)
-                    {
-                        aux.Add(per.ClavePeriodo);
-                    }
-                    return aux;
-                }//Llenar el grid
-                return null;
-            }
-            catch (Exception e)
-            {
-                await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
-                return null;
-            }
-
         }
 
         public string Usuario
@@ -71,13 +46,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _Usuario = FicGlobalValues.USUARIO = value;
                 }
             }
         }
-        
+
         public string Asignatura
         {
             get
@@ -86,22 +61,25 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _Asignatura = FicGlobalValues.ASIGNATURA = value;
                 }
             }
         }
 
-        public Int16 PeriodoId
+        public string Periodo
         {
             get
             {
-                return _PeriodoId;
+                return _Periodo;
             }
             set
             {
-                _PeriodoId = value;
+                if (value != null)
+                {
+                    _Periodo = FicGlobalValues.PERIODO = value;
+                }
             }
         }
 
@@ -176,16 +154,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             }
         }
 
-        public List<string> Periodos
-        {
-            get { return _Periodos; }
-            set
-            {
-                _Periodos = value;
-                RaisePropertyChanged("Periodos");
-            }
-        }
-
         public async void OnAppearing()
         {
 
@@ -204,11 +172,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     IdPlaneacion = FicGlobalValues.NEXTIDPLANEACION,
                     ReferenciaNorma = this.ReferenciaNorma,
                     Revision = this.Revision,
-                    Actual = this.Actual ? "1" : "0",
-                    PlantillaOriginal = this.PlantillaOriginal ? "1" : "0",
+                    Actual = this.Actual ? "S" : "N",
+                    PlantillaOriginal = this.PlantillaOriginal ? "S" : "N",
                     CompetenciaAsignatura = this.CompetenciaAsignatura,
                     AportacionPerfilEgreso = this.AportacionPerfilEgreso,
-                    IdPeriodo = (Int16)(this._PeriodoId + 1),
+                    IdPeriodo = FicGlobalValues.PERIODO_INDEX,
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
                     UsuarioReg = FicGlobalValues.USUARIO,
