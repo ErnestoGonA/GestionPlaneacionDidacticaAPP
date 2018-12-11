@@ -29,7 +29,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         public bool Filtrado = false;
 
         //Buttons
-        private ICommand _MetAddEnseñanzaICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
+        private ICommand _MetAddEnseñanzaICommand, _MetUpdateEnseñanzaICommand, _MetViewEnseñanzaICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
         //Navigation to lists
         private ICommand _FicMetNavigateToTemasICommand;
 
@@ -115,31 +115,31 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaInsert>();
         }
 
-        public ICommand MetViewPlaneacionICommand
+        public ICommand MetViewEnseñanzaICommand
         {
             get
             {
-                return _MetViewPlaneacionICommand = _MetViewPlaneacionICommand ?? new FicVmDelegateCommand(FicMetViewPlaneacion);
+                return _MetViewEnseñanzaICommand = _MetViewEnseñanzaICommand ?? new FicVmDelegateCommand(FicMetViewEnseñanza);
             }
         }
-        public void FicMetViewPlaneacion()
+        public void FicMetViewEnseñanza()
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionView>(SFDataGrid_SelectedItem_Planeacion);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaDetalle>(SFDataGrid_SelectedItem_Enseñanza);
             }
         }
 
-        public ICommand MetUpdatePlaneacionICommand
+        public ICommand MetUpdateEnseñanzaICommand
         {
-            get { return _MetUpdatePlaneacionICommand = _MetUpdatePlaneacionICommand ?? new FicVmDelegateCommand(FicMetUpdatePlaneacion); }
+            get { return _MetUpdateEnseñanzaICommand = _MetUpdateEnseñanzaICommand ?? new FicVmDelegateCommand(FicMetUpdateEnseñanza); }
         }
 
-        public void FicMetUpdatePlaneacion()
+        public void FicMetUpdateEnseñanza()
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionUpdate>(SFDataGrid_SelectedItem_Planeacion);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaUpdate>(SFDataGrid_SelectedItem_Enseñanza);
             }
         }
 

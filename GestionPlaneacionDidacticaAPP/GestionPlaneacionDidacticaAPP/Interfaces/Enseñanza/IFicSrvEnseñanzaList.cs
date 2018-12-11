@@ -24,4 +24,16 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Enseñanza
         Task<IEnumerable<eva_planeacion_temas>> FicMetGetTema();
         Task<IEnumerable<eva_cat_competencias>> FicMetGetCompetencia();
     }
+    public interface IFicSrvEnseñanzaUpdate
+    {
+        Task<string> FicMetUpdateEnseñanza(eva_planeacion_enseñanza eva_planeacion_enseñanza);
+    }
+    public interface IFicSrvEnseñanzaDetalle
+    {
+        Task<eva_planeacion_enseñanza> FicMetGetEnseñanza(int id);
+        Task<eva_cat_asignaturas> FicMetGetAsignatura(int id);
+        Task<eva_cat_competencias> FicMetGetCompetencia(int id);
+        Task<eva_planeacion> FicMetGetPlaneacion(int id);
+        Task<eva_planeacion_temas> FicMetGetTema(int id);
+    }
 }
