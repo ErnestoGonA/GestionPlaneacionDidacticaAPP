@@ -73,7 +73,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                 if (value != null)
                 {
                     _LabelAsignatura = value;
-                    RaisePropertyChanged("LabelIdAsignatura");
+                    RaisePropertyChanged("LabelAsignatura");
                 }
             }
         }

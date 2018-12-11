@@ -21,7 +21,7 @@
             <Entry Text="{Binding LabelObservaciones}"/>
 
             <Button Text="Agregar" Command="{Binding SaveCommand}"/>
-            <Button Text="Cancelar" Command="{Binding MetRegesarApoyosDidacticosListICommand}"/>
+            <Button Text="Cancelar" Command="{Binding FicMetRegesarCompetenciasListICommand}"/>
 
         </StackLayout>
     </ScrollView>
