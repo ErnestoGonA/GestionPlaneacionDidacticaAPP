@@ -44,7 +44,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Enseñanza
 
         public async Task<eva_planeacion_enseñanza> FicMetGetEnseñanza(int id)
         {
-            var aux = await (from enseñanza in DBLoContext.eva_planeacion_enseñanza select enseñanza).Where(item => item.Id == id).AsNoTracking().ToListAsync();
+            var aux = await (from enseñanza in DBLoContext.eva_planeacion_enseñanza select enseñanza).Where(item => item.IdActividadEnseñanza == id).AsNoTracking().ToListAsync();
             eva_planeacion_enseñanza enseñanzaItem = new eva_planeacion_enseñanza();
             aux.ForEach(item =>
             {
