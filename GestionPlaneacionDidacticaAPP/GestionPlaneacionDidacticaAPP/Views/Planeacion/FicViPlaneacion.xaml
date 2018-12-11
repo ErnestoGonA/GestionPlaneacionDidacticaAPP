@@ -44,10 +44,17 @@
                 <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
                 <Picker SelectedItem="{Binding Asignatura}" SelectedIndex="{Binding AsIndex}" HorizontalOptions="FillAndExpand" ItemsSource="{Binding ListAsignatura}"></Picker>
             </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Periodo: " FontAttributes="Bold" FontSize="Micro"/>
+                <Picker SelectedItem="{Binding PeriodoItem}" SelectedIndex="{Binding PeriodoId}" ItemsSource="{Binding Periodos}" HorizontalOptions="FillAndExpand"></Picker>
+            </StackLayout>
+
             <StackLayout Orientation="Horizontal">
                 <Label Text="Plantilla: " FontAttributes="Bold" FontSize="Micro"/>
                 <Switch HorizontalOptions="Start" IsToggled="{Binding Plantilla}"></Switch>
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
                 <Button Text="Filtrar" Command="{Binding FiltrarPlantillaCommand}"/>
             </StackLayout>
@@ -70,8 +77,8 @@
                 SelectedItem="{Binding SFDataGrid_SelectedItem_Planeacion}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdPlaneacion"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="ReferenciaNorma"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Id Planeacion" MappingName="IdPlaneacion"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Referencia norma" MappingName="ReferenciaNorma"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Enseñanza.FicViEnseñanzaUpdate">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Fecha programada: " FontAttributes="Bold" FontSize="Micro"/>
+                <DatePicker MinimumDate="2018-01-01" MaximumDate="2018-12-31" Date="{Binding FechaIni}" />
+            </StackLayout>
+
+            <StackLayout>
+                <Label Text="Fecha realizada: " FontAttributes="Bold" FontSize="Micro"/>
+                <DatePicker MinimumDate="2018-01-01" MaximumDate="2018-12-31" Date="{Binding FechaFin}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Padding="10">
+                <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancelar" Command="{Binding FicMetRegresarPlaneacionICommand}" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

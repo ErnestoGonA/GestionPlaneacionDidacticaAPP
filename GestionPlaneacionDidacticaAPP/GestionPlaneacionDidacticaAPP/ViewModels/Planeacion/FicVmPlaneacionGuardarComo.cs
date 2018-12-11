@@ -192,8 +192,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
             _ReferenciaNorma = source_eva_planeacion.ReferenciaNorma;
             _Revision = source_eva_planeacion.Revision;
-            _Actual = source_eva_planeacion.Actual == "1" ? true : false;
-            _PlantillaOriginal = source_eva_planeacion.PlantillaOriginal == "1" ? true : false;
+            _Actual = source_eva_planeacion.Actual == "S" ? true : false;
+            _PlantillaOriginal = source_eva_planeacion.PlantillaOriginal == "S" ? true : false;
             _CompetenciaAsignatura = source_eva_planeacion.CompetenciaAsignatura;
             _AportacionPerfilEgreso = source_eva_planeacion.AportacionPerfilEgreso;
             _PeriodoId = (Int16)(source_eva_planeacion.IdPeriodo - 1);

@@ -21,11 +21,6 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             dBContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
 
-        public async Task<IEnumerable<cat_periodos>> GetListPeriodos()
-        {
-            return await (from periodos in dBContext.cat_periodos select periodos).AsNoTracking().ToListAsync();
-        }
-
         public async Task<string> Insert_eva_planeacion(eva_planeacion eva_planeacion)
         {
             try

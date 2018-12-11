@@ -20,6 +20,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
 
+        public async Task<IEnumerable<cat_periodos>> GetListPeriodos()
+        {
+            return await (from periodos in DBLoContext.cat_periodos select periodos).AsNoTracking().ToListAsync();
+        }
+
         public async Task<IEnumerable<eva_cat_asignaturas>> FicMetGetListAsignatura()
         {
             return await (from asignatura in DBLoContext.eva_cat_asignaturas select asignatura).AsNoTracking().ToListAsync();
@@ -30,11 +35,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacionPlantilla(int IdAsignatura, bool PlantillaOriginal)
+        public async Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacionPlantilla(int IdAsignatura, bool PlantillaOriginal,Int16 IdPeriodo)
         {
-            string PlantillaOriginalString = PlantillaOriginal ? "1" : "0";
+            string PlantillaOriginalString = PlantillaOriginal ? "S" : "N";
             return await(from planeacion in DBLoContext.eva_planeacion select planeacion).Where(Planeacion =>
-                Planeacion.IdAsignatura == IdAsignatura && Planeacion.PlantillaOriginal.Equals(PlantillaOriginalString)
+                Planeacion.IdAsignatura == IdAsignatura && Planeacion.PlantillaOriginal.Equals(PlantillaOriginalString) && Planeacion.IdPeriodo == IdPeriodo
             ).AsNoTracking().ToListAsync();
         }
 
