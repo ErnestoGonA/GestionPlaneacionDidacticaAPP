@@ -17,6 +17,17 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
 
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Xamarin.Forms;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
+using GestionPlaneacionDidacticaAPP.Views.Subtemas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
+using GestionPlaneacionDidacticaAPP.Views.Competencias;
+
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
     public class FicSrvNavigationInventario : IFicSrvNavigationInventario
@@ -26,6 +37,20 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
             {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
             {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
+            {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)},
+
+            //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
+            //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
+            //{ typeof(FicVmCatEdificiosUpdate),typeof(ViCatEdificiosUpdate) },
+            //{ typeof(FicVmCatEdificiosView),typeof(ViCatEdificiosView) },
+
+            //{ typeof(FicVmInventariosList),typeof(FicViInventariosList) },
+            //{ typeof(FicVmInventarioConteoList),typeof(FicViInventarioConteoList) },
+            //{ typeof(FicVmInventarioConteosItem),typeof(FicViInventarioConteosItem) },
+            //{ typeof(FicVmInventarioAcumuladoList),typeof(FicViInventarioAcumuladoList)},
+            //{typeof(FicVmImportarWebApi), typeof(FicViImportarWebApi)},
+            //{typeof(FicVmExportarWebApi), typeof(FicViExportarWebApi)}
+
             {typeof(FicVmPlaneacionView),typeof(FicViPlaneacionView) },
             {typeof(FicVmPlaneacionUpdate),typeof(FicViPlaneacionUpdate) },
             {typeof(FicVmPlaneacionGuardarComo),typeof(FicViPlaneacionGuardarComo) },
@@ -41,11 +66,16 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmEnseñanzaDetalle),typeof(FicViEnseñanzaDetalle) },
 
             {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
+            {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },
+            {typeof(FicVmCriteriosEvaluacionView),typeof(ViCriteriosEvaluacionView) },
+            {typeof(FicVmCriteriosEvaluacionUpdate),typeof(ViCriteriosEvaluacionUpdate) },
 
             {typeof(VmApoyosDidacticosList),typeof(ViApoyosDidacticos) },
             {typeof(FicVmApoyosDidacticosUpdate),typeof(FicViApoyosDidacticosUpdate) },
             {typeof(FicVmApoyosDidacticosInsert),typeof(FicViApoyosDidacticosInsert) },
             {typeof(FicVmApoyosDidacticosView),typeof(FicViApoyosDidacticosView) },
+
+            { typeof(FicVmCompetenciasList),typeof(FicViCompetencias)},
 
         };
 

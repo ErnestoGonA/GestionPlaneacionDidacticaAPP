@@ -35,16 +35,19 @@
     <EmbeddedResource Update="Views\Apoyos_Didacticos\ViApoyosDidacticos.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Competencias\FicViCompetencias.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CriteriosEvaluacion\ViCriteriosEvaluacionInsert.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\CriteriosEvaluacion\ViCriteriosEvaluacionList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Enseñanza\FicViEnseñanzaDetalle.xaml">
+    <EmbeddedResource Update="Views\CriteriosEvaluacion\ViCriteriosEvaluacionUpdate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Enseñanza\FicViEnseñanzaInsert.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Enseñanza\FicViEnseñanzaList.xaml">
+    <EmbeddedResource Update="Views\CriteriosEvaluacion\ViCriteriosEvaluacionView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Enseñanza\FicViEnseñanzaUpdate.xaml">

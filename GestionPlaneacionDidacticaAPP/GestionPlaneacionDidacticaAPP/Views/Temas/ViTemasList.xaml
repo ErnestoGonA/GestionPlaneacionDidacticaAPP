@@ -21,6 +21,14 @@
             Name="Borrar Tema"
             Command="{Binding FicMetRemoveTemaICommand}">
         </ToolbarItem>
+        <ToolbarItem
+            Name="Subtemas"
+            Command="{Binding FicMetSubtemasICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Competencias"
+            Command="{Binding FicMetCompetenciasICommand}">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
