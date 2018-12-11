@@ -30,16 +30,34 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
         }
 
         //List temas of a planeacion
-        public async Task<IEnumerable<eva_planeacion_temas>> MetGetListTemasPlaneacion(int IdPlaneacion)
+        public async Task<IEnumerable<eva_planeacion_temas>> MetGetListTemasPlaneacion(eva_planeacion Planeacion)
         {
             return await(from tema in DBLoContext.eva_planeacion_temas
-                         where tema.IdPlaneacion== IdPlaneacion select tema).AsNoTracking().ToListAsync();
+                         where tema.IdPlaneacion== Planeacion.IdPlaneacion
+                         select tema).AsNoTracking().ToListAsync();
         }
 
         public async Task<string> InsertTema(eva_planeacion_temas Tema)
         {
             try
             {
+
+                var temas =await  (from tema in DBLoContext.eva_planeacion_temas
+                                   where tema.IdAsignatura==Tema.IdAsignatura
+                                   where tema.IdPlaneacion == Tema.IdPlaneacion
+                                   select tema).ToListAsync();
+
+                short maxId = 0;
+                if (temas.Count()>0)
+                {
+                    maxId = (from tema in DBLoContext.eva_planeacion_temas
+                             where tema.IdAsignatura == Tema.IdAsignatura
+                             where tema.IdPlaneacion == Tema.IdPlaneacion
+                             select tema.IdTema).Max();
+                }
+
+                Tema.IdTema = ++maxId;
+
                 await DBLoContext.AddAsync(Tema);
                 var res =  await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar tema";
                 DBLoContext.Entry(Tema).State = EntityState.Detached;

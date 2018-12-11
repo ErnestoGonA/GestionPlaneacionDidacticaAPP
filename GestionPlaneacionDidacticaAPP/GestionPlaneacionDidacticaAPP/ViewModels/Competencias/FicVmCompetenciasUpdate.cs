@@ -145,7 +145,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             _LabelIdTema = source_eva_planeacion_temas_competencias.IdTema;
             _LabelIdCompetencia = source_eva_planeacion_temas_competencias.IdCompetencia;
 
-            _LabelIdTemaCompetencia = source_eva_planeacion_temas_competencias.IdPlaneacionTemasCompetencias;
+            //_LabelIdTemaCompetencia = source_eva_planeacion_temas_competencias.IdPlaneacionTemasCompetencias;
             _LabelObservaciones = source_eva_planeacion_temas_competencias.Observaciones;
 
             RaisePropertyChanged("LabelUsuario");
@@ -197,7 +197,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                     IdTema = source_eva_planecion_temas_competencias.IdTema,
                     IdCompetencia = source_eva_planecion_temas_competencias.IdCompetencia,
 
-                    IdPlaneacionTemasCompetencias = LabelIdTemaCompetencia,
+                    //IdPlaneacionTemasCompetencias = LabelIdTemaCompetencia,
                     Observaciones = LabelObservaciones,
 
                     FechaReg = source_eva_planecion_temas_competencias.FechaReg,
