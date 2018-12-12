@@ -11,6 +11,7 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Competencias;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 
@@ -24,6 +25,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
 
         //Buttons
         private ICommand _MetAddCompetenciaICommand, _MetUpdateCompetenciaICommand, _MetViewCompetenciaICommand, _MetRemoveCompetenciaICommand;
+        private ICommand _FicMetAprendizajesICommand, _FicMetEnseñanzasICommand, _FicMetCriteriosICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -199,6 +201,24 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasUpdate>(new object[] { SFDataGrid_SelectedItem_Competencias, source_eva_planeacion_temas });
             }
         }
+
+        public ICommand FicMetCriteriosICommand
+        {
+            get
+            {
+                return _FicMetCriteriosICommand = _FicMetCriteriosICommand ?? new FicVmDelegateCommand(FicMetCriterios);
+            }
+        }
+
+        private void FicMetCriterios()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+                eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(new object[] { SFDataGrid_SelectedItem_Competencias });
+            }
+        }
+
 
         public async void OnAppearing()
         {
