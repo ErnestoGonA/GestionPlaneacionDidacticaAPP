@@ -73,6 +73,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Temas
         {
             try
             {
+                DBLoContext.Entry(Tema).State = EntityState.Detached;
                 DBLoContext.Update(Tema);
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar tema";
                 DBLoContext.Entry(Tema).State = EntityState.Detached;
