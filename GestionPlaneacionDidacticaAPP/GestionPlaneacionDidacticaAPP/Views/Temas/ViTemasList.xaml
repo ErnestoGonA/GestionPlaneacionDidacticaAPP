@@ -36,6 +36,9 @@
 
             <StackLayout>
                 <StackLayout>
+                    <Label Text="Temas" FontAttributes="Bold" FontSize="Medium"></Label>
+                </StackLayout>
+                <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>
                 </StackLayout>
@@ -66,7 +69,7 @@
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdTema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesTema"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Tema" MappingName="DesTema"/>
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
