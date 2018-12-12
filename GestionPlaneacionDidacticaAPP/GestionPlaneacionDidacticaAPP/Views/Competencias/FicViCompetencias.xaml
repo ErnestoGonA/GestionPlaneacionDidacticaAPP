@@ -20,6 +20,18 @@
             Name="Borrar Competencia"
             Command="{Binding FicMetRemoveCompetenciaICommand}">
         </ToolbarItem>
+        <ToolbarItem
+            Name="Aprendizajes"
+            Command="{Binding FicMetAprendizajesICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Enseñanzas"
+            Command="{Binding FicMetEnseñanzasICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Criterios"
+            Command="{Binding FicMetCriteriosICommand}">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

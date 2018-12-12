@@ -83,30 +83,97 @@ namespace GestionPlaneacionDidacticaAPP.Data
 
                 ////Primary keys
                 modelBuilder.Entity<eva_cat_asignaturas>().HasKey(eca => new { eca.IdAsignatura });
-                modelBuilder.Entity<eva_planeacion>().HasKey(plan => new { plan.IdPlaneacion });
-                modelBuilder.Entity<eva_planeacion_temas>().HasKey(tem => new { tem.IdTema });
-                modelBuilder.Entity<eva_cat_competencias>().HasKey(ecc => new { ecc.IdCompetencia });
-                modelBuilder.Entity<eva_planeacion_subtemas>().HasKey(subt => new { subt.IdSubtema });
-                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasKey(crit => new { crit.IdCriterio });
-                modelBuilder.Entity<eva_cat_fuentes_bibliograficas>().HasKey(fuen => new { fuen.IdFuente });
-                modelBuilder.Entity<eva_cat_apoyos_didacticos>().HasKey(apdida => new { apdida.IdApoyoDidactico });
-                modelBuilder.Entity<eva_cat_actividades_aprendizaje>().HasKey(acapre => new { acapre.IdActividadAprendizaje });
-                modelBuilder.Entity<eva_cat_actividades_enseñanza>().HasKey(acense => new { acense.IdActividadEnseñanza });
-                modelBuilder.Entity<cat_tipos_estatus>().HasKey(cte => new { cte.IdTipoEstatus });
-                modelBuilder.Entity<cat_estatus>().HasKey(ce => new { ce.IdEstatus });
-                modelBuilder.Entity<cat_tipos_generales>().HasKey(ctg => new { ctg.IdTipoGeneral });
-                modelBuilder.Entity<cat_generales>().HasKey(cg => new { cg.IdGeneral });
-                modelBuilder.Entity<cat_periodos>().HasKey(cp => new { cp.IdPeriodo });
-                modelBuilder.Entity<cat_institutos>().HasKey(ci => new { ci.IdInstituto });
-                modelBuilder.Entity<rh_cat_personas>().HasKey(rcp => new { rcp.IdPersona });
-                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasKey(epmd => new { epmd.IdMejora });
+                modelBuilder.Entity<eva_planeacion>()
+                    .HasKey(plan => new {
+                        plan.IdAsignatura,
+                        plan.IdPlaneacion });
+                modelBuilder.Entity<eva_planeacion_temas>()
+                    .HasKey(tem => new {
+                        tem.IdAsignatura,
+                        tem.IdPlaneacion,
+                        tem.IdTema });
+                modelBuilder.Entity<eva_cat_competencias>()
+                    .HasKey(ecc => new {
+                        ecc.IdCompetencia });
+                modelBuilder.Entity<eva_planeacion_subtemas>()
+                    .HasKey(subt => new {
+                        subt.IdAsignatura,
+                        subt.IdPlaneacion,
+                        subt.IdTema,
+                        subt.IdSubtema });
+                modelBuilder.Entity<eva_planeacion_criterios_evalua>()
+                    .HasKey(crit => new {
+                        crit.IdAsignatura,
+                        crit.IdPlaneacion,
+                        crit.IdTema,
+                        crit.IdCompetencia,
+                        crit.IdCriterio});
+                modelBuilder.Entity<eva_cat_fuentes_bibliograficas>()
+                    .HasKey(fuen => new { fuen.IdFuente });
+                modelBuilder.Entity<eva_cat_apoyos_didacticos>()
+                    .HasKey(apdida => new { apdida.IdApoyoDidactico });
+                modelBuilder.Entity<eva_cat_actividades_aprendizaje>()
+                    .HasKey(acapre => new { acapre.IdActividadAprendizaje });
+                modelBuilder.Entity<eva_cat_actividades_enseñanza>()
+                    .HasKey(acense => new { acense.IdActividadEnseñanza });
+                modelBuilder.Entity<cat_tipos_estatus>()
+                    .HasKey(cte => new { cte.IdTipoEstatus });
+                modelBuilder.Entity<cat_estatus>()
+                    .HasKey(ce => new {
+                        ce.IdTipoEstatus,
+                        ce.IdEstatus });
+                modelBuilder.Entity<cat_tipos_generales>()
+                    .HasKey(ctg => new { ctg.IdTipoGeneral });
+                modelBuilder.Entity<cat_generales>()
+                    .HasKey(cg => new {
+                        cg.IdTipoGeneral,
+                        cg.IdGeneral });
+                modelBuilder.Entity<cat_periodos>()
+                    .HasKey(cp => new { cp.IdPeriodo });
+                modelBuilder.Entity<cat_institutos>()
+                    .HasKey(ci => new { ci.IdInstituto });
+                modelBuilder.Entity<rh_cat_personas>()
+                    .HasKey(rcp => new {
+                        rcp.IdInstituto,
+                        rcp.IdPersona });
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>()
+                    .HasKey(epmd => new {
+                        epmd.IdAsignatura,
+                        epmd.IdPlaneacion,
+                        epmd.IdTema,
+                        epmd.IdMejora});
 
                 //Primary keys necesarias para la creacion de la base de datos aunque no esten en el modelo
-                modelBuilder.Entity<eva_planeacion_fuentes>().HasKey(epf => new { epf.IdPlaneacionFuentes });
-                modelBuilder.Entity<eva_planeacion_apoyos>().HasKey(epa => new { epa.IdPlaneacionApoyos });
-                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasKey(eptc => new { eptc.IdPlaneacionTemasCompetencias });
-                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasKey(epa => new { epa.IdPlaneacionAprendizaje });
-                modelBuilder.Entity<eva_planeacion_enseñanza>().HasKey(epe => new { epe.Id });
+                modelBuilder.Entity<eva_planeacion_fuentes>()
+                    .HasKey(epf => new {
+                        epf.IdAsignatura,
+                        epf.IdPlaneacion,
+                        epf.IdFuente});
+                modelBuilder.Entity<eva_planeacion_apoyos>()
+                    .HasKey(epa => new {
+                        epa.IdAsignatura,
+                        epa.IdPlaneacion,
+                        epa.IdApoyoDidactico});
+                modelBuilder.Entity<eva_planeacion_temas_competencias>()
+                    .HasKey(eptc => new {
+                        eptc.IdAsignatura,
+                        eptc.IdPlaneacion,
+                        eptc.IdTema,
+                        eptc.IdCompetencia});
+                modelBuilder.Entity<eva_planeacion_aprendizaje>()
+                    .HasKey(epa => new {
+                        epa.IdAsignatura,
+                        epa.IdPlaneacion,
+                        epa.IdTema,
+                        epa.IdCompetencia,
+                        epa.IdActividadAprendizaje});
+                modelBuilder.Entity<eva_planeacion_enseñanza>()
+                    .HasKey(epe => new {
+                        epe.IdAsignatura,
+                        epe.IdPlaneacion,
+                        epe.IdTema,
+                        epe.IdCompetencia,
+                        epe.IdActividadEnseñanza});
 
                 ////Foreign keys
                 ///
@@ -115,54 +182,111 @@ namespace GestionPlaneacionDidacticaAPP.Data
                 modelBuilder.Entity<eva_planeacion>().HasOne(s => s.cat_periodos).WithMany().HasForeignKey(s => s.IdPeriodo);
 
                 //eva_planeacion_temas
-                modelBuilder.Entity<eva_planeacion_temas>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_temas>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+
+                modelBuilder.Entity<eva_planeacion_temas>()
+                    .HasOne(s => s.eva_planeacion)
+                    .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion });
+
+                //modelBuilder.Entity<eva_planeacion_temas>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion,s);
+                //modelBuilder.Entity<eva_planeacion_temas>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
 
                 //eva_planeacion_subtemas
-                modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                modelBuilder.Entity<eva_planeacion_subtemas>()
+                    .HasOne(s=>s.eva_planeacion_temas)
+                    .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion,s.IdTema });
+
+
+                //modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_subtemas>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
 
                 //eva_planeacion_fuentes
-                modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_cat_fuentes_bibliograficas).WithMany().HasForeignKey(s => s.IdFuente);
+                modelBuilder.Entity<eva_planeacion_fuentes>()
+                    .HasOne(s=>s.eva_planeacion)
+                     .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion});
+                modelBuilder.Entity<eva_planeacion_fuentes>()
+                    .HasOne(s => s.eva_cat_fuentes_bibliograficas)
+                     .WithMany().HasForeignKey(s => new { s.IdFuente});
+
+                //modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_fuentes>().HasOne(s => s.eva_cat_fuentes_bibliograficas).WithMany().HasForeignKey(s => s.IdFuente);
 
                 //eva_planeacion_apoyos
-                modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_cat_apoyos_didacticos).WithMany().HasForeignKey(s => s.IdApoyoDidactico);
+                modelBuilder.Entity<eva_planeacion_apoyos>()
+                    .HasOne(s => s.eva_planeacion)
+                     .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion });
+                modelBuilder.Entity<eva_planeacion_apoyos>()
+                    .HasOne(s => s.eva_cat_apoyos_didacticos)
+                     .WithMany().HasForeignKey(s => new { s.IdApoyoDidactico });
+
+
+                //modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_apoyos>().HasOne(s => s.eva_cat_apoyos_didacticos).WithMany().HasForeignKey(s => s.IdApoyoDidactico);
 
                 //eva_planeacion_temas_competencias
-                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
-                modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+                modelBuilder.Entity<eva_planeacion_temas_competencias>()
+                    .HasOne(s => s.eva_planeacion_temas)
+                     .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion,s.IdTema });
+                modelBuilder.Entity<eva_planeacion_temas_competencias>()
+                    .HasOne(s => s.eva_cat_competencias)
+                     .WithMany().HasForeignKey(s => new { s.IdCompetencia });
+
+
+                //modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                //modelBuilder.Entity<eva_planeacion_temas_competencias>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
 
                 //eva_planeacion_aprendizaje
-                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
-                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
-                modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_actividades_aprendizaje).WithMany().HasForeignKey(s => s.IdActividadAprendizaje);
+                modelBuilder.Entity<eva_planeacion_aprendizaje>()
+                    .HasOne(s => s.eva_planeacion_temas_competencias)
+                     .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion, s.IdTema,s.IdCompetencia });
+                modelBuilder.Entity<eva_planeacion_aprendizaje>()
+                    .HasOne(s => s.eva_cat_actividades_aprendizaje)
+                     .WithMany().HasForeignKey(s => new { s.IdActividadAprendizaje });
+
+
+                //modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                //modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+                //modelBuilder.Entity<eva_planeacion_aprendizaje>().HasOne(s => s.eva_cat_actividades_aprendizaje).WithMany().HasForeignKey(s => s.IdActividadAprendizaje);
 
                 //eva_planeacion_enseñanza
-                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
-                modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
-                //modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_actividades_enseñanza).WithMany().HasForeignKey(s => s.IdActividadEnseñanza);
+                modelBuilder.Entity<eva_planeacion_enseñanza>()
+                    .HasOne(s => s.eva_planeacion_temas_competencias)
+                     .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion, s.IdTema, s.IdCompetencia });
+                modelBuilder.Entity<eva_planeacion_enseñanza>()
+                    .HasOne(s => s.eva_cat_actividades_enseñanza)
+                     .WithMany().HasForeignKey(s => new { s.IdActividadEnseñanza });
+
+                //modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                //modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+                ////modelBuilder.Entity<eva_planeacion_enseñanza>().HasOne(s => s.eva_cat_actividades_enseñanza).WithMany().HasForeignKey(s => s.IdActividadEnseñanza);
 
                 //eva_planeacion_criterios_evalua
-                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
-                modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
+                modelBuilder.Entity<eva_planeacion_criterios_evalua>()
+                   .HasOne(s => s.eva_planeacion_temas_competencias)
+                    .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion, s.IdTema, s.IdCompetencia });
+
+                //modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                //modelBuilder.Entity<eva_planeacion_criterios_evalua>().HasOne(s => s.eva_cat_competencias).WithMany().HasForeignKey(s => s.IdCompetencia);
 
                 //eva_planeacion_mejora_desempeño
-                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
-                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
-                modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
+                modelBuilder.Entity<eva_planeacion_mejora_desempeño>()
+                   .HasOne(s => s.eva_planeacion_temas)
+                    .WithMany().HasForeignKey(s => new { s.IdAsignatura, s.IdPlaneacion, s.IdTema });
+
+
+                //modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_planeacion).WithMany().HasForeignKey(s => s.IdPlaneacion);
+                //modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_cat_asignaturas).WithMany().HasForeignKey(s => s.IdAsignatura);
+                //modelBuilder.Entity<eva_planeacion_mejora_desempeño>().HasOne(s => s.eva_planeacion_temas).WithMany().HasForeignKey(s => s.IdTema);
 
                 //rh_cat_personas
                 modelBuilder.Entity<rh_cat_personas>().HasOne(s => s.cat_institutos).WithMany().HasForeignKey(s => s.IdInstituto);

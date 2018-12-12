@@ -10,7 +10,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion
     public interface IFicSrvCriteriosEvaluacion
     {
         Task<IEnumerable<eva_planeacion_criterios_evalua>> MetGetListCriteriosEvaluacion();
-        Task<IEnumerable<eva_planeacion_criterios_evalua>> MetGetListCriteriosEvaluacionCompetencia(short IdCompetencia);
+        Task<IEnumerable<eva_planeacion_criterios_evalua>> MetGetListCriteriosEvaluacion(eva_planeacion_temas_competencias eptc);
         Task<string> InsertCriterioEvaluacion(eva_planeacion_criterios_evalua CriterioEvaluacion);
         Task<string> UpdateCriterioEvaluacion(eva_planeacion_criterios_evalua CriterioEvaluacion);
         Task<string> DeleteCriterioEvaluacion(eva_planeacion_criterios_evalua CriterioEvaluacion);

@@ -91,7 +91,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             {
                 var RespuestaUpdate = await IFicSrvEnseñanzaUpdate.FicMetUpdateEnseñanza(new eva_planeacion_enseñanza()
                 {
-                    Id = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.Id,
                     IdAsignatura = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.IdAsignatura,
                     IdPlaneacion = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.IdPlaneacion,
                     IdCompetencia = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.IdCompetencia,
