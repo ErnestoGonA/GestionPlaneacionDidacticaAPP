@@ -11,7 +11,7 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Criterio"
-             Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
+             Command="{Binding FicMetUpdateCriteriosEvaluacionICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Criterio"
@@ -27,6 +27,10 @@
         <StackLayout Padding="10">
 
             <StackLayout>
+                <Label Text="Criterios de evaluacion" FontAttributes="Bold"></Label>
+            </StackLayout>
+
+            <StackLayout>
                 <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>
@@ -34,6 +38,10 @@
                 <StackLayout>
                     <Label Text="Asignatura: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdAsignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Periodo: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelPeriodo}"></Label>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
@@ -63,11 +71,11 @@
                 AutoGenerateColumns="False"
                 AllowSorting="False"
                 ItemsSource="{Binding SFDataGrid_ItemSource_CriteriosEvaluacion}"
-                SelectedItem="{Binding SFDataGrid_SelectedItem_criteriosEvaluacion}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_CriteriosEvaluacion}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdCriterio"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesCriterio"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Criterio" MappingName="DesCriterio"/>
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Porcentaje" MappingName="Porcentaje"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>

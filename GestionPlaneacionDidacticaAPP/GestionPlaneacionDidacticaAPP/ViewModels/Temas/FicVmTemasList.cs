@@ -241,7 +241,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         {
             if (SFDataGrid_SelectedItem_Temas != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(SFDataGrid_SelectedItem_Temas);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { SFDataGrid_SelectedItem_Temas , FicNavigationContextC });
             }
         }
 

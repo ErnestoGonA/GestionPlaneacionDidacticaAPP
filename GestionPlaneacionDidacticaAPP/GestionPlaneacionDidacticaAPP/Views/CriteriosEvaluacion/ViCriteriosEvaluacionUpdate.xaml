@@ -6,6 +6,10 @@
         <StackLayout Padding="10">
 
             <StackLayout>
+                <Label Text="Criterios de evaluacion" FontAttributes="Bold"></Label>
+            </StackLayout>
+
+            <StackLayout>
                 <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>
@@ -15,12 +19,16 @@
                     <Label Text="{Binding LabelIdAsignatura}"></Label>
                 </StackLayout>
                 <StackLayout>
+                    <Label Text="Periodo: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelPeriodo}"></Label>
+                </StackLayout>
+                <StackLayout>
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Tema: " FontAttributes="Bold"></Label>
-                    <Label Text="{Binding LabelTema}"></Label>
+                    <Label Text="{Binding LabelDesTema}"></Label>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Competencia: " FontAttributes="Bold"></Label>
@@ -39,7 +47,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Porcentaje: " FontAttributes="Bold" FontSize="Micro"/>
-                <Entry Text="{Binding LabelPorcentaje}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <Editor Text="{Binding LabelPorcentaje}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Padding="10">
