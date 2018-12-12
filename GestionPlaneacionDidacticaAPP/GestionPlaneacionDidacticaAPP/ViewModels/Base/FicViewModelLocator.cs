@@ -32,6 +32,10 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Interfaces.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Services.Enseñanza;
 
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion_Apoyos;
+using GestionPlaneacionDidacticaAPP.Services.Planeacion_Apoyos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
+
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
     public class FicViewModelLocator
@@ -74,7 +78,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmCompetenciasView>();
             FicContainerBuilder.RegisterType<FicVmCompetenciasUpdate>();
 
-
+            FicContainerBuilder.RegisterType<FicVmPlaneacionApoyosList>();
+            FicContainerBuilder.RegisterType<FicVmPlaneacionApoyosInsert>();
 
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -114,6 +119,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvSubtemas>().As<IFicSrvSubtemas>().SingleInstance();
             //competencias
             FicContainerBuilder.RegisterType<FicSrvCompetencias>().As<IFicSrvCompetencias>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvPlaneacionApoyos>().As<IFicSrvPlaneacionApoyos>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
             //FicContainerBuilder.RegisterType<FicSrvCatEdificiosUpdate>().As<IFicSrvCatEdificiosUpdate>().SingleInstance();
@@ -283,6 +289,16 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmSubtemasUpdate FicVmSubtemasUpdate
         {
             get { return FicIContainer.Resolve<FicVmSubtemasUpdate>(); }
+        }
+
+        public FicVmPlaneacionApoyosList FicVmPlaneacionApoyosList
+        {
+            get { return FicIContainer.Resolve<FicVmPlaneacionApoyosList>(); }
+        }
+
+        public FicVmPlaneacionApoyosInsert FicVmPlaneacionApoyosInsert
+        {
+            get { return FicIContainer.Resolve<FicVmPlaneacionApoyosInsert>(); }
         }
 
 

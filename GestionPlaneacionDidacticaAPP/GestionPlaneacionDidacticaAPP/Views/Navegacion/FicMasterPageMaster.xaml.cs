@@ -17,6 +17,7 @@ using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 using GestionPlaneacionDidacticaAPP.Views.Competencias;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -51,7 +52,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 
                     new FicMasterPageMenuItem { Id = 2, Title="Criterios",Icon ="ficAlmacen20x20.png",FicPageName="ViCriteriosEvaluacionList",TargetType = typeof(ViCriteriosEvaluacionList)},
 
-                    new FicMasterPageMenuItem { Id = 3, Title = "ApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="ViApoyosDidacticos", TargetType = typeof(ViApoyosDidacticos)},
+                    new FicMasterPageMenuItem { Id = 3, Title = "PlaneacionApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="FicViPlaneacionApoyosList", TargetType = typeof(FicViPlaneacionApoyosList)},
 
                     new FicMasterPageMenuItem { Id = 4, Title = "Planeaciones",
                                                 Icon ="ficAlmacen20x20.png",
