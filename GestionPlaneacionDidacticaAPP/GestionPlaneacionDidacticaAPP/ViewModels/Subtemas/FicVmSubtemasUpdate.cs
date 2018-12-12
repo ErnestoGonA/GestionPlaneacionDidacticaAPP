@@ -180,11 +180,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             {
                 var RespuestaInsert = await FicSrvSubtemas.UpdateSubtema(new eva_planeacion_subtemas()
                 {
-                    IdAsignatura = source_eva_planecion_temas.IdAsignatura,
+                    IdAsignatura = source_eva_planecion.IdAsignatura,
                     IdPlaneacion = source_eva_planecion.IdPlaneacion,
-                    IdTema = (Int16)LabelIdTema,
+                    IdTema = source_eva_planecion.IdTema,
 
-                    IdSubtema = (Int16)LabelIdTema,
+                    IdSubtema = source_eva_planecion_temas.IdSubtema,
                     DesSubtema = LabelDesSubtema,
                     
 
@@ -199,7 +199,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                 if (RespuestaInsert == "OK")
                 {
                     await new Page().DisplayAlert("ADD", "¡EDITADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmSubtemaList>(FicNavigationContextC[1]);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmSubtemaList>(source_eva_planecion);
                 }
                 else
                 {

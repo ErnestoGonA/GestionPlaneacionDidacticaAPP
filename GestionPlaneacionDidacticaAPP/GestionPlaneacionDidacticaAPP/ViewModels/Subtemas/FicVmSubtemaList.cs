@@ -198,7 +198,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                     RaisePropertyChanged("LabelIdPlaneacion");
                     RaisePropertyChanged("LabelIdTema");
 
-                    var source_local_inv1 = await FicSrvSubtemas.MetGetListSubtemasTema(source_eva_planeacion_temas.IdTema);
+                    var source_local_inv1 = await FicSrvSubtemas.MetGetListSubtemasTema(source_eva_planeacion_temas);
                     if (source_local_inv1 != null)
                     {
                         _SFDataGrid_ItemSource_Subtema.Clear();

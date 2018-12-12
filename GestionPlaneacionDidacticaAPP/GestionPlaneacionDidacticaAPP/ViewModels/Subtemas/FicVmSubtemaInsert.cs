@@ -150,7 +150,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                 if (res == "Ok")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmSubtemaList>(FicNavigationContextC);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmSubtemaList>(source_eva_planeacion);
                 }
                 else
                 {
