@@ -6,22 +6,50 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Planeacion"
-            >
+            Name="Nueva Subtema"
+            Command="{Binding FicMetAddSubtemaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Planeacion">
+            Name="Editar Subtema"
+            Command="{Binding FicMetUpdateSubtemaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Planeacion">
+            Name="Detalle Subtema"
+            Command="{Binding FicMetViewSubtemaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Planeacion">
+            Name="Borrar Subtema"
+            Command="{Binding FicMetRemoveSubtemaICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Padding="10"
             >
+
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Subtemas" FontAttributes="Bold" FontSize="Medium"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelUsuario}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdAsignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdTema}"></Label>
+                </StackLayout>
+            </StackLayout>
+            
+            
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
@@ -39,7 +67,7 @@
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdSubtema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesSubtema"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Tema" MappingName="DesSubtema"/>
                
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>

@@ -37,7 +37,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
             {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
             {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
+
             {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)},
+            {typeof(FicVmSubtemaInsert),typeof(FicViSubtemaInsert)},
+            {typeof(FicVmSubtemaView),typeof(FicViSubtemaView)},
+            {typeof(FicVmSubtemasUpdate),typeof(FicViSubtemaUpdate)},
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
