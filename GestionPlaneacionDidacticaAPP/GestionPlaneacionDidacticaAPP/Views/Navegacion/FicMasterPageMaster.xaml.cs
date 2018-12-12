@@ -58,11 +58,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                                                 FicPageName ="FicViPlaneacion",
                                                 TargetType = typeof(FicViPlaneacion)
                                                 },
-                    new FicMasterPageMenuItem { Id = 6, Title = "Competencias",
-                                                Icon ="ficAlmacen20x20.png",
-                                                FicPageName ="FicViCompetencias",
-                                                TargetType = typeof(FicViCompetencias)
-                                                },
+                    //new FicMasterPageMenuItem { Id = 6, Title = "Competencias",
+                    //                            Icon ="ficAlmacen20x20.png",
+                    //                            FicPageName ="FicViCompetencias",
+                    //                            TargetType = typeof(FicViCompetencias)
+                    //                            },
                     new FicMasterPageMenuItem {Id = 5, Title = "Subtemas",Icon ="ficAlmacen20x20.png",
                                                FicPageName ="FicViSubtemasList",TargetType = typeof(FicViSubtemasList)}
                 });

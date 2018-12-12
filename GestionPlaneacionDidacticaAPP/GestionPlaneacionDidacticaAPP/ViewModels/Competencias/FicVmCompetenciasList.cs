@@ -237,7 +237,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                     RaisePropertyChanged("LabelIdPlaneacion");
                     RaisePropertyChanged("LabelIdTema");
 
-                    var source_local_inv1 = await IFicSrvCompetencias.MetGetListCompetenciasTemasPlaneacion(source_eva_planeacion_temas.IdTema);
+                    var source_local_inv1 = await IFicSrvCompetencias.MetGetListCompetenciasTemasPlaneacion(source_eva_planeacion_temas);
                     if (source_local_inv1 != null)
                     {
                         _SFDataGrid_ItemSource_Competencias.Clear();
