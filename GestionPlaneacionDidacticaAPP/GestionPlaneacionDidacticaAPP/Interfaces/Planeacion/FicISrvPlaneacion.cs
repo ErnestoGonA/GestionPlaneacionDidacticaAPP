@@ -14,5 +14,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Planeacion
         Task<string> FicMetRemovePlaneacion(eva_planeacion eva_planeacion);
         Task<IEnumerable<eva_planeacion>> FicMetGetListPlaneacionPlantilla(int IdAsignatura,bool PlantillaOriginal,Int16 IdPeriodo);
         Task<IEnumerable<cat_periodos>> GetListPeriodos();
+        Task<cat_periodos> GetListPeriodos(short IdPeriodo);
+
     }
 }
