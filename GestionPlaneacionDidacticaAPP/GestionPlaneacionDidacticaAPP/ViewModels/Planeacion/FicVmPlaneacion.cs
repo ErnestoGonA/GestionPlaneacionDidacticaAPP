@@ -324,7 +324,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         }
         public async void FicMetFiltrarPlantilla()
         {
-            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(Int16)(FicGlobalValues.ASIGNATURA_INDEX+1));
+            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(Int16)(FicGlobalValues.PERIODO_INDEX+1));
             if (source_local_inv != null)
             {
                 _SFDataGrid_ItemSource_Planeacion.Clear();
