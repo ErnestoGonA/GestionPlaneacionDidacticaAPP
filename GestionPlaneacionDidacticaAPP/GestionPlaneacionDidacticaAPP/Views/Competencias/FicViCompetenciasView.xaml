@@ -1,14 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Temas.ViTemasView">
-
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetenciasView">
     <ContentPage.Content>
         <StackLayout>
-
-            <StackLayout>
-                <Label Text="Temas" FontAttributes="Bold" FontSize="Medium"></Label>
-            </StackLayout>
 
             <StackLayout>
                 <StackLayout>
@@ -23,26 +18,24 @@
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
                 </StackLayout>
+                <StackLayout>
+                    <Label Text="Competencia: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelCompetencia}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelTema}"></Label>
+                </StackLayout>
             </StackLayout>
 
             <StackLayout Padding="10">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Detalles del tema" FontAttributes="Bold" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="IdTema:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelIdTema}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Tema:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelDesTema}" FontSize="Micro"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Detalles de la competencia" FontAttributes="Bold" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Observaciones:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelObservaciones}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{Binding LabelObservaciones}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
@@ -76,11 +69,10 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
-                    <Button Text="Volver" Command="{Binding FicMetRegesarCatEdificiosListICommand}"/>
+                    <Button Text="Volver" Command="{Binding FicMetRegesarCompetenciasListICommand}"/>
                 </StackLayout>
 
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-
 </ContentPage>

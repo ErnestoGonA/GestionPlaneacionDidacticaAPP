@@ -11,6 +11,7 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Competencias;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
+using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 
@@ -24,6 +25,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
 
         //Buttons
         private ICommand _MetAddCompetenciaICommand, _MetUpdateCompetenciaICommand, _MetViewCompetenciaICommand, _MetRemoveCompetenciaICommand;
+        private ICommand _FicMetAprendizajesICommand, _FicMetEnseñanzasICommand, _FicMetCriteriosICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -135,6 +137,88 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             var source_eva_planeacion_tema = FicNavigationContextC as eva_planeacion_temas;
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasInsert>(source_eva_planeacion_tema);
         }
+
+        public ICommand FicMetViewCompetenciaICommand
+        {
+            get
+            {
+                return _MetViewCompetenciaICommand = _MetViewCompetenciaICommand ?? new FicVmDelegateCommand(FicMetViewCompetencia);
+            }
+        }
+
+        private void FicMetViewCompetencia()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+                eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasView>(new object[] { SFDataGrid_SelectedItem_Competencias, source_eva_planeacion_temas });
+            }
+        }
+
+        public ICommand FicMetRemoveCompetenciaICommand
+        {
+            get
+            {
+                return _MetRemoveCompetenciaICommand = _MetRemoveCompetenciaICommand ?? new FicVmDelegateCommand(FicMetRemoveCompetencia);
+            }
+        }
+
+        private async void FicMetRemoveCompetencia()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await IFicSrvCompetencias.DeleteCompetencia(SFDataGrid_SelectedItem_Competencias);
+                    if (res == "OK")
+                    {
+                        eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(source_eva_planeacion_temas);
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
+            }
+        }
+
+        public ICommand FicMetUpdateCompetenciaICommand
+        {
+            get
+            {
+                return _MetUpdateCompetenciaICommand = _MetUpdateCompetenciaICommand ?? new FicVmDelegateCommand(FicMetUpdateTema);
+            }
+        }
+
+        private void FicMetUpdateTema()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+                eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasUpdate>(new object[] { SFDataGrid_SelectedItem_Competencias, source_eva_planeacion_temas });
+            }
+        }
+
+        public ICommand FicMetCriteriosICommand
+        {
+            get
+            {
+                return _FicMetCriteriosICommand = _FicMetCriteriosICommand ?? new FicVmDelegateCommand(FicMetCriterios);
+            }
+        }
+
+        private void FicMetCriterios()
+        {
+            if (SFDataGrid_SelectedItem_Competencias != null)
+            {
+                eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(new object[] { SFDataGrid_SelectedItem_Competencias });
+            }
+        }
+
 
         public async void OnAppearing()
         {

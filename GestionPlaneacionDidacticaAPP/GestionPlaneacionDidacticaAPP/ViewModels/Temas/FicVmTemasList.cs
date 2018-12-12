@@ -242,7 +242,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                     RaisePropertyChanged("LabelIdAsignatura");
                     RaisePropertyChanged("LabelIdPlaneacion");
 
-                    var source_local_inv1 = await IFicSrvTemas.MetGetListTemasPlaneacion(source_eva_planeacion.IdPlaneacion);
+                    var source_local_inv1 = await IFicSrvTemas.MetGetListTemasPlaneacion(source_eva_planeacion);
                     if (source_local_inv1 != null)
                     {
                         _SFDataGrid_ItemSource_Temas.Clear();

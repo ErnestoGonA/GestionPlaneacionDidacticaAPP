@@ -9,13 +9,28 @@
             Command="{Binding FicMetAddCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Competencia">
+            Name="Editar Competencia"
+            Command="{Binding FicMetUpdateCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Competencia">
+            Name="Detalle Competencia"
+            Command="{Binding FicMetViewCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Competencia">
+            Name="Borrar Competencia"
+            Command="{Binding FicMetRemoveCompetenciaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Aprendizajes"
+            Command="{Binding FicMetAprendizajesICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Enseñanzas"
+            Command="{Binding FicMetEnseñanzasICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Criterios"
+            Command="{Binding FicMetCriteriosICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 

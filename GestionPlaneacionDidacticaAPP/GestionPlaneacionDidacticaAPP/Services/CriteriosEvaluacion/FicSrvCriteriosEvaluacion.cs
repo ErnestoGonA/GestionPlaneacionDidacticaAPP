@@ -28,9 +28,14 @@ namespace GestionPlaneacionDidacticaAPP.Services.CriteriosEvaluacion
             return await(from criterio in DBLoContext.eva_planeacion_criterios_evalua select criterio).AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<eva_planeacion_criterios_evalua>> MetGetListCriteriosEvaluacionCompetencia(short IdCompetencia)
+        public async Task<IEnumerable<eva_planeacion_criterios_evalua>> MetGetListCriteriosEvaluacion(eva_planeacion_temas_competencias eptc)
         {
-            return await (from criterio in DBLoContext.eva_planeacion_criterios_evalua where criterio.IdCompetencia==IdCompetencia select criterio).AsNoTracking().ToListAsync();
+            return await (from criterio in DBLoContext.eva_planeacion_criterios_evalua
+                          where criterio.IdAsignatura == eptc.IdAsignatura
+                          where criterio.IdPlaneacion == eptc.IdPlaneacion
+                          where criterio.IdTema == eptc.IdTema
+                          where criterio.IdCompetencia==eptc.IdCompetencia
+                          select criterio).AsNoTracking().ToListAsync();
         }
 
         public async Task<string> InsertCriterioEvaluacion(eva_planeacion_criterios_evalua CriterioEvaluacion)

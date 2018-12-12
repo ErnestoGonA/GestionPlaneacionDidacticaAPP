@@ -228,7 +228,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             try
             {
-                var criterios = await IFicSrvCriteriosEvaluacion.MetGetListCriteriosEvaluacion();
+                eva_planeacion_temas_competencias eptc = FicNavigationContextC[0] as eva_planeacion_temas_competencias;
+                var criterios = await IFicSrvCriteriosEvaluacion.MetGetListCriteriosEvaluacion(eptc);
                 if (criterios != null)
                 {
                     _SFDataGrid_ItemSource_CriteriosEvaluacion.Clear();

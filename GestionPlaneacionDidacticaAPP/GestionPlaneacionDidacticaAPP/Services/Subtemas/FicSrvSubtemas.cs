@@ -52,7 +52,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Subtemas
                              where subtema.IdAsignatura == Subtema.IdAsignatura
                              select subtema.IdSubtema).Max();
                 }
-                maxId = ++maxId;
+
+                Subtema.IdSubtema = ++maxId;
+
                 await DBLoContext.AddAsync(Subtema);
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar subtema";
                 DBLoContext.Entry(Subtema).State = EntityState.Detached;
@@ -63,12 +65,12 @@ namespace GestionPlaneacionDidacticaAPP.Services.Subtemas
                 return e.Message.ToString();
             }
         }
-
         //Update subtema
         public async Task<string> UpdateSubtema(eva_planeacion_subtemas Subtema)
         {
             try
             {
+                DBLoContext.Entry(Subtema).State = EntityState.Detached;
                 DBLoContext.Update(Subtema);
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar Subtema";
                 DBLoContext.Entry(Subtema).State = EntityState.Detached;

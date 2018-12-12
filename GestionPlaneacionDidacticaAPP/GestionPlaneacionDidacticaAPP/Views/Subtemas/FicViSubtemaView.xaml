@@ -7,6 +7,9 @@
 
             <StackLayout>
                 <StackLayout>
+                    <Label Text="Subtemas" FontAttributes="Bold" FontSize="Medium"></Label>
+                </StackLayout>
+                <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>
                 </StackLayout>
@@ -18,9 +21,9 @@
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="IdTema:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelIdTema}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                <StackLayout>
+                    <Label Text="IdTema:" FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdTema}"></Label>
                 </StackLayout>
             </StackLayout>
 

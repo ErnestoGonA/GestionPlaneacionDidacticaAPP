@@ -41,6 +41,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)},
             {typeof(FicVmSubtemaInsert),typeof(FicViSubtemaInsert)},
             {typeof(FicVmSubtemaView),typeof(FicViSubtemaView)},
+            {typeof(FicVmSubtemasUpdate),typeof(FicViSubtemaUpdate)},
+
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
             //{ typeof(FicVmCatEdificiosUpdate),typeof(ViCatEdificiosUpdate) },
@@ -64,6 +66,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 
             {typeof(FicVmEnseñanzaList),typeof(FicViEnseñanzaList) },
             {typeof(FicVmEnseñanzaInsert),typeof(FicViEnseñanzaInsert) },
+            {typeof(FicVmEnseñanzaUpdate),typeof(FicViEnseñanzaUpdate) },
+            {typeof(FicVmEnseñanzaDetalle),typeof(FicViEnseñanzaDetalle) },
 
             {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
             {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },
@@ -77,6 +81,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 
             { typeof(FicVmCompetenciasList),typeof(FicViCompetencias)},
             { typeof(FicVmCompetenciasInsert),typeof(FicViCompetenciasInsert) },
+            { typeof(FicVmCompetenciasView),typeof(FicViCompetenciasView) },
+            { typeof(FicVmCompetenciasUpdate),typeof(FicViCompetenciasUpdate) },
 
         };
 

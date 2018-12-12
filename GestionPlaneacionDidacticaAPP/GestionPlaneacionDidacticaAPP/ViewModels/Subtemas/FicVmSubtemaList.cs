@@ -133,7 +133,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
-        public ICommand FicMetUpdateSubtememaICommand
+        public ICommand FicMetUpdateSubtemaICommand
         {
             get
             {
@@ -150,7 +150,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
-        public ICommand FicMetRemoveTemaICommand
+        public ICommand FicMetRemoveSubtemaICommand 
         {
             get
             {

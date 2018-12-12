@@ -62,10 +62,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmTemasInsert>();
             FicContainerBuilder.RegisterType<FicVmTemasView>();
             FicContainerBuilder.RegisterType<FicVmTemasUpdate>();
+
             FicContainerBuilder.RegisterType<FicVmCompetenciasList>();
             FicContainerBuilder.RegisterType<FicVmCompetenciasInsert>();
+
             FicContainerBuilder.RegisterType<FicVmSubtemaInsert>();
             FicContainerBuilder.RegisterType<FicVmSubtemaView>();
+            FicContainerBuilder.RegisterType<FicVmSubtemasUpdate>();
+
+
+            FicContainerBuilder.RegisterType<FicVmCompetenciasView>();
+            FicContainerBuilder.RegisterType<FicVmCompetenciasUpdate>();
+
 
 
 
@@ -78,6 +86,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             FicContainerBuilder.RegisterType<FicVmEnseñanzaList>();
             FicContainerBuilder.RegisterType<FicVmEnseñanzaInsert>();
+            FicContainerBuilder.RegisterType<FicVmEnseñanzaUpdate>();
+            FicContainerBuilder.RegisterType<FicVmEnseñanzaDetalle>();
 
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionList>();
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionInsert>();
@@ -120,6 +130,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaList>().As<IFicSrvEnseñanzaList>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaInsert>().As<IFicSrvEnseñanzaInsert>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvEnseñanzaUpdate>().As<IFicSrvEnseñanzaUpdate>().SingleInstance();
+            FicContainerBuilder.RegisterType<FicSrvEnseñanzaDetalle>().As<IFicSrvEnseñanzaDetalle>().SingleInstance();
+
 
             //FIC: se asigna o se libera el contenedor
             //-------------------------------------------
@@ -220,6 +233,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         {
             get { return FicIContainer.Resolve<FicVmEnseñanzaInsert>(); }
         }
+        public FicVmEnseñanzaUpdate FicVmEnseñanzaUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmEnseñanzaUpdate>(); }
+        }
+        public FicVmEnseñanzaDetalle FicVmEnseñanzaDetalle
+        {
+            get { return FicIContainer.Resolve<FicVmEnseñanzaDetalle>(); }
+        }
 
 
         public FicVmSubtemaList FicVmSubtemaList
@@ -237,6 +258,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             get { return FicIContainer.Resolve<FicVmCompetenciasInsert>(); }
         }
 
+
         public FicVmSubtemaInsert FicVmSubtemaInsert
         {
             get { return FicIContainer.Resolve<FicVmSubtemaInsert>(); }
@@ -245,6 +267,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmSubtemaView ficVmSubtemaView
         {
             get { return FicIContainer.Resolve<FicVmSubtemaView>(); }
+        }
+
+
+        public FicVmCompetenciasView FicVmCompetenciasView
+        {
+            get { return FicIContainer.Resolve<FicVmCompetenciasView>(); }
+        }
+
+        public FicVmCompetenciasUpdate FicVmCompetenciasUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmCompetenciasUpdate>(); }
+        }
+
+        public FicVmSubtemasUpdate FicVmSubtemasUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmSubtemasUpdate>(); }
         }
 
 

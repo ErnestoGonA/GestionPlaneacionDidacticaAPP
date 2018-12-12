@@ -10,14 +10,16 @@
             Command="{Binding FicMetAddSubtemaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Subtema">
+            Name="Editar Subtema"
+            Command="{Binding FicMetUpdateSubtemaICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Subtema"
             Command="{Binding FicMetViewSubtemaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Subtema">
+            Name="Borrar Subtema"
+            Command="{Binding FicMetRemoveSubtemaICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     
@@ -26,6 +28,9 @@
             >
 
             <StackLayout>
+                <StackLayout>
+                    <Label Text="Subtemas" FontAttributes="Bold" FontSize="Medium"></Label>
+                </StackLayout>
                 <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>

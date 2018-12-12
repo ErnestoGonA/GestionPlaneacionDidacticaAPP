@@ -1,47 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Subtemas.FicViSubtemaInsert">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetenciasUpdate">
     <ContentPage.Content>
         <StackLayout>
-
-            <StackLayout Padding="10" Orientation="Vertical">
+            <StackLayout Padding="10">
 
                 <StackLayout>
-                    <StackLayout>
-                        <Label Text="Subtemas" FontAttributes="Bold" FontSize="Medium"></Label>
-                    </StackLayout>
                     <StackLayout>
                         <Label Text="Maestro: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelUsuario}"></Label>
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Asignatura: " FontAttributes="Bold"></Label>
-                        <Label Text="{Binding LabelIdAsignatura}"></Label>
+                        <Label Text="{Binding LabelAsignatura}"></Label>
                     </StackLayout>
                     <StackLayout>
                         <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelIdPlaneacion}"></Label>
                     </StackLayout>
                     <StackLayout>
-                        <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                        <Label Text="Tema: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelIdTema}"></Label>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Competencia: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelIdCompetencia}"></Label>
                     </StackLayout>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Insertar Tema " FontAttributes="Bold" />
+                    <Label Text="Actualizar competencia" FontAttributes="Bold" />
+                </StackLayout>
+                
+                <StackLayout>
+                    <Label Text="IdTemaCompetencia: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelIdTemaCompetencia}"></Label>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Descripción del Subtema: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Entry Text="{Binding LabelDesSubtema}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Observaciones:" FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelObservaciones}" FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Button Text="Guardar" Command="{Binding SaveCommand}"/>
-                    <Button Text="Cancelar" Command="{Binding MetRegresarSubtemasListICommand}"/>
+                    <Button Text="Cancelar" Command="{Binding FicMetRegesarCompetenciasListICommand}"/>
                 </StackLayout>
+
 
             </StackLayout>
         </StackLayout>

@@ -16,6 +16,7 @@ using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
+using GestionPlaneacionDidacticaAPP.Views.Competencias;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -56,6 +57,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                                                 Icon ="ficAlmacen20x20.png",
                                                 FicPageName ="FicViPlaneacion",
                                                 TargetType = typeof(FicViPlaneacion)
+                                                },
+                    new FicMasterPageMenuItem { Id = 6, Title = "Competencias",
+                                                Icon ="ficAlmacen20x20.png",
+                                                FicPageName ="FicViCompetencias",
+                                                TargetType = typeof(FicViCompetencias)
                                                 },
                     new FicMasterPageMenuItem {Id = 5, Title = "Subtemas",Icon ="ficAlmacen20x20.png",
                                                FicPageName ="FicViSubtemasList",TargetType = typeof(FicViSubtemasList)}
