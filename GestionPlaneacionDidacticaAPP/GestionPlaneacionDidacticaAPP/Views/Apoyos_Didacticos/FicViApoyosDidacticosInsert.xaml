@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:syncfusion="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos.FicViApoyosDidacticosInsert">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos.FicViApoyosDidacticosInsert"
+             Title="Insertar Apoyo Didactico">
     <ScrollView>
         <StackLayout
             VerticalOptions="StartAndExpand"

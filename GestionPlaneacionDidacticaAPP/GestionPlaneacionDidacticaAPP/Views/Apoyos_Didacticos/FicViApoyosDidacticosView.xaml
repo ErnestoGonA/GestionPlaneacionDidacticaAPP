@@ -4,57 +4,54 @@
              x:Class="GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos.FicViApoyosDidacticosView"
              Title="Detalle Apoyo Didactico">
     <ContentPage.Content>
-        <StackLayout
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand"
-            Padding="20, 25, 20, 10">
-            <ScrollView
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand">
-                <Grid
-                    HorizontalOptions="FillAndExpand"
-                    VerticalOptions="FillAndExpand"
-                    RowSpacing="10"
-                    ColumnSpacing="5">
+        <StackLayout>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Label Text="IdApoyoDidactico: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="0"/>
-                    <Label Text="DesApoyoDidactico: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="1"/>
-                    <Label Text="FechaReg: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="2"/>
-                    <Label Text="FechaMod: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="3"/>
-                    <Label Text="UsuarioReg: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="4"/>
-                    <Label Text="UsuarioMod: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="5"/>
-                    <Label Text="Activo: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="6"/>
-                    <Label Text="Borrado: " HorizontalOptions="EndAndExpand" Grid.Column="0" Grid.Row="7"/>
+            <StackLayout Padding="10">
 
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="IdApoyoDidactico:" FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelIdApoyoDidactico}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
 
-                    <Label Text="{Binding LabelIdApoyoDidactico}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="0"/>
-                    <Label Text="{Binding LabelDesApoyoDidactico}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="1"/>
-                    <Label Text="{Binding LabelFechaReg}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="2"/>
-                    <Label Text="{Binding LabelFechaMod}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="3"/>
-                    <Label Text="{Binding LabelUsuarioReg}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="4"/>
-                    <Label Text="{Binding LabelUsuarioMod}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="5"/>
-                    <Label Text="{Binding LabelActivo}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="6"/>
-                    <Label Text="{Binding LabelBorrado}" HorizontalOptions="StartAndExpand" Grid.Column="1" Grid.Row="7"/>
-                </Grid>
-            </ScrollView>
-            <StackLayout Orientation="Horizontal" Margin="20,20,20,10" HorizontalOptions="FillAndExpand">
-                <Button Command="{Binding FicMetRegesarApoyosDidacticosListICommand}" Text="Regresar" BackgroundColor="LightGray" WidthRequest="200" HeightRequest="50" Margin="10,0,10,0" FontAttributes="Bold" HorizontalOptions="FillAndExpand"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="DesApoyoDidactico:" FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelDesApoyoDidactico}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fecha Reg: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelFechaReg}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario Reg: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelUsuarioReg}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fecha Mod: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelFechaMod}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Usuario Mod: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelUsuarioMod}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Activo: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelActivo}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Borrado: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding LabelBorrado}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Volver" Command="{Binding FicMetRegesarApoyosDidacticosListICommand}"/>
+                </StackLayout>
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
