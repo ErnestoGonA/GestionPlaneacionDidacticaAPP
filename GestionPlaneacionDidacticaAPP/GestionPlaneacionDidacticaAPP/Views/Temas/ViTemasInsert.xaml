@@ -23,6 +23,10 @@
                         <Label Text="{Binding LabelIdAsignatura}"></Label>
                     </StackLayout>
                     <StackLayout>
+                        <Label Text="Periodo: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelPeriodo}"></Label>
+                    </StackLayout>
+                    <StackLayout>
                         <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelIdPlaneacion}"></Label>
                     </StackLayout>

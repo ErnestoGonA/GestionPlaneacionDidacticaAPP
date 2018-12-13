@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
@@ -37,19 +38,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelIdAsignatura;
+        private string _LabelPeriodo;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvTemas IFicSrvTemas;
         private IFicSrvAsignatura IFicSrvAsignatura;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
 
         public object FicNavigationContextC { get; set; }
 
-        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas,IFicSrvAsignatura srvAsignatura)
+        public FicVmTemasList(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas,IFicSrvAsignatura srvAsignatura, FicISrvPlaneacion iFicSrvPlaneacion)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvTemas = srvTemas;
             IFicSrvAsignatura = srvAsignatura;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
 
             _SFDataGrid_ItemSource_Temas = new ObservableCollection<eva_planeacion_temas>();
         }
@@ -116,6 +120,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 }
             }
         }
+
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
+                }
+            }
+        }
+
 
         public ICommand FicMetAddTemaICommand
         {
@@ -238,9 +256,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                     _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
                     _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
 
+                    cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
+                        
+                    _LabelPeriodo = periodo.DesPeriodo;
+                    RaisePropertyChanged("LabelPeriodo");
                     RaisePropertyChanged("LabelUsuario");
                     RaisePropertyChanged("LabelIdAsignatura");
                     RaisePropertyChanged("LabelIdPlaneacion");
+                    
 
                     var source_local_inv1 = await IFicSrvTemas.MetGetListTemasPlaneacion(source_eva_planeacion);
                     if (source_local_inv1 != null)

@@ -10,6 +10,7 @@ using System.Linq;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
@@ -23,11 +24,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvTemas IFicSrvTemas;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
+
 
         //Labels
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelIdAsignatura;
+        private string _LabelPeriodo;
+
 
         private string _LabelDesTema, _LabelObservaciones;
 
@@ -37,10 +42,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
         //Valor mandado de view padre a hija
         public object FicNavigationContextC { get; set; }
 
-        public FicVmTemasInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas)
+        public FicVmTemasInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvTemas srvTemas, FicISrvPlaneacion iFicSrvPlaneacion)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvTemas = srvTemas;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
+
         }
 
         public string LabelUsuario
@@ -78,6 +85,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 {
                     _LabelIdAsignatura = value;
                     RaisePropertyChanged("LabelIdAsignatura");
+                }
+            }
+        }
+
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
                 }
             }
         }
@@ -180,6 +200,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+
+            cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
+
+            _LabelPeriodo = periodo.DesPeriodo;
+            RaisePropertyChanged("LabelPeriodo");
 
             RaisePropertyChanged("LabelUsuario");
             RaisePropertyChanged("LabelIdAsignatura");

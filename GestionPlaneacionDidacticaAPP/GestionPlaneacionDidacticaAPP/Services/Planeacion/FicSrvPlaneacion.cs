@@ -25,6 +25,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             return await (from periodos in DBLoContext.cat_periodos select periodos).AsNoTracking().ToListAsync();
         }
 
+        public async Task<cat_periodos> GetListPeriodos(short IdPeriodo)
+        {
+            return await DBLoContext.cat_periodos.FindAsync(IdPeriodo);
+        }
+
         public async Task<IEnumerable<eva_cat_asignaturas>> FicMetGetListAsignatura()
         {
             return await (from asignatura in DBLoContext.eva_cat_asignaturas select asignatura).AsNoTracking().ToListAsync();
