@@ -27,7 +27,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelIdAsignatura;
-        private int _LabelIdTema;
+        private string _LabelIdTema;
 
         private string _LabelObservaciones;
 
@@ -122,7 +122,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             }
         }
 
-        public int LabelIdTema
+        public string LabelIdTema
         {
             get { return _LabelIdTema; }
             set
@@ -165,7 +165,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion_temas.IdPlaneacion;
-            _LabelIdTema = source_eva_planeacion_temas.IdTema;
+            _LabelIdTema = source_eva_planeacion_temas.DesTema;
 
             RaisePropertyChanged("LabelUsuario");
             RaisePropertyChanged("LabelIdAsignatura");
