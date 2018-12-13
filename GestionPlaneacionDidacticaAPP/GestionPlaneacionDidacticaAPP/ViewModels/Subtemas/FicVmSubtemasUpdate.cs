@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
         //Labels
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
-        private string _LabelAsignatura;
+        private int _LabelAsignatura;
         private int _LabelIdTema; 
 
         private short _LabelIdSubtema;
@@ -66,7 +66,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
-        public string LabelAsignatura
+        public int LabelAsignatura
         {
             get { return _LabelAsignatura; }
             set
@@ -127,7 +127,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             eva_planeacion_temas source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion_temas;
 
             _LabelUsuario = FicGlobalValues.USUARIO;
-            _LabelAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelAsignatura = source_eva_planeacion.IdAsignatura;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
             _LabelIdTema = source_eva_planeacion_temas.IdTema;
 
