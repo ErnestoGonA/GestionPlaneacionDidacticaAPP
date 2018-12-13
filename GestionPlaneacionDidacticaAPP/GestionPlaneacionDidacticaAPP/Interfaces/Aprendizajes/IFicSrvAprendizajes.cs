@@ -10,6 +10,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Aprendizajes
     public interface IFicSrvAprendizajes
     {
         Task<IEnumerable<eva_planeacion_aprendizaje>> MetGetListAprendizajes();
+        Task<List<string>> MetGetActividadesAprendizaje();
         Task<IEnumerable<eva_planeacion_aprendizaje>> MetGetListAprendizajes(eva_planeacion_temas_competencias eptc);
         Task<string> InsertAprendizaje(eva_planeacion_aprendizaje Aprendizaje);
         Task<string> UpdateAprendizaje(eva_planeacion_aprendizaje Aprendizaje);

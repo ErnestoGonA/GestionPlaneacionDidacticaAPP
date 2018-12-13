@@ -37,7 +37,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
         private string _LabelTema;
         private string _LabelCompetencia;
 
-        //private string _LabelDesCriterio;
+        public int _IdAprendizaje;
+        private List<string> _Aprendizajes;
+
         private string _LabelObservaciones;
 
         private ICommand _MetRegresarAprendizajesListICommand, _SaveCommand;
@@ -56,6 +58,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
             IFicSrvAsignatura = ficSrvAsignatura;
             IFicSrvPlaneacion = iFicSrvPlaneacion;
             IFicSrvTemas = ficSrvTemas;
+            _Aprendizajes = ficSrvAprendizajes.MetGetActividadesAprendizaje().Result;
         }
 
         public string LabelUsuario
@@ -136,6 +139,28 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
             }
         }
 
+        public int IdAprendizaje
+        {
+            get
+            {
+                return _IdAprendizaje;
+            }
+            set
+            {
+                _IdAprendizaje = value;
+            }
+        }
+
+        public List<string> Aprendizajes
+        {
+            get { return _Aprendizajes; }
+            set
+            {
+                _Aprendizajes = value;
+                RaisePropertyChanged("Aprendizajes");
+            }
+        }
+
         public string LabelObservaciones
         {
             get { return _LabelObservaciones; }
@@ -187,7 +212,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
                     IdTema = eptc.IdTema,
                     IdCompetencia = eptc.IdCompetencia,
 
-                    IdActividadAprendizaje = 1,
+                    IdActividadAprendizaje =(this._IdAprendizaje + 1),
                     Observaciones = _LabelObservaciones,
 
                     FechaReg = DateTime.Now,
@@ -198,7 +223,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
                     Borrado = "N"
                 });
 
-                if (res == "Ok")
+                if (res == "OK")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(FicNavigationContextC);
