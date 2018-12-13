@@ -21,7 +21,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvEnseñanzaInsert IFicSrvEnseñanzaInsert;
 
-        public List<string> _Asignaturas, _Planeacion, _Competencias, _Temas;
+        public string _Asignaturas, _Planeacion, _Competencias, _Temas,_Actividad;
+        public List<string> _Actividades;
         public string _AsignaturaSelected, _PlaneacionSelected, _CompetenciaSelected, _TemaSelected;
         public DateTime _FechaIni, _FechaFin;
 
@@ -36,14 +37,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
             this.IFicSrvEnseñanzaInsert = IFicSrvEnseñanzaInsert;
-            _Asignaturas = GetAsignaturas().Result;
-            _Planeacion = GetPlaneacion().Result;
-            _Competencias = GetCompetencia().Result;
-            _Temas = GetTema().Result;
-            RaisePropertyChanged("Asignaturas");
-            RaisePropertyChanged("Planeacion");
-            RaisePropertyChanged("Competencias");
-            RaisePropertyChanged("Temas");
         }
 
         #region METODOS
@@ -144,7 +137,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
 
         #region ENLAZAR VARIABLES
 
-        public List<string> Asignaturas
+        public string Asignaturas
         {
             get { return _Asignaturas; }
             set
@@ -153,7 +146,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 RaisePropertyChanged("Asignaturas");
             }
         }
-        public List<string> Planeacion
+        public string Planeacion
         {
             get { return _Planeacion; }
             set
@@ -162,7 +155,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 RaisePropertyChanged("Planeacion");
             }
         }
-        public List<string> Competencias
+        public string Competencias
         {
             get { return _Competencias; }
             set
@@ -171,13 +164,31 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 RaisePropertyChanged("Competencias");
             }
         }
-        public List<string> Temas
+        public string Temas
         {
             get { return _Temas; }
             set
             {
                 _Temas = value;
                 RaisePropertyChanged("Temas");
+            }
+        }
+        public string Actividad
+        {
+            get { return _Actividad; }
+            set
+            {
+                _Actividad = value;
+                RaisePropertyChanged("Actividad");
+            }
+        }
+        public List<string> Actividades
+        {
+            get { return _Actividades; }
+            set
+            {
+                _Actividades = value;
+                RaisePropertyChanged("Actividades");
             }
         }
 
@@ -275,16 +286,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         {
             try
             {
-                Int16 _IdAsignatura = Int16.Parse(_AsignaturaSelected.Split('-')[0]);
-                int _IdPlaneacion = int.Parse(_PlaneacionSelected.Split('-')[0]);
-                int _IdCompetencia = int.Parse(_CompetenciaSelected.Split('-')[0]);
-                Int16 _IdTema = Int16.Parse(_TemaSelected.Split('-')[0]);
+                var auxPlaneacion = FicNavigationContextC[1] as eva_planeacion;
+                var auxTema = FicNavigationContextC[0] as eva_planeacion_temas;
+                var auxCompetencia = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+
+                Int16 _IdAsignatura = auxPlaneacion.IdAsignatura;
+                int _IdPlaneacion = auxPlaneacion.IdPlaneacion;
+                int _IdCompetencia = auxCompetencia.IdCompetencia;
+                Int16 _IdTema = auxTema.IdTema;
+                int _IdActividad = int.Parse(_Actividad.Split('-')[0]);
                 var RespuestaInsert = await IFicSrvEnseñanzaInsert.FicMetAddEnseñanza(new eva_planeacion_enseñanza()
                 {
                     IdAsignatura = _IdAsignatura,
                     IdPlaneacion = _IdPlaneacion,
                     IdCompetencia = _IdCompetencia,
                     IdTema = _IdTema,
+                    IdActividadEnseñanza = _IdActividad,
                     FechaProgramada = _FechaIni,
                     FechaRealizada = _FechaFin,
                     FechaReg = DateTime.Now,
@@ -340,7 +357,26 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
 
         public async void OnAppearing()
         {
+            _Asignaturas = FicGlobalValues.ASIGNATURA;
+            var auxPlaneacion = FicNavigationContextC[1] as eva_planeacion;
+            _Planeacion = auxPlaneacion.ReferenciaNorma;
+            var auxTema = FicNavigationContextC[0] as eva_planeacion_temas;
+            _Temas = auxTema.DesTema;
+            var auxCompetencia = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+            _Competencias = auxCompetencia.Observaciones;
+            _Actividades = new List<string>();
+            IEnumerable<eva_cat_actividades_enseñanza> auxLista = IFicSrvEnseñanzaInsert.FicMetGetActividades().Result;
+            foreach(eva_cat_actividades_enseñanza actividad in auxLista)
+            {
+                _Actividades.Add(actividad.IdActividadEnseñanza + "-" + actividad.DesActividadEnseñanza);
+            }
 
+
+            RaisePropertyChanged("Asignaturas");
+            RaisePropertyChanged("Planeacion");
+            RaisePropertyChanged("Temas");
+            RaisePropertyChanged("Competencias");
+            RaisePropertyChanged("Actividades");
         }
 
         #region  INotifyPropertyChanged

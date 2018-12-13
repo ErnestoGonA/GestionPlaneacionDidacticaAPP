@@ -31,6 +31,16 @@ namespace GestionPlaneacionDidacticaAPP.Services.Enseñanza
             return asignaturaItem;
         }
 
+        public async Task<eva_cat_actividades_enseñanza> FicMetGetActividad(int id)
+        {
+            var aux = await (from asignatura in DBLoContext.eva_cat_actividades_enseñanza select asignatura).Where(asignatura => asignatura.IdActividadEnseñanza == id).AsNoTracking().ToListAsync();
+            eva_cat_actividades_enseñanza asign = new eva_cat_actividades_enseñanza();
+            aux.ForEach(asignatura => {
+                asign = asignatura;
+            });
+            return asign;
+        }
+
         public async Task<eva_cat_competencias> FicMetGetCompetencia(int id)
         {
             var aux = await(from competencia in DBLoContext.eva_cat_competencias select competencia).Where(item => item.IdCompetencia == id).AsNoTracking().ToListAsync();

@@ -56,7 +56,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
         {
             try
             {
-                var RespuestaInsert = await IFicSrvActividadEnseñanza.FicMetUpdateEnseñanza(new eva_cat_actividades_enseñanza()
+                var RespuestaInsert = await IFicSrvActividadEnseñanza.FicMetAddActividadEnseñanza(new eva_cat_actividades_enseñanza()
                 {
                     DesActividadEnseñanza = _DesActividadEnseñanza,
                     FechaReg = DateTime.Now,

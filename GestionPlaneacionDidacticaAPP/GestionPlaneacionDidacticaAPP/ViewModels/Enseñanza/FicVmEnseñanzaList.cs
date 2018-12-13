@@ -154,7 +154,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaUpdate>(SFDataGrid_SelectedItem_Enseñanza);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaUpdate>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_Enseñanza
+                });
             }
         }
 
@@ -175,7 +180,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                     var res = await IFicSrvEnseñanzaList.FicMetRemoveEnseñanza(aux);
                     if (res == "OK")
                     {
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaList>();
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaList>(FicNavigationContextC);
                     }
                     else
                     {
@@ -307,7 +312,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                         string Planeacion = this.IFicSrvEnseñanzaList.FicMetGetPlaneacion(enseñanza.IdPlaneacion).Result.ReferenciaNorma;
                         string Tema = this.IFicSrvEnseñanzaList.FicMetGetTema(enseñanza.IdTema).Result.DesTema;
                         string Competencia = this.IFicSrvEnseñanzaList.FicMetGetCompetencia(enseñanza.IdCompetencia).Result.DesCompetencia;
-                        EnseñanzaLista aux = new EnseñanzaLista(Asignatura,Planeacion,Tema,Competencia,enseñanza);
+                        string Actividad = this.IFicSrvEnseñanzaList.FicMetGetActividad(enseñanza.IdActividadEnseñanza).Result.DesActividadEnseñanza;
+                        EnseñanzaLista aux = new EnseñanzaLista(Asignatura,Planeacion,Tema,Competencia,Actividad,enseñanza);
                         _SFDataGrid_ItemSource_Enseñanza.Add(aux);
                         _SFDataGrid_ItemSource_Enseñanza_AUX.Add(aux);
                     }
@@ -353,13 +359,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         public string Planeacion { get; set; }
         public string Tema { get; set; }
         public string Competencia { get; set; }
+        public string Actividad { get; set; }
         public eva_planeacion_enseñanza eva_planeacion_enseñanza { get; set; }
-        public EnseñanzaLista(string Asignatura,string Planeacion,string Tema,string Competencia,eva_planeacion_enseñanza eva_planeacion_enseñanza)
+        public EnseñanzaLista(string Asignatura,string Planeacion,string Tema,string Competencia,string Actividad,eva_planeacion_enseñanza eva_planeacion_enseñanza)
         {
             this.Asignatura = Asignatura;
             this.Planeacion = Planeacion;
             this.Tema = Tema;
             this.Competencia = Competencia;
+            this.Actividad = Actividad;
             this.eva_planeacion_enseñanza = eva_planeacion_enseñanza;
         }
 

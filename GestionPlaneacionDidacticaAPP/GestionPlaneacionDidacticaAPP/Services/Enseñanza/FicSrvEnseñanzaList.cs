@@ -20,6 +20,16 @@ namespace GestionPlaneacionDidacticaAPP.Services.Enseñanza
             DBLoContext = new DBContext(DependencyService.Get<ConfigSQLite>().GetDataBasePath());
         }
 
+        public async Task<eva_cat_actividades_enseñanza> FicMetGetActividad(int id)
+        {
+            var aux = await(from asignatura in DBLoContext.eva_cat_actividades_enseñanza select asignatura).Where(asignatura => asignatura.IdActividadEnseñanza == id).AsNoTracking().ToListAsync();
+            eva_cat_actividades_enseñanza asign = new eva_cat_actividades_enseñanza();
+            aux.ForEach(asignatura => {
+                asign = asignatura;
+            });
+            return asign;
+        }
+
         public async Task<eva_cat_asignaturas> FicMetGetAsignatura(int id)
         {
             var aux = await (from asignatura in DBLoContext.eva_cat_asignaturas select asignatura).Where(asignatura => asignatura.IdAsignatura == id).AsNoTracking().ToListAsync();

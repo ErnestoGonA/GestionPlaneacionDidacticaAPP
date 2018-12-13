@@ -5,19 +5,19 @@
              x:Class="GestionPlaneacionDidacticaAPP.Views.ActividadEnseñanza.FicViActividadEnseñanza">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Planeacion"
+            Name="Nueva Actividad"
             Command="{Binding MetAddEnseñanzaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Planeacion"
+            Name="Editar Actividad"
             Command="{Binding MetUpdateEnseñanzaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Planeacion"
+            Name="Detalle Actividad"
             Command="{Binding MetViewEnseñanzaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Planeacion"
+            Name="Borrar Actividad"
             Command="{Binding MetRemoveEnseñanzaICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
