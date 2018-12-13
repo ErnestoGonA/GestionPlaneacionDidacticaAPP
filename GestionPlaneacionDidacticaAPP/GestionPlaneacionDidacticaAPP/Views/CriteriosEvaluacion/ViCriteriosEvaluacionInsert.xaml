@@ -16,7 +16,7 @@
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Asignatura: " FontAttributes="Bold"></Label>
-                    <Label Text="{Binding LabelIdAsignatura}"></Label>
+                    <Label Text="{Binding LabelAsignatura}"></Label>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Periodo: " FontAttributes="Bold"></Label>

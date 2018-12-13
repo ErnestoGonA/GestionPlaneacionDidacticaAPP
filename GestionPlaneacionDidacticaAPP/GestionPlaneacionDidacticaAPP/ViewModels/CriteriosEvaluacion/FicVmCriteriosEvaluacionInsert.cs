@@ -32,7 +32,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         //Labels
         private string _LabelUsuario;
-        private string _LabelIdAsignatura;
+        private string _LabelAsignatura;
         private int _LabelIdPlaneacion;
         private string _LabelPeriodo;
         private string _LabelTema;
@@ -40,6 +40,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         private string _LabelDesCriterio;
         private float _LabelPorcentaje;
+
+        
 
         private ICommand _MetRegresarCriteriosEvaluacionListICommand, _SaveCommand;
 
@@ -72,15 +74,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
         
-        public string LabelIdAsignatura
+        public string LabelAsignatura
         {
-            get { return _LabelIdAsignatura; }
+            get { return _LabelAsignatura; }
             set
             {
                 if (value != null)
                 {
-                    _LabelIdAsignatura = value;
-                    RaisePropertyChanged("LabelIdAsignatura");
+                    _LabelAsignatura = value;
+                    RaisePropertyChanged("LabelAsignatura");
                 }
             }
         }
@@ -237,14 +239,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
 
             _LabelUsuario = FicGlobalValues.USUARIO;
-            _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelPeriodo = periodo.DesPeriodo;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
             _LabelTema = source_eva_planeacion_temas.DesTema;
             _LabelCompetencia = eptc.Observaciones;
 
             RaisePropertyChanged("LabelUsuario");
-            RaisePropertyChanged("LabelIdAsignatura");
+            RaisePropertyChanged("LabelAsignatura");
             RaisePropertyChanged("LabelIdPlaneacion");
             RaisePropertyChanged("LabelTema");
             RaisePropertyChanged("LabelCompetencia");

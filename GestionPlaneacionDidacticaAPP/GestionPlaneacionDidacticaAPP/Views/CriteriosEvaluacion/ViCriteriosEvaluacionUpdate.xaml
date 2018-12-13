@@ -28,7 +28,7 @@
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Tema: " FontAttributes="Bold"></Label>
-                    <Label Text="{Binding LabelTema}"></Label>
+                    <Label Text="{Binding LabelDesTema}"></Label>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Competencia: " FontAttributes="Bold"></Label>
@@ -47,7 +47,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Porcentaje: " FontAttributes="Bold" FontSize="Micro"/>
-                <Entry Text="{Binding LabelPorcentaje}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+                <Editor Text="{Binding LabelPorcentaje}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Padding="10">

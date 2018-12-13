@@ -101,7 +101,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public string LabelTema
+        public string LabelDesTema
         {
             get { return _LabelDesTema; }
             set
@@ -178,7 +178,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>();
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
             }
             catch (Exception e)
             {
@@ -216,7 +216,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                     Borrado = criterio.Borrado
                 });
 
-                if (res == "Ok")
+                if (res == "OK")
                 {
                     await new Page().DisplayAlert("Update", "¡Editado CON EXITO!", "OK");
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
@@ -251,6 +251,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
             _LabelDesCriterio = criterio.DesCriterio;
             _LabelPorcentaje = criterio.Porcentaje + "";
+
+            RaisePropertyChanged("LabelUsuario");
+            RaisePropertyChanged("LabelAsignatura");
+            RaisePropertyChanged("LabelPeriodo");
+            RaisePropertyChanged("LabelIdPlaneacion");
+            RaisePropertyChanged("LabelDesTema");
+            RaisePropertyChanged("LabelCompetencia");
+            RaisePropertyChanged("LabelDesCriterio");
+            RaisePropertyChanged("LabelPorcentaje");
 
 
         }
