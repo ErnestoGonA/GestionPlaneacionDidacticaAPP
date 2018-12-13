@@ -169,7 +169,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
                     Borrado = "N"
                 });
 
-                if (res == "Ok")
+                if (res == "OK")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosList>(FicNavigationContextC);
