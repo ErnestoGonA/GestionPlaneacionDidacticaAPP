@@ -19,7 +19,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
         public eva_cat_actividades_enseñanza _SFDataGrid_SelectedItem_Enseñanza;
         public string _DesActividadEnseñanza;
 
-        private ICommand _MetAddEnseñanzaICommand, _MetUpdateEnseñanzaICommand, _MetViewEnseñanzaICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
+        private ICommand _MetAddEnseñanzaICommand, _MetUpdateEnseñanzaICommand, _MetViewEnseñanzaICommand, _MetRemoveEnseñanzaICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
 
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvActividadEnseñanza IFicSrvActividadEnseñanza;
@@ -93,7 +93,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmActividadEnseñanzaDetalle>(SFDataGrid_SelectedItem_Enseñanza);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmActividadEnseñanzaDetalle>(SFDataGrid_SelectedItem_Enseñanza);
             }
         }
 
@@ -110,9 +110,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
             }
         }
 
-        public ICommand MetRemoveActividadEnseñanzaICommand
+        public ICommand MetRemoveEnseñanzaICommand
         {
-            get { return _MetRemovePlaneacionICommand = _MetRemovePlaneacionICommand ?? new FicVmDelegateCommand(FicMetRemovePlaneacion); }
+            get { return _MetRemoveEnseñanzaICommand = _MetRemoveEnseñanzaICommand ?? new FicVmDelegateCommand(FicMetRemovePlaneacion); }
         }
 
         public async void FicMetRemovePlaneacion()
