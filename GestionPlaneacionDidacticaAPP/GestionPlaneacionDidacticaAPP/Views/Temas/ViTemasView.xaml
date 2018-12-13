@@ -41,12 +41,12 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Tema:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelDesTema}" FontSize="Micro"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{Binding LabelDesTema}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Observaciones:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelObservaciones}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                    <Label Text="{Binding LabelObservaciones}" FontSize="Micro" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
