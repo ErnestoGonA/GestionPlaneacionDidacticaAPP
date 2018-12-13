@@ -62,12 +62,12 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="CompetenciaAsignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding CompetenciaAsignatura}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Label  HeightRequest="75"  Text="{Binding CompetenciaAsignatura}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="AportacionPerfilEgreso: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding AportacionPerfilEgreso}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
+                    <Label  HeightRequest="75"  Text="{Binding AportacionPerfilEgreso}" FontSize="Micro" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">

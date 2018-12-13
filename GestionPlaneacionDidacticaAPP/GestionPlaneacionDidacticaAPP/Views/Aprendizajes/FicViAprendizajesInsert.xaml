@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
-             xmlns:syncfusion="clr-namespace:Syncfusion.SfAutoComplete.XForms;assembly=Syncfusion.SfAutoComplete.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Temas.ViTemasInsert">
-
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesInsert">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
 
-            <StackLayout Padding="10" Orientation="Vertical">
+            <StackLayout VerticalOptions="StartAndExpand" Padding="20">
+
                 <StackLayout>
-                    <Label Text="Temas" FontAttributes="Bold" FontSize="Medium"></Label>
+                    <Label Text="Evaluacion - Aprendizaje" FontAttributes="Bold"></Label>
                 </StackLayout>
 
                 <StackLayout>
@@ -30,29 +28,36 @@
                         <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelIdPlaneacion}"></Label>
                     </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tema: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelTema}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Competencia: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelCompetencia}"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Insertar aprendizaje"></Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Observaciones" FontAttributes="Bold"></Label>
+                        <Editor Text="{Binding _LabelObservaciones}" HeightRequest="75" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Editor>
+                    </StackLayout>
                 </StackLayout>
                 
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Insertar Tema " FontAttributes="Bold" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Descripción del tema: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Editor  HeightRequest="75"  Text="{Binding LabelDesTema}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Observaciones: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Editor  HeightRequest="75" Text="{Binding LabelObservaciones}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
-                </StackLayout>
+                
 
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Button Text="Guardar" Command="{Binding SaveCommand}"/>
-                    <Button Text="Cancelar" Command="{Binding MetRegresarTemasListICommand}"/>
+                    <Button Text="Cancelar" Command="{Binding MetRegresarAprendizajesListICommand}"/>
                 </StackLayout>
 
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
 
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

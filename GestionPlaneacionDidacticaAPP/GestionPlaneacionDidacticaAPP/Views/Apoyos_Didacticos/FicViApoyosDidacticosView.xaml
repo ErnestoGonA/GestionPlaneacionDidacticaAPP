@@ -15,7 +15,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="DesApoyoDidactico:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelDesApoyoDidactico}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                    <Label  HeightRequest="75"  Text="{Binding LabelDesApoyoDidactico}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">

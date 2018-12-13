@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelAsignatura;
-        private short _LabelIdTema;
+        private string _LabelIdTema;
 
         private ICommand _FicMetRegesarCatEdificiosListICommand;
 
@@ -72,7 +72,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
-        public short LabelIdTema
+        public string LabelIdTema
         {
             get { return _LabelIdTema; }
             set
@@ -198,7 +198,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
-            _LabelIdTema = source_eva_planeacion_temas.IdTema;
+            _LabelIdTema = source_eva_planeacion_temas.DesSubtema;
 
             _LabelIdSubtema = source_eva_planeacion_temas.IdSubtema;
             _LabelDesSubtema = source_eva_planeacion_temas.DesSubtema;

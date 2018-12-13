@@ -9,13 +9,16 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Interfaces.Aprendizajes;
 
 using GestionPlaneacionDidacticaAPP.Services.Navegacion;
 using GestionPlaneacionDidacticaAPP.Services.Asingatura;
 using GestionPlaneacionDidacticaAPP.Services.Planeacion;
 using GestionPlaneacionDidacticaAPP.Services.Temas;
+using GestionPlaneacionDidacticaAPP.Services.Aprendizajes;
 using GestionPlaneacionDidacticaAPP.Services.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos;
+
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
 using GestionPlaneacionDidacticaAPP.Services.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
@@ -24,6 +27,7 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Subtemas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
+using GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
 using GestionPlaneacionDidacticaAPP.Interfaces.Competencias;
@@ -88,14 +92,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmActividadEnseñanzaInsert>();
             FicContainerBuilder.RegisterType<FicVmActividadEnseñanzaUpdate>();
 
-
-            ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
-            //FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
-            //FicContainerBuilder.RegisterType<FicVmCatEdificiosInsert>();
-            //FicContainerBuilder.RegisterType<FicVmCatEdificiosUpdate>();
-            //FicContainerBuilder.RegisterType<FicVmCatEdificiosView>();
-            //FicContainerBuilder.RegisterType<FicVmCatEdificiosImportarExportar>();
-
             FicContainerBuilder.RegisterType<FicVmEnseñanzaList>();
             FicContainerBuilder.RegisterType<FicVmEnseñanzaInsert>();
             FicContainerBuilder.RegisterType<FicVmEnseñanzaUpdate>();
@@ -105,6 +101,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionInsert>();
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionView>();
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionUpdate>();
+
+            FicContainerBuilder.RegisterType<FicVmAprendizajesList>();
+            FicContainerBuilder.RegisterType<FicVmAprendizajesInsert>();
 
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
@@ -119,6 +118,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             //Criterios
             FicContainerBuilder.RegisterType<FicSrvCriteriosEvaluacion>().As<IFicSrvCriteriosEvaluacion>().SingleInstance();
+            //Aprendizajes
+            FicContainerBuilder.RegisterType<FicSrvAprendizajes>().As<IFicSrvAprendizajes>().SingleInstance();
+
             //apoyos didacticos
             FicContainerBuilder.RegisterType<SrvApoyosDidacticos>().As<ISrvApoyosDidacticos>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacion>().As<FicISrvPlaneacion>().SingleInstance();
@@ -127,16 +129,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             //competencias
             FicContainerBuilder.RegisterType<FicSrvCompetencias>().As<IFicSrvCompetencias>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionApoyos>().As<IFicSrvPlaneacionApoyos>().SingleInstance();
-            //FicContainerBuilder.RegisterType<FicSrvCatEdificiosList>().As<IFicSrvCatEdificiosList>().SingleInstance();
-            //FicContainerBuilder.RegisterType<FicSrvCatEdificiosInsert>().As<IFicSrvCatEdificiosInsert>().SingleInstance();
-            //FicContainerBuilder.RegisterType<FicSrvCatEdificiosUpdate>().As<IFicSrvCatEdificiosUpdate>().SingleInstance();
-            //FicContainerBuilder.RegisterType<FicSrvCatEdificiosImportarExportar>().As<IFicSrvCatEdificiosImportarExportar>().SingleInstance();
-            ////FicContainerBuilder.RegisterType<FicSrvInventariosList>().As<IFicSrvInventariosList>().SingleInstance();
-            ////FicContainerBuilder.RegisterType<FicSrvInventariosConteosItem>().As<IFicSrvInventariosConteosItem>().SingleInstance();
-            ////FicContainerBuilder.RegisterType<FicSrvInventariosConteoList>().As<IFicSrvInventariosConteoList>().SingleInstance();
-            ////FicContainerBuilder.RegisterType<FicSrvInventarioAcumuladoList>().As<IFicSrvInventarioAcumuladoList>().SingleInstance();
-            ////FicContainerBuilder.RegisterType<FicSrvImportarWebApi>().As<IFicSrvImportarWebApi>().SingleInstance();
-            ////FicContainerBuilder.RegisterType<FicSrvExportarWebApi>().As<IFicSrvExportarWebApi>().SingleInstance();
+           
             FicContainerBuilder.RegisterType<FicSrvPlaneacionUpdate>().As<IFicSrvPlaneacionUpdate>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionView>().As<IFicSrvPlaneacionView>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvPlaneacionGuardarComo>().As<IFicSrvGuardarComo>().SingleInstance();
@@ -325,59 +318,17 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             get { return FicIContainer.Resolve<FicVmActividadEnseñanzaUpdate>(); }
         }
 
+        public FicVmAprendizajesList FicVmAprendizajesList
+        {
+            get { return FicIContainer.Resolve<FicVmAprendizajesList>(); }
+        }
 
-        //public FicVmCatEdificiosInsert FicVmCatEdificiosInsert
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosInsert>(); }
-        //}
+        public FicVmAprendizajesInsert FicVmAprendizajesInsert
+        {
+            get { return FicIContainer.Resolve<FicVmAprendizajesInsert>(); }
+        }
+        
 
-        //public FicVmCatEdificiosUpdate FicVmCatEdificiosUpdate
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosUpdate>(); }
-        //}
-
-        //public FicVmCatEdificiosView FicVmCatEdificiosView
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosView>(); }
-        //}
-
-        //public FicVmCatEdificiosImportarExportar FicVmCatEdificiosImportarExportar
-        //{
-        //    get { return FicIContainer.Resolve<FicVmCatEdificiosImportarExportar>(); }
-        //}
-
-        //Agregar el de nuevo, agregar el de eliminar, agregar el de actualizar, agregar detralle
-
-
-        ////public FicVmInventariosList FicVmInventariosList
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventariosList>(); }
-        ////}
-
-        ////public FicVmInventarioConteoList FicVmInventarioConteoList
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventarioConteoList>(); }
-        ////}
-
-        ////public FicVmInventarioConteosItem FicVmInventarioConteosItem
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventarioConteosItem>(); }
-        ////}
-
-        ////public FicVmInventarioAcumuladoList FicVmInventarioAcumuladoList
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmInventarioAcumuladoList>(); }
-        ////}
-
-        ////public FicVmImportarWebApi FicVmImportarWebApi
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmImportarWebApi>(); }
-        ////}
-
-        ////public FicVmExportarWebApi FicVmExportarWebApi
-        ////{
-        ////    get { return FicIContainer.Resolve<FicVmExportarWebApi>(); }
-        ////}
 
 
     }//CLASS

@@ -28,7 +28,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelAsignatura;
-        private int _LabelTema;
+        private string _LabelTema;
 
         private ICommand _FicMetRegesarCompetenciasListICommand;
 
@@ -91,7 +91,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             }
         }
 
-        public int LabelTema
+        public string LabelTema
         {
             get { return _LabelTema; }
             set
@@ -198,12 +198,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         public async void OnAppearing()
         {
             var source_eva_planeacion_temas_competencias = FicNavigationContextC[0] as eva_planeacion_temas_competencias;
-            //var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
+            var source_eva_planeacion_temas = FicNavigationContextC[1] as eva_planeacion_temas;
 
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion_temas_competencias.IdPlaneacion;
-            _LabelTema = source_eva_planeacion_temas_competencias.IdTema;
+            _LabelTema = source_eva_planeacion_temas.DesTema;
             _LabelCompetencia = source_eva_planeacion_temas_competencias.IdCompetencia;
 
             _LabelObservaciones = source_eva_planeacion_temas_competencias.Observaciones;
@@ -245,7 +245,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(FicNavigationContextC[1]);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1] });
+                
             }
             catch (Exception e)
             {

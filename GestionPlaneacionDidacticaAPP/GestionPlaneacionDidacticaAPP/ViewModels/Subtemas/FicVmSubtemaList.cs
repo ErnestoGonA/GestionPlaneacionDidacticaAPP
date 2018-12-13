@@ -35,7 +35,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelIdAsignatura;
-        private int _LabelIdTema;
+        private string _LabelIdTema;
 
         //Valor mandado de view padre a hija
         public object FicNavigationContextC { get; set; }
@@ -89,7 +89,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
-        public int LabelIdTema
+        public string LabelIdTema
         {
             get { return _LabelIdTema; }
             set
@@ -191,7 +191,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                     _LabelUsuario = FicGlobalValues.USUARIO;
                     _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
                     _LabelIdPlaneacion = source_eva_planeacion_temas.IdPlaneacion;
-                    _LabelIdTema = source_eva_planeacion_temas.IdTema;
+                    _LabelIdTema = source_eva_planeacion_temas.DesTema;
 
                     RaisePropertyChanged("LabelUsuario");
                     RaisePropertyChanged("LabelIdAsignatura");
