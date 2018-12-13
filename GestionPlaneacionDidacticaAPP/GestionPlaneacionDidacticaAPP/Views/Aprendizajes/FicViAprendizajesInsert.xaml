@@ -1,28 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-              xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesList">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem 
-            Name="Nuevo Aprendizaje"
-             Command="{Binding FicMetAddAprendizajesICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Editar Criterio"
-             Command="{Binding FicMetUpdateCriteriosEvaluacionICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Detalle Criterio"
-            Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Borrar Criterio"
-            Command="{Binding FicMetRemoveCriteriosEvaluacionICommand}">
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
-
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesInsert">
     <ContentPage.Content>
         <ScrollView>
 
@@ -59,25 +38,24 @@
                     </StackLayout>
                 </StackLayout>
 
-                <SearchBar
-                    HorizontalOptions="FillAndExpand"
-                    Placeholder="Filtrar informacion..."
-                    PlaceholderColor="Red"
-                    x:Name="SearchBar"
-                    TextChanged="OnFilterTextChange">
-                </SearchBar>
-                <syncfusion:SfDataGrid
-                    VerticalOptions="FillAndExpand"
-                    ColumnSizer="Star"
-                    AutoGenerateColumns="False"
-                    AllowSorting="False"
-                    ItemsSource="{Binding SFDataGrid_ItemSource_Aprendizajes}"
-                    SelectedItem="{Binding SFDataGrid_SelectedItem_Aprendizajes}"
-                    SelectionMode="Single">
-                    <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                        <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
-                    </syncfusion:SfDataGrid.Columns>
-                </syncfusion:SfDataGrid>
+                <StackLayout>
+                    <Label Text="Insertar aprendizaje"></Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Observaciones" FontAttributes="Bold"></Label>
+                        <Editor Text="{Binding _LabelObservaciones}" HeightRequest="75" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Editor>
+                    </StackLayout>
+                </StackLayout>
+                
+                
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                    <Button Text="Cancelar" Command="{Binding MetRegresarAprendizajesListICommand}"/>
+                </StackLayout>
+
 
             </StackLayout>
         </ScrollView>

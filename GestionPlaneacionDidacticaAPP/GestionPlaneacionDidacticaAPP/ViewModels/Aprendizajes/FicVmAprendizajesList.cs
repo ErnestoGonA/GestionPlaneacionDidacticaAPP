@@ -178,8 +178,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
 
         private void FicMetAddAprendizaje()
         {
-            //TODO change to add
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(FicNavigationContextC);
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesInsert>(FicNavigationContextC);
         }
 
         public ICommand FicMetViewCriteriosEvaluacionICommand
