@@ -21,6 +21,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
     {
         //Data of the grid
         public ObservableCollection<eva_planeacion> _SFDataGrid_ItemSource_Planeacion;
+        public List<eva_planeacion> _SFDataGrid_ItemSource_Planeacion_AUX;
         public eva_planeacion _SFDataGrid_SelectedItem_Planeacion;
         public List<string> _ListAsignatura;
         public string _Usuario, _Asignatura,_PeriodoItem;
@@ -52,6 +53,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             this.IFicSrvPlaneacionUpdate = IFicSrvPlaneacionUpdate;
 
             _SFDataGrid_ItemSource_Planeacion = new ObservableCollection<eva_planeacion>();
+            _SFDataGrid_ItemSource_Planeacion_AUX = new List<eva_planeacion>();
             _ListAsignatura = GetListAsignatura().Result;
             _Periodos = GetListPeriodos().Result;
         }
@@ -390,6 +392,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                         {
                             planeacionCount++;
                             _SFDataGrid_ItemSource_Planeacion.Add(apoyosdidacticos);
+                            _SFDataGrid_ItemSource_Planeacion_AUX.Add(apoyosdidacticos);
+
+
                         }
                         int i = 0;
                         foreach (eva_planeacion apoyosdidacticos in source_local_inv)
@@ -416,6 +421,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }//Sobrecarga el metodo OnAppearing() de la view
+
+        internal void FilterTextChange(string newTextValue)
+        {
+            _SFDataGrid_ItemSource_Planeacion.Clear();
+            foreach (eva_planeacion planeacion in _SFDataGrid_ItemSource_Planeacion_AUX)
+            {
+                if (planeacion.ReferenciaNorma.Contains(newTextValue)
+                    ||planeacion.Revision.Contains(newTextValue)
+                    ||planeacion.AportacionPerfilEgreso.Contains(newTextValue)
+                    ||planeacion.CompetenciaAsignatura.Contains(newTextValue))
+                {
+                    _SFDataGrid_ItemSource_Planeacion.Add(planeacion);
+                }
+            }
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

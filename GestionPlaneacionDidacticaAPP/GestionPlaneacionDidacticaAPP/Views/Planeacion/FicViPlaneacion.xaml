@@ -65,13 +65,15 @@
             <StackLayout Orientation="Horizontal">
                 <Button Text="Guardar como..." Command="{Binding GuardarComoCommand}" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
+            
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
                 PlaceholderColor="Red"
                 x:Name="SearchBar"
-                >
+                TextChanged="OnFilterTextChange">
             </SearchBar>
+            
             <syncfusion:SfDataGrid
                 VerticalOptions="FillAndExpand"
                 ColumnSizer="Star"
