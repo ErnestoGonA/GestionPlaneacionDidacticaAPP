@@ -44,8 +44,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Subtemas
                 var subtemas = await (from subtema in DBLoContext.eva_planeacion_subtemas
                                       where subtema.IdAsignatura == Subtema.IdAsignatura
                                       where subtema.IdPlaneacion == Subtema.IdPlaneacion
-                                      where subtema.IdTema == Subtema.IdTema                                      
-                                      select subtema).ToListAsync();
+                                      where subtema.IdTema == Subtema.IdTema
+                                      select subtema).AsNoTracking().ToListAsync();
                 short maxId = 0;
                 if (subtemas.Count() > 0) {
                     maxId = (from subtema in DBLoContext.eva_planeacion_subtemas
@@ -56,7 +56,6 @@ namespace GestionPlaneacionDidacticaAPP.Services.Subtemas
                 }
 
                 Subtema.IdSubtema = ++maxId;
-                DBLoContext.Entry(Subtema).State = EntityState.Detached;
                 await DBLoContext.AddAsync(Subtema);
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar subtema";
                 DBLoContext.Entry(Subtema).State = EntityState.Detached;
@@ -72,7 +71,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Subtemas
         {
             try
             {
-                DBLoContext.Entry(Subtema).State = EntityState.Modified;
+                DBLoContext.eva_planeacion_subtemas.Update(Subtema);
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar Subtema";
                 DBLoContext.Entry(Subtema).State = EntityState.Detached;
                 return res;
