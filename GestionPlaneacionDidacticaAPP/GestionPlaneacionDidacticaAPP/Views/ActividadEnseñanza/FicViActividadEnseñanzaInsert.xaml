@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.ActividadEnseñanza.FicViActividadEnseñanzaInsert">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Regresar"
+            Command="{Binding FicMetRegresarPlaneacionICommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10" BackgroundColor="LightGray" Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Insertar actividad enseñanza " FontAttributes="Bold" FontSize="Large" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Descripción de actividad: " FontAttributes="Bold" />
+                    <Entry Text="{Binding DesActividadEnseñanza}" FontSize="Micro" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Guardar" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Cancelar" Command="{Binding FicMetRegresarPlaneacionICommand}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
