@@ -24,6 +24,10 @@
             Name="Temas"
             Command="{Binding FicMetNavigateToTemasICommand}">
         </ToolbarItem>
+        <ToolbarItem
+            Name="Apoyos"
+            Command="{Binding FicMetNavigateToApoyosICommand}">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10"

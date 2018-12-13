@@ -2,43 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetencias"
-             Title="Catologo Planeacion_Temas_Competencias">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos.FicViPlaneacionApoyosList"
+             Title="Catologo Planeacion_Apoyos">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Planeacion_Temas_Competencias"
-            Command="{Binding FicMetAddCompetenciaICommand}">
+            Name="Nueva Planeacion_Apoyos"
+            Command="{Binding FicMetAddPlaneacionApoyoICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Planeacion_Temas_Competencias"
+            Name="Editar Planeacion_Apoyos"
             Command="{Binding FicMetUpdateCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Planeacion_Temas_Competencias"
+            Name="Detalle Planeacion_Apoyos"
             Command="{Binding FicMetViewCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Planeacion_Temas_Competencias"
+            Name="Borrar Planeacion_Apoyos"
             Command="{Binding FicMetRemoveCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Aprendizajes"
-            Command="{Binding FicMetAprendizajesICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Enseñanzas"
-            Command="{Binding FicMetEnseñanzasICommand}">
-        </ToolbarItem>
-        <ToolbarItem
-            Name="Criterios"
-            Command="{Binding FicMetCriteriosICommand}">
+            Name="Agregar Nuevo Apoyo Didactico"
+            Command="{Binding MetPlaneacionApoyosICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout Padding="10"
             >
-            
+
             <StackLayout>
                 <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
@@ -52,12 +44,8 @@
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="Tema: " FontAttributes="Bold"></Label>
-                    <Label Text="{Binding LabelIdTema}"></Label>
-                </StackLayout>
             </StackLayout>
-            
+
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
@@ -70,14 +58,15 @@
                 ColumnSizer="Star"
                 AutoGenerateColumns="False"
                 AllowSorting="False"
-                ItemsSource="{Binding SFDataGrid_ItemSource_Competencias}"
-                SelectedItem="{Binding SFDataGrid_SelectedItem_Competencias}"
+                ItemsSource="{Binding SFDataGrid_ItemSource_Planeacion_Apoyos}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_Planeacion_Apoyos}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdPlaneacionTemasCompetencias"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID Planeacion" MappingName="IdPlaneacion"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID Aooyo Didactico" MappingName="IdApoyoDidactico"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>
     </ContentPage.Content>
+    
 </ContentPage>

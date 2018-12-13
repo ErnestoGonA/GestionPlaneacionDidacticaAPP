@@ -13,6 +13,7 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using System.Threading.Tasks;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -33,7 +34,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
         //Navigation to lists
-        private ICommand _FicMetNavigateToTemasICommand;
+        private ICommand _FicMetNavigateToTemasICommand, _FicMetNavigateToApoyosICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -318,13 +319,27 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                             
         }
 
+        public ICommand FicMetNavigateToApoyosICommand
+        {
+            get { return _FicMetNavigateToApoyosICommand = _FicMetNavigateToApoyosICommand ?? new FicVmDelegateCommand(FicMetNavigateToApoyos); }
+        }
+
+        public void FicMetNavigateToApoyos()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosList>(SFDataGrid_SelectedItem_Planeacion);
+            }
+
+        }
+
         public ICommand FiltrarPlantillaCommand
         {
             get { return _FiltrarPlantillaCommand = _FiltrarPlantillaCommand ?? new FicVmDelegateCommand(FicMetFiltrarPlantilla); }
         }
         public async void FicMetFiltrarPlantilla()
         {
-            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(Int16)(FicGlobalValues.ASIGNATURA_INDEX+1));
+            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(Int16)(FicGlobalValues.PERIODO_INDEX+1));
             if (source_local_inv != null)
             {
                 _SFDataGrid_ItemSource_Planeacion.Clear();
@@ -366,7 +381,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
                 if (!Filtrado)
                 {
-                    var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacion();
+                    var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX + 1, _Plantilla, (Int16)(FicGlobalValues.PERIODO_INDEX + 1));
                     if (source_local_inv != null)
                     {
                         _SFDataGrid_ItemSource_Planeacion.Clear();

@@ -16,6 +16,8 @@ using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos;
 
 using System;
 using System.Collections.Generic;
@@ -83,6 +85,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             { typeof(FicVmCompetenciasInsert),typeof(FicViCompetenciasInsert) },
             { typeof(FicVmCompetenciasView),typeof(FicViCompetenciasView) },
             { typeof(FicVmCompetenciasUpdate),typeof(FicViCompetenciasUpdate) },
+
+            { typeof(FicVmPlaneacionApoyosList),typeof(FicViPlaneacionApoyosList) },
+            { typeof(FicVmPlaneacionApoyosInsert),typeof(FicViPlaneacionApoyosInsert) },
 
         };
 

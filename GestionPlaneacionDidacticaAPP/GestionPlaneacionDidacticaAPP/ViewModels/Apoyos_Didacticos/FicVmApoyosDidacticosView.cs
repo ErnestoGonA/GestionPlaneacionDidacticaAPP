@@ -30,10 +30,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
         //Valor mandado de view padre a hija
         public object FicNavigationContextC { get; set; }
 
-        public FicVmApoyosDidacticosView(IFicSrvNavigationInventario IFicSrvNavigationInventario, ISrvApoyosDidacticos ISrvApoyosDidacticos)
+        public FicVmApoyosDidacticosView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
-            this.ISrvApoyosDidacticos = ISrvApoyosDidacticos;
+            //this.ISrvApoyosDidacticos = ISrvApoyosDidacticos;
         }
 
         public short LabelIdApoyoDidactico

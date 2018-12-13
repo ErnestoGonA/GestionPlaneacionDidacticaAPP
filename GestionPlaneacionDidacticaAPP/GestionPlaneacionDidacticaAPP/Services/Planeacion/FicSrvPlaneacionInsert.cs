@@ -25,6 +25,21 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
         {
             try
             {
+                var planeacion = await (from pla in dBContext.eva_planeacion
+                                   where pla.IdAsignatura == eva_planeacion.IdAsignatura
+                                   where pla.IdPeriodo == eva_planeacion.IdPeriodo
+                                   select pla).ToListAsync();
+
+                int maxId = 0;
+                if (planeacion.Count() > 0)
+                {
+                    maxId = (from pla in dBContext.eva_planeacion
+                             where pla.IdAsignatura == eva_planeacion.IdAsignatura
+                             where pla.IdPlaneacion == eva_planeacion.IdPlaneacion
+                             select pla.IdPlaneacion).Max();
+                }
+
+                eva_planeacion.IdPlaneacion = ++maxId;
                 await dBContext.AddAsync(eva_planeacion);
                 var res = await dBContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL INSERTAR UNA PLANEACION";
                 dBContext.Entry(eva_planeacion).State = EntityState.Detached;

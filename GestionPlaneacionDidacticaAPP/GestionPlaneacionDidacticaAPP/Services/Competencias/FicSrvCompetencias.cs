@@ -38,7 +38,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
             try
             {
                 await DBLoContext.AddAsync(Compe);
-                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL ISNERTA LA COMPETENCIA";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR LA COMPETENCIA";
                 DBLoContext.Entry(Compe).State = EntityState.Detached;
                 return res;
             }
