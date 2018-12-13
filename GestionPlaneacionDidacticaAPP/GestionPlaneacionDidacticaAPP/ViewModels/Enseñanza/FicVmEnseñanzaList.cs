@@ -33,6 +33,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         //Navigation to lists
         private ICommand _FicMetNavigateToTemasICommand;
 
+
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvEnseñanzaList IFicSrvEnseñanzaList;
@@ -156,7 +157,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
                 if (ask)
                 {
-                    /*var res = await FicISrvPlaneacion.FicMetRemovePlaneacion(SFDataGrid_SelectedItem_Enseñanza);
+                    eva_planeacion_enseñanza aux = SFDataGrid_SelectedItem_Enseñanza.eva_planeacion_enseñanza;
+                    var res = await IFicSrvEnseñanzaList.FicMetRemoveEnseñanza(aux);
                     if (res == "OK")
                     {
                         IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaList>();
@@ -164,7 +166,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                     else
                     {
                         await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
-                    }*/
+                    }
                 }
             }
         }

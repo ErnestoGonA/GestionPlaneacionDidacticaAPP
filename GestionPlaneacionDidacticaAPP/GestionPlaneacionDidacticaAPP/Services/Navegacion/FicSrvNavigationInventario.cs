@@ -29,6 +29,8 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
 using GestionPlaneacionDidacticaAPP.Views.Competencias;
+using GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.Views.ActividadEnseñanza;
 
 namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 {
@@ -70,6 +72,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmEnseñanzaInsert),typeof(FicViEnseñanzaInsert) },
             {typeof(FicVmEnseñanzaUpdate),typeof(FicViEnseñanzaUpdate) },
             {typeof(FicVmEnseñanzaDetalle),typeof(FicViEnseñanzaDetalle) },
+
+            {typeof(FicVmActividadEnseñanza),typeof(FicViActividadEnseñanza) },
+            {typeof(FicVmActividadEnseñanzaInsert),typeof(FicViActividadEnseñanzaInsert) },
 
             {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
             {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },
