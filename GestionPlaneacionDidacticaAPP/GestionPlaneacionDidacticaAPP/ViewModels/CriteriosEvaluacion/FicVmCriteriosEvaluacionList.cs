@@ -177,7 +177,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         private void FicMetAddCriterioEvaluacion()
         {
-            //var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>(FicNavigationContextC);
         }
 
