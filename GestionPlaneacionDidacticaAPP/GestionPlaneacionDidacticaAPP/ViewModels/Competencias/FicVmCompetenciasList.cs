@@ -21,6 +21,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
     {
         //Data of the grid
         public ObservableCollection<eva_planeacion_temas_competencias> _SFDataGrid_ItemSource_Competencias;
+        public List<eva_planeacion_temas_competencias> _SFDataGrid_ItemSource_Competencias_AUX;
         public eva_planeacion_temas_competencias _SFDataGrid_SelectedItem_Competencias;
 
         //Buttons
@@ -46,6 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             this.IFicSrvAsignatura = ificSrvAsignatura;
 
             _SFDataGrid_ItemSource_Competencias = new ObservableCollection<eva_planeacion_temas_competencias>();
+            _SFDataGrid_ItemSource_Competencias_AUX = new List<eva_planeacion_temas_competencias>();
         }
 
         public ObservableCollection<eva_planeacion_temas_competencias> SFDataGrid_ItemSource_Competencias
@@ -247,6 +249,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                         foreach (eva_planeacion_temas_competencias competencias in source_local_inv1)
                         {
                             _SFDataGrid_ItemSource_Competencias.Add(competencias);
+                            _SFDataGrid_ItemSource_Competencias_AUX.Add(competencias);
                         }
                     }
                 }
@@ -258,6 +261,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                         foreach (eva_planeacion_temas_competencias competencias in source_local_inv2)
                         {
                             _SFDataGrid_ItemSource_Competencias.Add(competencias);
+                            _SFDataGrid_ItemSource_Competencias_AUX.Add(competencias);
                         }
                     }//Llenar el grid
                 }
@@ -267,6 +271,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }//Sobrecarga el metodo OnAppearing() de la view
+
+        internal void FilterTextChange(string newTextValue)
+        {
+            _SFDataGrid_ItemSource_Competencias.Clear();
+            foreach (eva_planeacion_temas_competencias competencia in _SFDataGrid_ItemSource_Competencias_AUX)
+            {
+                if (competencia.Observaciones.Contains(newTextValue))
+                {
+                    _SFDataGrid_ItemSource_Competencias.Add(competencia);
+                }
+            }
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

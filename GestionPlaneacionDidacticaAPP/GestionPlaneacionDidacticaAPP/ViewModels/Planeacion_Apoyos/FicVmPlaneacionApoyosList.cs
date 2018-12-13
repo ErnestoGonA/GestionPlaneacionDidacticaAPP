@@ -182,6 +182,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
             }
         }//Sobrecarga el metodo OnAppearing() de la view
 
+        
+
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

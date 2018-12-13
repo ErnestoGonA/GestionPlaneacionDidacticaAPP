@@ -18,6 +18,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
     {
         //Data of the grid
         public ObservableCollection<eva_cat_apoyos_didacticos> _SFDataGrid_ItemSource_ApoyosDidacticos;
+        public List<eva_cat_apoyos_didacticos> _SFDataGrid_ItemSource_ApoyosDidacticos_AUX;
         public eva_cat_apoyos_didacticos _SFDataGrid_SelectedItem_ApoyosDidacticos;
 
         //Buttons
@@ -33,6 +34,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
             ISrvApoyosDidacticos = srvApoyosDidacticos;
 
             _SFDataGrid_ItemSource_ApoyosDidacticos = new ObservableCollection<eva_cat_apoyos_didacticos>();
+            _SFDataGrid_ItemSource_ApoyosDidacticos_AUX = new List<eva_cat_apoyos_didacticos>();
         }
 
         public ObservableCollection<eva_cat_apoyos_didacticos> SFDataGrid_ItemSource_ApoyosDidacticos
@@ -144,6 +146,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
                     foreach (eva_cat_apoyos_didacticos apoyosdidacticos in source_local_inv)
                     {
                         _SFDataGrid_ItemSource_ApoyosDidacticos.Add(apoyosdidacticos);
+                        _SFDataGrid_ItemSource_ApoyosDidacticos_AUX.Add(apoyosdidacticos);
                     }
                 }//Llenar el grid
             }
@@ -152,6 +155,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }//Sobrecarga el metodo OnAppearing() de la view
+
+        internal void FilterTextChange(string newTextValue)
+        {
+            //_SFDataGrid_ItemSource_ApoyosDidacticos.Clear();
+            //foreach (eva_planeacion_apoyos apoyo in _SFDataGrid_ItemSource_ApoyosDidacticos_AUX)
+            //{
+            //    if (apoyo.)
+            //    {
+            //        _SFDataGrid_ItemSource_Temas.Add(tema);
+            //    }
+            //}
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

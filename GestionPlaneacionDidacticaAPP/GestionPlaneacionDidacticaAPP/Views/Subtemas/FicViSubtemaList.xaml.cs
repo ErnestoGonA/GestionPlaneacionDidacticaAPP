@@ -38,6 +38,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Subtemas
                 FicViewModel.OnAppearing();
             }
         }
+        private async void OnFilterTextChange(object sender, TextChangedEventArgs e)
+        {
+            var FicViewModel = BindingContext as FicVmSubtemaList;
+            FicViewModel.FilterTextChange(e.NewTextValue);
+        }
 
     }//
 }

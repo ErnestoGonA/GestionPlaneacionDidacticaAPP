@@ -38,5 +38,10 @@ namespace GestionPlaneacionDidacticaAPP.Views.Competencias
                 FicViewModel.OnAppearing();
             }
         }
+        private async void OnFilterTextChange(object sender, TextChangedEventArgs e)
+        {
+            var FicViewModel = BindingContext as FicVmCompetenciasList;
+            FicViewModel.FilterTextChange(e.NewTextValue);
+        }
     }
 }

@@ -33,7 +33,7 @@
                 Placeholder="Filtrar informacion..."
                 PlaceholderColor="Red"
                 x:Name="SearchBar"
-                >
+                TextChanged="OnFilterTextChange">
             </SearchBar>
             <syncfusion:SfDataGrid
                 VerticalOptions="FillAndExpand"
