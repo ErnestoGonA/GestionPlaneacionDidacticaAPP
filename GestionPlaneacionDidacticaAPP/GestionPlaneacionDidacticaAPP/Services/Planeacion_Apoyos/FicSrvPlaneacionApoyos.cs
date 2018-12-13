@@ -47,12 +47,12 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion_Apoyos
 
                 if (papoyosid.Count() > 0)
                 {
-                    return "Ok";
+                    return "OK";
                 }
                 else
                 {
                     await DBLoContext.AddAsync(Apoyo);
-                    var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR APOYOPLANEACION";
+                    var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL INSERTAR APOYOPLANEACION";
                     DBLoContext.Entry(Apoyo).State = EntityState.Detached;
                     return res;
 
