@@ -51,7 +51,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 
                     //new FicMasterPageMenuItem { Id = 1, Title="Temas",Icon ="ficAlmacen20x20.png",FicPageName="ViTemasList",TargetType = typeof(ViTemasList)},
 
-                    new FicMasterPageMenuItem { Id = 2, Title="Criterios",Icon ="ficAlmacen20x20.png",FicPageName="ViCriteriosEvaluacionList",TargetType = typeof(ViCriteriosEvaluacionList)},
+                    //new FicMasterPageMenuItem { Id = 2, Title="Criterios",Icon ="ficAlmacen20x20.png",FicPageName="ViCriteriosEvaluacionList",TargetType = typeof(ViCriteriosEvaluacionList)},
 
                     new FicMasterPageMenuItem { Id = 3, Title = "PlaneacionApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="FicViPlaneacionApoyosList", TargetType = typeof(FicViPlaneacionApoyosList)},
 
@@ -65,8 +65,8 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     //                            FicPageName ="FicViCompetencias",
                     //                            TargetType = typeof(FicViCompetencias)
                     //                            },
-                    new FicMasterPageMenuItem {Id = 5, Title = "Subtemas",Icon ="ficAlmacen20x20.png",
-                                               FicPageName ="FicViSubtemasList",TargetType = typeof(FicViSubtemasList)}
+                    //new FicMasterPageMenuItem {Id = 5, Title = "Subtemas",Icon ="ficAlmacen20x20.png",
+                    //                           FicPageName ="FicViSubtemasList",TargetType = typeof(FicViSubtemasList)}
                 });
 
             }//CONSTRUCTOR

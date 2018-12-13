@@ -186,6 +186,9 @@ namespace GestionPlaneacionDidacticaAPP.Models
         public int IdPlaneacion { get; set; }
         public Int16 IdApoyoDidactico { get; set; }
 
+        [StringLength(1000)]
+        public string Observaciones { get; set; }
+
         public DateTime FechaReg { get; set; }
         [StringLength(20)]
         public string UsuarioReg { get; set; }
@@ -279,6 +282,9 @@ namespace GestionPlaneacionDidacticaAPP.Models
         public Int16 IdTema { get; set; }
         public int IdCompetencia { get; set; }
         public int IdActividadAprendizaje { get; set; }
+
+        [StringLength(1000)]
+        public string Observaciones { get; set; }
 
         public DateTime FechaReg { get; set; }
         [StringLength(20)]

@@ -11,23 +11,24 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
-using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Aprendizajes;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
 
-namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
+namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
 {
-    public class FicVmCriteriosEvaluacionList: INotifyPropertyChanged
+    public class FicVmAprendizajesList: INotifyPropertyChanged
     {
 
         //Data of the grid
-        public ObservableCollection<eva_planeacion_criterios_evalua> _SFDataGrid_ItemSource_CriteriosEvaluacion;
-        public List<eva_planeacion_criterios_evalua> _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX;
-        public eva_planeacion_criterios_evalua _SFDataGrid_SelectedItem_CriteriosEvaluacion;
+        public ObservableCollection<eva_planeacion_aprendizaje> _SFDataGrid_ItemSource_Aprendizajes;
+        public List<eva_planeacion_aprendizaje> _SFDataGrid_ItemSource_Aprendizajes_AUX;
+        public eva_planeacion_aprendizaje _SFDataGrid_SelectedItem_Aprendizajes;
 
+        
         //Buttons
-        private ICommand _FicMetAddCriterioEvaluacionICommand, _FicMetUpdateCriteriosEvaluacionICommand, _FicMetViewCriteriosEvaluacionICommand, _FicMetRemoveCriteriosEvaluacionICommand;
+        private ICommand _FicMetAddAprendizajeICommand, _FicMetUpdateAprendizajeICommand, _FicMetViewAprendizajeICommand, _FicMetRemoveAprendizajeICommand;
 
         //Labels
         private string _LabelUsuario;
@@ -39,51 +40,51 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
-        private IFicSrvCriteriosEvaluacion IFicSrvCriteriosEvaluacion;
+        private IFicSrvAprendizajes IFicSrvAprendizajes;
         private FicISrvPlaneacion IFicSrvPlaneacion;
 
         private IFicSrvAsignatura IFicSrvAsignatura;
         private IFicSrvTemas IFicSrvTemas;
-        //private IFicSrvCompetencia IFicSrvCompetencia;
+        
 
         public object[] FicNavigationContextC { get; set; }
 
-        public FicVmCriteriosEvaluacionList(IFicSrvNavigationInventario ficSrvNavigationInventario,
+        public FicVmAprendizajesList(IFicSrvNavigationInventario ficSrvNavigationInventario,
             IFicSrvTemas srvTemas,
             IFicSrvAsignatura srvAsignatura,
             FicISrvPlaneacion iFicSrvPlaneacion,
-            IFicSrvCriteriosEvaluacion ficSrvCriteriosEvaluacion)
+            IFicSrvAprendizajes ficSrvAprendizajes)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvTemas = srvTemas;
             IFicSrvAsignatura = srvAsignatura;
             IFicSrvPlaneacion = iFicSrvPlaneacion;
-            IFicSrvCriteriosEvaluacion = ficSrvCriteriosEvaluacion;
+            IFicSrvAprendizajes = ficSrvAprendizajes;
 
-            _SFDataGrid_ItemSource_CriteriosEvaluacion = new ObservableCollection<eva_planeacion_criterios_evalua>();
-            _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX = new List<eva_planeacion_criterios_evalua>();
+            _SFDataGrid_ItemSource_Aprendizajes = new ObservableCollection<eva_planeacion_aprendizaje>();
+            _SFDataGrid_ItemSource_Aprendizajes_AUX = new List<eva_planeacion_aprendizaje>();
 
         }
 
-        public ObservableCollection<eva_planeacion_criterios_evalua> SFDataGrid_ItemSource_CriteriosEvaluacion
+        public ObservableCollection<eva_planeacion_aprendizaje> SFDataGrid_ItemSource_Aprendizajes
         {
             get
             {
-                return _SFDataGrid_ItemSource_CriteriosEvaluacion;
+                return _SFDataGrid_ItemSource_Aprendizajes;
             }
         }
 
-        public eva_planeacion_criterios_evalua SFDataGrid_SelectedItem_CriteriosEvaluacion
+        public eva_planeacion_aprendizaje SFDataGrid_SelectedItem_Aprendizajes
         {
             get
             {
-                return _SFDataGrid_SelectedItem_CriteriosEvaluacion;
+                return _SFDataGrid_SelectedItem_Aprendizajes;
             }
             set
             {
                 if (value != null)
                 {
-                    _SFDataGrid_SelectedItem_CriteriosEvaluacion = value;
+                    _SFDataGrid_SelectedItem_Aprendizajes = value;
                     RaisePropertyChanged();
                 }
             }
@@ -167,56 +168,58 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public ICommand FicMetAddCriterioEvaluacionICommand
+        public ICommand FicMetAddAprendizajesICommand
         {
             get
             {
-                return _FicMetAddCriterioEvaluacionICommand = _FicMetAddCriterioEvaluacionICommand ?? new FicVmDelegateCommand(FicMetAddCriterioEvaluacion);
+                return _FicMetAddAprendizajeICommand = _FicMetAddAprendizajeICommand ?? new FicVmDelegateCommand(FicMetAddAprendizaje);
             }
         }
 
-        private void FicMetAddCriterioEvaluacion()
+        private void FicMetAddAprendizaje()
         {
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>(FicNavigationContextC);
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesInsert>(FicNavigationContextC);
         }
 
         public ICommand FicMetViewCriteriosEvaluacionICommand
         {
             get
             {
-                return _FicMetViewCriteriosEvaluacionICommand = _FicMetViewCriteriosEvaluacionICommand ?? new FicVmDelegateCommand(FicMetViewCriteriosEvaluacion);
+                return _FicMetViewAprendizajeICommand = _FicMetViewAprendizajeICommand ?? new FicVmDelegateCommand(FicMetViewAprendizaje);
             }
         }
 
-        private void FicMetViewCriteriosEvaluacion()
+        private void FicMetViewAprendizaje()
         {
-            if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
+            if (_SFDataGrid_SelectedItem_Aprendizajes != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionView>(new object[] {
+                //TODO change to view
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] {
                     FicNavigationContextC[0],
                     FicNavigationContextC[1],
                     FicNavigationContextC[2],
-                    SFDataGrid_SelectedItem_CriteriosEvaluacion });
+                    SFDataGrid_SelectedItem_Aprendizajes });
             }
         }
 
-        public ICommand FicMetUpdateCriteriosEvaluacionICommand
+        public ICommand FicMetUpdateAprendizajeICommand
         {
             get
             {
-                return _FicMetUpdateCriteriosEvaluacionICommand = _FicMetUpdateCriteriosEvaluacionICommand ?? new FicVmDelegateCommand(FicMetUpdateCriteriosEvaluacion);
+                return _FicMetUpdateAprendizajeICommand = _FicMetUpdateAprendizajeICommand ?? new FicVmDelegateCommand(FicMetUpdateAprendizaje);
             }
         }
 
-        private void FicMetUpdateCriteriosEvaluacion()
+        private void FicMetUpdateAprendizaje()
         {
-            if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
+            if (SFDataGrid_SelectedItem_Aprendizajes != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] {
+                //TODO change to update
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] {
                     FicNavigationContextC[0],
                     FicNavigationContextC[1],
                     FicNavigationContextC[2],
-                    SFDataGrid_SelectedItem_CriteriosEvaluacion });
+                    SFDataGrid_SelectedItem_Aprendizajes });
             }
         }
 
@@ -224,23 +227,22 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             get
             {
-                return _FicMetRemoveCriteriosEvaluacionICommand = _FicMetRemoveCriteriosEvaluacionICommand ?? new FicVmDelegateCommand(FicMetRemoveCriteriosEvaluacion);
+                return _FicMetRemoveAprendizajeICommand = _FicMetRemoveAprendizajeICommand ?? new FicVmDelegateCommand(FicMetRemoveAprendizaje);
             }
         }
 
-        private async void FicMetRemoveCriteriosEvaluacion()
+        private async void FicMetRemoveAprendizaje()
         {
-            if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
+            if (SFDataGrid_SelectedItem_Aprendizajes != null)
             {
 
                 var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
                 if (ask)
                 {
-                    var res = await IFicSrvCriteriosEvaluacion.DeleteCriterioEvaluacion(SFDataGrid_SelectedItem_CriteriosEvaluacion);
+                    var res = await IFicSrvAprendizajes.DeleteAprendizaje(SFDataGrid_SelectedItem_Aprendizajes);
                     if (res == "OK")
                     {
-                        //eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(FicNavigationContextC);
                     }
                     else
                     {
@@ -249,6 +251,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 }
             }
         }
+
 
         public async void OnAppearing()
         {
@@ -273,14 +276,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 RaisePropertyChanged("LabelTema");
                 RaisePropertyChanged("LabelCompetencia");
 
-                var criterios = await IFicSrvCriteriosEvaluacion.MetGetListCriteriosEvaluacion(eptc);
-                if (criterios != null)
+                var aprendizajes = await IFicSrvAprendizajes.MetGetListAprendizajes(eptc);
+                if (aprendizajes != null)
                 {
-                    _SFDataGrid_ItemSource_CriteriosEvaluacion.Clear();
-                    foreach(eva_planeacion_criterios_evalua criterio in criterios)
+                    _SFDataGrid_ItemSource_Aprendizajes.Clear();
+                    foreach (eva_planeacion_aprendizaje aprendizaje in aprendizajes)
                     {
-                        _SFDataGrid_ItemSource_CriteriosEvaluacion.Add(criterio);
-                        _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX.Add(criterio);
+                        _SFDataGrid_ItemSource_Aprendizajes.Add(aprendizaje);
+                        _SFDataGrid_ItemSource_Aprendizajes_AUX.Add(aprendizaje);
                     }
                 }
             }
@@ -292,13 +295,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         internal void FilterTextChange(string newTextValue)
         {
-            _SFDataGrid_ItemSource_CriteriosEvaluacion.Clear();
-            foreach (eva_planeacion_criterios_evalua criterio in _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX)
+            _SFDataGrid_ItemSource_Aprendizajes.Clear();
+            foreach (eva_planeacion_aprendizaje criterio in _SFDataGrid_ItemSource_Aprendizajes_AUX)
             {
-                if (criterio.DesCriterio.Contains(newTextValue)
-                    || criterio.Porcentaje.ToString().Contains(newTextValue))
+                if (true)
                 {
-                    _SFDataGrid_ItemSource_CriteriosEvaluacion.Add(criterio);
+                    _SFDataGrid_ItemSource_Aprendizajes.Add(criterio);
                 }
             }
         }

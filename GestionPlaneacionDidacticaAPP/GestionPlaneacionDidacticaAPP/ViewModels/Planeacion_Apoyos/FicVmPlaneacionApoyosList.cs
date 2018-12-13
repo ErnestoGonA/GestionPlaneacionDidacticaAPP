@@ -14,6 +14,7 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
 {
@@ -30,6 +31,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvPlaneacionApoyos IFicSrvPlaneacionApoyos;
         private IFicSrvAsignatura IFicSrvAsignatura;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
 
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
@@ -37,11 +39,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
 
         public object FicNavigationContextC { get; set; }
 
-        public FicVmPlaneacionApoyosList(IFicSrvNavigationInventario ificSrvNavigationInventario, IFicSrvPlaneacionApoyos ificSrvPlaneacionApoyos, IFicSrvAsignatura ificSrvAsignatura)
+        public FicVmPlaneacionApoyosList(IFicSrvNavigationInventario ificSrvNavigationInventario, IFicSrvPlaneacionApoyos ificSrvPlaneacionApoyos, IFicSrvAsignatura ificSrvAsignatura, FicISrvPlaneacion iFicSrvPlaneacion)
         {
             this.IFicSrvNavigationInventario = ificSrvNavigationInventario;
             this.IFicSrvPlaneacionApoyos = ificSrvPlaneacionApoyos;
             this.IFicSrvAsignatura = ificSrvAsignatura;
+            this.IFicSrvPlaneacion = iFicSrvPlaneacion;
 
             _SFDataGrid_ItemSource_Planeacion_Apoyos = new ObservableCollection<eva_planeacion_apoyos>();
         }

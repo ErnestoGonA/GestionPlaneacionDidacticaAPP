@@ -14,9 +14,9 @@ namespace GestionPlaneacionDidacticaAPP.Views.Competencias
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FicViCompetenciasInsert : ContentPage
 	{
-        private object CuerpoNavigationContext { get; set; }
+        private object[] CuerpoNavigationContext { get; set; }
 
-        public FicViCompetenciasInsert (object NavigationContext)
+        public FicViCompetenciasInsert(object[] NavigationContext)
 		{
 			InitializeComponent ();
             CuerpoNavigationContext = NavigationContext;

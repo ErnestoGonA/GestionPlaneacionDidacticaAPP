@@ -79,7 +79,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 if (value != null)
                 {
                     _LabelAsignatura = value;
-                    RaisePropertyChanged("LabelIdAsignatura");
+                    RaisePropertyChanged("LabelAsignatura");
                 }
             }
         }
@@ -110,7 +110,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public string LabelComptencia
+        public string LabelCompetencia
         {
             get { return _LabelCompetencia; }
             set
@@ -231,8 +231,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
             var source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion;
-            var criterio = FicNavigationContextC[3] as eva_planeacion_criterios_evalua;
             var eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+            var criterio = FicNavigationContextC[3] as eva_planeacion_criterios_evalua;
+
             cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
 
             _LabelUsuario = FicGlobalValues.USUARIO;

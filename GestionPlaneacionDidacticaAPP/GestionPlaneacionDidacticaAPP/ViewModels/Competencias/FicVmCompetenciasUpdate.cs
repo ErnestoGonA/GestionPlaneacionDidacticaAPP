@@ -29,7 +29,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         private int _LabelIdPlaneacion;
         private string _LabelAsignatura;
         private int _LabelIdCompetencia;
-        private int _LabelIdTema;
+        private string _LabelIdTema;
         private short _LabelIdTemaCompetencia;
 
         private ICommand _FicMetRegesarCompetenciasListICommand, _SaveCommand;
@@ -81,7 +81,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             }
         }
 
-        public int LabelIdTema
+        public string LabelIdTema
         {
             get { return _LabelIdTema; }
             set
@@ -142,7 +142,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             _LabelAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion_temas_competencias.IdPlaneacion;
 
-            _LabelIdTema = source_eva_planeacion_temas_competencias.IdTema;
+            _LabelIdTema = source_eva_planeacion_temas.DesTema;
             _LabelIdCompetencia = source_eva_planeacion_temas_competencias.IdCompetencia;
 
             //_LabelIdTemaCompetencia = source_eva_planeacion_temas_competencias.IdPlaneacionTemasCompetencias;
@@ -171,7 +171,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(FicNavigationContextC[1]);
+                
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1] });
+                
             }
             catch (Exception e)
             {
@@ -211,7 +213,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                 if (RespuestaInsert == "OK")
                 {
                     await new Page().DisplayAlert("UPDATE", "¡EDITADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(FicNavigationContextC[1]);
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1] });
                 }
                 else
                 {

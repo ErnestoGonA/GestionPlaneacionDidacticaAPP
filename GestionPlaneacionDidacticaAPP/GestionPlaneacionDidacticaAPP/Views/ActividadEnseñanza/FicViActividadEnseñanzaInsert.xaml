@@ -16,7 +16,7 @@
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Descripción de actividad: " FontAttributes="Bold" />
-                    <Entry Text="{Binding DesActividadEnseñanza}" FontSize="Micro" HorizontalOptions="FillAndExpand" />
+                    <Editor  Text="{Binding DesActividadEnseñanza}" FontSize="Micro" HorizontalOptions="FillAndExpand" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">

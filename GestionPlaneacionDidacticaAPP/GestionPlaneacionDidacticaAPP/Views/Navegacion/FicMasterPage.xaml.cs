@@ -43,15 +43,15 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     //    FicItemMenu.TargetType = typeof(ViTemasList);
                     //    break;
 
-                    case "ViCriteriosEvaluacionList":
-                        FicItemMenu.TargetType = typeof(ViCriteriosEvaluacionList);
-                        break;
+                    //case "ViCriteriosEvaluacionList":
+                    //    FicItemMenu.TargetType = typeof(ViCriteriosEvaluacionList);
+                    //    break;
                     case "FicViPlaneacionApoyosList":
                         FicItemMenu.TargetType = typeof(FicViPlaneacionApoyosList);
                         break;
-                    case "FicViSubtemasList":
-                        FicItemMenu.TargetType = typeof(FicViSubtemasList);
-                        break;
+                    //case "FicViSubtemasList":
+                    //    FicItemMenu.TargetType = typeof(FicViSubtemasList);
+                    //    break;
                     //case "FicViCompetencias":
                     //    FicItemMenu.TargetType = typeof(FicViCompetencias);
                     //    break;

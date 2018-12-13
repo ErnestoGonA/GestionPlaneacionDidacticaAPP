@@ -39,10 +39,29 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion_Apoyos
         {
             try
             {
-                await DBLoContext.AddAsync(Apoyo);
-                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR APOYOPLANEACION";
-                DBLoContext.Entry(Apoyo).State = EntityState.Detached;
-                return res;
+                var papoyosid = await (from papoyos in DBLoContext.eva_planeacion_apoyos
+                                            where papoyos.IdPlaneacion == Apoyo.IdPlaneacion
+                                            where papoyos.IdAsignatura == Apoyo.IdAsignatura
+                                            where papoyos.IdApoyoDidactico == Apoyo.IdApoyoDidactico 
+                                            select papoyos).AsNoTracking().ToListAsync();
+
+                if (papoyosid.Count() > 0)
+                {
+                    return "OK";
+                }
+                else
+                {
+                    await DBLoContext.AddAsync(Apoyo);
+                    var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL INSERTAR APOYOPLANEACION";
+                    DBLoContext.Entry(Apoyo).State = EntityState.Detached;
+                    return res;
+
+                }
+
+                //await DBLoContext.AddAsync(Apoyo);
+                //var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR APOYOPLANEACION";
+                //DBLoContext.Entry(Apoyo).State = EntityState.Detached;
+                //return res;
             }
             catch (Exception e)
             {

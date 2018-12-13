@@ -39,7 +39,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="DesTema:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelDesSubtema}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                    <Label  HeightRequest="75"  Text="{Binding LabelDesSubtema}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
