@@ -23,7 +23,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelIdAsignatura;
-        private int _LabelIdTema;
+        private string _LabelIdTema;
         private string _LabelDesSubtema;
         //Botones
         private ICommand _MetRegresarSubtemasListICommand, _SaveCommand;
@@ -77,7 +77,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
-        public int LabelIdTema
+        public string LabelIdTema
         {
             get { return _LabelIdTema; }
             set
@@ -171,7 +171,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
-            _LabelIdTema = source_eva_planeacion.IdTema;
+            _LabelIdTema = source_eva_planeacion.DesTema;
 
             RaisePropertyChanged("LabelUsuario");
             RaisePropertyChanged("LabelIdAsignatura");
