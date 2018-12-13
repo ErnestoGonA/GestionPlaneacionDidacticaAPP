@@ -22,6 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
     {
         //Data of the grid
         public ObservableCollection<EnseñanzaLista> _SFDataGrid_ItemSource_Enseñanza;
+        public List<EnseñanzaLista> _SFDataGrid_ItemSource_Enseñanza_AUX;
         public EnseñanzaLista _SFDataGrid_SelectedItem_Enseñanza;
         public bool _Plantilla;
         public int _UsIndex = FicGlobalValues.USUARIO_INDEX;
@@ -45,6 +46,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             this.IFicSrvEnseñanzaList = IFicSrvEnseñanzaList;
 
             _SFDataGrid_ItemSource_Enseñanza = new ObservableCollection<EnseñanzaLista>();
+            _SFDataGrid_ItemSource_Enseñanza_AUX = new List<EnseñanzaLista>();
         }
         public bool Plantilla
         {
@@ -203,6 +205,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                         string Competencia = this.IFicSrvEnseñanzaList.FicMetGetCompetencia(enseñanza.IdCompetencia).Result.DesCompetencia;
                         EnseñanzaLista aux = new EnseñanzaLista(Asignatura,Planeacion,Tema,Competencia,enseñanza);
                         _SFDataGrid_ItemSource_Enseñanza.Add(aux);
+                        _SFDataGrid_ItemSource_Enseñanza_AUX.Add(aux);
                     }
                 }//Llenar el grid
                 _AsIndex = FicGlobalValues.ASIGNATURA_INDEX;
@@ -213,6 +216,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }//Sobrecarga el metodo OnAppearing() de la view
+
+        internal void FilterTextChange(string newTextValue)
+        {
+            _SFDataGrid_ItemSource_Enseñanza.Clear();
+            foreach(EnseñanzaLista enseñanza in _SFDataGrid_ItemSource_Enseñanza_AUX)
+            {
+                if(enseñanza.Competencia.Contains(newTextValue)
+                    || enseñanza.eva_planeacion_enseñanza.FechaProgramada.ToString().Contains(newTextValue)
+                    || enseñanza.eva_planeacion_enseñanza.FechaRealizada.ToString().Contains(newTextValue))
+                {
+                    _SFDataGrid_ItemSource_Enseñanza.Add(enseñanza);
+                }
+            }
+         }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

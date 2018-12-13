@@ -35,5 +35,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos
             }
         }
 
+        private async void OnFilterTextChange(object sender, TextChangedEventArgs e)
+        {
+            var FicViewModel = BindingContext as VmApoyosDidacticosList;
+            FicViewModel.FilterTextChange(e.NewTextValue);
+        }
+
     }
 }

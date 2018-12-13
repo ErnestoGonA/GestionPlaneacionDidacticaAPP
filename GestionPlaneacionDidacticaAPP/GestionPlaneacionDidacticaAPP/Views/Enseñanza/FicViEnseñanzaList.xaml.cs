@@ -32,5 +32,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Enseñanza
                 FicViewModel.OnAppearing();
             }
         }
+
+        private async void OnFilterTextChange(object sender, TextChangedEventArgs e)
+        {
+            var FicViewModel = BindingContext as FicVmEnseñanzaList;
+            FicViewModel.FilterTextChange(e.NewTextValue);
+        }
     }
 }

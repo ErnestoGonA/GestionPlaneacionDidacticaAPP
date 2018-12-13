@@ -18,6 +18,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
     {
         //Data of the grid
         public ObservableCollection<eva_planeacion_subtemas> _SFDataGrid_ItemSource_Subtema;
+        public List<eva_planeacion_subtemas> _SFDataGrid_ItemSource_Subtema_AUX;
         public eva_planeacion_subtemas _SFDataGrid_SelectedItem_Subtema;
         
         //Interfaces
@@ -46,6 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             this.FicSrvSubtemas = FicSrvSubtemas;
 
             _SFDataGrid_ItemSource_Subtema = new ObservableCollection<eva_planeacion_subtemas>();
+            _SFDataGrid_ItemSource_Subtema_AUX = new List<eva_planeacion_subtemas>();
         }
 
         public string LabelUsuario
@@ -99,8 +101,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                 }
             }
         }
-
-
 
         public ICommand FicMetAddSubtemaICommand
         {
@@ -205,6 +205,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                         foreach (eva_planeacion_subtemas subtema in source_local_inv1)
                         {
                             _SFDataGrid_ItemSource_Subtema.Add(subtema);
+                            _SFDataGrid_ItemSource_Subtema_AUX.Add(subtema);
                         }
                     }
                 }
@@ -216,6 +217,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
                         foreach (eva_planeacion_subtemas subtema in source_local_inv2)
                         {
                             _SFDataGrid_ItemSource_Subtema.Add(subtema);
+                            _SFDataGrid_ItemSource_Subtema_AUX.Add(subtema);
                         }
                     }
                 }
@@ -250,6 +252,17 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Subtemas
             }
         }
 
+        internal void FilterTextChange(string newTextValue)
+        {
+            _SFDataGrid_ItemSource_Subtema.Clear();
+            foreach (eva_planeacion_subtemas subtema in _SFDataGrid_ItemSource_Subtema_AUX)
+            {
+                if (subtema.DesSubtema.Contains(newTextValue))
+                {
+                    _SFDataGrid_ItemSource_Subtema.Add(subtema);
+                }
+            }
+        }
 
         #region  INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
