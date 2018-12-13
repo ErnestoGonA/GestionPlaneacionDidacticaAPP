@@ -27,6 +27,10 @@
         <StackLayout Padding="10">
 
             <StackLayout>
+                <Label Text="Criterios de evaluacion" FontAttributes="Bold"></Label>
+            </StackLayout>
+
+            <StackLayout>
                 <StackLayout>
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>
@@ -34,6 +38,10 @@
                 <StackLayout>
                     <Label Text="Asignatura: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdAsignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Periodo: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding LabelPeriodo}"></Label>
                 </StackLayout>
                 <StackLayout>
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>

@@ -11,6 +11,7 @@ using System.Linq;
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
@@ -25,6 +26,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvCriteriosEvaluacion IFicSrvCriteriosEvaluacion;
         private IFicSrvAsignatura IFicSrvAsignatura;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
         private IFicSrvTemas IFicSrvTemas;
         //private IFicSrvCompetencia IFicSrvCompetencia;
 
@@ -32,6 +34,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private string _LabelUsuario;
         private string _LabelIdAsignatura;
         private int _LabelIdPlaneacion;
+        private string _LabelPeriodo;
         private string _LabelTema;
         private string _LabelCompetencia;
 
@@ -45,12 +48,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         public FicVmCriteriosEvaluacionUpdate(IFicSrvNavigationInventario ficSrvNavigationInventario, 
             IFicSrvCriteriosEvaluacion ficSrvCriteriosEvaluacion, 
-            IFicSrvAsignatura ficSrvAsignatura, 
+            IFicSrvAsignatura ficSrvAsignatura,
+            FicISrvPlaneacion iFicSrvPlaneacion,
             IFicSrvTemas ficSrvTemas)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvCriteriosEvaluacion = ficSrvCriteriosEvaluacion;
             IFicSrvAsignatura = ficSrvAsignatura;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
             IFicSrvTemas = ficSrvTemas;
         }
 
@@ -142,6 +147,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 {
                     _LabelPorcentaje = value;
                     RaisePropertyChanged("LabelPorcentaje");
+                }
+            }
+        }
+
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
                 }
             }
         }

@@ -14,7 +14,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Competencias
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FicViCompetencias : ContentPage
     {
-        private object FicCuerpoNavigationContext { get; set; }
+        private object[] FicCuerpoNavigationContext { get; set; }
 
         public FicViCompetencias()
         {
@@ -22,7 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Competencias
             BindingContext = App.FicVmLocator.FicVmCompetenciasList;
         }
 
-        public FicViCompetencias(object NavigationContext)
+        public FicViCompetencias(object[] NavigationContext)
         {
             InitializeComponent();
             BindingContext = App.FicVmLocator.FicVmCompetenciasList;

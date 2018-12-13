@@ -10,6 +10,7 @@ using System.Linq;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
@@ -20,6 +21,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
     public class FicVmCriteriosEvaluacionView : INotifyPropertyChanged
     {
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
 
         private string _LabelDesTema, _LabelObservaciones, _LabelFechaReg, _LabelFechaMod, _LabelUsuarioReg, _LabelUsuarioMod, _LabelActivo, _LabelBorrado;
         private short  _LabelIdTema;
@@ -28,14 +30,16 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelAsignatura;
+        private string _LabelPeriodo;
 
         private ICommand _FicMetRegesarCatEdificiosListICommand;
 
         public object[] FicNavigationContextC { get; set; }
 
-        public FicVmCriteriosEvaluacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
+        public FicVmCriteriosEvaluacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario, FicISrvPlaneacion iFicSrvPlaneacion)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
         }
 
         public string LabelUsuario
@@ -190,6 +194,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 {
                     _LabelBorrado = value;
                     RaisePropertyChanged("LabelBorrado");
+                }
+            }
+        }
+
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
                 }
             }
         }
