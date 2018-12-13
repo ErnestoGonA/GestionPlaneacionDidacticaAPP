@@ -27,7 +27,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             {
                 var planeacion = await (from pla in dBContext.eva_planeacion
                                    where pla.IdAsignatura == eva_planeacion.IdAsignatura
-                                   where pla.IdPlaneacion == eva_planeacion.IdPlaneacion
+                                   where pla.IdPeriodo == eva_planeacion.IdPeriodo
                                    select pla).ToListAsync();
 
                 int maxId = 0;

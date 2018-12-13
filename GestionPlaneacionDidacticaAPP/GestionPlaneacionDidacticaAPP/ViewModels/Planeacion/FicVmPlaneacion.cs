@@ -366,7 +366,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
                 if (!Filtrado)
                 {
-                    var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacion();
+                    var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX + 1, _Plantilla, (Int16)(FicGlobalValues.PERIODO_INDEX + 1));
                     if (source_local_inv != null)
                     {
                         _SFDataGrid_ItemSource_Planeacion.Clear();
