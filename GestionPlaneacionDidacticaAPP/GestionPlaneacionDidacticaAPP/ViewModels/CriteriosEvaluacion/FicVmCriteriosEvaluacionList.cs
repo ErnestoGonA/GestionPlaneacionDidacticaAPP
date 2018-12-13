@@ -215,6 +215,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] {
                     FicNavigationContextC[0],
                     FicNavigationContextC[1],
+                    FicNavigationContextC[2],
                     SFDataGrid_SelectedItem_CriteriosEvaluacion });
             }
         }

@@ -71,11 +71,11 @@
                 AutoGenerateColumns="False"
                 AllowSorting="False"
                 ItemsSource="{Binding SFDataGrid_ItemSource_CriteriosEvaluacion}"
-                SelectedItem="{Binding SFDataGrid_SelectedItem_criteriosEvaluacion}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_CriteriosEvaluacion}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdCriterio"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción" MappingName="DesCriterio"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Criterio" MappingName="DesCriterio"/>
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Porcentaje" MappingName="Porcentaje"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>

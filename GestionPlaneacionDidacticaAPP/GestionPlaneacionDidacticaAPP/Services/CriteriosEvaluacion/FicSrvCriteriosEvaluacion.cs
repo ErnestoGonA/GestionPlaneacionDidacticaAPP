@@ -42,6 +42,26 @@ namespace GestionPlaneacionDidacticaAPP.Services.CriteriosEvaluacion
         {
             try
             {
+                var criterios = await (from criterio in DBLoContext.eva_planeacion_criterios_evalua
+                                   where criterio.IdAsignatura == CriterioEvaluacion.IdAsignatura
+                                   where criterio.IdPlaneacion == CriterioEvaluacion.IdPlaneacion
+                                   where criterio.IdTema == CriterioEvaluacion.IdTema
+                                   where criterio.IdCompetencia == CriterioEvaluacion.IdCompetencia
+                                   select criterio).ToListAsync();
+
+                int maxId = 0;
+                if (criterios.Count() > 0)
+                {
+                    maxId = (from criterio in DBLoContext.eva_planeacion_criterios_evalua
+                             where criterio.IdAsignatura == CriterioEvaluacion.IdAsignatura
+                             where criterio.IdPlaneacion == CriterioEvaluacion.IdPlaneacion
+                             where criterio.IdTema == CriterioEvaluacion.IdTema
+                             where criterio.IdCompetencia == CriterioEvaluacion.IdCompetencia
+                             select criterio.IdCriterio).Max();
+                }
+
+                CriterioEvaluacion.IdCriterio = ++maxId;
+
                 await DBLoContext.AddAsync(CriterioEvaluacion);
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "Error al insertar CriterioEvaluacion";
                 DBLoContext.Entry(CriterioEvaluacion).State = EntityState.Detached;
@@ -57,7 +77,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.CriteriosEvaluacion
         {
             try
             {
-                DBLoContext.Update(CriterioEvaluacion);
+                DBLoContext.Entry(CriterioEvaluacion).State = EntityState.Modified;
                 var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "Error al actualizar CriterioEvaluacion";
                 DBLoContext.Entry(CriterioEvaluacion).State = EntityState.Detached;
                 return res;
