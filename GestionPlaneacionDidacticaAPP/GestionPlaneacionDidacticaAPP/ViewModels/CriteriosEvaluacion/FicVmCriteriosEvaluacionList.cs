@@ -175,7 +175,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private void FicMetAddCriterioEvaluacion()
         {
             //var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>(FicNavigationContextC);
         }
 
         public ICommand FicMetViewCriteriosEvaluacionICommand
@@ -191,7 +191,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
             {
                 //eva_planeacion source_eva_planeacion = FicNavigationContextC[] as eva_planeacion;
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionView>(new object[] { SFDataGrid_SelectedItem_CriteriosEvaluacion });
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionView>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_CriteriosEvaluacion });
             }
         }
 
@@ -208,7 +212,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
             {
                 //eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] { SFDataGrid_SelectedItem_CriteriosEvaluacion });
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    SFDataGrid_SelectedItem_CriteriosEvaluacion });
             }
         }
 

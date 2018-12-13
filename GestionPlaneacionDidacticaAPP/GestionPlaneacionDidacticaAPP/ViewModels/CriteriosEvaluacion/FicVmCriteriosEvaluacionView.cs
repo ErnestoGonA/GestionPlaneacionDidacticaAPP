@@ -9,10 +9,11 @@ using Xamarin.Forms;
 using System.Linq;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
-using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
 using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Models;
-using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
 
@@ -31,6 +32,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private int _LabelIdPlaneacion;
         private string _LabelAsignatura;
         private string _LabelPeriodo;
+        private string _LabelCompetencia;
+        private string _LabelPorcentaje;
 
         private ICommand _FicMetRegesarCatEdificiosListICommand;
 
@@ -107,15 +110,28 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public string LabelObservaciones
+        public string LabelComptencia
         {
-            get { return _LabelObservaciones; }
+            get { return _LabelCompetencia; }
             set
             {
                 if (value != null)
                 {
-                    _LabelObservaciones = value;
-                    RaisePropertyChanged("LabelObservaciones");
+                    _LabelCompetencia = value;
+                    RaisePropertyChanged("LabelCompetencia");
+                }
+            }
+        }
+
+        public string LabelPorcentaje
+        {
+            get { return _LabelPorcentaje; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPorcentaje = value;
+                    RaisePropertyChanged("LabelPorcentaje");
                 }
             }
         }
@@ -215,29 +231,37 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
             var source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion;
+            var criterio = FicNavigationContextC[3] as eva_planeacion_criterios_evalua;
+            var eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+            cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
 
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelPeriodo = periodo.DesPeriodo;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
-
-
-            _LabelIdTema = source_eva_planeacion_temas.IdTema;
             _LabelDesTema = source_eva_planeacion_temas.DesTema;
-            _LabelObservaciones = source_eva_planeacion_temas.Observaciones;
+            _LabelCompetencia = eptc.Observaciones;
 
-            _LabelFechaReg = source_eva_planeacion_temas.FechaReg.ToString();
-            _LabelFechaMod = source_eva_planeacion_temas.FechaUltMod.ToString();
-            _LabelUsuarioReg = source_eva_planeacion_temas.UsuarioReg;
-            _LabelUsuarioMod = source_eva_planeacion_temas.UsuarioMod;
-            _LabelActivo = source_eva_planeacion_temas.Activo;
-            _LabelBorrado = source_eva_planeacion_temas.Borrado;
+
+            _LabelObservaciones = criterio.DesCriterio;
+            _LabelPorcentaje = criterio.Porcentaje+"";
+            
+            _LabelFechaReg = criterio.FechaReg.ToString();
+            _LabelFechaMod = criterio.FechaUltMod.ToString();
+            _LabelUsuarioReg = criterio.UsuarioReg;
+            _LabelUsuarioMod = criterio.UsuarioMod;
+            _LabelActivo = criterio.Activo;
+            _LabelBorrado = criterio.Borrado;
 
             RaisePropertyChanged("LabelUsuario");
             RaisePropertyChanged("LabelAsignatura");
             RaisePropertyChanged("LabelIdPlaneacion");
-            RaisePropertyChanged("LabelIdTema");
             RaisePropertyChanged("LabelDesTema");
+            RaisePropertyChanged("LabelCompetencia");
+
             RaisePropertyChanged("LabelObservaciones");
+            RaisePropertyChanged("LabelPorcentaje");
+
 
             RaisePropertyChanged("LabelFechaReg");
             RaisePropertyChanged("LabelFechaMod");
