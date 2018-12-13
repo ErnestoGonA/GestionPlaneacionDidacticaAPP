@@ -14,6 +14,8 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
 {
@@ -227,7 +229,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         {
             get
             {
-                return _FicMetCriteriosICommand = _FicMetCriteriosICommand ?? new FicVmDelegateCommand(FicMetEnseñanza);
+                return _FicMetEnseñanzasICommand = _FicMetEnseñanzasICommand ?? new FicVmDelegateCommand(FicMetEnseñanza);
             }
         }
         public void FicMetEnseñanza()
@@ -235,7 +237,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             if (SFDataGrid_SelectedItem_Competencias != null)
             {
                 IFicSrvNavigationInventario
-                    .FicMetNavigateTo<FicVmCriteriosEvaluacionList>(new object[] {
+                    .FicMetNavigateTo<FicVmEnseñanzaList>(new object[] {
                         FicNavigationContextC[0],
                         FicNavigationContextC[1],
                         SFDataGrid_SelectedItem_Competencias });

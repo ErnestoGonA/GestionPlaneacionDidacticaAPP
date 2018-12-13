@@ -117,7 +117,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         }
         public void FicMetAddEnseñanza()
         {
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaInsert>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_Enseñanza
+                });
         }
 
         public ICommand MetViewEnseñanzaICommand
@@ -131,7 +136,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaDetalle>(SFDataGrid_SelectedItem_Enseñanza);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaDetalle>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_Enseñanza
+                });
             }
         }
 
@@ -201,7 +211,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 {
                     _Usuario = value;
                 }
-                RaisePropertyChanged("Plantilla");
+                RaisePropertyChanged("Usuario");
             }
         }
         public string Asignatura
@@ -216,7 +226,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 {
                     _Asignatura = value;
                 }
-                RaisePropertyChanged("Plantilla");
+                RaisePropertyChanged("Asignatura");
             }
         }
         public string Planeacion
@@ -231,7 +241,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 {
                     _Planeacion = value;
                 }
-                RaisePropertyChanged("Plantilla");
+                RaisePropertyChanged("Planeacion");
             }
         }
         public string Tema
@@ -246,7 +256,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 {
                     _Tema = value;
                 }
-                RaisePropertyChanged("Plantilla");
+                RaisePropertyChanged("Tema");
             }
         }
         public string Competencia
@@ -261,7 +271,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 {
                     _Competencia = value;
                 }
-                RaisePropertyChanged("Plantilla");
+                RaisePropertyChanged("Competencia");
             }
         }
 
@@ -272,8 +282,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             {
                 _Usuario = FicGlobalValues.USUARIO;
                 _Asignatura = FicGlobalValues.ASIGNATURA;
-                _Planeacion = (FicNavigationContextC[0] as eva_planeacion).ReferenciaNorma;
-                _Tema = (FicNavigationContextC[1] as eva_planeacion_temas).DesTema;
+                var auxPlaneacion = FicNavigationContextC[1] as eva_planeacion;
+                _Planeacion = auxPlaneacion.ReferenciaNorma;
+                var auxTema = FicNavigationContextC[0] as eva_planeacion_temas;
+                _Tema = auxTema.DesTema;
+                var auxCompetencia = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+                _Competencia = auxCompetencia.Observaciones;
+
+                RaisePropertyChanged("Usuario");
+                RaisePropertyChanged("Asignatura");
+                RaisePropertyChanged("Planeacion");
+                RaisePropertyChanged("Tema");
+                RaisePropertyChanged("Competencia");
 
 
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
