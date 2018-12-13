@@ -74,15 +74,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public string LabelIdAsignatura
+        public string LabelAsignatura
         {
-            get { return _LabelIdAsignatura; }
+            get { return _LabelAsignatura; }
             set
             {
                 if (value != null)
                 {
-                    _LabelIdAsignatura = value;
-                    RaisePropertyChanged("LabelIdAsignatura");
+                    _LabelAsignatura = value;
+                    RaisePropertyChanged("LabelAsignatura");
                 }
             }
         }
