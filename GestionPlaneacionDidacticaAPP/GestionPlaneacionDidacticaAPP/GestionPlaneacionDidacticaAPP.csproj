@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ViewModels\Temas\FicVmTemasUpdate.cs~RFc04f4ed.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.4" />
@@ -20,6 +24,12 @@
     <PackageReference Include="System.Buffers" Version="4.5.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Subtemas\FicViSubtemaList.xaml.cs">
+      <DependentUpon>FicViSubtemaList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -69,6 +79,15 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Planeacion\FicViPlaneacionView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Subtemas\FicViSubtemaInsert.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Subtemas\FicViSubtemaUpdate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Subtemas\FicViSubtemaView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Temas\ViTemasInsert.xaml">

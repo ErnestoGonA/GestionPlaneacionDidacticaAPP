@@ -17,7 +17,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Competencias
 
         Task<string> DeleteCompetencia(eva_planeacion_temas_competencias Compe);
 
-        Task<IEnumerable<eva_planeacion_temas_competencias>> MetGetListCompetenciasTemasPlaneacion(int IdTema);
+        Task<IEnumerable<eva_planeacion_temas_competencias>> MetGetListCompetenciasTemasPlaneacion(eva_planeacion_temas Tema);
 
         Task<IEnumerable<eva_cat_competencias>> GetListCompetencias();
     }

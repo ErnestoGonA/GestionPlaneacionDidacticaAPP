@@ -13,6 +13,7 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using System.Threading.Tasks;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -33,7 +34,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
         //Navigation to lists
-        private ICommand _FicMetNavigateToTemasICommand;
+        private ICommand _FicMetNavigateToTemasICommand, _FicMetNavigateToApoyosICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -316,6 +317,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(SFDataGrid_SelectedItem_Planeacion);
             }
                             
+        }
+
+        public ICommand FicMetNavigateToApoyosICommand
+        {
+            get { return _FicMetNavigateToApoyosICommand = _FicMetNavigateToApoyosICommand ?? new FicVmDelegateCommand(FicMetNavigateToApoyos); }
+        }
+
+        public void FicMetNavigateToApoyos()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosList>(SFDataGrid_SelectedItem_Planeacion);
+            }
+
         }
 
         public ICommand FiltrarPlantillaCommand

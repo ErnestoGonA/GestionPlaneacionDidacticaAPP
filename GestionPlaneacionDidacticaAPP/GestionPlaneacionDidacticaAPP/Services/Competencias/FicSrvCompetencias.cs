@@ -38,7 +38,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
             try
             {
                 await DBLoContext.AddAsync(Compe);
-                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL ISNERTA LA COMPETENCIA";
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "Ok" : "ERROR AL INSERTAR LA COMPETENCIA";
                 DBLoContext.Entry(Compe).State = EntityState.Detached;
                 return res;
             }
@@ -54,11 +54,13 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
             return await (from compe in DBLoContext.eva_planeacion_temas_competencias select compe).AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<eva_planeacion_temas_competencias>> MetGetListCompetenciasTemasPlaneacion(int IdTema)
+        public async Task<IEnumerable<eva_planeacion_temas_competencias>> MetGetListCompetenciasTemasPlaneacion(eva_planeacion_temas Tema)
         {
-            return await(from tema in DBLoContext.eva_planeacion_temas_competencias
-                         where tema.IdTema == IdTema
-                         select tema).AsNoTracking().ToListAsync();
+            return await(from compe in DBLoContext.eva_planeacion_temas_competencias
+                         where compe.IdPlaneacion == Tema.IdPlaneacion
+                         where compe.IdAsignatura == Tema.IdAsignatura
+                         where compe.IdTema == Tema.IdTema
+                         select compe).AsNoTracking().ToListAsync();
         }
 
         public async Task<string> UpdateCompetencia(eva_planeacion_temas_competencias Compe)

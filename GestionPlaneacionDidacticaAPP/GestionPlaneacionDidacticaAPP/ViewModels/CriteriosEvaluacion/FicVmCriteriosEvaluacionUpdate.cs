@@ -10,11 +10,13 @@ using System.Linq;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
+
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 {
@@ -25,18 +27,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvCriteriosEvaluacion IFicSrvCriteriosEvaluacion;
         private IFicSrvAsignatura IFicSrvAsignatura;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
         private IFicSrvTemas IFicSrvTemas;
         //private IFicSrvCompetencia IFicSrvCompetencia;
 
         //Labels
-        private string _LabelUsuario;
+        private string _LabelDesTema, _LabelDesCriterio;
         private string _LabelIdAsignatura;
-        private int _LabelIdPlaneacion;
-        private string _LabelTema;
-        private string _LabelCompetencia;
 
-        private string _LabelDesCriterio;
-        private float _LabelPorcentaje;
+       
+        private string _LabelUsuario;
+        private int _LabelIdPlaneacion;
+        private string _LabelAsignatura;
+        private string _LabelPeriodo;
+        private string _LabelCompetencia;
+        private string _LabelPorcentaje;
 
         private ICommand _MetRegresarCriteriosEvaluacionListICommand, _SaveCommand;
 
@@ -45,12 +50,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         public FicVmCriteriosEvaluacionUpdate(IFicSrvNavigationInventario ficSrvNavigationInventario, 
             IFicSrvCriteriosEvaluacion ficSrvCriteriosEvaluacion, 
-            IFicSrvAsignatura ficSrvAsignatura, 
+            IFicSrvAsignatura ficSrvAsignatura,
+            FicISrvPlaneacion iFicSrvPlaneacion,
             IFicSrvTemas ficSrvTemas)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvCriteriosEvaluacion = ficSrvCriteriosEvaluacion;
             IFicSrvAsignatura = ficSrvAsignatura;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
             IFicSrvTemas = ficSrvTemas;
         }
 
@@ -94,15 +101,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public string LabelTema
+        public string LabelDesTema
         {
-            get { return _LabelTema; }
+            get { return _LabelDesTema; }
             set
             {
                 if (value != null)
                 {
-                    _LabelTema = value;
-                    RaisePropertyChanged("LabelTema");
+                    _LabelDesTema = value;
+                    RaisePropertyChanged("LabelDesTema");
                 }
             }
         }
@@ -133,7 +140,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public float LabelPorcentaje
+        public string LabelPorcentaje
         {
             get { return _LabelPorcentaje; }
             set
@@ -142,6 +149,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 {
                     _LabelPorcentaje = value;
                     RaisePropertyChanged("LabelPorcentaje");
+                }
+            }
+        }
+
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
                 }
             }
         }
@@ -158,7 +178,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>();
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
             }
             catch (Exception e)
             {
@@ -171,21 +191,77 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             get { return _SaveCommand = _SaveCommand ?? new FicVmDelegateCommand(SaveCommandExecute); }
         }
 
-        private void SaveCommandExecute()
+        private async void SaveCommandExecute()
         {
-            // TODO: insert criterio
+            try
+            {
+                var criterio = FicNavigationContextC[3] as eva_planeacion_criterios_evalua;
+
+                var res = await IFicSrvCriteriosEvaluacion.UpdateCriterioEvaluacion(new eva_planeacion_criterios_evalua()
+                {
+                    IdAsignatura = criterio.IdAsignatura,
+                    IdPlaneacion = criterio.IdPlaneacion,
+                    IdTema = criterio.IdTema,
+                    IdCompetencia = criterio.IdCompetencia,
+                    IdCriterio = criterio.IdCriterio,
+
+                    DesCriterio = LabelDesCriterio,
+                    Porcentaje = float.Parse(LabelPorcentaje),
+
+                    FechaReg = criterio.FechaReg,
+                    FechaUltMod = DateTime.Now,
+                    UsuarioReg = criterio.UsuarioReg,
+                    UsuarioMod = FicGlobalValues.USUARIO,
+                    Activo = criterio.Activo,
+                    Borrado = criterio.Borrado
+                });
+
+                if (res == "OK")
+                {
+                    await new Page().DisplayAlert("Update", "¡Editado CON EXITO!", "OK");
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
+                }
+                else
+                {
+                    await new Page().DisplayAlert("update", res.ToString(), "OK");
+                }
+            }
+            catch (Exception e)
+            {
+                await new Page().DisplayAlert("Alerta", e.Message.ToString(), "OK");
+            }
         }
+    
 
         public async void OnAppearing()
         {
-            //var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+            var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
+            var source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion;
+            var criterio = FicNavigationContextC[3] as eva_planeacion_criterios_evalua;
+            var eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+            cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
+
             _LabelUsuario = FicGlobalValues.USUARIO;
-            //_LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
-            //_LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+            _LabelAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelPeriodo = periodo.DesPeriodo;
+            _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+            _LabelDesTema = source_eva_planeacion_temas.DesTema;
+            _LabelCompetencia = eptc.Observaciones;
+
+
+            _LabelDesCriterio = criterio.DesCriterio;
+            _LabelPorcentaje = criterio.Porcentaje + "";
 
             RaisePropertyChanged("LabelUsuario");
-            //RaisePropertyChanged("LabelIdAsignatura");
-            //RaisePropertyChanged("LabelIdPlaneacion");
+            RaisePropertyChanged("LabelAsignatura");
+            RaisePropertyChanged("LabelPeriodo");
+            RaisePropertyChanged("LabelIdPlaneacion");
+            RaisePropertyChanged("LabelDesTema");
+            RaisePropertyChanged("LabelCompetencia");
+            RaisePropertyChanged("LabelDesCriterio");
+            RaisePropertyChanged("LabelPorcentaje");
+
+
         }
 
         #region  INotifyPropertyChanged

@@ -22,7 +22,11 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Temas"
-            Command="{Binding FicMetNavigateToTemasICommand}">>
+            Command="{Binding FicMetNavigateToTemasICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Apoyos"
+            Command="{Binding FicMetNavigateToApoyosICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>

@@ -2,22 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetencias">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Competencias.FicViCompetencias"
+             Title="Catologo Planeacion_Temas_Competencias">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Competencia"
+            Name="Nueva Planeacion_Temas_Competencias"
             Command="{Binding FicMetAddCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Competencia"
+            Name="Editar Planeacion_Temas_Competencias"
             Command="{Binding FicMetUpdateCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Competencia"
+            Name="Detalle Planeacion_Temas_Competencias"
             Command="{Binding FicMetViewCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Competencia"
+            Name="Borrar Planeacion_Temas_Competencias"
             Command="{Binding FicMetRemoveCompetenciaICommand}">
         </ToolbarItem>
         <ToolbarItem

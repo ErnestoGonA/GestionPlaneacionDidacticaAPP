@@ -16,7 +16,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos
     {
         private object FicCuerpoNavigationContext { get; set; }
 
-        public FicViApoyosDidacticosView(object[] FicNavigationContext)
+        public FicViApoyosDidacticosView(object FicNavigationContext)
         {
             InitializeComponent();
             FicCuerpoNavigationContext = FicNavigationContext;

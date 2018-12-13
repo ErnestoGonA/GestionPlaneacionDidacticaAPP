@@ -12,6 +12,7 @@ using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 using GestionPlaneacionDidacticaAPP.Views.Competencias;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -45,15 +46,15 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     case "ViCriteriosEvaluacionList":
                         FicItemMenu.TargetType = typeof(ViCriteriosEvaluacionList);
                         break;
-                    case "ViApoyosDidacticos":
-                        FicItemMenu.TargetType = typeof(ViApoyosDidacticos);
+                    case "FicViPlaneacionApoyosList":
+                        FicItemMenu.TargetType = typeof(FicViPlaneacionApoyosList);
                         break;
                     case "FicViSubtemasList":
                         FicItemMenu.TargetType = typeof(FicViSubtemasList);
                         break;
-                    case "FicViCompetencias":
-                        FicItemMenu.TargetType = typeof(FicViCompetencias);
-                        break;
+                    //case "FicViCompetencias":
+                    //    FicItemMenu.TargetType = typeof(FicViCompetencias);
+                    //    break;
                     //case "ViCatEdificiosList":
                     //    FicItemMenu.TargetType = typeof(ViCatEdificiosList);
                     //    break;

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos.FicViPlaneacionApoyosInsert"
+             Title="Insertar Planeacion_Apoyo">
+    <ScrollView>
+        <StackLayout
+            VerticalOptions="StartAndExpand"
+            Padding="20">
+
+            <Label Text="Maestro: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelUsuario}"></Label>
+            <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelIdAsignatura}"></Label>
+            <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+            <Label Text="{Binding LabelIdPlaneacion}"></Label>
+            <Label Text="Apoyo Didactico: " FontAttributes="Bold" FontSize="Micro"/>
+            <Picker SelectedIndex="{Binding IdApoyoDidactico}" ItemsSource="{Binding ApoyosDidacticos}" HorizontalOptions="FillAndExpand"></Picker>
+
+            <Button Text="Agregar" Command="{Binding SaveCommand}"/>
+            <Button Text="Cancelar" Command="{Binding FicMetRegesarPlaneacionApoyosListICommand}"/>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

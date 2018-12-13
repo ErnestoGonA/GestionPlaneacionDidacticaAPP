@@ -37,7 +37,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion
             var FicViewModel = BindingContext as FicVmCriteriosEvaluacionInsert;
             if (FicViewModel != null)
             {
-                //FicViewModel.FicNavigationContextC = CuerpoNavigationContext;
+                FicViewModel.FicNavigationContextC = CuerpoNavigationContext;
                 FicViewModel.OnAppearing();
             }
 

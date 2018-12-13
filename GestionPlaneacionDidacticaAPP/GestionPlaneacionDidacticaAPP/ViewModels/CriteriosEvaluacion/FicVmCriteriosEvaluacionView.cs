@@ -9,9 +9,11 @@ using Xamarin.Forms;
 using System.Linq;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
+using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
+using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Models;
-using GestionPlaneacionDidacticaAPP.Services.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
 
@@ -20,6 +22,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
     public class FicVmCriteriosEvaluacionView : INotifyPropertyChanged
     {
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
 
         private string _LabelDesTema, _LabelObservaciones, _LabelFechaReg, _LabelFechaMod, _LabelUsuarioReg, _LabelUsuarioMod, _LabelActivo, _LabelBorrado;
         private short  _LabelIdTema;
@@ -28,14 +31,18 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelAsignatura;
+        private string _LabelPeriodo;
+        private string _LabelCompetencia;
+        private string _LabelPorcentaje;
 
         private ICommand _FicMetRegesarCatEdificiosListICommand;
 
         public object[] FicNavigationContextC { get; set; }
 
-        public FicVmCriteriosEvaluacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario)
+        public FicVmCriteriosEvaluacionView(IFicSrvNavigationInventario IFicSrvNavigationInventario, FicISrvPlaneacion iFicSrvPlaneacion)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
         }
 
         public string LabelUsuario
@@ -103,15 +110,28 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
-        public string LabelObservaciones
+        public string LabelComptencia
         {
-            get { return _LabelObservaciones; }
+            get { return _LabelCompetencia; }
             set
             {
                 if (value != null)
                 {
-                    _LabelObservaciones = value;
-                    RaisePropertyChanged("LabelObservaciones");
+                    _LabelCompetencia = value;
+                    RaisePropertyChanged("LabelCompetencia");
+                }
+            }
+        }
+
+        public string LabelPorcentaje
+        {
+            get { return _LabelPorcentaje; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPorcentaje = value;
+                    RaisePropertyChanged("LabelPorcentaje");
                 }
             }
         }
@@ -194,33 +214,54 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
+                }
+            }
+        }
+
         public async void OnAppearing()
         {
             var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
             var source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion;
+            var criterio = FicNavigationContextC[3] as eva_planeacion_criterios_evalua;
+            var eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+            cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
 
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelAsignatura = FicGlobalValues.ASIGNATURA;
+            _LabelPeriodo = periodo.DesPeriodo;
             _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
-
-
-            _LabelIdTema = source_eva_planeacion_temas.IdTema;
             _LabelDesTema = source_eva_planeacion_temas.DesTema;
-            _LabelObservaciones = source_eva_planeacion_temas.Observaciones;
+            _LabelCompetencia = eptc.Observaciones;
 
-            _LabelFechaReg = source_eva_planeacion_temas.FechaReg.ToString();
-            _LabelFechaMod = source_eva_planeacion_temas.FechaUltMod.ToString();
-            _LabelUsuarioReg = source_eva_planeacion_temas.UsuarioReg;
-            _LabelUsuarioMod = source_eva_planeacion_temas.UsuarioMod;
-            _LabelActivo = source_eva_planeacion_temas.Activo;
-            _LabelBorrado = source_eva_planeacion_temas.Borrado;
+
+            _LabelObservaciones = criterio.DesCriterio;
+            _LabelPorcentaje = criterio.Porcentaje+"";
+            
+            _LabelFechaReg = criterio.FechaReg.ToString();
+            _LabelFechaMod = criterio.FechaUltMod.ToString();
+            _LabelUsuarioReg = criterio.UsuarioReg;
+            _LabelUsuarioMod = criterio.UsuarioMod;
+            _LabelActivo = criterio.Activo;
+            _LabelBorrado = criterio.Borrado;
 
             RaisePropertyChanged("LabelUsuario");
             RaisePropertyChanged("LabelAsignatura");
             RaisePropertyChanged("LabelIdPlaneacion");
-            RaisePropertyChanged("LabelIdTema");
             RaisePropertyChanged("LabelDesTema");
+            RaisePropertyChanged("LabelCompetencia");
+
             RaisePropertyChanged("LabelObservaciones");
+            RaisePropertyChanged("LabelPorcentaje");
+
 
             RaisePropertyChanged("LabelFechaReg");
             RaisePropertyChanged("LabelFechaMod");

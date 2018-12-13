@@ -16,6 +16,8 @@ using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
+using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
+using GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos;
 
 using System;
 using System.Collections.Generic;
@@ -37,7 +39,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //AQUI SE HACE UNA UNION ENTRE LA VM Y VI DE CADA VIEW DE LA APP
             {typeof(FicVmPlaneacion),typeof(FicViPlaneacion) },
             {typeof(FicVmPlaneacionInsert),typeof(FicViPlaneacionInsert) },
+
             {typeof(FicVmSubtemaList),typeof(FicViSubtemasList)},
+            {typeof(FicVmSubtemaInsert),typeof(FicViSubtemaInsert)},
+            {typeof(FicVmSubtemaView),typeof(FicViSubtemaView)},
+            {typeof(FicVmSubtemasUpdate),typeof(FicViSubtemaUpdate)},
 
             //{ typeof(FicVmCatEdificiosList),typeof(ViCatEdificiosList) },
             //{ typeof(FicVmCatEdificiosInsert),typeof(ViCatEdificiosInsert) },
@@ -79,6 +85,9 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             { typeof(FicVmCompetenciasInsert),typeof(FicViCompetenciasInsert) },
             { typeof(FicVmCompetenciasView),typeof(FicViCompetenciasView) },
             { typeof(FicVmCompetenciasUpdate),typeof(FicViCompetenciasUpdate) },
+
+            { typeof(FicVmPlaneacionApoyosList),typeof(FicViPlaneacionApoyosList) },
+            { typeof(FicVmPlaneacionApoyosInsert),typeof(FicViPlaneacionApoyosInsert) },
 
         };
 

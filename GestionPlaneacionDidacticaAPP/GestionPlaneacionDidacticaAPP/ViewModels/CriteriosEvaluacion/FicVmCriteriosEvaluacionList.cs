@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 
 using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Asignatura;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Interfaces.Temas;
 using GestionPlaneacionDidacticaAPP.Interfaces.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Models;
@@ -30,6 +31,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         //Labels
         private string _LabelUsuario;
         private string _LabelIdAsignatura;
+        private string _LabelPeriodo;
         private int _LabelIdPlaneacion;
         private string _LabelTema;
         private string _LabelCompetencia;
@@ -37,6 +39,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvCriteriosEvaluacion IFicSrvCriteriosEvaluacion;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
 
         private IFicSrvAsignatura IFicSrvAsignatura;
         private IFicSrvTemas IFicSrvTemas;
@@ -47,11 +50,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         public FicVmCriteriosEvaluacionList(IFicSrvNavigationInventario ficSrvNavigationInventario,
             IFicSrvTemas srvTemas,
             IFicSrvAsignatura srvAsignatura,
+            FicISrvPlaneacion iFicSrvPlaneacion,
             IFicSrvCriteriosEvaluacion ficSrvCriteriosEvaluacion)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvTemas = srvTemas;
             IFicSrvAsignatura = srvAsignatura;
+            IFicSrvPlaneacion = iFicSrvPlaneacion;
             IFicSrvCriteriosEvaluacion = ficSrvCriteriosEvaluacion;
 
             _SFDataGrid_ItemSource_CriteriosEvaluacion = new ObservableCollection<eva_planeacion_criterios_evalua>();
@@ -146,6 +151,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             }
         }
 
+        public string LabelPeriodo
+        {
+            get { return _LabelPeriodo; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelPeriodo = value;
+                    RaisePropertyChanged("LabelPeriodo");
+                }
+            }
+        }
+
         public ICommand FicMetAddCriterioEvaluacionICommand
         {
             get
@@ -157,7 +175,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private void FicMetAddCriterioEvaluacion()
         {
             //var source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionInsert>(FicNavigationContextC);
         }
 
         public ICommand FicMetViewCriteriosEvaluacionICommand
@@ -173,7 +191,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
             {
                 //eva_planeacion source_eva_planeacion = FicNavigationContextC[] as eva_planeacion;
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionView>(new object[] { SFDataGrid_SelectedItem_CriteriosEvaluacion });
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionView>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_CriteriosEvaluacion });
             }
         }
 
@@ -190,7 +212,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
             {
                 //eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] { SFDataGrid_SelectedItem_CriteriosEvaluacion });
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_CriteriosEvaluacion });
             }
         }
 
@@ -214,7 +240,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                     if (res == "OK")
                     {
                         //eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>();
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
                     }
                     else
                     {
@@ -228,7 +254,25 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             try
             {
-                eva_planeacion_temas_competencias eptc = FicNavigationContextC[0] as eva_planeacion_temas_competencias;
+                eva_planeacion_temas tema = FicNavigationContextC[0] as eva_planeacion_temas;
+                eva_planeacion source_eva_planeacion = FicNavigationContextC[1] as eva_planeacion;
+                eva_planeacion_temas_competencias eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+                cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
+
+                _LabelUsuario = FicGlobalValues.USUARIO;
+                _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
+                _LabelPeriodo = periodo.DesPeriodo;
+                _LabelIdPlaneacion = source_eva_planeacion.IdPlaneacion;
+                _LabelTema = tema.DesTema;
+                _LabelCompetencia = eptc.Observaciones;
+
+                RaisePropertyChanged("LabelPeriodo");
+                RaisePropertyChanged("LabelUsuario");
+                RaisePropertyChanged("LabelIdAsignatura");
+                RaisePropertyChanged("LabelIdPlaneacion");
+                RaisePropertyChanged("LabelTema");
+                RaisePropertyChanged("LabelCompetencia");
+
                 var criterios = await IFicSrvCriteriosEvaluacion.MetGetListCriteriosEvaluacion(eptc);
                 if (criterios != null)
                 {
