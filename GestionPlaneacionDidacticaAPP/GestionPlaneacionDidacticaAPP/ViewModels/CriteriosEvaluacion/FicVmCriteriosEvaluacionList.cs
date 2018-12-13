@@ -240,7 +240,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                     if (res == "OK")
                     {
                         //eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>();
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC);
                     }
                     else
                     {
