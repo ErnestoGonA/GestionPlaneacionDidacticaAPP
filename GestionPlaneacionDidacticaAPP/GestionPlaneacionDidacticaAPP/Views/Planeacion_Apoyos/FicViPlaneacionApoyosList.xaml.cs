@@ -38,5 +38,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos
                 FicViewModel.OnAppearing();
             }
         }
+
+     
     }
 }

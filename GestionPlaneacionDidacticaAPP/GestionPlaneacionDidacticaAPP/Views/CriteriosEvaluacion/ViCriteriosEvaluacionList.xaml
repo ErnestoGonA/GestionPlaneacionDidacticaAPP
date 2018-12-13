@@ -63,8 +63,9 @@
                 Placeholder="Filtrar Criterios..."
                 PlaceholderColor="Red"
                 x:Name="SearchBar"
-                >
+                TextChanged="OnFilterTextChange">
             </SearchBar>
+            
             <syncfusion:SfDataGrid
                 VerticalOptions="FillAndExpand"
                 ColumnSizer="Star"

@@ -23,6 +23,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         //Data of the grid
         public ObservableCollection<eva_planeacion_criterios_evalua> _SFDataGrid_ItemSource_CriteriosEvaluacion;
+        public List<eva_planeacion_criterios_evalua> _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX;
         public eva_planeacion_criterios_evalua _SFDataGrid_SelectedItem_CriteriosEvaluacion;
 
         //Buttons
@@ -60,6 +61,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             IFicSrvCriteriosEvaluacion = ficSrvCriteriosEvaluacion;
 
             _SFDataGrid_ItemSource_CriteriosEvaluacion = new ObservableCollection<eva_planeacion_criterios_evalua>();
+            _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX = new List<eva_planeacion_criterios_evalua>();
+
         }
 
         public ObservableCollection<eva_planeacion_criterios_evalua> SFDataGrid_ItemSource_CriteriosEvaluacion
@@ -280,12 +283,26 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                     foreach(eva_planeacion_criterios_evalua criterio in criterios)
                     {
                         _SFDataGrid_ItemSource_CriteriosEvaluacion.Add(criterio);
+                        _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX.Add(criterio);
                     }
                 }
             }
             catch (Exception e)
             {
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
+            }
+        }
+
+        internal void FilterTextChange(string newTextValue)
+        {
+            _SFDataGrid_ItemSource_CriteriosEvaluacion.Clear();
+            foreach (eva_planeacion_criterios_evalua criterio in _SFDataGrid_ItemSource_CriteriosEvaluacion_AUX)
+            {
+                if (criterio.DesCriterio.Contains(newTextValue)
+                    || criterio.Porcentaje.ToString().Contains(newTextValue))
+                {
+                    _SFDataGrid_ItemSource_CriteriosEvaluacion.Add(criterio);
+                }
             }
         }
 

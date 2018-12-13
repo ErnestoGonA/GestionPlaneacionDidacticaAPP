@@ -40,6 +40,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion
                 FicViewModel.OnAppearing();
             }
         }
+        private async void OnFilterTextChange(object sender, TextChangedEventArgs e)
+        {
+            var FicViewModel = BindingContext as FicVmCriteriosEvaluacionList;
+            FicViewModel.FilterTextChange(e.NewTextValue);
+        }
 
     }
 }
