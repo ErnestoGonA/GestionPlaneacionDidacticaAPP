@@ -74,7 +74,6 @@
                 SelectedItem="{Binding SFDataGrid_SelectedItem_Competencias}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdPlaneacionTemasCompetencias"/>
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
