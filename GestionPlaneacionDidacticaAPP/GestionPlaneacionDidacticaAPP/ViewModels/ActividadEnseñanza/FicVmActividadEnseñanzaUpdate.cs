@@ -11,10 +11,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-
 namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
 {
-    public class FicVmActividadEnseñanzaInsert : INotifyPropertyChanged
+    public class FicVmActividadEnseñanzaUpdate : INotifyPropertyChanged
     {
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvActividadEnseñanza IFicSrvActividadEnseñanza;
@@ -24,7 +23,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
 
         public object FicNavigationContextC { get; set; }
 
-        public FicVmActividadEnseñanzaInsert(IFicSrvNavigationInventario IFicSrvNavigationInventario,
+        public FicVmActividadEnseñanzaUpdate(IFicSrvNavigationInventario IFicSrvNavigationInventario,
             IFicSrvActividadEnseñanza IFicSrvActividadEnseñanza)
         {
             this.IFicSrvNavigationInventario = IFicSrvNavigationInventario;
@@ -39,7 +38,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
             }
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _DesActividadEnseñanza = value;
                     RaisePropertyChanged("DesActividadEnseñanza");
@@ -56,12 +55,14 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
         {
             try
             {
+                var source_eva_cat_actividades_enseñanza = FicNavigationContextC as eva_cat_actividades_enseñanza;
                 var RespuestaInsert = await IFicSrvActividadEnseñanza.FicMetUpdateEnseñanza(new eva_cat_actividades_enseñanza()
                 {
+                    IdActividadEnseñanza = source_eva_cat_actividades_enseñanza.IdActividadEnseñanza,
                     DesActividadEnseñanza = _DesActividadEnseñanza,
-                    FechaReg = DateTime.Now,
+                    FechaReg = source_eva_cat_actividades_enseñanza.FechaReg,
                     FechaUltMod = DateTime.Now,
-                    UsuarioReg = FicGlobalValues.USUARIO,
+                    UsuarioReg = source_eva_cat_actividades_enseñanza.UsuarioReg,
                     UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"

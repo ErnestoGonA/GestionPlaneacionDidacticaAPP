@@ -106,7 +106,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmActividadEnseñanzaUpdate>(SFDataGrid_SelectedItem_Enseñanza);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmActividadEnseñanzaUpdate>(SFDataGrid_SelectedItem_Enseñanza);
             }
         }
 
