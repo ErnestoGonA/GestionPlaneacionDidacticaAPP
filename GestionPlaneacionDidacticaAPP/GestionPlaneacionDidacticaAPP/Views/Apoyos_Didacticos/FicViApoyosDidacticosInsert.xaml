@@ -11,7 +11,7 @@
             Padding="20">
 
             <Label Text="Descripción del apoyo didactico:"/>
-            <Entry Text="{Binding LabelDesApoyoDidactico}"/>
+            <Editor  HeightRequest="75"  Text="{Binding LabelDesApoyoDidactico}"/>
 
             <Button Text="Agregar" Command="{Binding SaveCommand}"/>
             <Button Text="Cancelar" Command="{Binding MetRegesarApoyosDidacticosListICommand}"/>

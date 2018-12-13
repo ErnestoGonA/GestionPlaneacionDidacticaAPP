@@ -19,7 +19,7 @@
             <Label Text="Competencia: " FontAttributes="Bold" FontSize="Micro"/>
             <Picker SelectedIndex="{Binding IdCompetencia}" ItemsSource="{Binding Competencias}" HorizontalOptions="FillAndExpand"></Picker>
             <Label Text="Observaciones:"/>
-            <Entry Text="{Binding LabelObservaciones}"/>
+            <Editor  HeightRequest="75"  Text="{Binding LabelObservaciones}"/>
 
             <Button Text="Agregar" Command="{Binding SaveCommand}"/>
             <Button Text="Cancelar" Command="{Binding FicMetRegesarCompetenciasListICommand}"/>

@@ -36,7 +36,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Observaciones:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Label Text="{Binding LabelObservaciones}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
+                    <Label  HeightRequest="75"  Text="{Binding LabelObservaciones}" FontSize="Micro" IsEnabled="False" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
