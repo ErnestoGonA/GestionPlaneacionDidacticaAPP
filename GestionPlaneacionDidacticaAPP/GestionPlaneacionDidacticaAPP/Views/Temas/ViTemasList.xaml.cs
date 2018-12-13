@@ -40,6 +40,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Temas
                 FicViewModel.OnAppearing();
             }
         }
+        private async void OnFilterTextChange(object sender, TextChangedEventArgs e)
+        {
+            var FicViewModel = BindingContext as FicVmTemasList;
+            FicViewModel.FilterTextChange(e.NewTextValue);
+        }
 
     }
 }
