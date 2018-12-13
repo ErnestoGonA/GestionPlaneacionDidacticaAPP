@@ -24,6 +24,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
 
         //Data of the grid
         public ObservableCollection<eva_planeacion_temas> _SFDataGrid_ItemSource_Temas;
+        public List<eva_planeacion_temas> _SFDataGrid_ItemSource_Temas_AUX;
         public eva_planeacion_temas _SFDataGrid_SelectedItem_Temas;
 
         //Buttons
@@ -56,6 +57,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
             IFicSrvPlaneacion = iFicSrvPlaneacion;
 
             _SFDataGrid_ItemSource_Temas = new ObservableCollection<eva_planeacion_temas>();
+            _SFDataGrid_ItemSource_Temas_AUX = new List<eva_planeacion_temas>();
         }
 
         public ObservableCollection<eva_planeacion_temas> SFDataGrid_ItemSource_Temas
@@ -272,6 +274,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                         foreach (eva_planeacion_temas tema in source_local_inv1)
                         {
                             _SFDataGrid_ItemSource_Temas.Add(tema);
+                            _SFDataGrid_ItemSource_Temas_AUX.Add(tema);
                         }
                     }
                 }
@@ -283,6 +286,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                         foreach (eva_planeacion_temas tema in source_local_inv2)
                         {
                             _SFDataGrid_ItemSource_Temas.Add(tema);
+                            _SFDataGrid_ItemSource_Temas_AUX.Add(tema);
                         }
                     }
                 }
@@ -292,6 +296,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Temas
                 await new Page().DisplayAlert("ALERTA", e.Message.ToString(), "OK");
             }
         }//Sobrecarga el metodo OnAppearing() de la view
+
+        internal void FilterTextChange(string newTextValue)
+        {
+            _SFDataGrid_ItemSource_Temas.Clear();
+            foreach(eva_planeacion_temas tema in _SFDataGrid_ItemSource_Temas_AUX)
+            {
+                if(tema.DesTema.Contains(newTextValue)|| tema.Observaciones.Contains(newTextValue))
+                {
+                    _SFDataGrid_ItemSource_Temas.Add(tema);
+                }
+            }
+
+        }
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
