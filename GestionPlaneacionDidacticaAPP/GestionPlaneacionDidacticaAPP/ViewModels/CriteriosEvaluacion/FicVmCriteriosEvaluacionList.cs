@@ -192,7 +192,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
             {
-                //eva_planeacion source_eva_planeacion = FicNavigationContextC[] as eva_planeacion;
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionView>(new object[] {
                     FicNavigationContextC[0],
                     FicNavigationContextC[1],
@@ -213,7 +212,6 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         {
             if (SFDataGrid_SelectedItem_CriteriosEvaluacion != null)
             {
-                //eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
                 IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionUpdate>(new object[] {
                     FicNavigationContextC[0],
                     FicNavigationContextC[1],

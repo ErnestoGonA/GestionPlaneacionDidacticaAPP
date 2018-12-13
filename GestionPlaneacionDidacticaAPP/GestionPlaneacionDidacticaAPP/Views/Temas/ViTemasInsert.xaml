@@ -14,19 +14,19 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <StackLayout>
+                    <StackLayout Orientation="Horizontal">
                         <Label Text="Maestro: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelUsuario}"></Label>
                     </StackLayout>
-                    <StackLayout>
+                    <StackLayout Orientation="Horizontal">
                         <Label Text="Asignatura: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelIdAsignatura}"></Label>
                     </StackLayout>
-                    <StackLayout>
+                    <StackLayout Orientation="Horizontal">
                         <Label Text="Periodo: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelPeriodo}"></Label>
                     </StackLayout>
-                    <StackLayout>
+                    <StackLayout Orientation="Horizontal">
                         <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                         <Label Text="{Binding LabelIdPlaneacion}"></Label>
                     </StackLayout>
