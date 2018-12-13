@@ -68,9 +68,10 @@ namespace GestionPlaneacionDidacticaAPP.Services.Enseñanza
             return temaItem;
         }
 
-        public Task<string> FicMetRemoveEnseñanza()
+        public async Task<string> FicMetRemoveEnseñanza(eva_planeacion_enseñanza eva_planeacion_enseñanza)
         {
-            throw new NotImplementedException();
+            DBLoContext.Remove(eva_planeacion_enseñanza);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR";
         }
     }
 }

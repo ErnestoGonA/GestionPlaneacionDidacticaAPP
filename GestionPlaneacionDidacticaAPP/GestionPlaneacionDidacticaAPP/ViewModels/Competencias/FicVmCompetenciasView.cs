@@ -198,12 +198,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         public async void OnAppearing()
         {
             var source_eva_planeacion_temas_competencias = FicNavigationContextC[0] as eva_planeacion_temas_competencias;
-            var source_eva_planeacion_temas = FicNavigationContextC[1] as eva_planeacion_temas;
+            //var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
 
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelAsignatura = FicGlobalValues.ASIGNATURA;
-            _LabelIdPlaneacion = source_eva_planeacion_temas.IdPlaneacion;
-            _LabelTema = source_eva_planeacion_temas.IdTema;
+            _LabelIdPlaneacion = source_eva_planeacion_temas_competencias.IdPlaneacion;
+            _LabelTema = source_eva_planeacion_temas_competencias.IdTema;
             _LabelCompetencia = source_eva_planeacion_temas_competencias.IdCompetencia;
 
             _LabelObservaciones = source_eva_planeacion_temas_competencias.Observaciones;

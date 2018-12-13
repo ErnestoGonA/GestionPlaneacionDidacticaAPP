@@ -35,6 +35,9 @@ using GestionPlaneacionDidacticaAPP.Services.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.Services.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
+using GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.Services.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.Interfaces.ActividadEnseñanza;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -80,6 +83,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             FicContainerBuilder.RegisterType<FicVmPlaneacionApoyosList>();
             FicContainerBuilder.RegisterType<FicVmPlaneacionApoyosInsert>();
+
+            FicContainerBuilder.RegisterType<FicVmActividadEnseñanza>();
+            FicContainerBuilder.RegisterType<FicVmActividadEnseñanzaInsert>();
+            FicContainerBuilder.RegisterType<FicVmActividadEnseñanzaUpdate>();
 
 
             ///////////FicContainerBuilder.RegisterType<FicVmCatEdificiosList>();
@@ -138,6 +145,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaInsert>().As<IFicSrvEnseñanzaInsert>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaUpdate>().As<IFicSrvEnseñanzaUpdate>().SingleInstance();
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaDetalle>().As<IFicSrvEnseñanzaDetalle>().SingleInstance();
+
+            FicContainerBuilder.RegisterType<FicSrvActividadEnseñanza>().As<IFicSrvActividadEnseñanza>().SingleInstance();
 
 
             //FIC: se asigna o se libera el contenedor
@@ -299,6 +308,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmPlaneacionApoyosInsert FicVmPlaneacionApoyosInsert
         {
             get { return FicIContainer.Resolve<FicVmPlaneacionApoyosInsert>(); }
+        }
+
+        public FicVmActividadEnseñanza FicVmActividadEnseñanza
+        {
+            get { return FicIContainer.Resolve<FicVmActividadEnseñanza>(); }
+        }
+
+        public FicVmActividadEnseñanzaInsert FicVmActividadEnseñanzaInsert
+        {
+            get { return FicIContainer.Resolve<FicVmActividadEnseñanzaInsert>(); }
+        }
+
+        public FicVmActividadEnseñanzaUpdate FicVmActividadEnseñanzaUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmActividadEnseñanzaUpdate>(); }
         }
 
 

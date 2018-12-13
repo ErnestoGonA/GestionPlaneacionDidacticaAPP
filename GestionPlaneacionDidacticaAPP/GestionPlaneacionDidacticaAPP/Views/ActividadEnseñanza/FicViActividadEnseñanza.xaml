@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.ActividadEnseñanza.FicViActividadEnseñanza">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Name="Nueva Planeacion"
+            Command="{Binding MetAddEnseñanzaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Editar Planeacion"
+            Command="{Binding MetUpdateEnseñanzaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Detalle Planeacion"
+            Command="{Binding MetViewEnseñanzaICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Borrar Planeacion"
+            Command="{Binding MetRemoveEnseñanzaICommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+            >
+            <SearchBar
+                HorizontalOptions="FillAndExpand"
+                Placeholder="Filtrar informacion..."
+                PlaceholderColor="Red"
+                x:Name="SearchBar"
+                >
+            </SearchBar>
+            <syncfusion:SfDataGrid
+                VerticalOptions="FillAndExpand"
+                ColumnSizer="Star"
+                AutoGenerateColumns="False"
+                AllowSorting="False"
+                ItemsSource="{Binding SFDataGrid_ItemSource_Enseñanza}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_Enseñanza}"
+                SelectionMode="Single">
+                <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Id actividad enseñanza" MappingName="IdActividadEnseñanza"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Descripción actividad enseñanza" MappingName="DesActividadEnseñanza"/>
+                </syncfusion:SfDataGrid.Columns>
+            </syncfusion:SfDataGrid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

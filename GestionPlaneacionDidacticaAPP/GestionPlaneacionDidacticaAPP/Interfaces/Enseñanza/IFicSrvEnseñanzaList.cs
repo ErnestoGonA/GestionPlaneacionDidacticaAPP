@@ -14,7 +14,7 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Enseñanza
         Task<eva_cat_asignaturas> FicMetGetAsignatura(int id);
         Task<eva_planeacion_temas> FicMetGetTema(int id);
         Task<eva_cat_competencias> FicMetGetCompetencia(int id);
-        Task<string> FicMetRemoveEnseñanza();
+        Task<string> FicMetRemoveEnseñanza(eva_planeacion_enseñanza eva_planeacion_enseñanza);
     }
     public interface IFicSrvEnseñanzaInsert
     {
