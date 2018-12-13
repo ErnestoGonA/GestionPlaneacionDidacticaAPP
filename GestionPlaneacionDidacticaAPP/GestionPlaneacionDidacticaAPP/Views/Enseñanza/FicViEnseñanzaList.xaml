@@ -28,6 +28,24 @@
     <ContentPage.Content>
         <StackLayout Padding="10"
             >
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Usuario}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Asignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Planeacion}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Tema}"></Label>
+                </StackLayout>
+            </StackLayout>
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."

@@ -28,6 +28,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         public int _UsIndex = FicGlobalValues.USUARIO_INDEX;
         public Int16 _AsIndex;
         public bool Filtrado = false;
+        public string _Usuario, _Asignatura, _Planeacion, _Competencia, _Tema;
 
         //Buttons
         private ICommand _MetAddEnseñanzaICommand, _MetUpdateEnseñanzaICommand, _MetViewEnseñanzaICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
@@ -39,6 +40,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvEnseñanzaList IFicSrvEnseñanzaList;
 
+        public object[] FicNavigationContextC { get; set; }
         public FicVmEnseñanzaList(IFicSrvNavigationInventario ficSrvNavigationInventario,
             IFicSrvEnseñanzaList IFicSrvEnseñanzaList)
         {
@@ -186,12 +188,94 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             }
 
         }
+        public string Usuario
+        {
+            get
+            {
+                return _Usuario;
+            }
+            set
+            {
+                _Usuario = value;
+                if (value != null)
+                {
+                    _Usuario = value;
+                }
+                RaisePropertyChanged("Plantilla");
+            }
+        }
+        public string Asignatura
+        {
+            get
+            {
+                return _Asignatura;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Asignatura = value;
+                }
+                RaisePropertyChanged("Plantilla");
+            }
+        }
+        public string Planeacion
+        {
+            get
+            {
+                return _Planeacion;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Planeacion = value;
+                }
+                RaisePropertyChanged("Plantilla");
+            }
+        }
+        public string Tema
+        {
+            get
+            {
+                return _Tema;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Tema = value;
+                }
+                RaisePropertyChanged("Plantilla");
+            }
+        }
+        public string Competencia
+        {
+            get
+            {
+                return _Competencia;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Competencia = value;
+                }
+                RaisePropertyChanged("Plantilla");
+            }
+        }
 
 
         public async void OnAppearing()
         {
             try
             {
+                _Usuario = FicGlobalValues.USUARIO;
+                _Asignatura = FicGlobalValues.ASIGNATURA;
+                _Planeacion = (FicNavigationContextC[0] as eva_planeacion).ReferenciaNorma;
+                _Tema = (FicNavigationContextC[1] as eva_planeacion_temas).DesTema;
+
+
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
                 var source_local_inv = await this.IFicSrvEnseñanzaList.FicMetGetListEnseñanza();
                 if (source_local_inv != null)
