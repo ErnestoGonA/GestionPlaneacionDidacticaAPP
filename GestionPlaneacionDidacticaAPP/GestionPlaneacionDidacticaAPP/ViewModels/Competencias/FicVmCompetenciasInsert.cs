@@ -38,7 +38,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         private ICommand _FicMetRegesarCompetenciasListICommand, _SaveCommand;
 
         //Valor mandado de view padre a hija
-        public object FicNavigationContextC { get; set; }
+        public object[] FicNavigationContextC { get; set; }
 
         public FicVmCompetenciasInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvCompetencias srvCompetencias)
         {
@@ -161,7 +161,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         public async void OnAppearing()
         {
 
-            var source_eva_planeacion_temas = FicNavigationContextC as eva_planeacion_temas;
+            var source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
             _LabelUsuario = FicGlobalValues.USUARIO;
             _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
             _LabelIdPlaneacion = source_eva_planeacion_temas.IdPlaneacion;
@@ -183,7 +183,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             try
             {
 
-                var source_eva_planeacion_tema = FicNavigationContextC as eva_planeacion_temas;
+                var source_eva_planeacion_tema = FicNavigationContextC[0] as eva_planeacion_temas;
 
                 var res = await IFicSrvCompetencias.InsertCompetencia(new eva_planeacion_temas_competencias()
                 {
@@ -202,7 +202,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                     Borrado = "N"
                 });
 
-                if (res == "Ok")
+                if (res == "OK")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(FicNavigationContextC);
