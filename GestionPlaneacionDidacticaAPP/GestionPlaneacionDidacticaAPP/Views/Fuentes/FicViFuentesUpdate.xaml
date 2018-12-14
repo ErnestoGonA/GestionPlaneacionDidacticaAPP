@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Fuentes.FicViFuentesUpdate">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Padding="10">
+                <StackLayout>
+                    <Label Text="Fuentes" FontAttributes="Bold" FontSize="Medium"></Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelUsuario}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelAsignatura}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Actualizar fuente" FontAttributes="Bold" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Fuente bliográfica : " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker IsEnabled="False" SelectedIndex="{Binding IdFuente}" ItemsSource="{Binding ListFuentesB}" HorizontalOptions="FillAndExpand"></Picker>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Prioridad:" FontAttributes="Bold" FontSize="Micro"/>
+                    <Entry Text="{Binding LabelPrioridad}" FontSize="Micro"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Observaciones:" FontAttributes="Bold" FontSize="Micro"/>
+                    <Editor Text="{Binding LabelObservaciones}" FontSize="Micro"  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                    <Button Text="Cancelar" Command="{Binding FicMetRegresarFuentesICommand}"/>
+                </StackLayout>
+
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

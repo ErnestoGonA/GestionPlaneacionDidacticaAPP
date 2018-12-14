@@ -55,7 +55,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Periodo: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedIndex="{Binding PeriodoId}" ItemsSource="{Binding Periodos}" HorizontalOptions="FillAndExpand"></Picker>
+                    <Picker SelectedIndex="{Binding IdFuente}" ItemsSource="{Binding Periodos}" HorizontalOptions="FillAndExpand"></Picker>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">
