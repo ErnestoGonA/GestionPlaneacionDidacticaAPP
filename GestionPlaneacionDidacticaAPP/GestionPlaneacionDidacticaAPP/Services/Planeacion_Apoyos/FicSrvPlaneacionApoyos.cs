@@ -88,5 +88,11 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion_Apoyos
                 return e.Message.ToString();
             }
         }
+
+        public async Task<string> DeletePlaneacionApoyos(eva_planeacion_apoyos Apoyo)
+        {
+            DBLoContext.Remove(Apoyo);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR LA PLANEACION_APOYOS";
+        }
     }
 }
