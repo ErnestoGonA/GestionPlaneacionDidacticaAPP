@@ -245,7 +245,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1] });
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1], FicNavigationContextC[2] });
                 
             }
             catch (Exception e)

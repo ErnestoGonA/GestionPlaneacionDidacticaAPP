@@ -296,11 +296,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
         internal void FilterTextChange(string newTextValue)
         {
             _SFDataGrid_ItemSource_Aprendizajes.Clear();
-            foreach (eva_planeacion_aprendizaje criterio in _SFDataGrid_ItemSource_Aprendizajes_AUX)
+            foreach (eva_planeacion_aprendizaje aprendizaje in _SFDataGrid_ItemSource_Aprendizajes_AUX)
             {
-                if (true)
+                if (aprendizaje.Observaciones.Contains(newTextValue))
                 {
-                    _SFDataGrid_ItemSource_Aprendizajes.Add(criterio);
+                    _SFDataGrid_ItemSource_Aprendizajes.Add(aprendizaje);
                 }
             }
         }

@@ -24,7 +24,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private FicISrvPlaneacion IFicSrvPlaneacion;
 
-        private string _LabelDesTema, _LabelObservaciones, _LabelFechaReg, _LabelFechaMod, _LabelUsuarioReg, _LabelUsuarioMod, _LabelActivo, _LabelBorrado;
+        private string _LabelDesTema, _LabelDesCriterio, _LabelFechaReg, _LabelFechaMod, _LabelUsuarioReg, _LabelUsuarioMod, _LabelActivo, _LabelBorrado;
         private short  _LabelIdTema;
 
         //Labels
@@ -119,6 +119,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
                 {
                     _LabelCompetencia = value;
                     RaisePropertyChanged("LabelCompetencia");
+                }
+            }
+        }
+
+        public string LabelDesCriterio
+        {
+            get { return _LabelDesCriterio; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelDesCriterio = value;
+                    RaisePropertyChanged("LabelDesCriterio");
                 }
             }
         }
@@ -244,7 +257,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             _LabelCompetencia = eptc.Observaciones;
 
 
-            _LabelObservaciones = criterio.DesCriterio;
+            _LabelDesCriterio = criterio.DesCriterio;
             _LabelPorcentaje = criterio.Porcentaje+"";
             
             _LabelFechaReg = criterio.FechaReg.ToString();
@@ -260,7 +273,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
             RaisePropertyChanged("LabelDesTema");
             RaisePropertyChanged("LabelCompetencia");
 
-            RaisePropertyChanged("LabelObservaciones");
+            RaisePropertyChanged("LabelDesCriterio");
             RaisePropertyChanged("LabelPorcentaje");
 
 
@@ -273,20 +286,23 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion
 
         }
 
-        public ICommand FicMetRegesarCatEdificiosListICommand
+        public ICommand MetRegresarCriteriosEvaluacionListICommand
         {
             get
             {
                 return _FicMetRegesarCatEdificiosListICommand = _FicMetRegesarCatEdificiosListICommand ??
-                    new FicVmDelegateCommand(FicMetRegresarCatEdificios);
+                    new FicVmDelegateCommand(FicMetRegresarCriteriosList);
             }
         }
 
-        private async void FicMetRegresarCatEdificios()
+        private async void FicMetRegresarCriteriosList()
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(FicNavigationContextC[1]);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCriteriosEvaluacionList>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2]});
             }
             catch (Exception e)
             {

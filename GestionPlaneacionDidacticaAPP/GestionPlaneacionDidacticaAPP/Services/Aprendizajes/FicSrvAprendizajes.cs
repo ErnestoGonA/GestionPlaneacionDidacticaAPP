@@ -78,27 +78,10 @@ namespace GestionPlaneacionDidacticaAPP.Services.Aprendizajes
         {
             try
             {
-                var aprendizajes = await (from aprendizaje in DBLoContext.eva_planeacion_aprendizaje
-                                          where aprendizaje.IdPlaneacion == Aprendizaje.IdPlaneacion
-                                          where aprendizaje.IdAsignatura == Aprendizaje.IdAsignatura
-                                          where aprendizaje.IdTema == Aprendizaje.IdTema
-                                          where aprendizaje.IdCompetencia == Aprendizaje.IdCompetencia
-                                          where aprendizaje.IdActividadAprendizaje == Aprendizaje.IdActividadAprendizaje
-                                          select aprendizaje).AsNoTracking().ToListAsync();
-
-                if (aprendizajes.Count() > 0)
-                {
-                    await new Page().DisplayAlert("Update", "Ya tiene insertada esta actividad", "OK");
-                    return "REP";
-                }
-                else
-                {
-                    DBLoContext.Update(Aprendizaje);
-                    var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR LA Aprendizaje";
-                    DBLoContext.Entry(Aprendizaje).State = EntityState.Detached;
-                    return res;
-                }
-                  
+                DBLoContext.Update(Aprendizaje);
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR LA Aprendizaje";
+                DBLoContext.Entry(Aprendizaje).State = EntityState.Detached;
+                return res;  
             }
             catch (Exception e)
             {
