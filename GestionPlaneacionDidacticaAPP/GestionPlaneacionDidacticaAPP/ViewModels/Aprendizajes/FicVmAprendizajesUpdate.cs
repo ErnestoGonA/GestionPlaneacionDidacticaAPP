@@ -19,7 +19,7 @@ using GestionPlaneacionDidacticaAPP.Data;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
 {
-    public class FicVmAprendizajesInsert : INotifyPropertyChanged
+    public class FicVmAprendizajesUpdate: INotifyPropertyChanged
     {
 
         ///Interfaces
@@ -47,7 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
         //Valor mandado de view padre a hija
         public object[] FicNavigationContextC { get; set; }
 
-        public FicVmAprendizajesInsert(IFicSrvNavigationInventario ficSrvNavigationInventario,
+        public FicVmAprendizajesUpdate(IFicSrvNavigationInventario ficSrvNavigationInventario,
            IFicSrvAprendizajes ficSrvAprendizajes,
            IFicSrvAsignatura ficSrvAsignatura,
            FicISrvPlaneacion iFicSrvPlaneacion,
@@ -186,7 +186,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
         {
             try
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(FicNavigationContextC);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] { FicNavigationContextC[0], FicNavigationContextC[1], FicNavigationContextC[2] });
             }
             catch (Exception e)
             {
@@ -204,20 +204,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
             try
             {
                 var eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+                var aprendizaje = FicNavigationContextC[3] as eva_planeacion_aprendizaje;
 
-                var res = await IFicSrvAprendizajes.InsertAprendizaje(new eva_planeacion_aprendizaje()
+                var res = await IFicSrvAprendizajes.UpdateAprendizaje(new eva_planeacion_aprendizaje()
                 {
                     IdAsignatura = eptc.IdAsignatura,
                     IdPlaneacion = eptc.IdPlaneacion,
                     IdTema = eptc.IdTema,
                     IdCompetencia = eptc.IdCompetencia,
 
-                    IdActividadAprendizaje =(this._IdAprendizaje + 1),
+                    IdActividadAprendizaje = (this._IdAprendizaje + 1),
                     Observaciones = _LabelObservaciones,
 
-                    FechaReg = DateTime.Now,
+                    FechaReg = aprendizaje.FechaReg,
                     FechaUltMod = DateTime.Now,
-                    UsuarioReg = FicGlobalValues.USUARIO,
+                    UsuarioReg = aprendizaje.UsuarioReg,
                     UsuarioMod = FicGlobalValues.USUARIO,
                     Activo = "S",
                     Borrado = "N"
@@ -225,12 +226,20 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
 
                 if (res == "OK")
                 {
-                    await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(FicNavigationContextC);
+                    await new Page().DisplayAlert("Update", "¡Actualizado CON EXITO!", "OK");
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] { FicNavigationContextC[0],FicNavigationContextC[1],FicNavigationContextC[2]});
                 }
                 else
                 {
-                    await new Page().DisplayAlert("Insert", res.ToString(), "OK");
+                    if (res == "REP")
+                    {
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] { FicNavigationContextC[0], FicNavigationContextC[1], FicNavigationContextC[2] });
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("Update", res.ToString(), "OK");
+                    }
+                   
                 }
 
             }
@@ -249,6 +258,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
                 eva_planeacion_temas_competencias eptc = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
                 cat_periodos periodo = await IFicSrvPlaneacion.GetListPeriodos(source_eva_planeacion.IdPeriodo);
 
+                eva_planeacion_aprendizaje aprendizaje = FicNavigationContextC[3] as eva_planeacion_aprendizaje;
+
                 _LabelUsuario = FicGlobalValues.USUARIO;
                 _LabelIdAsignatura = FicGlobalValues.ASIGNATURA;
                 _LabelPeriodo = periodo.DesPeriodo;
@@ -256,12 +267,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
                 _LabelTema = tema.DesTema;
                 _LabelCompetencia = eptc.Observaciones;
 
+                _IdAprendizaje = aprendizaje.IdActividadAprendizaje - 1;
+                _LabelObservaciones = aprendizaje.Observaciones;
+
                 RaisePropertyChanged("LabelPeriodo");
                 RaisePropertyChanged("LabelUsuario");
                 RaisePropertyChanged("LabelIdAsignatura");
                 RaisePropertyChanged("LabelIdPlaneacion");
                 RaisePropertyChanged("LabelTema");
                 RaisePropertyChanged("LabelCompetencia");
+
+                RaisePropertyChanged("IdAprendizaje");
+                RaisePropertyChanged("LabelObservaciones");
+
 
             }
             catch (Exception e)
@@ -280,5 +298,4 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
         }
         #endregion
     }
-
 }

@@ -13,26 +13,26 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes;
 namespace GestionPlaneacionDidacticaAPP.Views.Aprendizajes
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class FicViAprendizajesInsert : ContentPage
+	public partial class FicViAprendizajesUpdate : ContentPage
 	{
         private object[] FicCuerpoNavigationContext { get; set; }
 
-        public FicViAprendizajesInsert()
+        public FicViAprendizajesUpdate()
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.FicVmAprendizajesInsert;
+            BindingContext = App.FicVmLocator.FicVmAprendizajesUpdate;
         }
 
-        public FicViAprendizajesInsert(object[] NavigationContext)
+        public FicViAprendizajesUpdate(object[] NavigationContext)
         {
             InitializeComponent();
-            BindingContext = App.FicVmLocator.FicVmAprendizajesInsert;
+            BindingContext = App.FicVmLocator.FicVmAprendizajesUpdate;
             FicCuerpoNavigationContext = NavigationContext;
         }
 
         protected async override void OnAppearing()
         {
-            var FicViewModel = BindingContext as FicVmAprendizajesInsert;
+            var FicViewModel = BindingContext as FicVmAprendizajesUpdate;
             if (FicViewModel != null)
             {
                 FicViewModel.FicNavigationContextC = FicCuerpoNavigationContext;

@@ -143,7 +143,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                 if (value != null)
                 {
                     _LabelObservaciones = value;
-                    RaisePropertyChanged("LabelObervaciones");
+                    RaisePropertyChanged("LabelObservaciones");
                 }
             }
         }
@@ -192,7 +192,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                     IdTema = source_eva_planeacion_tema.IdTema,
                     IdCompetencia = (int)(this._IdCompetencia + 1),
 
-                    Observaciones = LabelObservaciones,
+                    Observaciones = _LabelObservaciones,
 
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,

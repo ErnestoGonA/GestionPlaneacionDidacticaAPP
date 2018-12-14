@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesInsert">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesView">
     <ContentPage.Content>
         <ScrollView>
 
@@ -39,27 +39,26 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Insertar aprendizaje"></Label>
+                    <Label Text="Actualizar aprendizaje"></Label>
                 </StackLayout>
 
                 <StackLayout>
                     <Label Text="Aprendizaje: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedIndex="{Binding IdAprendizaje}" ItemsSource="{Binding Aprendizajes}" HorizontalOptions="FillAndExpand"></Picker>
+                    <Picker IsEnabled="False" SelectedIndex="{Binding IdAprendizaje}" ItemsSource="{Binding Aprendizajes}" HorizontalOptions="FillAndExpand"></Picker>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Observaciones" FontAttributes="Bold"></Label>
-                        <Editor Text="{Binding LabelObservaciones}" HeightRequest="75" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Editor>
+                        <Label Text="{Binding LabelObservaciones}"  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Label>
                     </StackLayout>
                 </StackLayout>
-                
-                
+
+
 
                 <StackLayout Orientation="Horizontal" Padding="10">
-                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
-                    <Button Text="Cancelar" Command="{Binding MetRegresarAprendizajesListICommand}"/>
+                    <Button Text="Volver" Command="{Binding MetRegresarAprendizajesListICommand}"/>
                 </StackLayout>
-
 
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
+            

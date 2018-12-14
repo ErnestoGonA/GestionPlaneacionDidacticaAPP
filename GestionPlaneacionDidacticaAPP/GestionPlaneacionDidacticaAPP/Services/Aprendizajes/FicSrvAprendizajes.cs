@@ -24,14 +24,39 @@ namespace GestionPlaneacionDidacticaAPP.Services.Aprendizajes
         }
 
 
-        public Task<string> DeleteAprendizaje(eva_planeacion_aprendizaje Aprendizaje)
+        public async Task<string> DeleteAprendizaje(eva_planeacion_aprendizaje Aprendizaje)
         {
-            throw new NotImplementedException();
+            DBLoContext.Remove(Aprendizaje);
+            return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR APRENDIZJAE";
         }
 
-        public Task<string> InsertAprendizaje(eva_planeacion_aprendizaje Aprendizaje)
+        public async Task<string> InsertAprendizaje(eva_planeacion_aprendizaje Aprendizaje)
         {
-            throw new NotImplementedException();
+            var aprendizajes = await (from aprendizaje in DBLoContext.eva_planeacion_aprendizaje
+                                      where aprendizaje.IdPlaneacion == Aprendizaje.IdPlaneacion
+                                      where aprendizaje.IdAsignatura == Aprendizaje.IdAsignatura
+                                      where aprendizaje.IdTema == Aprendizaje.IdTema
+                                      where aprendizaje.IdCompetencia == Aprendizaje.IdCompetencia
+                                      where aprendizaje.IdActividadAprendizaje == Aprendizaje.IdActividadAprendizaje
+                                      select aprendizaje).AsNoTracking().ToListAsync();
+
+            if (aprendizajes.Count() > 0)
+            {
+                return "OK";
+            }
+            else
+            {
+                await DBLoContext.AddAsync(Aprendizaje);
+                var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL INSERTAR LA COMPETENCIA";
+                DBLoContext.Entry(Aprendizaje).State = EntityState.Detached;
+                return res;
+
+            }
+        }
+
+        public async Task<List<string>> MetGetActividadesAprendizaje()
+        {
+            return await (from actividad in DBLoContext.eva_cat_actividades_aprendizaje select actividad.DesActividadAprendizaje).AsNoTracking().ToListAsync();
         }
 
         public Task<IEnumerable<eva_planeacion_aprendizaje>> MetGetListAprendizajes()
@@ -49,9 +74,36 @@ namespace GestionPlaneacionDidacticaAPP.Services.Aprendizajes
                          select aprendizaje).AsNoTracking().ToListAsync();
         }
 
-        public Task<string> UpdateAprendizaje(eva_planeacion_aprendizaje Aprendizaje)
+        public async Task<string> UpdateAprendizaje(eva_planeacion_aprendizaje Aprendizaje)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var aprendizajes = await (from aprendizaje in DBLoContext.eva_planeacion_aprendizaje
+                                          where aprendizaje.IdPlaneacion == Aprendizaje.IdPlaneacion
+                                          where aprendizaje.IdAsignatura == Aprendizaje.IdAsignatura
+                                          where aprendizaje.IdTema == Aprendizaje.IdTema
+                                          where aprendizaje.IdCompetencia == Aprendizaje.IdCompetencia
+                                          where aprendizaje.IdActividadAprendizaje == Aprendizaje.IdActividadAprendizaje
+                                          select aprendizaje).AsNoTracking().ToListAsync();
+
+                if (aprendizajes.Count() > 0)
+                {
+                    await new Page().DisplayAlert("Update", "Ya tiene insertada esta actividad", "OK");
+                    return "REP";
+                }
+                else
+                {
+                    DBLoContext.Update(Aprendizaje);
+                    var res = await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ACTUALIZAR LA Aprendizaje";
+                    DBLoContext.Entry(Aprendizaje).State = EntityState.Detached;
+                    return res;
+                }
+                  
+            }
+            catch (Exception e)
+            {
+                return e.Message.ToString();
+            }
         }
     }
 }

@@ -10,16 +10,16 @@
              Command="{Binding FicMetAddAprendizajesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Criterio"
-             Command="{Binding FicMetUpdateCriteriosEvaluacionICommand}">
+            Name="Editar Aprendizaje"
+             Command="{Binding FicMetUpdateAprendizajesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Criterio"
-            Command="{Binding FicMetViewCriteriosEvaluacionICommand}">
+            Name="Detalle Aprendizaje"
+            Command="{Binding FicMetViewAprendizajesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Criterio"
-            Command="{Binding FicMetRemoveCriteriosEvaluacionICommand}">
+            Name="Borrar Aprendizaje"
+            Command="{Binding FicMetRemoveAprendizajesICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 

@@ -67,7 +67,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 
             {typeof(FicVmAprendizajesList),typeof(FicViAprendizajesList) },
             {typeof(FicVmAprendizajesInsert),typeof(FicViAprendizajesInsert) },
-            //TODO ADD CRUD
+            {typeof(FicVmAprendizajesUpdate),typeof(FicViAprendizajesUpdate) },
+            {typeof(FicVmAprendizajesView),typeof(FicViAprendizajesView) },
 
             {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
             {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },

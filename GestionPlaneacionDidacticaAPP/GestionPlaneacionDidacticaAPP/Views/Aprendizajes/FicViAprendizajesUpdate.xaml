@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesInsert">
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesUpdate">
     <ContentPage.Content>
         <ScrollView>
 
@@ -39,7 +39,7 @@
                 </StackLayout>
 
                 <StackLayout>
-                    <Label Text="Insertar aprendizaje"></Label>
+                    <Label Text="Actualizar aprendizaje"></Label>
                 </StackLayout>
 
                 <StackLayout>
@@ -50,8 +50,8 @@
                         <Editor Text="{Binding LabelObservaciones}" HeightRequest="75" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Editor>
                     </StackLayout>
                 </StackLayout>
-                
-                
+
+
 
                 <StackLayout Orientation="Horizontal" Padding="10">
                     <Button Text="Guardar" Command="{Binding SaveCommand}"/>
