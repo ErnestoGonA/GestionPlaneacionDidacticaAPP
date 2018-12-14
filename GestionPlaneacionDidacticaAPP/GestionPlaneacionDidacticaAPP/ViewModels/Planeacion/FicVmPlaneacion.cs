@@ -107,6 +107,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
             set
             {
                 _PeriodoId = value;
+                FicGlobalValues.PERIODO_INDEX = _PeriodoId;
             }
         }
 
@@ -357,7 +358,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         }
         public async void FicMetFiltrarPlantilla()
         {
-            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(Int16)(FicGlobalValues.PERIODO_INDEX+1));
+            var source_local_inv = await FicISrvPlaneacion.FicMetGetListPlaneacionPlantilla(FicGlobalValues.ASIGNATURA_INDEX+1,_Plantilla,(short)(_PeriodoId+1));
             if (source_local_inv != null)
             {
                 _SFDataGrid_ItemSource_Planeacion.Clear();

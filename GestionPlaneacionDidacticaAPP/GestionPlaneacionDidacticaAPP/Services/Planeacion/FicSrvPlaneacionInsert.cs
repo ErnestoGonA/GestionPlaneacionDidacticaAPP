@@ -27,15 +27,15 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
             {
                 var planeacion = await (from pla in dBContext.eva_planeacion
                                    where pla.IdAsignatura == eva_planeacion.IdAsignatura
-                                   where pla.IdPeriodo == eva_planeacion.IdPeriodo
-                                   select pla).ToListAsync();
+                                   //where pla.IdPeriodo == eva_planeacion.IdPeriodo
+                                   select pla).AsNoTracking().ToListAsync();
 
                 int maxId = 0;
                 if (planeacion.Count() > 0)
                 {
                     maxId = (from pla in dBContext.eva_planeacion
                              where pla.IdAsignatura == eva_planeacion.IdAsignatura
-                             where pla.IdPlaneacion == eva_planeacion.IdPlaneacion
+                             //where pla.IdPeriodo == eva_planeacion.IdPeriodo
                              select pla.IdPlaneacion).Max();
                 }
 
