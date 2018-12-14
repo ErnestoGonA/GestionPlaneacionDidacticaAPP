@@ -16,8 +16,10 @@
             <Label Text="{Binding LabelIdPlaneacion}"></Label>
             <Label Text="Apoyo Didactico: " FontAttributes="Bold" FontSize="Micro"/>
             <Picker SelectedIndex="{Binding IdApoyoDidactico}" ItemsSource="{Binding ApoyosDidacticos}" HorizontalOptions="FillAndExpand"></Picker>
+            <Label Text="Observaciones: " FontAttributes="Bold" FontSize="Micro"/>
+            <Editor Text="{Binding LabelObservaciones}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
 
-            <Button Text="Agregar" Command="{Binding SaveCommand}"/>
+                <Button Text="Agregar" Command="{Binding SaveCommand}"/>
             <Button Text="Cancelar" Command="{Binding FicMetRegesarPlaneacionApoyosListICommand}"/>
 
         </StackLayout>
