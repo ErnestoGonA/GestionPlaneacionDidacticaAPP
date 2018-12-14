@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Aprendizajes.FicViAprendizajesUpdate">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout VerticalOptions="StartAndExpand" Padding="20">
+
+                <StackLayout>
+                    <Label Text="Evaluacion - Aprendizaje" FontAttributes="Bold"></Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelUsuario}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelIdAsignatura}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Periodo: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelPeriodo}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelIdPlaneacion}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tema: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelTema}"></Label>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Competencia: " FontAttributes="Bold"></Label>
+                        <Label Text="{Binding LabelCompetencia}"></Label>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Actualizar aprendizaje"></Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label Text="Aprendizaje: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedIndex="{Binding IdAprendizaje}" ItemsSource="{Binding Aprendizajes}" HorizontalOptions="FillAndExpand"></Picker>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Observaciones" FontAttributes="Bold"></Label>
+                        <Editor Text="{Binding LabelObservaciones}" HeightRequest="75" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Editor>
+                    </StackLayout>
+                </StackLayout>
+
+
+
+                <StackLayout Orientation="Horizontal" Padding="10">
+                    <Button Text="Guardar" Command="{Binding SaveCommand}"/>
+                    <Button Text="Cancelar" Command="{Binding MetRegresarAprendizajesListICommand}"/>
+                </StackLayout>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -62,8 +62,8 @@
                 SelectedItem="{Binding SFDataGrid_SelectedItem_Planeacion_Apoyos}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID Planeacion" MappingName="IdPlaneacion"/>
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID Aooyo Didactico" MappingName="IdApoyoDidactico"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>

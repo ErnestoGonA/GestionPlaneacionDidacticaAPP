@@ -42,7 +42,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Descripción del criterio: " FontAttributes="Bold" FontSize="Micro"/>
-                <Label Text="{Binding LabelDesCriterio}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <Label  HeightRequest="75"  Text="{Binding LabelDesCriterio}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">

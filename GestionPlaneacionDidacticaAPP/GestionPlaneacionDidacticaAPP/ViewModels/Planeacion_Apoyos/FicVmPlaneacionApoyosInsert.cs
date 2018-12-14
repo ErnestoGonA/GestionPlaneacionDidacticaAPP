@@ -15,6 +15,7 @@ using GestionPlaneacionDidacticaAPP.Models;
 using GestionPlaneacionDidacticaAPP.Services.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.Data;
+using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
 {
@@ -23,11 +24,13 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvPlaneacionApoyos IFicSrvPlaneacionApoyos;
+        private FicISrvPlaneacion IFicSrvPlaneacion;
 
         //Labels
         private string _LabelUsuario;
         private int _LabelIdPlaneacion;
         private string _LabelIdAsignatura;
+        private string _LabelObservaciones;
 
         public Int16 _IdApoyodidactico;
         private List<string> _ApoyosDidacticos;
@@ -38,7 +41,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
         //Valor mandado de view padre a hija
         public object FicNavigationContextC { get; set; }
 
-        public FicVmPlaneacionApoyosInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvPlaneacionApoyos srvCompetencias)
+        public FicVmPlaneacionApoyosInsert(IFicSrvNavigationInventario ficSrvNavigationInventario, IFicSrvPlaneacionApoyos srvCompetencias, FicISrvPlaneacion iFicSrvPlaneacion)
         {
             IFicSrvNavigationInventario = ficSrvNavigationInventario;
             IFicSrvPlaneacionApoyos = srvCompetencias;
@@ -130,6 +133,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
             }
         }
 
+        public string LabelObservaciones
+        {
+            get { return _LabelObservaciones; }
+            set
+            {
+                if (value != null)
+                {
+                    _LabelObservaciones = value;
+                    RaisePropertyChanged("LabelObervaciones");
+                }
+            }
+        }
+
         public async void OnAppearing()
         {
 
@@ -160,6 +176,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
                     IdAsignatura = source_eva_planeacion.IdAsignatura,
                     IdPlaneacion = source_eva_planeacion.IdPlaneacion,
                     IdApoyoDidactico = (Int16)(this._IdApoyodidactico + 1),
+                    Observaciones = LabelObservaciones,
 
                     FechaReg = DateTime.Now,
                     FechaUltMod = DateTime.Now,
@@ -169,7 +186,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
                     Borrado = "N"
                 });
 
-                if (res == "Ok")
+                if (res == "OK")
                 {
                     await new Page().DisplayAlert("Insert", "¡INSERTADO CON EXITO!", "OK");
                     IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosList>(FicNavigationContextC);

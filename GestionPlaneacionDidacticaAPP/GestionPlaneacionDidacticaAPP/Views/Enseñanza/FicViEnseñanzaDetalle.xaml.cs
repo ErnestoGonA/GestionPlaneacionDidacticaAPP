@@ -13,8 +13,8 @@ namespace GestionPlaneacionDidacticaAPP.Views.Enseñanza
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FicViEnseñanzaDetalle : ContentPage
 	{
-        private object FicCuerpoNavigationContext { get; set; }
-        public FicViEnseñanzaDetalle (object FicNavigationContext)
+        private object[] FicCuerpoNavigationContext { get; set; }
+        public FicViEnseñanzaDetalle (object[] FicNavigationContext)
 		{
 			InitializeComponent ();
             FicCuerpoNavigationContext = FicNavigationContext;

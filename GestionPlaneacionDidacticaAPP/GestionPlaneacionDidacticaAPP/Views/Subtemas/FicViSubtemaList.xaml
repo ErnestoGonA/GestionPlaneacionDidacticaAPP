@@ -67,7 +67,7 @@
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
                     <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdSubtema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Tema" MappingName="DesSubtema"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Subtema" MappingName="DesSubtema"/>
                
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>

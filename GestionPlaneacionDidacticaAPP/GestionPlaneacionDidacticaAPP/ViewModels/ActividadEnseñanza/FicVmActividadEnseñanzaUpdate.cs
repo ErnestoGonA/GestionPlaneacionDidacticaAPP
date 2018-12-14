@@ -105,7 +105,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza
 
         public async void OnAppearing()
         {
-
+            var source_actividad = FicNavigationContextC as eva_cat_actividades_enseñanza;
+            _DesActividadEnseñanza = source_actividad.DesActividadEnseñanza;
+            RaisePropertyChanged("DesActividadEnseñanza");
         }
 
         #region INotifyPropertyChanged

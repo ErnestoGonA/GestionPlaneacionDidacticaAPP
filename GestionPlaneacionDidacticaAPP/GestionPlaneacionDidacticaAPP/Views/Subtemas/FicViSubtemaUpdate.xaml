@@ -39,7 +39,7 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Subtema:" FontAttributes="Bold" FontSize="Micro"/>
-                    <Entry Text="{Binding LabelDesSubtema}" FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
+                    <Editor  HeightRequest="75"  Text="{Binding LabelDesSubtema}" FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal" Padding="10">

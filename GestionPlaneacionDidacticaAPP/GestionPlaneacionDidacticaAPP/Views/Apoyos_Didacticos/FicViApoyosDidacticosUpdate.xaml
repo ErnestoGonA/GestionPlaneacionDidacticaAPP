@@ -14,7 +14,7 @@
             <Entry Text="{Binding LabelId}" IsEnabled="False"/>
 
             <Label Text="DesApoyoDidactico:"/>
-            <Entry Text="{Binding LabelDesApoyoDidactico}"/>
+            <Editor  HeightRequest="75"  Text="{Binding LabelDesApoyoDidactico}"/>
 
             <Button Text="Guardar" Command="{Binding SaveCommand}"/>
             <Button Text="Cancelar" Command="{Binding FicMetRegesarApoyosDidacticosListICommand}"/>

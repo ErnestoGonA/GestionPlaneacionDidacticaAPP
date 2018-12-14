@@ -21,7 +21,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         private string _FechaIni, _FechaFin,_PlaneacionNorma,_CompetenciaNombre,_TemaNombre;
         private string _FechaReg, _UsuarioReg, _FechaUltMod, _UsuarioMod, _Activo, _Borrado, _ClaveAsignatura, _DesAsignatura, _NombreCorto;
         private ICommand _FicMetRegresarPlaneacionICommand;
-        public object FicNavigationContextC { get; set; }
+        public object[] FicNavigationContextC { get; set; }
 
         public FicVmEnseñanzaDetalle(IFicSrvNavigationInventario IFicSrvNavigationInventario,
             IFicSrvEnseñanzaDetalle IFicSrvEnseñanzaDetalle)
@@ -245,7 +245,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
 
         public async void OnAppearing()
         {
-            var enseñanzaItem = FicNavigationContextC as EnseñanzaLista;
+            var enseñanzaItem = FicNavigationContextC[3] as EnseñanzaLista;
             eva_planeacion_enseñanza source_eva_enseñanza = enseñanzaItem.eva_planeacion_enseñanza;
 
             eva_cat_asignaturas asignatura = this.IFicSrvEnseñanzaDetalle.FicMetGetAsignatura(source_eva_enseñanza.IdAsignatura).Result;

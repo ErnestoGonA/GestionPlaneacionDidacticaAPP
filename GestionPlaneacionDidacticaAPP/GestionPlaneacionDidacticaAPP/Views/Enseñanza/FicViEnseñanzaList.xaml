@@ -18,16 +18,38 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Enseñanza"
-            Command="{Binding MetRemoveEnseñanzaICommand}">
+            Command="{Binding MetRemovePlaneacionICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Temas"
+            Name="Competencias"
             Command="{Binding FicMetNavigateToTemasICommand}">
+        </ToolbarItem>
+        <ToolbarItem
+            Name="Actividades enseñanza"
+            Command="{Binding FicMetNavigateToActividadICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10"
             >
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Maestro: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Usuario}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Asignatura: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Asignatura}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Planeacion: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Planeacion}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Tema: " FontAttributes="Bold"></Label>
+                    <Label Text="{Binding Tema}"></Label>
+                </StackLayout>
+            </StackLayout>
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
@@ -44,10 +66,7 @@
                 SelectedItem="{Binding SFDataGrid_SelectedItem_Enseñanza}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Asignatura" MappingName="Asignatura"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Planeacion" MappingName="Planeacion"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Tema" MappingName="Tema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Competencia" MappingName="Competencia"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Actividad enseñanza" MappingName="Actividad"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>

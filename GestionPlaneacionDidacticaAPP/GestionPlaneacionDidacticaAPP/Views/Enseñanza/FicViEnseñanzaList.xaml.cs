@@ -18,9 +18,11 @@ namespace GestionPlaneacionDidacticaAPP.Views.Enseñanza
             InitializeComponent();
             BindingContext = App.FicVmLocator.FicVmEnseñanzaList;
         }
-        public FicViEnseñanzaList(object NavigationContext)
+        private object[] FicCuerpoNavigationContext { get; set; }
+        public FicViEnseñanzaList(object[] FicNavigationContext)
         {
             InitializeComponent();
+            FicCuerpoNavigationContext = FicNavigationContext;
             BindingContext = App.FicVmLocator.FicVmEnseñanzaList;
         }
 
@@ -29,7 +31,10 @@ namespace GestionPlaneacionDidacticaAPP.Views.Enseñanza
             var FicViewModel = BindingContext as FicVmEnseñanzaList;
             if (FicViewModel != null)
             {
+                FicViewModel.FicNavigationContextC = FicCuerpoNavigationContext;
+
                 FicViewModel.OnAppearing();
+
             }
         }
 

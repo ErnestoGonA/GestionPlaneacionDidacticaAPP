@@ -7,11 +7,14 @@ using GestionPlaneacionDidacticaAPP.Interfaces.Navegacion;
 using GestionPlaneacionDidacticaAPP.Views.Navegacion;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion;
 using GestionPlaneacionDidacticaAPP.Views.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes;
 using GestionPlaneacionDidacticaAPP.Views.CriteriosEvaluacion;
+using GestionPlaneacionDidacticaAPP.Views.Aprendizajes;
 using GestionPlaneacionDidacticaAPP.Views.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Base;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
+using GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes;
 using GestionPlaneacionDidacticaAPP.ViewModels.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.ViewModels.Apoyos_Didacticos;
 using GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza;
@@ -19,12 +22,7 @@ using GestionPlaneacionDidacticaAPP.Views.Enseñanza;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
-using GestionPlaneacionDidacticaAPP.Views.Planeacion;
+
 using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
 using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
@@ -49,6 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmSubtemaView),typeof(FicViSubtemaView)},
             {typeof(FicVmSubtemasUpdate),typeof(FicViSubtemaUpdate)},
 
+
             {typeof(FicVmFuentesList),typeof(FicViFuentesList)},
             {typeof(FicVmFuentesInsert),typeof(FicViFuentesInsert)},
             {typeof(FicVmFuentesUpdate),typeof(FicViFuentesUpdate)},
@@ -65,6 +64,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             //{ typeof(FicVmInventarioAcumuladoList),typeof(FicViInventarioAcumuladoList)},
             //{typeof(FicVmImportarWebApi), typeof(FicViImportarWebApi)},
             //{typeof(FicVmExportarWebApi), typeof(FicViExportarWebApi)}
+
 
             {typeof(FicVmPlaneacionView),typeof(FicViPlaneacionView) },
             {typeof(FicVmPlaneacionUpdate),typeof(FicViPlaneacionUpdate) },
@@ -83,6 +83,12 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmActividadEnseñanza),typeof(FicViActividadEnseñanza) },
             {typeof(FicVmActividadEnseñanzaInsert),typeof(FicViActividadEnseñanzaInsert) },
             {typeof(FicVmActividadEnseñanzaUpdate), typeof(FicViActividadEnseñanzaUpdate) },
+            {typeof(FicVmActividadEnseñanzaDetalle), typeof(FicViActividadEnseñanzaDetalle) },
+
+            {typeof(FicVmAprendizajesList),typeof(FicViAprendizajesList) },
+            {typeof(FicVmAprendizajesInsert),typeof(FicViAprendizajesInsert) },
+            {typeof(FicVmAprendizajesUpdate),typeof(FicViAprendizajesUpdate) },
+            {typeof(FicVmAprendizajesView),typeof(FicViAprendizajesView) },
 
             {typeof(FicVmCriteriosEvaluacionList),typeof(ViCriteriosEvaluacionList) },
             {typeof(FicVmCriteriosEvaluacionInsert),typeof(ViCriteriosEvaluacionInsert) },
