@@ -104,6 +104,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 
             FicContainerBuilder.RegisterType<FicVmAprendizajesList>();
             FicContainerBuilder.RegisterType<FicVmAprendizajesInsert>();
+            FicContainerBuilder.RegisterType<FicVmAprendizajesUpdate>();
 
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
@@ -328,7 +329,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             get { return FicIContainer.Resolve<FicVmAprendizajesInsert>(); }
         }
         
-
+        public FicVmAprendizajesUpdate FicVmAprendizajesUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmAprendizajesUpdate>(); }
+        }
 
 
     }//CLASS

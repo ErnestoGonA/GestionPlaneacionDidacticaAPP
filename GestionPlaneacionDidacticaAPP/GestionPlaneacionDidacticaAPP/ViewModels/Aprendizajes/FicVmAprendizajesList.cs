@@ -202,7 +202,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
             }
         }
 
-        public ICommand FicMetUpdateAprendizajeICommand
+        public ICommand FicMetUpdateAprendizajesICommand
         {
             get
             {
@@ -215,7 +215,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
             if (SFDataGrid_SelectedItem_Aprendizajes != null)
             {
                 //TODO change to update
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesUpdate>(new object[] {
                     FicNavigationContextC[0],
                     FicNavigationContextC[1],
                     FicNavigationContextC[2],
@@ -223,7 +223,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
             }
         }
 
-        public ICommand FicMetRemoveCriteriosEvaluacionICommand
+        public ICommand FicMetRemoveAprendizajesICommand
         {
             get
             {
