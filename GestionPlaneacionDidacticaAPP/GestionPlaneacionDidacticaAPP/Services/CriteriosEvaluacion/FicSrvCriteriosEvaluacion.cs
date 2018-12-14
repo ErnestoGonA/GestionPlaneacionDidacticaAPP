@@ -47,7 +47,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.CriteriosEvaluacion
                                    where criterio.IdPlaneacion == CriterioEvaluacion.IdPlaneacion
                                    where criterio.IdTema == CriterioEvaluacion.IdTema
                                    where criterio.IdCompetencia == CriterioEvaluacion.IdCompetencia
-                                   select criterio).ToListAsync();
+                                   select criterio).AsNoTracking().ToListAsync();
 
                 int maxId = 0;
                 if (criterios.Count() > 0)

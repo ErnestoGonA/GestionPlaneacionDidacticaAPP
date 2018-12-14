@@ -18,10 +18,6 @@
                     <Label Text="Asignatura: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelAsignatura}"></Label>
                 </StackLayout>
-                <!--<StackLayout>
-                    <Label Text="Periodo: " FontAttributes="Bold"></Label>
-                    <Label Text="{Binding LabelPeriodo}"></Label>
-                </StackLayout>-->
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
@@ -42,7 +38,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Descripción del criterio: " FontAttributes="Bold" FontSize="Micro"/>
-                <Label  HeightRequest="75"  Text="{Binding LabelDesCriterio}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                <Label Text="{Binding LabelDesCriterio}" FontSize="Micro" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
