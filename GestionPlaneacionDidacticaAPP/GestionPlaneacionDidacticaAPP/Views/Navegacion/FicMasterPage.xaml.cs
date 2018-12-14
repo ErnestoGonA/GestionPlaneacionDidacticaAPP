@@ -36,9 +36,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                 var FicPagina = FicItemMenu.FicPageName as string;
                 switch (FicPagina)
                 {
-                    case "FicViPlaneacion":
-                        FicItemMenu.TargetType = typeof(FicViPlaneacion);
-                        break;
+                    
                     //case "ViTemasList":
                     //    FicItemMenu.TargetType = typeof(ViTemasList);
                     //    break;
@@ -49,10 +47,16 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                     case "FicViPlaneacionApoyosList":
                         FicItemMenu.TargetType = typeof(FicViPlaneacionApoyosList);
                         break;
+
+                    case "FicViPlaneacion":
+                        FicItemMenu.TargetType = typeof(FicViPlaneacion);
+                        break;
+
                     //case "FicViSubtemasList":
                     //    FicItemMenu.TargetType = typeof(FicViSubtemasList);
                     //    break;
                     //case "FicViCompetencias":
+
                     //    FicItemMenu.TargetType = typeof(FicViCompetencias);
                     //    break;
                     //case "ViCatEdificiosList":

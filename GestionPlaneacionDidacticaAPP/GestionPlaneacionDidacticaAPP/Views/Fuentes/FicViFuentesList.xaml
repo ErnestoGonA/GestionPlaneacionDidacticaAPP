@@ -1,55 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:syncfusion ="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
-             x:Class="GestionPlaneacionDidacticaAPP.Views.Subtemas.FicViSubtemasList">
-    
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Navegacion.FicViFuentesList">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Name="Nueva Subtema"
-            Command="{Binding FicMetAddSubtemaICommand}">
+            Name="Nueva Fuente Bibliográfica"
+            Command="{Binding FicMetAddFuentesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Editar Subtema"
-            Command="{Binding FicMetUpdateSubtemaICommand}">
+            Name="Editar Fuente Bibliográfica"
+            Command="{Binding FicMetUpdateFuentesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Subtema"
-            Command="{Binding FicMetViewSubtemaICommand}">
+            Name="Detalle Fuente Bibliográfica"
+            Command="{Binding FicMetViewFuentesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Borrar Subtema"
-            Command="{Binding FicMetRemoveSubtemaICommand}">
+            Name="Borrar Fuente Bibliográfica"
+            Command="{Binding FicMetRemoveFuentesICommand}">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
-        <StackLayout Padding="10"
-            >
+        <StackLayout Padding="10">
 
             <StackLayout>
                 <StackLayout>
-                    <Label Text="Subtemas" FontAttributes="Bold" FontSize="Medium"></Label>
+                    <Label Text="Fuentes" FontAttributes="Bold" FontSize="Medium"></Label>
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Maestro: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelUsuario}"></Label>
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Asignatura: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdAsignatura}"></Label>
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Orientation="Horizontal">
                     <Label Text="Planeacion: " FontAttributes="Bold"></Label>
                     <Label Text="{Binding LabelIdPlaneacion}"></Label>
                 </StackLayout>
-                <StackLayout>
-                    <Label Text="Tema: " FontAttributes="Bold"></Label>
-                    <Label Text="{Binding LabelIdTema}"></Label>
-                </StackLayout>
             </StackLayout>
-            
-            
+
             <SearchBar
                 HorizontalOptions="FillAndExpand"
                 Placeholder="Filtrar informacion..."
@@ -57,18 +49,18 @@
                 x:Name="SearchBar"
                 TextChanged="OnFilterTextChange">
             </SearchBar>
+
             <syncfusion:SfDataGrid
                 VerticalOptions="FillAndExpand"
                 ColumnSizer="Star"
                 AutoGenerateColumns="False"
                 AllowSorting="False"
-                ItemsSource="{Binding SFDataGrid_ItemSource_Subtema}"
-                SelectedItem="{Binding SFDataGrid_SelectedItem_Subtema}"
+                ItemsSource="{Binding SFDataGrid_ItemSource_Fuentes}"
+                SelectedItem="{Binding SFDataGrid_SelectedItem_Fuentes}"
                 SelectionMode="Single">
                 <syncfusion:SfDataGrid.Columns x:TypeArguments="syncfusion:Columns">
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="ID" MappingName="IdSubtema"/>
-                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Subtema" MappingName="DesSubtema"/>
-               
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Prioridad" MappingName="Prioridad"/>
+                    <syncfusion:GridTextColumn HeaderFontAttribute="Bold" HeaderText="Observaciones" MappingName="Observaciones"/>
                 </syncfusion:SfDataGrid.Columns>
             </syncfusion:SfDataGrid>
         </StackLayout>

@@ -20,8 +20,6 @@ using GestionPlaneacionDidacticaAPP.Services.CriteriosEvaluacion;
 using GestionPlaneacionDidacticaAPP.Services.Apoyos_Didacticos;
 
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion;
-using GestionPlaneacionDidacticaAPP.Services.Planeacion;
-using GestionPlaneacionDidacticaAPP.Interfaces.Planeacion;
 using GestionPlaneacionDidacticaAPP.Services.Subtemas;
 using GestionPlaneacionDidacticaAPP.Interfaces.Subtemas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Subtemas;
@@ -42,6 +40,9 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza;
 using GestionPlaneacionDidacticaAPP.Services.ActividadEnseñanza;
 using GestionPlaneacionDidacticaAPP.Interfaces.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.ViewModels.Fuentes;
+using GestionPlaneacionDidacticaAPP.Services.Fuentes;
+using GestionPlaneacionDidacticaAPP.Interfaces.Fuentes;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -103,10 +104,19 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionView>();
             FicContainerBuilder.RegisterType<FicVmCriteriosEvaluacionUpdate>();
 
+
+            FicContainerBuilder.RegisterType<FicVmFuentesList>();
+            FicContainerBuilder.RegisterType<FicVmFuentesInsert>();
+            FicContainerBuilder.RegisterType<FicVmFuentesUpdate>();
+            FicContainerBuilder.RegisterType<FicVmFuentesView>();
+
+
+
             FicContainerBuilder.RegisterType<FicVmAprendizajesList>();
             FicContainerBuilder.RegisterType<FicVmAprendizajesInsert>();
             FicContainerBuilder.RegisterType<FicVmAprendizajesUpdate>();
             FicContainerBuilder.RegisterType<FicVmAprendizajesView>();
+
 
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
@@ -143,6 +153,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaDetalle>().As<IFicSrvEnseñanzaDetalle>().SingleInstance();
 
             FicContainerBuilder.RegisterType<FicSrvActividadEnseñanza>().As<IFicSrvActividadEnseñanza>().SingleInstance();
+
+            FicContainerBuilder.RegisterType<FicSrvFuentes>().As<IFicSrvFuentes>().SingleInstance();
+
 
 
             //FIC: se asigna o se libera el contenedor
@@ -321,10 +334,29 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             get { return FicIContainer.Resolve<FicVmActividadEnseñanzaUpdate>(); }
         }
 
+
+        public FicVmFuentesList FicVmFuentesList
+        {
+            get { return FicIContainer.Resolve<FicVmFuentesList>(); }
+        }
+        public FicVmFuentesUpdate FicVmFuentesUpdate
+        {
+            get { return FicIContainer.Resolve<FicVmFuentesUpdate>(); }
+        }
+        public FicVmFuentesView FicVmFuentesView
+        {
+            get { return FicIContainer.Resolve<FicVmFuentesView>(); }
+        }
+        public FicVmFuentesInsert FicVmFuentesInsert
+        {
+            get { return FicIContainer.Resolve<FicVmFuentesInsert>(); }
+        }
+
         public FicVmActividadEnseñanzaDetalle FicVmActividadEnseñanzaDetalle
         {
             get { return FicIContainer.Resolve<FicVmActividadEnseñanzaDetalle>(); }
         }
+
 
         public FicVmAprendizajesList FicVmAprendizajesList
         {

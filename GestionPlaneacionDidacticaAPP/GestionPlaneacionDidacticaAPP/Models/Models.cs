@@ -157,6 +157,8 @@ namespace GestionPlaneacionDidacticaAPP.Models
         public Int16 IdFuente { get; set; }
 
         public Int16 Prioridad { get; set; }
+        [StringLength(1000)]
+        public string Observaciones { get; set; }
 
         public DateTime FechaReg { get; set; }
         [StringLength(20)]
