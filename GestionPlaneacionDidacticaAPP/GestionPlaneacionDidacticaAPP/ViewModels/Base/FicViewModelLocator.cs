@@ -42,6 +42,9 @@ using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza;
 using GestionPlaneacionDidacticaAPP.Services.ActividadEnseñanza;
 using GestionPlaneacionDidacticaAPP.Interfaces.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.ViewModels.Importar;
+using GestionPlaneacionDidacticaAPP.Services.Importar;
+using GestionPlaneacionDidacticaAPP.Interfaces.Importar;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
 {
@@ -108,6 +111,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicVmAprendizajesUpdate>();
             FicContainerBuilder.RegisterType<FicVmAprendizajesView>();
 
+            FicContainerBuilder.RegisterType<FicVmImportar>();
+
             //------------------------- INTERFACE SERVICES OF THE VIEW MODELS -----------------------------------
             //FIC: se procede a registrar la interface con la que se comunican las ViewModels con los Servicios 
             //para poder ejecutar las tareas (metodos o funciones, etc) del servicio en cuestion.
@@ -143,6 +148,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
             FicContainerBuilder.RegisterType<FicSrvEnseñanzaDetalle>().As<IFicSrvEnseñanzaDetalle>().SingleInstance();
 
             FicContainerBuilder.RegisterType<FicSrvActividadEnseñanza>().As<IFicSrvActividadEnseñanza>().SingleInstance();
+
+            FicContainerBuilder.RegisterType<FicSrvImportar>().As<IFicImportar>().SingleInstance();
 
 
             //FIC: se asigna o se libera el contenedor
@@ -344,6 +351,11 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Base
         public FicVmAprendizajesView FicVmAprendizajesView
         {
             get { return FicIContainer.Resolve<FicVmAprendizajesView>(); }
+        }
+
+        public FicVmImportar FicVmImportar
+        {
+            get { return FicIContainer.Resolve<FicVmImportar>(); }
         }
 
     }//CLASS

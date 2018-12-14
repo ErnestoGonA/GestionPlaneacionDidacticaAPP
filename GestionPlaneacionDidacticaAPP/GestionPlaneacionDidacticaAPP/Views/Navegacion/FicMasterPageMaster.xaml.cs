@@ -19,6 +19,7 @@ using GestionPlaneacionDidacticaAPP.Views.Subtemas;
 using GestionPlaneacionDidacticaAPP.Views.Competencias;
 using GestionPlaneacionDidacticaAPP.Views.Planeacion_Apoyos;
 using GestionPlaneacionDidacticaAPP.Views.ActividadEnseñanza;
+using GestionPlaneacionDidacticaAPP.Views.Importar;
 
 namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 {
@@ -45,7 +46,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
                 MenuItems = new ObservableCollection<FicMasterPageMenuItem>(new[]
                 {
 
-                    //new FicMasterPageMenuItem { Id = 4, Title = "Enseñanza", Icon ="ficAlmacen20x20.png", FicPageName ="FicViEnseñanzaList", TargetType = typeof(FicViEnseñanzaList)},
+                    new FicMasterPageMenuItem { Id = 1, Title = "Importar y exportar", Icon ="ficAlmacen20x20.png", FicPageName ="FicViImportar", TargetType = typeof(FicViImportar)},
 
                     //new FicMasterPageMenuItem { Id = 5, Title = "Actividad enseñanza", Icon ="ficAlmacen20x20.png", FicPageName ="FicViActividadEnseñanza", TargetType = typeof(FicViActividadEnseñanza)},
 

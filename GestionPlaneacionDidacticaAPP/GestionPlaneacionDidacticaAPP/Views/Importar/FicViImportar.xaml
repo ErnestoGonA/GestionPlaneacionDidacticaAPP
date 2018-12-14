@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GestionPlaneacionDidacticaAPP.Views.Importar.FicViImportar">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Label Text="Importar y exportar"
+                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <Button Command="{Binding Importar}" Text="Importar" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+            <StackLayout>
+                <Button Command="{Binding Exportar}" Text="Exportar" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
