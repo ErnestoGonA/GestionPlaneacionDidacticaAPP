@@ -14,7 +14,7 @@
              Command="{Binding FicMetUpdateAprendizajesICommand}">
         </ToolbarItem>
         <ToolbarItem
-            Name="Detalle Criterio"
+            Name="Detalle Aprendizaje"
             Command="{Binding FicMetViewAprendizajesICommand}">
         </ToolbarItem>
         <ToolbarItem
