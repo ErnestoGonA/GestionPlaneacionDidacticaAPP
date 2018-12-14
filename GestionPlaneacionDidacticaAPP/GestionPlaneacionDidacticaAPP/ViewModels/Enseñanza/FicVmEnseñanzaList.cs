@@ -15,6 +15,8 @@ using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.Services.Enseñanza;
 using GestionPlaneacionDidacticaAPP.Interfaces.Enseñanza;
+using GestionPlaneacionDidacticaAPP.ViewModels.Competencias;
+using GestionPlaneacionDidacticaAPP.ViewModels.ActividadEnseñanza;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
 {
@@ -33,7 +35,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         //Buttons
         private ICommand _MetAddEnseñanzaICommand, _MetUpdateEnseñanzaICommand, _MetViewEnseñanzaICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
         //Navigation to lists
-        private ICommand _FicMetNavigateToTemasICommand;
+        private ICommand _FicMetNavigateToTemasICommand, _FicMetNavigateToActividadICommand;
 
 
         //Interfaces
@@ -162,6 +164,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                 });
             }
         }
+        public ICommand FicMetNavigateToActividadICommand
+        {
+            get { return _FicMetNavigateToActividadICommand = _FicMetNavigateToActividadICommand ?? new FicVmDelegateCommand(FicMetActividadEnseñanza); }
+        }
+
+        public void FicMetActividadEnseñanza()
+        {
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmActividadEnseñanza>();
+        }
 
         public ICommand MetRemovePlaneacionICommand
         {
@@ -197,10 +208,9 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
 
         public void FicMetNavigateToTemas()
         {
-            if (SFDataGrid_SelectedItem_Enseñanza != null)
-            {
-                //IFicSrvNavigationInventario.FicMetNavigateTo<FicVmTemasList>(SFDataGrid_SelectedItem_Planeacion);
-            }
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] {
+            FicNavigationContextC[0],
+            FicNavigationContextC[1]});
 
         }
         public string Usuario

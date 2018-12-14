@@ -50,6 +50,52 @@ namespace GestionPlaneacionDidacticaAPP.Services.Planeacion
 
         public async Task<string> FicMetRemovePlaneacion(eva_planeacion eva_planeacion)
         {
+            int id = eva_planeacion.IdPlaneacion;
+            List<eva_planeacion_mejora_desempeño> mejoras = await (from mejora in DBLoContext.eva_planeacion_mejor_desempeño select mejora).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            mejoras.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_criterios_evalua> criterios = await (from criterio in DBLoContext.eva_planeacion_criterios_evalua select criterio).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            criterios.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_enseñanza> enseñanzas = await (from enseñanza in DBLoContext.eva_planeacion_enseñanza select enseñanza).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            enseñanzas.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_aprendizaje> aprendizajes = await (from aprendizaje in DBLoContext.eva_planeacion_aprendizaje select aprendizaje).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            aprendizajes.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_temas_competencias> temas_competencias = await (from temaC in DBLoContext.eva_planeacion_temas_competencias select temaC).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            temas_competencias.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_apoyos> apoyos = await (from apoyo in DBLoContext.eva_planeacion_apoyos select apoyo).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            apoyos.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_fuentes> fuentes = await (from fuente in DBLoContext.eva_planeacion_fuentes select fuente).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            fuentes.ForEach(item =>
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_subtemas> subtemas = await (from subtema in DBLoContext.eva_planeacion_subtemas select subtema).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            subtemas.ForEach(item => 
+            {
+                DBLoContext.Remove(item);
+            });
+            List<eva_planeacion_temas> temas = await (from tema in DBLoContext.eva_planeacion_temas select tema).Where(item => item.IdPlaneacion == id).AsNoTracking().ToListAsync();
+            temas.ForEach(item => 
+            {
+                DBLoContext.Remove(item);
+            });
             DBLoContext.Remove(eva_planeacion);
             return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR";
         }
