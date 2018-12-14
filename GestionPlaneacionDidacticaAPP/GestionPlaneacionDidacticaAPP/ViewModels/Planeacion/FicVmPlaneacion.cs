@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using GestionPlaneacionDidacticaAPP.Data;
 using GestionPlaneacionDidacticaAPP.ViewModels.Temas;
 using GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos;
+using GestionPlaneacionDidacticaAPP.ViewModels.Fuentes;
 
 namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
 {
@@ -35,7 +36,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
         //Buttons
         private ICommand _MetAddPlaneacionICommand, _MetUpdatePlaneacionICommand, _MetViewPlaneacionICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
         //Navigation to lists
-        private ICommand _FicMetNavigateToTemasICommand, _FicMetNavigateToApoyosICommand;
+        private ICommand _FicMetNavigateToTemasICommand, _FicMetNavigateToApoyosICommand, _FicMetNavigateToFuentesICommand;
 
         //Interfaces
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
@@ -305,6 +306,21 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion
                     }
                 }
             }
+        }
+
+        
+        public ICommand FicMetNavigateToFuentesICommand
+        {
+            get { return _FicMetNavigateToFuentesICommand = _FicMetNavigateToFuentesICommand ?? new FicVmDelegateCommand(FicMetNavigateToFuentes); }
+        }
+
+        public void FicMetNavigateToFuentes()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion != null)
+            {
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmFuentesList>(SFDataGrid_SelectedItem_Planeacion);
+            }
+                            
         }
 
         public ICommand FicMetNavigateToTemasICommand

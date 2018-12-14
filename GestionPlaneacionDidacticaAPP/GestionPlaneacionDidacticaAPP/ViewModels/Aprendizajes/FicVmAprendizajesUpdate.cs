@@ -231,15 +231,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Aprendizajes
                 }
                 else
                 {
-                    if (res == "REP")
-                    {
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmAprendizajesList>(new object[] { FicNavigationContextC[0], FicNavigationContextC[1], FicNavigationContextC[2] });
-                    }
-                    else
-                    {
-                        await new Page().DisplayAlert("Update", res.ToString(), "OK");
-                    }
-                   
+                        await new Page().DisplayAlert("Update", res.ToString(), "OK");  
                 }
 
             }

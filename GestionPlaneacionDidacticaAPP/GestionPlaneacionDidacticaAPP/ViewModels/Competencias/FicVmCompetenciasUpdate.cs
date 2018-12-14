@@ -172,7 +172,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
             try
             {
                 
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1] });
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1],FicNavigationContextC[2] });
                 
             }
             catch (Exception e)
@@ -213,7 +213,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Competencias
                 if (RespuestaInsert == "OK")
                 {
                     await new Page().DisplayAlert("UPDATE", "¡EDITADO CON EXITO!", "OK");
-                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1] });
+                    IFicSrvNavigationInventario.FicMetNavigateTo<FicVmCompetenciasList>(new object[] { FicNavigationContextC[1], FicNavigationContextC[2] });
                 }
                 else
                 {
