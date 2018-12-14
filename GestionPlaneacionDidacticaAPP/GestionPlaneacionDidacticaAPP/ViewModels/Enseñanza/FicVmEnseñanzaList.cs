@@ -28,6 +28,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         public int _UsIndex = FicGlobalValues.USUARIO_INDEX;
         public Int16 _AsIndex;
         public bool Filtrado = false;
+        public string _Usuario, _Asignatura, _Planeacion, _Competencia, _Tema;
 
         //Buttons
         private ICommand _MetAddEnseñanzaICommand, _MetUpdateEnseñanzaICommand, _MetViewEnseñanzaICommand, _MetRemovePlaneacionICommand, _FiltrarPlantillaCommand, _GuardarComoCommand;
@@ -39,6 +40,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvEnseñanzaList IFicSrvEnseñanzaList;
 
+        public object[] FicNavigationContextC { get; set; }
         public FicVmEnseñanzaList(IFicSrvNavigationInventario ficSrvNavigationInventario,
             IFicSrvEnseñanzaList IFicSrvEnseñanzaList)
         {
@@ -115,7 +117,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         }
         public void FicMetAddEnseñanza()
         {
-            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaInsert>();
+            IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaInsert>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_Enseñanza
+                });
         }
 
         public ICommand MetViewEnseñanzaICommand
@@ -129,7 +136,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaDetalle>(SFDataGrid_SelectedItem_Enseñanza);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaDetalle>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_Enseñanza
+                });
             }
         }
 
@@ -142,7 +154,12 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         {
             if (SFDataGrid_SelectedItem_Enseñanza != null)
             {
-                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaUpdate>(SFDataGrid_SelectedItem_Enseñanza);
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaUpdate>(new object[] {
+                    FicNavigationContextC[0],
+                    FicNavigationContextC[1],
+                    FicNavigationContextC[2],
+                    SFDataGrid_SelectedItem_Enseñanza
+                });
             }
         }
 
@@ -163,7 +180,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                     var res = await IFicSrvEnseñanzaList.FicMetRemoveEnseñanza(aux);
                     if (res == "OK")
                     {
-                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaList>();
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmEnseñanzaList>(FicNavigationContextC);
                     }
                     else
                     {
@@ -186,12 +203,104 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
             }
 
         }
+        public string Usuario
+        {
+            get
+            {
+                return _Usuario;
+            }
+            set
+            {
+                _Usuario = value;
+                if (value != null)
+                {
+                    _Usuario = value;
+                }
+                RaisePropertyChanged("Usuario");
+            }
+        }
+        public string Asignatura
+        {
+            get
+            {
+                return _Asignatura;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Asignatura = value;
+                }
+                RaisePropertyChanged("Asignatura");
+            }
+        }
+        public string Planeacion
+        {
+            get
+            {
+                return _Planeacion;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Planeacion = value;
+                }
+                RaisePropertyChanged("Planeacion");
+            }
+        }
+        public string Tema
+        {
+            get
+            {
+                return _Tema;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Tema = value;
+                }
+                RaisePropertyChanged("Tema");
+            }
+        }
+        public string Competencia
+        {
+            get
+            {
+                return _Competencia;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Competencia = value;
+                }
+                RaisePropertyChanged("Competencia");
+            }
+        }
 
 
         public async void OnAppearing()
         {
             try
             {
+                _Usuario = FicGlobalValues.USUARIO;
+                _Asignatura = FicGlobalValues.ASIGNATURA;
+                var auxPlaneacion = FicNavigationContextC[1] as eva_planeacion;
+                _Planeacion = auxPlaneacion.ReferenciaNorma;
+                var auxTema = FicNavigationContextC[0] as eva_planeacion_temas;
+                _Tema = auxTema.DesTema;
+                var auxCompetencia = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+                _Competencia = auxCompetencia.Observaciones;
+
+                RaisePropertyChanged("Usuario");
+                RaisePropertyChanged("Asignatura");
+                RaisePropertyChanged("Planeacion");
+                RaisePropertyChanged("Tema");
+                RaisePropertyChanged("Competencia");
+
+
                 //Si se oprime el boton de filtrar por plantilla entonces no se debe de rellenar el grid sin filtros
                 var source_local_inv = await this.IFicSrvEnseñanzaList.FicMetGetListEnseñanza();
                 if (source_local_inv != null)
@@ -203,7 +312,8 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
                         string Planeacion = this.IFicSrvEnseñanzaList.FicMetGetPlaneacion(enseñanza.IdPlaneacion).Result.ReferenciaNorma;
                         string Tema = this.IFicSrvEnseñanzaList.FicMetGetTema(enseñanza.IdTema).Result.DesTema;
                         string Competencia = this.IFicSrvEnseñanzaList.FicMetGetCompetencia(enseñanza.IdCompetencia).Result.DesCompetencia;
-                        EnseñanzaLista aux = new EnseñanzaLista(Asignatura,Planeacion,Tema,Competencia,enseñanza);
+                        string Actividad = this.IFicSrvEnseñanzaList.FicMetGetActividad(enseñanza.IdActividadEnseñanza).Result.DesActividadEnseñanza;
+                        EnseñanzaLista aux = new EnseñanzaLista(Asignatura,Planeacion,Tema,Competencia,Actividad,enseñanza);
                         _SFDataGrid_ItemSource_Enseñanza.Add(aux);
                         _SFDataGrid_ItemSource_Enseñanza_AUX.Add(aux);
                     }
@@ -249,13 +359,15 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         public string Planeacion { get; set; }
         public string Tema { get; set; }
         public string Competencia { get; set; }
+        public string Actividad { get; set; }
         public eva_planeacion_enseñanza eva_planeacion_enseñanza { get; set; }
-        public EnseñanzaLista(string Asignatura,string Planeacion,string Tema,string Competencia,eva_planeacion_enseñanza eva_planeacion_enseñanza)
+        public EnseñanzaLista(string Asignatura,string Planeacion,string Tema,string Competencia,string Actividad,eva_planeacion_enseñanza eva_planeacion_enseñanza)
         {
             this.Asignatura = Asignatura;
             this.Planeacion = Planeacion;
             this.Tema = Tema;
             this.Competencia = Competencia;
+            this.Actividad = Actividad;
             this.eva_planeacion_enseñanza = eva_planeacion_enseñanza;
         }
 

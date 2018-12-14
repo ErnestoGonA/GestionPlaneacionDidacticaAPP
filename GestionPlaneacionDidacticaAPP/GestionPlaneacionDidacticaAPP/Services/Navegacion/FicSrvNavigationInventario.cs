@@ -63,6 +63,7 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
             {typeof(FicVmActividadEnseñanza),typeof(FicViActividadEnseñanza) },
             {typeof(FicVmActividadEnseñanzaInsert),typeof(FicViActividadEnseñanzaInsert) },
             {typeof(FicVmActividadEnseñanzaUpdate), typeof(FicViActividadEnseñanzaUpdate) },
+            {typeof(FicVmActividadEnseñanzaDetalle), typeof(FicViActividadEnseñanzaDetalle) },
 
             {typeof(FicVmAprendizajesList),typeof(FicViAprendizajesList) },
             {typeof(FicVmAprendizajesInsert),typeof(FicViAprendizajesInsert) },
