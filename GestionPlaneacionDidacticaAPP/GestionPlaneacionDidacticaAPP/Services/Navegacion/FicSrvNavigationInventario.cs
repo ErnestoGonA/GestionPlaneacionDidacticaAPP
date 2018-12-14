@@ -107,6 +107,8 @@ namespace GestionPlaneacionDidacticaAPP.Services.Navegacion
 
             { typeof(FicVmPlaneacionApoyosList),typeof(FicViPlaneacionApoyosList) },
             { typeof(FicVmPlaneacionApoyosInsert),typeof(FicViPlaneacionApoyosInsert) },
+            { typeof(FicVmPlaneacionApoyosView),typeof(FicViPlaneacionApoyosView) },
+            { typeof(FicVmPlaneacionApoyosUpdate),typeof(FicViPlaneacionApoyosUpdate) },
 
         };
 

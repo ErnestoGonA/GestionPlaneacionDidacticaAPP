@@ -126,6 +126,23 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
             IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosInsert>(source_eva_planeacion);
         }
 
+        public ICommand FicMetViewPlaneacionApoyosICommand
+        {
+            get
+            {
+                return _MetViewPlaneacionApoyosICommand = _MetViewPlaneacionApoyosICommand ?? new FicVmDelegateCommand(FicMetViewPlaneacionApoyos);
+            }
+        }
+
+        private void FicMetViewPlaneacionApoyos()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion_Apoyos != null)
+            {
+                eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosView>(new object[] { SFDataGrid_SelectedItem_Planeacion_Apoyos, source_eva_planeacion });
+            }
+        }
+
         public ICommand MetPlaneacionApoyosICommand
         {
             get
@@ -139,6 +156,53 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Planeacion_Apoyos
             
                 IFicSrvNavigationInventario.FicMetNavigateTo<VmApoyosDidacticosList>();
             
+        }
+
+        public ICommand FicMetUpdateApoyoDidacticoICommand
+        {
+            get
+            {
+                return _MetUpdatePlaneacionApoyosICommand = _MetUpdatePlaneacionApoyosICommand ?? new FicVmDelegateCommand(FicMetUpdateTema);
+            }
+        }
+
+        private void FicMetUpdateTema()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion_Apoyos != null)
+            {
+                eva_planeacion source_eva_planeacion = FicNavigationContextC as eva_planeacion;
+                IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosUpdate>(new object[] { SFDataGrid_SelectedItem_Planeacion_Apoyos, source_eva_planeacion });
+            }
+        }
+
+        public ICommand FicMetRemovePlaneacionApoyosICommand
+        {
+            get
+            {
+                return _MetRemovePlaneacionApoyosICommand = _MetRemovePlaneacionApoyosICommand ?? new FicVmDelegateCommand(FicMetRemoveCompetencia);
+            }
+        }
+
+        private async void FicMetRemoveCompetencia()
+        {
+            if (SFDataGrid_SelectedItem_Planeacion_Apoyos != null)
+            {
+
+                var ask = await new Page().DisplayAlert("ALERTA!", "Seguro?", "Si", "No");
+                if (ask)
+                {
+                    var res = await IFicSrvPlaneacionApoyos.DeletePlaneacionApoyos(SFDataGrid_SelectedItem_Planeacion_Apoyos);
+                    if (res == "OK")
+                    {
+                        //eva_planeacion_temas source_eva_planeacion_temas = FicNavigationContextC[0] as eva_planeacion_temas;
+                        IFicSrvNavigationInventario.FicMetNavigateTo<FicVmPlaneacionApoyosList>(FicNavigationContextC);
+                    }
+                    else
+                    {
+                        await new Page().DisplayAlert("DELETE", res.ToString(), "OK");
+                    }
+                }
+            }
         }
 
         public async void OnAppearing()

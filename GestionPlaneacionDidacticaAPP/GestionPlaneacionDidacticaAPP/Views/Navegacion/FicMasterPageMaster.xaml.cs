@@ -53,7 +53,7 @@ namespace GestionPlaneacionDidacticaAPP.Views.Navegacion
 
                     //new FicMasterPageMenuItem { Id = 2, Title="Criterios",Icon ="ficAlmacen20x20.png",FicPageName="ViCriteriosEvaluacionList",TargetType = typeof(ViCriteriosEvaluacionList)},
 
-                    new FicMasterPageMenuItem { Id = 3, Title = "PlaneacionApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="FicViPlaneacionApoyosList", TargetType = typeof(FicViPlaneacionApoyosList)},
+                    //new FicMasterPageMenuItem { Id = 3, Title = "PlaneacionApoyosDidacticos", Icon ="ficAlmacen20x20.png", FicPageName ="FicViPlaneacionApoyosList", TargetType = typeof(FicViPlaneacionApoyosList)},
 
                     new FicMasterPageMenuItem { Id = 4, Title = "Planeaciones",
                                                 Icon ="ficAlmacen20x20.png",

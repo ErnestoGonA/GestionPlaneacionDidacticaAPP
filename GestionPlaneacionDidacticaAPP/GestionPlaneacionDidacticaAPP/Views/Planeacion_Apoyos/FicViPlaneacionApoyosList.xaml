@@ -11,15 +11,15 @@
         </ToolbarItem>
         <ToolbarItem
             Name="Editar Planeacion_Apoyos"
-            Command="{Binding FicMetUpdateCompetenciaICommand}">
+            Command="{Binding FicMetUpdateApoyoDidacticoICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Detalle Planeacion_Apoyos"
-            Command="{Binding FicMetViewCompetenciaICommand}">
+            Command="{Binding FicMetViewPlaneacionApoyosICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Borrar Planeacion_Apoyos"
-            Command="{Binding FicMetRemoveCompetenciaICommand}">
+            Command="{Binding FicMetRemovePlaneacionApoyosICommand}">
         </ToolbarItem>
         <ToolbarItem
             Name="Agregar Nuevo Apoyo Didactico"

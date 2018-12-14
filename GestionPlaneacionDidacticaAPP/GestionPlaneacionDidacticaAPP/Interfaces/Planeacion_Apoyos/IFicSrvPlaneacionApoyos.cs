@@ -17,6 +17,8 @@ namespace GestionPlaneacionDidacticaAPP.Interfaces.Planeacion_Apoyos
 
         Task<string> UpdatePlaneacionApoyos(eva_planeacion_apoyos Apoyo);
 
+        Task<string> DeletePlaneacionApoyos(eva_planeacion_apoyos Apoyo);
+
         Task<IEnumerable<eva_cat_apoyos_didacticos>> GetListApoyosDidacticos();
     }
 }
