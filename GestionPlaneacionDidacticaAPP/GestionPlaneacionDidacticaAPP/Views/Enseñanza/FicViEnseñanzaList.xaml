@@ -24,6 +24,10 @@
             Name="Competencias"
             Command="{Binding FicMetNavigateToTemasICommand}">
         </ToolbarItem>
+        <ToolbarItem
+            Name="Actividades enseñanza"
+            Command="{Binding FicMetNavigateToActividadICommand}">
+        </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10"
