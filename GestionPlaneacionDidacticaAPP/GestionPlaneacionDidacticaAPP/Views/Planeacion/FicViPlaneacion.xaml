@@ -28,6 +28,12 @@
             Name="Apoyos"
             Command="{Binding FicMetNavigateToApoyosICommand}">
         </ToolbarItem>
+        <ToolbarItem
+            Name="Fuentes"
+            Command="{Binding FicMetNavigateToFuentesICommand}">
+        </ToolbarItem>
+        
+
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10"
