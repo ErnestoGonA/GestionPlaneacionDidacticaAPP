@@ -20,8 +20,10 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         private IFicSrvNavigationInventario IFicSrvNavigationInventario;
         private IFicSrvEnseñanzaUpdate IFicSrvEnseñanzaUpdate;
 
+        public string _Asignaturas, _Planeacion, _Competencias, _Temas, _Actividad;
+        public List<string> _Actividades;
         public DateTime _FechaIni, _FechaFin;
-        public object FicNavigationContextC { get; set; }
+        public object[] FicNavigationContextC { get; set; }
 
         private ICommand _FicMetRegresarPlaneacionICommand, _SaveCommand;
 
@@ -33,6 +35,62 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         }
 
         #region ENLAZAR VARIABLES
+
+        public string Asignaturas
+        {
+            get { return _Asignaturas; }
+            set
+            {
+                _Asignaturas = value;
+                RaisePropertyChanged("Asignaturas");
+            }
+        }
+        public string Planeacion
+        {
+            get { return _Planeacion; }
+            set
+            {
+                _Planeacion = value;
+                RaisePropertyChanged("Planeacion");
+            }
+        }
+        public string Competencias
+        {
+            get { return _Competencias; }
+            set
+            {
+                _Competencias = value;
+                RaisePropertyChanged("Competencias");
+            }
+        }
+        public string Temas
+        {
+            get { return _Temas; }
+            set
+            {
+                _Temas = value;
+                RaisePropertyChanged("Temas");
+            }
+        }
+        public string Actividad
+        {
+            get { return _Actividad; }
+            set
+            {
+                _Actividad = value;
+                RaisePropertyChanged("Actividad");
+            }
+        }
+        public List<string> Actividades
+        {
+            get { return _Actividades; }
+            set
+            {
+                _Actividades = value;
+                RaisePropertyChanged("Actividades");
+            }
+        }
+
         public DateTime FechaIni
         {
             get
@@ -86,7 +144,7 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
         }
         public async void SaveCommandExecute()
         {
-            var source_eva_planeacion_enseñanza = FicNavigationContextC as EnseñanzaLista;
+            var source_eva_planeacion_enseñanza = FicNavigationContextC[3] as EnseñanzaLista;
             try
             {
                 var RespuestaUpdate = await IFicSrvEnseñanzaUpdate.FicMetUpdateEnseñanza(new eva_planeacion_enseñanza()
@@ -125,11 +183,32 @@ namespace GestionPlaneacionDidacticaAPP.ViewModels.Enseñanza
 
         public async void OnAppearing()
         {
-            var source_eva_planeacion_enseñanza = FicNavigationContextC as EnseñanzaLista;
+
+            _Asignaturas = FicGlobalValues.ASIGNATURA;
+            var auxPlaneacion = FicNavigationContextC[1] as eva_planeacion;
+            _Planeacion = auxPlaneacion.ReferenciaNorma;
+            var auxTema = FicNavigationContextC[0] as eva_planeacion_temas;
+            _Temas = auxTema.DesTema;
+            var auxCompetencia = FicNavigationContextC[2] as eva_planeacion_temas_competencias;
+            _Competencias = auxCompetencia.Observaciones;
+            _Actividades = new List<string>();
+            IEnumerable<eva_cat_actividades_enseñanza> auxLista = IFicSrvEnseñanzaUpdate.FicMetGetActividades().Result;
+            foreach (eva_cat_actividades_enseñanza actividad in auxLista)
+            {
+                _Actividades.Add(actividad.IdActividadEnseñanza + "-" + actividad.DesActividadEnseñanza);
+            }
+
+            var source_eva_planeacion_enseñanza = FicNavigationContextC[3] as EnseñanzaLista;
+            _Actividad = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.IdActividadEnseñanza + "-" + IFicSrvEnseñanzaUpdate.FicMetGetActividad(source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.IdActividadEnseñanza).Result.DesActividadEnseñanza;
             _FechaIni = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.FechaProgramada;
             _FechaFin = source_eva_planeacion_enseñanza.eva_planeacion_enseñanza.FechaRealizada;
 
-
+            RaisePropertyChanged("Asignaturas");
+            RaisePropertyChanged("Planeacion");
+            RaisePropertyChanged("Temas");
+            RaisePropertyChanged("Competencias");
+            RaisePropertyChanged("Actividades");
+            RaisePropertyChanged("Actividad");
             RaisePropertyChanged("FechaIni");
             RaisePropertyChanged("FechaFin");
         }

@@ -14,24 +14,29 @@
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Asignatura: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedItem="{Binding AsignaturaSelected}" ItemsSource="{Binding Asignaturas}" HorizontalOptions="FillAndExpand"></Picker>
+                    <Label Text="{Binding Asignaturas}" FontSize="Micro"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Planeacion: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedItem="{Binding PlaneacionSelected}" ItemsSource="{Binding Planeacion}" HorizontalOptions="FillAndExpand"></Picker>
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Competencia: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedItem="{Binding CompetenciaSelected}" ItemsSource="{Binding Competencias}" HorizontalOptions="FillAndExpand"></Picker>
+                    <Label Text="{Binding Planeacion}" FontSize="Micro"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Tema: " FontAttributes="Bold" FontSize="Micro"/>
-                    <Picker SelectedItem="{Binding TemaSelected}" ItemsSource="{Binding Temas}" HorizontalOptions="FillAndExpand"></Picker>
+                    <Label Text="{Binding Temas}" FontSize="Micro"/>
                 </StackLayout>
 
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Competencia: " FontAttributes="Bold" FontSize="Micro"/>
+                    <Label Text="{Binding Competencias}" FontSize="Micro"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Actividad enseñanza: "  FontAttributes="Bold" FontSize="Micro"/>
+                    <Picker SelectedItem="{Binding Actividad}" ItemsSource="{Binding Actividades}" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+                
                 <StackLayout>
                     <Label Text="Fecha programada: " FontAttributes="Bold" FontSize="Micro"/>
                     <DatePicker MinimumDate="2018-01-01" MaximumDate="2018-12-31" Date="{Binding FechaIni}" />
