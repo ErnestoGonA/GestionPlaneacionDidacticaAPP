@@ -24,6 +24,41 @@ namespace GestionPlaneacionDidacticaAPP.Services.Competencias
 
         public async Task<string> DeleteCompetencia(eva_planeacion_temas_competencias Compe)
         {
+
+            // TODO:  competencia, aprendizaje, enseñanza, criterios
+
+            List<eva_planeacion_criterios_evalua> criterios = await (from criterio in DBLoContext.eva_planeacion_criterios_evalua
+                                                                     where criterio.IdAsignatura == Compe.IdAsignatura
+                                                                     where criterio.IdPlaneacion == Compe.IdPlaneacion
+                                                                     where criterio.IdTema == Compe.IdTema
+                                                                     where criterio.IdCompetencia == Compe.IdCompetencia
+                                                                     select criterio).AsNoTracking().ToListAsync();
+            foreach (eva_planeacion_criterios_evalua criterio in criterios)
+            {
+                DBLoContext.eva_planeacion_criterios_evalua.Remove(criterio);
+            }
+
+            List<eva_planeacion_enseñanza> enseñanzas = await (from enseñanza in DBLoContext.eva_planeacion_enseñanza
+                                                               where enseñanza.IdAsignatura == Compe.IdAsignatura
+                                                               where enseñanza.IdPlaneacion == Compe.IdPlaneacion
+                                                               where enseñanza.IdTema == Compe.IdTema
+                                                               where enseñanza.IdCompetencia == Compe.IdCompetencia
+                                                               select enseñanza).AsNoTracking().ToListAsync();
+            foreach (eva_planeacion_enseñanza enseñanza in enseñanzas)
+            {
+                DBLoContext.eva_planeacion_enseñanza.Remove(enseñanza);
+            }
+            List<eva_planeacion_aprendizaje> aprendizajes = await (from aprendizaje in DBLoContext.eva_planeacion_aprendizaje
+                                                                   where aprendizaje.IdAsignatura == Compe.IdAsignatura
+                                                                   where aprendizaje.IdPlaneacion == Compe.IdPlaneacion
+                                                                   where aprendizaje.IdTema == Compe.IdTema
+                                                                   where aprendizaje.IdCompetencia == Compe.IdCompetencia
+                                                                   select aprendizaje).AsNoTracking().ToListAsync();
+            foreach (eva_planeacion_aprendizaje aprendizaje in aprendizajes)
+            {
+                DBLoContext.eva_planeacion_aprendizaje.Remove(aprendizaje);
+            }
+
             DBLoContext.Remove(Compe);
             return await DBLoContext.SaveChangesAsync() > 0 ? "OK" : "ERROR AL ELIMINAR LA COMPETENCIA";
         }
